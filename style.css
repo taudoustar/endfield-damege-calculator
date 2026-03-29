@@ -1,0 +1,769 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #0f1923;
+  color: #e0e0e0;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+h2 {
+  font-size: 1rem;
+  color: #8899aa;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h3 {
+  font-size: 0.9rem;
+  color: #6a7a8a;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #1e2d3d;
+}
+
+/* Panels */
+.panel {
+  background: #1a2736;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* Character select */
+.char-select {
+  display: flex;
+  gap: 8px;
+}
+
+.char-btn {
+  flex: 1;
+  padding: 8px 16px;
+  background: #253545;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  color: #aab;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.char-btn:hover {
+  background: #2e4050;
+  color: #fff;
+}
+
+.char-btn.active {
+  border-color: #4a9eff;
+  color: #fff;
+  background: #1e3a5f;
+}
+
+/* Shared select style */
+.game-select {
+  padding: 6px 10px;
+  background: #0f1923;
+  border: 1px solid #2a3a4a;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  min-width: 0;
+  flex: 1;
+}
+
+.game-select:focus {
+  border-color: #4a9eff;
+}
+
+/* Character potential */
+.char-potential-list {
+  margin-top: 8px;
+}
+
+.char-potential-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #445;
+  font-size: 0.85rem;
+}
+
+.char-potential-item.unlocked {
+  color: #dde;
+}
+
+.char-potential-lv {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  background: #253545;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.char-potential-item.unlocked .char-potential-lv {
+  background: #1e3a5f;
+  color: #4a9eff;
+}
+
+.char-potential-name {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.char-potential-desc {
+  color: #7a8a9a;
+  font-size: 0.8rem;
+}
+
+.char-potential-item.unlocked .char-potential-desc {
+  color: #7ee87e;
+}
+
+/* Weapon select */
+.weapon-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.potential-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.potential-label {
+  color: #8899aa;
+  font-size: 0.85rem;
+  margin-right: 2px;
+}
+
+.pot-btn {
+  width: 28px;
+  height: 28px;
+  background: #253545;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #aab;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pot-btn:hover {
+  background: #2e4050;
+  color: #fff;
+}
+
+.pot-btn.active {
+  border-color: #4a9eff;
+  color: #fff;
+  background: #1e3a5f;
+}
+
+.weapon-buffs {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.weapon-buff-tag {
+  font-size: 0.8rem;
+  color: #7ee87e;
+  background: #1a3020;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Equipment select */
+.equip-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.equip-row:last-child {
+  margin-bottom: 0;
+}
+
+.equip-label {
+  width: 50px;
+  color: #8899aa;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* Set status */
+.set-status {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #1e2d3d;
+}
+
+.set-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  color: #556;
+}
+
+.set-row.set-active {
+  color: #e8c84a;
+}
+
+.set-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.set-count {
+  font-size: 0.8rem;
+  font-family: "Consolas", "Courier New", monospace;
+}
+
+.set-buff-desc {
+  font-size: 0.8rem;
+  color: #7ee87e;
+}
+
+/* Stat summary */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.stat-item {
+  background: #0f1923;
+  border-radius: 6px;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.stat-name {
+  display: block;
+  font-size: 0.8rem;
+  color: #8899aa;
+  margin-bottom: 2px;
+}
+
+.stat-tag {
+  font-size: 0.65rem;
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-left: 3px;
+  vertical-align: middle;
+}
+
+.stat-tag.primary {
+  background: #3a2040;
+  color: #e07ae8;
+}
+
+.stat-tag.secondary {
+  background: #2a3520;
+  color: #7ee87e;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stat-bonus {
+  font-size: 0.75rem;
+  color: #7ee87e;
+  font-weight: 400;
+}
+
+.atk-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0 0;
+}
+
+.atk-label {
+  color: #8899aa;
+  font-size: 0.85rem;
+}
+
+.atk-value {
+  color: #ffb347;
+  font-weight: 600;
+}
+
+/* External buffs (field/food) */
+.ext-add-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ext-add-btn {
+  padding: 6px 14px;
+  background: #253545;
+  border: 1px solid #3a4a5a;
+  border-radius: 4px;
+  color: #ccd;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.ext-add-btn:hover {
+  background: #2e4050;
+  color: #fff;
+}
+
+.ext-list {
+  margin-top: 8px;
+}
+
+.ext-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #1a2a20;
+  margin-bottom: 4px;
+}
+
+.ext-group-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: #2a3a4a;
+  color: #8ab4f8;
+  flex-shrink: 0;
+}
+
+.ext-remove-btn {
+  margin-left: auto;
+  width: 22px;
+  height: 22px;
+  background: transparent;
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  color: #a66;
+  font-size: 0.9rem;
+  cursor: pointer;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.ext-remove-btn:hover {
+  background: #3a2020;
+  color: #f88;
+  border-color: #f88;
+}
+
+/* Buff list */
+.buff-group {
+  margin-bottom: 12px;
+}
+
+.buff-group:last-child {
+  margin-bottom: 0;
+}
+
+.buff-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.buff-item:hover {
+  background: #253545;
+}
+
+.buff-item.checked {
+  background: #1e3450;
+}
+
+.buff-item.permanent {
+  background: #1a2a20;
+  cursor: default;
+}
+
+.buff-item.permanent .buff-name {
+  color: #7ee87e;
+}
+
+.buff-item.permanent .buff-desc {
+  color: #5a8a5a;
+}
+
+.buff-item input[type="checkbox"] {
+  accent-color: #4a9eff;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.buff-name {
+  font-weight: 600;
+  color: #dde;
+  white-space: nowrap;
+}
+
+.buff-desc {
+  color: #7a8a9a;
+  font-size: 0.85rem;
+}
+
+.empty {
+  color: #556;
+  font-size: 0.85rem;
+  padding: 4px 0;
+}
+
+/* Result */
+.result-panel {
+  background: #162232;
+  border: 1px solid #2a3a4a;
+}
+
+/* Skill cards */
+.skill-card {
+  margin-bottom: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #1a2a3a;
+}
+
+.skill-card:last-of-type {
+  margin-bottom: 0;
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+}
+
+.skill-header:hover {
+  background: #223344;
+}
+
+.skill-type-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.skill-type-tag.basic {
+  background: #3a3a3a;
+  color: #ccc;
+}
+
+.skill-type-tag.skill {
+  background: #2a4030;
+  color: #7ee87e;
+}
+
+.skill-type-tag.combo {
+  background: #3a3520;
+  color: #e8c84a;
+}
+
+.skill-type-tag.ultimate {
+  background: #3a2040;
+  color: #e07ae8;
+}
+
+.skill-type-tag.generic {
+  background: #2a3040;
+  color: #7ab8e8;
+}
+
+.skill-name {
+  flex: 1;
+  font-weight: 600;
+  color: #dde;
+}
+
+.skill-total {
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffb347;
+}
+
+.expand-icon {
+  color: #556;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+/* Skill detail (expanded) */
+.skill-detail {
+  padding: 0 12px 12px;
+}
+
+.hit-block {
+  background: #0f1923;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-top: 8px;
+}
+
+.hit-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #1e2d3d;
+}
+
+.element-tag {
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.hit-base {
+  color: #7a8a9a;
+  font-size: 0.8rem;
+  flex: 1;
+}
+
+.hit-final {
+  font-family: "Consolas", "Courier New", monospace;
+  font-weight: 700;
+  color: #ffb347;
+  font-size: 0.95rem;
+}
+
+/* ATK breakdown */
+.atk-breakdown {
+  margin-bottom: 4px;
+}
+
+.section-divider {
+  font-size: 0.75rem;
+  color: #556;
+  text-align: center;
+  padding: 4px 0;
+  border-top: 1px dashed #1e2d3d;
+  margin-top: 4px;
+}
+
+/* Category rows (breakdown) */
+.cat-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 3px 0;
+}
+
+.cat-label {
+  width: 50px;
+  font-weight: 600;
+  color: #8ab4f8;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+.cat-detail {
+  flex: 1;
+  color: #aab;
+  font-size: 0.78rem;
+}
+
+.cat-detail .contrib {
+  color: #ccd;
+}
+
+.cat-detail strong {
+  color: #fff;
+}
+
+.cat-mult {
+  font-family: "Consolas", "Courier New", monospace;
+  color: #7ee87e;
+  font-weight: 600;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.formula {
+  text-align: right;
+  padding: 4px 0 0;
+  color: #556;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.78rem;
+}
+
+/* Grand total */
+.grand-total {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffb347;
+  padding: 16px 0 4px;
+  border-top: 1px solid #2a3a4a;
+  margin-top: 12px;
+}
+
+/* Save/Load UI */
+.sl-btn {
+  padding: 5px 14px;
+  background: #253545;
+  border: 1px solid #3a4a5a;
+  border-radius: 4px;
+  color: #ccd;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.sl-btn:hover {
+  background: #2e4050;
+  color: #fff;
+}
+
+.sl-file-import-label {
+  display: inline-block;
+}
+
+.sl-file-input {
+  display: none;
+}
+
+.sl-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.sl-modal {
+  background: #1a2736;
+  border: 1px solid #3a4a5a;
+  border-radius: 8px;
+  padding: 20px;
+  width: 480px;
+  max-width: 90vw;
+}
+
+.sl-modal h3 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.sl-hint {
+  color: #8899aa;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.sl-textarea {
+  width: 100%;
+  height: 120px;
+  padding: 8px;
+  background: #0f1923;
+  border: 1px solid #2a3a4a;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.82rem;
+  font-family: "Consolas", "Courier New", monospace;
+  resize: vertical;
+  outline: none;
+}
+
+.sl-textarea:focus {
+  border-color: #4a9eff;
+}
+
+.sl-modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.sl-confirm-btn {
+  background: #1e3a5f !important;
+  border-color: #4a9eff !important;
+  color: #fff !important;
+}
+
+.sl-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(60px);
+  background: #1e3a5f;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.sl-toast.sl-toast-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.save-load-bar {
+  display: flex;
+  gap: 8px;
+}

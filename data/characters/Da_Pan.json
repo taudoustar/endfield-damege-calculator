@@ -1,0 +1,120 @@
+{
+  "id": "Da_Pan",
+  "name": "大潘",
+  "baseAtk": 303,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 175, "agility": 96, "intellect": 94, "will": 102 },
+  "statConfig": {
+    "primary": { "stat": "strength", "ratio": 0.005 },
+    "secondary": [{ "stat": "will", "ratio": 0.002 }]
+  },
+  "weaponType": "Greatsword",
+  "skills": [
+    {
+      "name": "普通攻击一段·滚刀切！",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.63 }]
+    },
+    {
+      "name": "普通攻击二段·滚刀切！",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.75 }]
+    },
+    {
+      "name": "普通攻击三段·滚刀切！",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.13 }]
+    },
+    {
+      "name": "重击·滚刀切！",
+      "type": "strike",
+      "hits": [{ "element": "Physical", "multiplier": 1.36 }]
+    },
+    {
+      "name": "颠勺！",
+      "type": "skill",
+      "hits": [{ "element": "Physical", "multiplier": 3.0 }]
+    },
+    {
+      "name": "加料！",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 6.5 }]
+    },
+    {
+      "name": "切丝入锅！",
+      "type": "ultimate",
+      "hits": [
+        { "element": "Physical", "multiplier": 3.0 },
+        { "element": "Physical", "multiplier": 4.0 }
+    ]
+    },
+    {
+      "name": "下落攻击·大潘",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·大潘",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Da_Pan",
+      "name": "信赖·大潘",
+      "description": "力量+60",
+      "statBonuses": { "strength": 60 }
+    },
+    {
+      "id": "Reduce_and_Thicken",
+      "name": "勾芡",
+      "description": "提升6%x消耗破防层数的攻击力",
+      "optional": true,
+      "userInput": { "label": "破防", "default": 0, "scale": 1 },
+      "effects": [
+        { "category": "atkPercent", "scaleRatio": 0.06, "scaleCap": 0.24, "userInput": "scaleValue" }
+      ]
+    },
+    {
+      "id": "MORE_SPICE!_b",
+      "name": "加料！·猛击增伤",
+      "description": "猛击增伤20%",
+      "optional": true,
+      "effects": [{ "category": "Da_Pan_MORE_SPICE", "value": 0.2, "condition": { "skillType": "status" } }]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Fine_Cooking",
+      "name": "潜能1·精烹细作",
+      "description": "终结技击杀后，物理伤害+15%",
+      "optional": true,
+      "effects": [{ "category": "DMG_Dealt", "value": 0.15, "condition": { "element": "Physical" } }]
+    },
+    {
+      "id": "Harmonized_Flavors",
+      "name": "潜能2·五味调和",
+      "description": "备料状态持续时间增加"
+    },
+    {
+      "id": "Model_Employee",
+      "name": "潜能3·先进工作者",
+      "description": "力量+15，物理伤害+8%",
+      "statBonuses": { "strength": 15 },
+      "effects": [{ "category": "DMG_Dealt", "value": 0.18, "condition": { "element": "Physical" } }]
+    },
+    {
+      "id": "Special_Blend",
+      "name": "潜能4·自制酱料",
+      "description": "终结技所需能量-15%"
+    },
+    {
+      "id": "Fire_it_Up",
+      "name": "潜能5·猛火收汁",
+      "description": "颠勺！额外施加一层破防"
+    }
+  ]
+}

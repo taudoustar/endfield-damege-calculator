@@ -1,0 +1,860 @@
+/* Team page specific styles */
+
+.team-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* When viewport is wider, allow the container to grow */
+@media (min-width: 1200px) {
+  .team-container {
+    max-width: 90vw;
+  }
+}
+
+@media (min-width: 1600px) {
+  .team-container {
+    max-width: 1500px;
+  }
+}
+
+/* Header */
+.team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.team-header h1 {
+  margin-bottom: 0;
+}
+
+.nav-link {
+  color: #4a9eff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Slot tabs */
+.slot-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.slot-tab {
+  flex: 1;
+  padding: 10px 16px;
+  background: #253545;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  color: #aab;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+}
+
+.slot-tab:hover {
+  background: #2e4050;
+  color: #fff;
+}
+
+.slot-tab.active {
+  border-color: #4a9eff;
+  color: #fff;
+  background: #1e3a5f;
+}
+
+.slot-tab .slot-tab-name {
+  display: block;
+  font-weight: 600;
+}
+
+.slot-tab .slot-tab-sub {
+  display: block;
+  font-size: 0.75rem;
+  color: #6a7a8a;
+  margin-top: 2px;
+}
+
+.slot-tab.active .slot-tab-sub {
+  color: #8899aa;
+}
+
+/* Slot config */
+.slot-config-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.slot-config-header h2 {
+  margin-bottom: 0;
+}
+
+.toggle-btn {
+  padding: 4px 12px;
+  background: #253545;
+  border: 1px solid #3a4a5a;
+  border-radius: 4px;
+  color: #aab;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  color: #fff;
+}
+
+.slot-config.collapsed {
+  display: none;
+}
+
+.config-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.config-label {
+  width: 65px;
+  color: #8899aa;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.config-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 8px 0;
+  border-top: 1px solid #1e2d3d;
+  margin-top: 4px;
+}
+
+.config-stat {
+  font-size: 0.85rem;
+  color: #ccd;
+}
+
+.config-stat .stat-label {
+  color: #8899aa;
+}
+
+.config-stat .stat-val {
+  font-weight: 600;
+}
+
+.config-stat.atk-total {
+  color: #ffb347;
+  font-weight: 600;
+}
+
+/* Grid + Palette layout */
+.grid-palette-area {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 16px;
+  align-items: start;
+  min-width: 0;
+}
+
+.grid-wrapper h2,
+.palette-wrapper h2 {
+  margin-bottom: 10px;
+}
+
+.palette-wrapper {
+  flex-shrink: 0;
+}
+
+/* Battle grid */
+.grid-wrapper {
+  overflow-x: auto;
+  min-width: 0;
+}
+
+.grid-table {
+  width: 100%;
+  border-collapse: collapse;
+  user-select: none;
+  table-layout: auto;
+}
+
+.grid-th {
+  background: #0f1923;
+  padding: 6px 8px;
+  font-size: 0.75rem;
+  color: #6a7a8a;
+  text-align: center;
+  border: 1px solid #1e2d3d;
+  font-weight: 600;
+}
+
+.grid-th-count {
+  width: 55px;
+}
+
+.grid-th-add {
+  width: 30px;
+}
+
+.grid-cell {
+  border: 1px solid #1e2d3d;
+  padding: 4px;
+  text-align: center;
+  min-width: 70px;
+  height: 36px;
+  cursor: pointer;
+  transition: background 0.1s;
+  vertical-align: middle;
+}
+
+.grid-cell:hover {
+  background: #223344;
+}
+
+.grid-cell.filled {
+  background: #1a2a3a;
+}
+
+.grid-cell-skill {
+  min-width: 120px;
+  text-align: left;
+  padding-left: 8px;
+}
+
+.grid-cell-count {
+  cursor: default;
+}
+
+.grid-cell-count:hover {
+  background: transparent;
+}
+
+.grid-count-input {
+  width: 100%;
+  padding: 4px 6px;
+  background: #0f1923;
+  border: 1px solid #2a3a4a;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 0.85rem;
+  text-align: center;
+  outline: none;
+}
+
+.grid-count-input:focus {
+  border-color: #4a9eff;
+}
+
+.grid-cell-damage {
+  color: #ffb347;
+  font-weight: 600;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.85rem;
+  min-width: 70px;
+  cursor: default;
+}
+
+.grid-cell-damage:hover {
+  background: transparent;
+}
+
+.grid-cell-damage.has-damage {
+  color: #ffb347;
+}
+
+.grid-cell-placeholder {
+  border: none;
+  width: 30px;
+}
+
+.grid-cell-action {
+  border: none;
+  width: 28px;
+  text-align: center;
+}
+
+/* Chips inside grid cells */
+.grid-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.skill-chip {
+  color: #fff;
+}
+
+.skill-chip.basic {
+  background: #3a3a3a;
+}
+
+.skill-chip.skill {
+  background: #2a4030;
+  color: #7ee87e;
+}
+
+.skill-chip.combo {
+  background: #3a3520;
+  color: #e8c84a;
+}
+
+.skill-chip.ultimate {
+  background: #3a2040;
+  color: #e07ae8;
+}
+
+.skill-chip.generic {
+  background: #2a3040;
+  color: #7ab8e8;
+}
+
+.buff-chip {
+  background: #1e3450;
+  color: #8ab4f8;
+}
+
+/* Grid buttons */
+.grid-add-row-btn {
+  width: 100%;
+  padding: 6px;
+  background: transparent;
+  border: 1px dashed #2a3a4a;
+  border-radius: 4px;
+  color: #556;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.grid-add-row-btn:hover {
+  border-color: #4a9eff;
+  color: #4a9eff;
+}
+
+.grid-add-col-btn {
+  background: transparent;
+  border: none;
+  color: #556;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.grid-add-col-btn:hover {
+  color: #4a9eff;
+}
+
+.grid-remove-row-btn {
+  background: transparent;
+  border: none;
+  color: #445;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+.grid-remove-row-btn:hover {
+  color: #f88;
+}
+
+.grid-remove-col-btn {
+  background: transparent;
+  border: none;
+  color: #445;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0 2px;
+  margin-left: 2px;
+  vertical-align: middle;
+}
+
+.grid-remove-col-btn:hover {
+  color: #f88;
+}
+
+/* Palette */
+.palette-wrapper {
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+.palette-section {
+  margin-bottom: 12px;
+}
+
+.palette-title {
+  font-size: 0.8rem;
+  color: #6a7a8a;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #1e2d3d;
+  margin-bottom: 6px;
+}
+
+.palette-subgroup {
+  font-size: 0.7rem;
+  color: #556;
+  padding: 4px 0 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.palette-item {
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.1s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.palette-item:hover {
+  background: #253545;
+}
+
+.palette-item.selected {
+  background: #1e3a5f;
+  outline: 2px solid #4a9eff;
+}
+
+.palette-item.permanent {
+  cursor: default;
+  color: #7ee87e;
+  font-size: 0.8rem;
+}
+
+.palette-item.permanent:hover {
+  background: transparent;
+}
+
+.palette-desc {
+  font-size: 0.72rem;
+  color: #667;
+  margin-left: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+}
+
+.palette-item.selected .palette-desc {
+  color: #8899aa;
+}
+
+/* User input buff fields */
+.user-input-field {
+  width: 56px;
+  padding: 1px 4px;
+  margin-left: 6px;
+  border: 1px solid #555;
+  border-radius: 3px;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.user-input-field:focus {
+  border-color: #7c8cf8;
+  outline: none;
+}
+.user-input-label {
+  margin-left: 2px;
+  color: #888;
+  font-size: 0.75rem;
+}
+
+/* Grid cell inline input (per-row buff value) */
+.grid-cell-input {
+  width: 3.5em;
+  padding: 1px 4px;
+  margin-left: 4px;
+  border: 1px solid #555;
+  border-radius: 3px;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  font-size: 0.8rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.grid-cell-input:focus {
+  border-color: #7c8cf8;
+  outline: none;
+}
+.grid-cell-input-label {
+  margin-left: 2px;
+  color: #888;
+  font-size: 0.75rem;
+}
+
+/* Skill items in palette */
+.palette-item.skill-item {
+  font-weight: 600;
+}
+
+.palette-item.skill-item.basic { color: #ccc; }
+.palette-item.skill-item.skill { color: #7ee87e; }
+.palette-item.skill-item.combo { color: #e8c84a; }
+.palette-item.skill-item.ultimate { color: #e07ae8; }
+.palette-item.skill-item.generic { color: #7ab8e8; }
+
+/* Results */
+.team-result-total {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffb347;
+  padding: 12px 0;
+}
+
+.team-result-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  background: #1a2a3a;
+  border-radius: 6px;
+}
+
+.result-row-skill {
+  font-weight: 600;
+  color: #dde;
+  min-width: 140px;
+}
+
+.result-row-count {
+  color: #8899aa;
+  font-size: 0.85rem;
+}
+
+.result-row-damage {
+  margin-left: auto;
+  font-family: "Consolas", "Courier New", monospace;
+  font-weight: 700;
+  color: #ffb347;
+}
+
+/* Compact stat summary */
+.stat-summary-compact {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 8px 0 0;
+  border-top: 1px solid #1e2d3d;
+  margin-top: 4px;
+}
+
+.stat-compact {
+  font-size: 0.82rem;
+  color: #8899aa;
+}
+
+.atk-compact {
+  color: #ffb347;
+  font-weight: 600;
+}
+
+/* Slot results */
+.slot-result {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: #1a2a3a;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.slot-result.active-slot-result {
+  border-color: #4a9eff;
+}
+
+.slot-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.slot-result-name {
+  font-weight: 600;
+  color: #dde;
+}
+
+.slot-result-total {
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffb347;
+}
+
+.slot-result-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.row-result {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  padding: 2px 0;
+}
+
+.row-result.empty-row {
+  color: #445;
+}
+
+.row-skill-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.row-skill-tag.basic { background: #3a3a3a; color: #ccc; }
+.row-skill-tag.skill { background: #2a4030; color: #7ee87e; }
+.row-skill-tag.combo { background: #3a3520; color: #e8c84a; }
+.row-skill-tag.ultimate { background: #3a2040; color: #e07ae8; }
+.row-skill-tag.generic { background: #2a3040; color: #7ab8e8; }
+
+.row-skill-name {
+  color: #ccd;
+}
+
+.row-count {
+  color: #8899aa;
+  font-size: 0.78rem;
+}
+
+.row-hits {
+  display: flex;
+  gap: 4px;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.78rem;
+}
+
+.row-hit {
+  white-space: nowrap;
+}
+
+.row-damage {
+  margin-left: auto;
+  font-family: "Consolas", "Courier New", monospace;
+  font-weight: 700;
+  color: #ffb347;
+  font-size: 0.85rem;
+}
+
+.team-total {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffb347;
+  padding: 16px 0 4px;
+  border-top: 1px solid #2a3a4a;
+  margin-top: 8px;
+}
+
+.palette-empty {
+  color: #556;
+  font-size: 0.85rem;
+}
+
+/* Searchable select */
+.ss-container {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.ss-display {
+  padding: 6px 10px;
+  background: #0f1923;
+  border: 1px solid #2a3a4a;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  outline: none;
+}
+
+.ss-display:hover,
+.ss-display:focus {
+  border-color: #4a9eff;
+}
+
+.ss-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #1a2736;
+  border: 1px solid #3a4a5a;
+  border-radius: 4px;
+  margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  max-height: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ss-hidden {
+  display: none !important;
+}
+
+.ss-input {
+  padding: 6px 10px;
+  background: #0f1923;
+  border: none;
+  border-bottom: 1px solid #2a3a4a;
+  color: #fff;
+  font-size: 0.85rem;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.ss-input::placeholder {
+  color: #556;
+}
+
+.ss-options {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.ss-option {
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  color: #ccd;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ss-option:hover {
+  background: #253545;
+  color: #fff;
+}
+
+.ss-option.ss-selected {
+  color: #4a9eff;
+}
+
+.ss-no-match {
+  padding: 8px 10px;
+  font-size: 0.82rem;
+  color: #556;
+  text-align: center;
+}
+
+/* ===== Palette: Generic Skill & Buff Management ===== */
+
+.palette-add-row {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+  align-items: center;
+}
+
+.palette-ss-container {
+  flex: 1;
+  min-width: 0;
+}
+
+.palette-ss-narrow {
+  flex: 0 0 80px;
+}
+
+.palette-ss-container .ss-display {
+  padding: 3px 6px;
+  font-size: 0.78rem;
+}
+
+.palette-ss-container .ss-input {
+  font-size: 0.78rem;
+}
+
+.palette-ss-container .ss-option {
+  font-size: 0.78rem;
+  padding: 4px 8px;
+}
+
+.palette-add-btn {
+  padding: 3px 8px;
+  font-size: 0.82rem;
+  background: #2a4030;
+  color: #7ee87e;
+  border: 1px solid #3a5040;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.palette-add-btn:hover {
+  background: #3a5040;
+}
+
+.palette-remove-btn {
+  margin-left: auto;
+  padding: 0 4px;
+  font-size: 0.85rem;
+  background: none;
+  color: #667;
+  border: none;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.palette-remove-btn:hover {
+  color: #f66;
+}
+
+.generic-buff-entry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gb-entry-name {
+  color: #dde;
+  font-size: 0.8rem;
+}
+
+.gb-source-tag {
+  color: #7ab8e8;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}

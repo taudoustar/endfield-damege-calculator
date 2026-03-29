@@ -1,0 +1,188 @@
+{
+  "id": "Yvonne",
+  "name": "伊冯",
+  "baseAtk": 321,
+  "baseStats": { "strength": 82, "agility": 128, "intellect": 176, "will": 105 },
+  "statConfig": {
+    "primary": { "stat": "intellect", "ratio": 0.005 },
+    "secondary": [{ "stat": "agility", "ratio": 0.002 }]
+  },
+  "weaponType": "Handcannon",
+  "skills": [
+    {
+      "name": "普通攻击一段·雀跃扳机",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.53 }]
+    },
+    {
+      "name": "普通攻击二段·雀跃扳机",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.56 }]
+    },
+    {
+      "name": "普通攻击三段·雀跃扳机",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.71 }]
+    },
+    {
+      "name": "普通攻击四段·雀跃扳机",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.92 }]
+    },
+    {
+      "name": "重击·雀跃扳机",
+      "type": "strike",
+      "hits": [{ "element": "Cryo", "multiplier": 1.26 }]
+    },
+    {
+      "name": "冰冰弹·β型·基础伤害",
+      "type": "skill",
+      "hits": [
+        { "element": "Cryo", "multiplier": 2.5 }
+      ]
+    },
+    {
+      "name": "冰冰弹·β型·冻结伤害",
+      "type": "skill",
+      "hits": [
+        { "element": "Cryo", "multiplier": 1.5 }
+      ]
+    },
+    {
+      "name": "冰冰弹·β型·附加伤害",
+      "type": "skill",
+      "hits": [
+        { "element": "Cryo", "multiplier": 2.0 }
+      ]
+    },
+    {
+      "name": "速冻仔·υ37",
+      "type": "combo",
+      "hits": [{ "element": "Cryo", "multiplier": 6.0 }]
+    },
+    {
+      "name": "冷冻射手·普通攻击",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.2}]
+    },
+    {
+      "name": "冷冻射手·强力攻击",
+      "type": "strike",
+      "hits": [{ "element": "Cryo", "multiplier": 3.0 }]
+    },
+    {
+      "name": "冷冻射手·额外攻击",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 6.0 }]
+    },
+    {
+      "name": "下落攻击·伊冯",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·伊冯",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Yvonne",
+      "name": "信赖·伊冯",
+      "description": "智识+60",
+      "statBonuses": { "intellect": 60 }
+    },
+    {
+      "id": "Barrage_of_Technology",
+      "name": "天赋·科技连击",
+      "description": "重击伤害+50%",
+      "optional": true,
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.5, "condition": { "skillType":"strike" } }
+      ]
+    },
+    {
+      "id": "Freezing_Point_1",
+      "name": "天赋·冰点·寒冷附着",
+      "description": "暴击伤害+20%",
+      "optional": true,
+      "effects": [
+        { "category": "critDamage", "value": 0.2 }
+      ]
+    },
+    {
+      "id": "Freezing_Point_2",
+      "name": "天赋·冰点·冻结",
+      "description": "暴击伤害+40%",
+      "optional": true,
+      "effects": [
+        { "category": "critDamage", "value": 0.4 }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Flash_Freezer",
+      "name": "潜能1·速冻帮手",
+      "description": "额外施放2次能量",
+      "skillOverrides": [
+        { "skillIndex": 8, "hitIndex": 0, "multiplier": 8.0 }
+      ]
+    },
+    {
+      "id": "Flawless_Creation",
+      "name": "潜能2·完美造物",
+      "description": "智识+20，暴击率+7%。",
+      "statBonuses": { "intellect": 20 },
+      "effects": [
+        { "category": "critRate", "value": 0.07 }
+      ]
+      
+    },
+    {
+      "id": "Tink-a-Power",
+      "name": "潜能3·嘀嗒充能",
+      "description": "天赋加强：寒冷附着状态暴击伤害额外+10%；对处于冻结状态的敌人效果同样加倍",
+      "bundle": [
+        {
+          "id": "Freezing_Point_p3_1",
+          "name": "天赋·冰点·寒冷附着·潜能2",
+          "description": "暴击伤害+30%",
+          "optional": true,
+          "replaces": "Freezing_Point_1",
+          "effects": [
+            { "category": "critDamage", "value": 0.3 }
+          ]
+        },
+        {
+          "id": "Freezing_Point_p3_2",
+          "name": "天赋·冰点·冻结·潜能2",
+          "description": "暴击伤害+60%",
+          "optional": true,
+          "replaces": "Freezing_Point_2",
+          "effects": [
+            { "category": "critDamage", "value": 0.6 }
+          ]
+        }
+      ]
+
+    },
+    {
+      "id": "Rebellious_Mood",
+      "name": "潜能4·叛逆心情",
+      "description": "战技冰冰弹·β型的爆炸仅命中单个敌人时，返还10点技力。"
+    },
+    {
+      "id": "Expert_Mechcrafter",
+      "name": "潜能5·机巧专家",
+      "description": "攻击力+10%，暴击伤害+30%",
+      "optional": true,
+      "effects": [
+        { "category": "atkPercent", "value": 0.1 },
+        { "category": "critDamage", "value": 0.3 }
+      ]
+    }
+  ]
+}

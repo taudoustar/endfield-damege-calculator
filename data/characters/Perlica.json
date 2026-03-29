@@ -1,0 +1,122 @@
+{
+  "id": "Perlica",
+  "name": "佩丽卡",
+  "baseAtk": 303,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 91, "agility": 93, "intellect": 161, "will": 113 },
+  "statConfig": {
+    "primary": { "stat": "intellect", "ratio": 0.005 },
+    "secondary": [{ "stat": "will", "ratio": 0.002 }]
+  },
+  "weaponType": "Arts_Unit",
+  "skills": [
+    {
+      "name": "普通攻击一段·协议α·突破",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.57 }]
+    },
+    {
+      "name": "普通攻击二段·协议α·突破",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.68 }]
+    },
+    {
+      "name": "普通攻击三段·协议α·突破",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.84 }]
+    },
+    {
+      "name": "重击·协议α·突破",
+      "type": "strike",
+      "hits": [{ "element": "Electric", "multiplier": 1.27 }]
+    },
+    {
+      "name": "协议ω·雷击",
+      "type": "skill",
+      "hits": [{ "element": "Electric", "multiplier": 4.0 }]
+    },
+    {
+      "name": "即时协议·闪链",
+      "type": "combo",
+      "hits": [{ "element": "Electric", "multiplier": 1.8 }]
+    },
+    {
+      "name": "协议ε·70.41κ",
+      "type": "ultimate",
+      "hits": [{ "element": "Electric", "multiplier": 10.0 }]
+    },
+    {
+      "name": "下落攻击·佩丽卡",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·佩丽卡",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Perlica",
+      "name": "信赖·佩丽卡",
+      "description": "智识+60",
+      "statBonuses": { "intellect": 60 }
+    },
+    {
+      "id": "Obliteration_Protocol",
+      "name": "歼灭协议",
+      "description": "对失衡的敌人造成的伤害+30%。",
+      "optional": true,
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.3 }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Crisis_Handling",
+      "name": "潜能1·危机处理",
+      "description": "连携技即时协议·闪链施加的导电持续时间+75%。"
+    },
+    {
+      "id": "Negotiation_Tactics",
+      "name": "潜能2·谈判策略",
+      "description": "终结技能量-15%"
+    },
+    {
+      "id": "Supervisory_Duties",
+      "name": "潜能3·监督重任",
+      "description": "当佩丽卡对敌人施加导电后，在5秒内攻击力+20%，该效果最多叠加2层。",
+      "optional": true,
+      "userInput": { "label": "层", "default": 0, "scale": 1 },
+      "effects": [
+          { "category": "atkPercent", "scaleRatio": 0.2, "scaleCap": 0.4, "userInput": "scaleValue" }
+      ]
+    },
+    {
+      "id": "Constant_Guidance",
+      "name": "导电1级·潜能4",
+      "description": "连携技即时协议·闪链施加的导电使敌人受到法术伤害提高的效果提升至原本的1.33倍。",
+      "scope": "team",
+      "optional": true,
+      "effects":[
+      {
+        "category": "DMG_Taken",
+        "value": 0.1596,
+        "saturationScale": { "stat": "artsIntensity", "x": 1, "y": 2.0, "z": 300 }
+      }
+    ]
+    },
+    {
+      "id": "Reentry_Control",
+      "name": "潜能5·再入控制",
+      "description": "终结技协议ε·70.41κ的暴击率+30%。",
+      "effects": [
+          { "category": "critRate", "value": 0.3, "condition": { "skillType": "ultimate" } }
+      ]
+    }
+  ]
+}

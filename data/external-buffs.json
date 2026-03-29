@@ -1,0 +1,19 @@
+[
+  {
+    "id": "Jakub's Legacy",
+    "name": "雅各布的遗产",
+    "group": "食物",
+    "description": "攻击力27%",
+    "effects": [{ "category": "atkPercent", "value": 0.27 }]
+  },
+  {
+    "id": "Ginseng_Meat_Stew",
+    "name": "清炖兽排参须汤",
+    "group": "食物",
+    "description": "攻击力180，暴击率11%",
+    "effects": [
+      { "category": "flatAtk", "value": 180 },
+      { "category": "critRate", "value": 0.11 }
+    ]
+  }
+]

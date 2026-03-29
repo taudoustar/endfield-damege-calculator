@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>编队总伤计算器</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="team.css">
+</head>
+<body>
+  <div class="team-container">
+    <div class="team-header">
+      <h1>编队总伤计算器</h1>
+      <div id="save-load-bar" class="save-load-bar"></div>
+    </div>
+
+    <!-- Slot tabs -->
+    <section class="panel">
+      <div id="slot-tabs" class="slot-tabs"></div>
+    </section>
+
+    <!-- Slot config (collapsible) -->
+    <section class="panel" id="slot-config-panel">
+      <div class="slot-config-header">
+        <h2 id="slot-config-title">角色配置</h2>
+        <button id="slot-config-toggle" class="toggle-btn">折叠</button>
+      </div>
+      <div id="slot-config" class="slot-config"></div>
+    </section>
+
+    <!-- Grid + Palette -->
+    <section class="panel grid-palette-area">
+      <div class="grid-wrapper">
+        <h2>战斗模拟</h2>
+        <div id="battle-grid"></div>
+      </div>
+      <div class="palette-wrapper">
+        <h2>面板</h2>
+        <div id="palette"></div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="panel result-panel">
+      <h2>计算结果</h2>
+      <div id="team-result"></div>
+    </section>
+  </div>
+
+  <script type="module" src="js/team-app.js"></script>
+</body>
+</html>

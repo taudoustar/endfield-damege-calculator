@@ -1,0 +1,1893 @@
+[
+  {
+    "#": "==================这里开始是潮涌=================="
+  },
+  {"#": "落潮轻甲"},
+  {
+    "id": "Tide_Fall_Light_Armor",
+    "name": "落潮轻甲·充能",
+    "slot": "armor",
+    "setId": "Tide_Surge",
+    "statBonuses": { "intellect": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "Tide_Fall_Light_Armor_b1",
+        "name": "落潮轻甲",
+        "description": "充能效率提升16.0%"
+      }
+    ]
+  },
+  {"#": "潮涌手甲"},
+  {
+    "id": "Tide_Surge_Gauntlets",
+    "name": "潮涌手甲·寒冷电磁伤害",
+    "slot": "gloves",
+    "setId": "Tide_Surge",
+    "statBonuses": { "strength": 84, "will": 55 },
+    "buffs": [
+      {
+        "id": "Tide_Surge_Gauntlets_b1",
+        "name": "潮涌手甲",
+        "description": "寒冷和电磁伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
+  {"#": "浊流切割炬"},
+  {
+    "id": "Turbid_Cutting_Torch",
+    "name": "浊流切割炬·普通攻击伤害",
+    "slot": "kit",
+    "setId": "Tide_Surge",
+    "statBonuses": { "intellect": 41, "will": 27 },
+    "buffs": [
+      {
+        "id": "Turbid_Cutting_Torch_b1",
+        "name": "浊流切割炬",
+        "description": "普通攻击伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.359, "condition": { "skillType": "basic" } },
+          { "category": "DMG_Dealt", "value": 0.359, "condition": { "skillType": "strike" } }
+        ]
+      }
+    ]
+  },
+  {"#": "悬河供氧栓"},
+  {
+    "id": "Hanging_River_O2_Tube",
+    "name": "悬河供氧栓·寒冷电磁伤害",
+    "slot": "kit",
+    "setId": "Tide_Surge",
+    "statBonuses": { "strength": 41, "will": 27 },
+    "buffs": [
+      {
+        "id": "Hanging_River_O2_Tube_b1",
+        "name": "悬河供氧栓",
+        "description": "寒冷和电磁伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是拓荒=================="
+  },
+  {"#": "拓荒护甲"},
+  {
+    "id": "Frontiers_Armor",
+    "name": "拓荒护甲·终结技伤害",
+    "slot": "armor",
+    "setId": "Frontiers",
+    "statBonuses": { "strength": 113, "intellect": 75 },
+    "buffs": [
+      {
+        "id": "Frontiers_Armor_b1",
+        "name": "拓荒护甲",
+        "description": "终结技伤害提升33.6%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.336, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Frontiers_Armor_T1",
+    "name": "拓荒护甲·壹型·战技伤害",
+    "slot": "armor",
+    "setId": "Frontiers",
+    "statBonuses": { "strength": 113, "agility": 75 },
+    "buffs": [
+      {
+        "id": "Frontiers_Armor_T1_b1",
+        "name": "拓荒护甲·壹型",
+        "description": "战技伤害提升26.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.269, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Frontiers_Armor_T2",
+    "name": "拓荒护甲·贰型·战技伤害",
+    "slot": "armor",
+    "setId": "Frontiers",
+    "statBonuses": { "agility": 113, "intellect": 75 },
+    "buffs": [
+      {
+        "id": "Frontiers_Armor_T2_b1",
+        "name": "拓荒护甲·贰型",
+        "description": "战技伤害提升26.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.269, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Frontiers_Armor_T3",
+    "name": "拓荒护甲·叁型·副能力",
+    "slot": "armor",
+    "setId": "Frontiers",
+    "statBonuses": { "agility": 113, "intellect": 75 },
+    "subAffixes": [{ "flat": 0, "percent": 0.135 }],
+    "buffs": [
+      {
+        "id": "Frontiers_Armor_T3_b1",
+        "name": "拓荒护甲·叁型",
+        "description": "副能力提升13.5%"
+      }
+    ]
+  },
+  {"#": "拓荒耐蚀手套"},
+  {
+    "id": "Frontiers_Blight_RES_Gloves",
+    "name": "拓荒耐蚀手套·战技伤害",
+    "slot": "gloves",
+    "setId": "Frontiers",
+    "statBonuses": { "agility": 84, "intellect": 55 },
+    "buffs": [
+      {
+        "id": "Frontiers_Blight_RES_Gloves_b1",
+        "name": "拓荒耐蚀手套",
+        "description": "战技伤害提升44.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.449, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {"#": "拓荒纤维手套"},
+  {
+    "id": "Frontiers_Fiber_Gloves",
+    "name": "拓荒纤维手套·技能伤害",
+    "slot": "gloves",
+    "setId": "Frontiers",
+    "statBonuses": { "will": 84, "strength": 55 },
+    "buffs": [
+      {
+        "id": "Frontiers_Fiber_Gloves_b1",
+        "name": "拓荒纤维手套",
+        "description": "所以技能伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "skill" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "combo" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {"#": "拓荒供氧栓"},
+  {
+    "id": "Frontiers_O2_Tube",
+    "name": "拓荒供氧栓·物理伤害",
+    "slot": "kit",
+    "setId": "Frontiers",
+    "statBonuses": { "will": 53 },
+    "buffs": [
+      {
+        "id": "Frontiers_O2_Tube_b1",
+        "name": "拓荒供氧栓",
+        "description": "物理伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {"#": "拓荒增量供氧栓"},
+  {
+    "id": "Frontiers_Extra_O2_Tube",
+    "name": "拓荒增量供氧栓·副能力",
+    "slot": "kit",
+    "setId": "Frontiers",
+    "statBonuses": { "agility": 41, "intellect": 27 },
+    "subAffixes": [{ "flat": 0, "percent": 0.269 }],
+    "buffs": [
+      {
+        "id": "Frontiers_Extra_O2_Tube_b1",
+        "name": "拓荒增量供氧栓",
+        "description": "副能力提升26.9%"
+      }
+    ]
+  },
+  {"#": "拓荒通信器"},
+  {
+    "id": "Frontiers_Comm",
+    "name": "拓荒通信器·连携技伤害",
+    "slot": "kit",
+    "setId": "Frontiers",
+    "statBonuses": { "strength": 41, "agility": 27 },
+    "buffs": [
+      {
+        "id": "Frontiers_Comm_b1",
+        "name": "拓荒通信器",
+        "description": "连携技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Frontiers_Comm_T1",
+    "name": "拓荒通信器·壹型·寒冷电磁伤害",
+    "slot": "kit",
+    "setId": "Frontiers",
+    "statBonuses": { "strength": 41, "intellect": 27 },
+    "buffs": [
+      {
+        "id": "Frontiers_Comm_T1_b1",
+        "name": "拓荒通信器·壹型",
+        "description": "寒冷和电磁伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
+  {"#": "拓荒分析仪"},
+  {
+    "id": "Frontiers_Analyzer",
+    "name": "拓荒分析仪·终结技伤害",
+    "slot": "kit",
+    "setId": "Frontiers",
+    "statBonuses": { "strength": 53 },
+    "buffs": [
+      {
+        "id": "Frontiers_Analyzer_b1",
+        "name": "拓荒分析仪",
+        "description": "终结技伤害提升67.3%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.673, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是应龙=================="
+  },
+  {"#": "50式应龙重甲"},
+  {
+    "id": "Type_50_Yinglung_Heavy_Armor",
+    "name": "50式应龙重甲·物理伤害",
+    "slot": "armor",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "strength": 113, "will": 75 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Heavy_Armor_b1",
+        "name": "50式应龙重甲",
+        "description": "物理伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Type_50_Yinglung_Heavy_Armor_T1",
+    "name": "50式应龙重甲·壹型·充能",
+    "slot": "armor",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "agility": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Heavy_Armor_T1_b1",
+        "name": "50式应龙重甲·壹型",
+        "description": "充能效率提升16.0%"
+      }
+    ]
+  },
+  {
+    "id": "Type_50_Yinglung_Heavy_Armor_T2",
+    "name": "50式应龙重甲·贰型·连携技",
+    "slot": "armor",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "agility": 113, "intellect": 75 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Heavy_Armor_T2_b1",
+        "name": "50式应龙重甲",
+        "description": "连携技伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {"#": "50式应龙轻甲"},
+  {
+    "id": "Type_50_Yinglung_Light_Armor",
+    "name": "50式应龙轻甲·技能",
+    "slot": "armor",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "will": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Light_Armor_b1",
+        "name": "50式应龙重甲",
+        "description": "所有技能伤害提升17.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.179, "condition": { "skillType": "skill" } },
+          { "category": "DMG_Dealt", "value": 0.179, "condition": { "skillType": "combo" } },
+          { "category": "DMG_Dealt", "value": 0.179, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {"#": "50式应龙护手"},
+  {
+    "id": "Type_50_Yinglung_Gloves",
+    "name": "50式应龙护手·连携技",
+    "slot": "gloves",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "agility": 84, "intellect": 55 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Gloves_b1",
+        "name": "50式应龙护手·壹型",
+        "description": "连携技伤害提升44.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.449, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Type_50_Yinglung_Gloves_T1",
+    "name": "50式应龙护手·壹型·连携技",
+    "slot": "gloves",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "will": 84, "agility": 55 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Gloves_T1_b1",
+        "name": "50式应龙护手·壹型",
+        "description": "连携技伤害提升44.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.449, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {"#": "50式应龙短刃"},
+  {
+    "id": "Type_50_Yinglung_Knife",
+    "name": "50式应龙短刃·连携技",
+    "slot": "kit",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "will": 41, "agility": 27 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Knife_b1",
+        "name": "50式应龙短刃",
+        "description": "连携技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Type_50_Yinglung_Knife_T1",
+    "name": "50式应龙短刃·壹型·技能",
+    "slot": "kit",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "intellect": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Knife_T1_b1",
+        "name": "50式应龙短刃·壹型",
+        "description": "所有技能伤害提升35.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.359, "condition": { "skillType": "skill" } },
+          { "category": "DMG_Dealt", "value": 0.359, "condition": { "skillType": "combo" } },
+          { "category": "DMG_Dealt", "value": 0.359, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {"#": "50式应龙雷达"},
+  {
+    "id": "Type_50_Yinglung_Radar",
+    "name": "50式应龙雷达·物理伤害",
+    "slot": "kit",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "strength": 41, "will": 27 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Radar_b1",
+        "name": "50式应龙雷达",
+        "description": "物理伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Type_50_Yinglung_Radar_T1",
+    "name": "50式应龙雷达·壹型·终结技",
+    "slot": "kit",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Radar_T1_b1",
+        "name": "50式应龙雷达·壹型",
+        "description": "终结技伤害提升67.3%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.673, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Type_50_Yinglung_Radar_T2",
+    "name": "50式应龙雷达·贰型·连携技",
+    "slot": "kit",
+    "setId": "Type_50_Yinglung",
+    "statBonuses": { "agility": 41, "intellect": 27 },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Radar_T2_b1",
+        "name": "50式应龙雷达·贰型",
+        "description": "连携技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是碾骨=================="
+  },
+  {"#": "碾骨披巾"},
+  {
+    "id": "Bonekrusha_Poncho",
+    "name": "碾骨披巾·连携技",
+    "slot": "armor",
+    "setId": "Bonekrusha",
+    "statBonuses": { "will": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Poncho_b1",
+        "name": "碾骨披巾",
+        "description": "连携技伤害提升26.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.269, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Bonekrusha_Poncho_T1",
+    "name": "碾骨披巾·壹型·充能",
+    "slot": "armor",
+    "setId": "Bonekrusha",
+    "statBonuses": { "will": 113, "agility": 75 },
+    "buffs": []
+  },
+  {"#": "碾骨重护甲"},
+  {
+    "id": "Bonekrusha_Heavy_Armor",
+    "name": "碾骨重护甲·充能",
+    "slot": "armor",
+    "setId": "Bonekrusha",
+    "statBonuses": { "agility": 113, "intellect": 75 },
+    "buffs": []
+  },
+  {
+    "id": "Bonekrusha_Heavy_Armor_T1",
+    "name": "碾骨重护甲·壹型·连携技",
+    "slot": "armor",
+    "setId": "Bonekrusha",
+    "statBonuses": { "agility": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Heavy_Armor_T1_b1",
+        "name": "碾骨重护甲·壹型",
+        "description": "连携技伤害提升26.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.269, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Bonekrusha_Heavy_Armor_T2",
+    "name": "碾骨重护甲·贰型·连携技",
+    "slot": "armor",
+    "setId": "Bonekrusha",
+    "statBonuses": { "agility": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Heavy_Armor_T2_b1",
+        "name": "碾骨重护甲·贰型",
+        "description": "寒冷和电磁伤害提升14.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
+  {"#": "碾骨腕带"},
+  {
+    "id": "Bonekrusha_Wristband",
+    "name": "碾骨腕带·灼热自然伤害",
+    "slot": "gloves",
+    "setId": "Bonekrusha",
+    "statBonuses": { "strength": 84, "agility": 55 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Wristband_b1",
+        "name": "碾骨腕带",
+        "description": "灼热和自然伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Heat" } },
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Bonekrusha_Wristband_T1",
+    "name": "碾骨腕带·壹型·灼热自然伤害",
+    "slot": "gloves",
+    "setId": "Bonekrusha",
+    "statBonuses": { "agility": 84, "strength": 55 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Wristband_T1_b1",
+        "name": "碾骨腕带·壹型",
+        "description": "寒冷和电磁伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
+  {"#": "碾骨小雕像"},
+  {
+    "id": "Bonekrusha_Figurine",
+    "name": "碾骨小雕像·战技",
+    "slot": "kit",
+    "setId": "Bonekrusha",
+    "statBonuses": { "will": 41, "agility": 27 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Figurine_b1",
+        "name": "碾骨小雕像",
+        "description": "战技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Bonekrusha_Figurine_T1",
+    "name": "碾骨小雕像·壹型·连携技",
+    "slot": "kit",
+    "setId": "Bonekrusha",
+    "statBonuses": { "will": 41, "intellect": 27 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Figurine_T1_b1",
+        "name": "碾骨小雕像",
+        "description": "连携技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {"#": "碾骨面具"},
+  {
+    "id": "Bonekrusha_Mask",
+    "name": "碾骨面具·失衡伤害",
+    "slot": "kit",
+    "setId": "Tide_Surge",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Mask_b1",
+        "name": "碾骨面具",
+        "description": "对失衡目标伤害提升53.8%",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Bonekrusha_Mask_T1",
+    "name": "碾骨面具·壹型·暴击率",
+    "slot": "kit",
+    "setId": "Tide_Surge",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Mask_T1_b1",
+        "name": "碾骨面具·壹型",
+        "description": "暴击率提升13.5%",
+        "optional": true,
+        "effects": [
+          { "category": "critRate", "value": 0.135 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Bonekrusha_Mask_T2",
+    "name": "碾骨面具·贰型·战技",
+    "slot": "kit",
+    "setId": "Tide_Surge",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Mask_T2_b1",
+        "name": "碾骨面具·贰型",
+        "description": "战技伤害提升53.8%",
+        "optional": true,
+        "effects": [
+          { "category": "critRate", "value": 0.538, "condition":{ "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是警用=================="
+  },
+  {"#": "M.I.警用罩衣"},
+  {
+    "id": "MI_Security_Overalls",
+    "name": "M.I.警用罩衣·普通攻击",
+    "slot": "armor",
+    "setId": "MI_Security",
+    "statBonuses": { "intellect": 113, "agility": 75 },
+    "buffs": [
+      {
+        "id": "MI_Security_Overalls_b1",
+        "name": "M.I.警用罩衣",
+        "description": "普通攻击伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.179, "condition": { "skillType": "basic" } },
+          { "category": "DMG_Dealt", "value": 0.179, "condition": { "skillType": "strike" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MI_Security_Overalls_T1",
+    "name": "M.I.警用罩衣·壹型·暴击率",
+    "slot": "armor",
+    "setId": "MI_Security",
+    "statBonuses": { "intellect": 113, "will": 75 },
+    "buffs": [
+      {
+        "id": "MI_Security_Overalls_T1_b1",
+        "name": "M.I.警用罩衣·壹型",
+        "description": "暴击率提升6.7%",
+        "effects": [
+          { "category": "critRate", "value": 0.067 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MI_Security_Overalls_T2",
+    "name": "M.I.警用罩衣·贰型·战技",
+    "slot": "armor",
+    "setId": "MI_Security",
+    "statBonuses": { "will": 113, "agility": 75 },
+    "buffs": [
+      {
+        "id": "MI_Security_Overalls_T2_b1",
+        "name": "M.I.警用罩衣·贰型",
+        "description": "战技伤害提升26.9%",
+        "effects": [
+          { "category": "critRate", "value": 0.269, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {"#": "M.I.警用罩衣"},
+  {
+    "id": "MI_Security_Armor",
+    "name": "M.I.警用护甲·源石技艺强度",
+    "slot": "armor",
+    "setId": "MI_Security",
+    "statBonuses": { "agility": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "MI_Security_Armor_b1",
+        "name": "M.I.警用护甲",
+        "description": "源石技艺强度提升26",
+        "statBonuses": { "artsIntensity":26 }
+      }
+    ]
+  },
+  {
+    "id": "MI_Security_Armor_T1",
+    "name": "M.I.警用护甲·壹型·充能",
+    "slot": "armor",
+    "setId": "MI_Security",
+    "statBonuses": { "agility": 113, "intellect": 75 },
+    "buffs": []
+  },
+  {"#": "M.I.警用手套"},
+  {
+    "id": "MI_Security_Gloves",
+    "name": "M.I.警用手套·战技",
+    "slot": "gloves",
+    "setId": "MI_Security",
+    "statBonuses": { "agility": 84, "strength": 55 },
+    "buffs": [
+      {
+        "id": "MI_Security_Gloves_b1",
+        "name": "M.I.警用手套",
+        "description": "战技伤害提升44.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.449, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MI_Security_Gloves_T1",
+    "name": "M.I.警用手套·壹型·终结技",
+    "slot": "gloves",
+    "setId": "MI_Security",
+    "statBonuses": { "agility": 84, "intellect": 55 },
+    "buffs": [
+      {
+        "id": "MI_Security_Gloves_T1_b1",
+        "name": "M.I.警用手套·壹型",
+        "description": "终结技伤害提升56.1%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.561, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {"#": "M.I.警用手环"},
+  {
+    "id": "MI_Security_Hands_PPE",
+    "name": "M.I.警用手环·普通攻击",
+    "slot": "gloves",
+    "setId": "MI_Security",
+    "statBonuses": { "intellect": 84, "agility": 55 },
+    "buffs": [
+      {
+        "id": "MI_Security_Hands_PPE_b1",
+        "name": "M.I.警用手环",
+        "description": "普通攻击伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "skillType": "basic" } },
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "skillType": "strike" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MI_Security_Hands_PPE_T1",
+    "name": "M.I.警用手环·壹型·暴击率",
+    "slot": "gloves",
+    "setId": "MI_Security",
+    "statBonuses": { "intellect": 84, "will": 55 },
+    "buffs": [
+      {
+        "id": "MI_Security_Hands_PPE_T1_b1",
+        "name": "M.I.警用手环·壹型",
+        "description": "暴击率提升11.2%",
+        "effects": [
+          { "category": "critRate", "value": 0.112 }
+        ]
+      }
+    ]
+  },
+  {"#": "M.I.警用刺刃"},
+  {
+    "id": "MI_Security_Push_Knife",
+    "name": "M.I.警用刺刃·灼热自然伤害",
+    "slot": "kit",
+    "setId": "MI_Security",
+    "statBonuses": { "will": 41, "intellect": 27 },
+    "buffs": [
+      {
+        "id": "MI_Security_Push_Knife_b1",
+        "name": "M.I.警用刺刃",
+        "description": "灼热自然伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Heat" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MI_Security_Push_Knife_T1",
+    "name": "M.I.警用刺刃·壹型·战技",
+    "slot": "kit",
+    "setId": "MI_Security",
+    "statBonuses": { "will": 41, "agility": 27 },
+    "buffs": [
+      {
+        "id": "MI_Security_Push_Knife_T1_b1",
+        "name": "M.I.警用刺刃·壹型",
+        "description": "战技提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {"#": "M.I.警用臂环"},
+  {
+    "id": "MI_Security_Armband",
+    "name": "M.I.警用臂环·寒冷电磁伤害",
+    "slot": "kit",
+    "setId": "MI_Security",
+    "statBonuses": { "strength": 41, "will": 27 },
+    "buffs": [
+      {
+        "id": "MI_Security_Armband_b1",
+        "name": "M.I.警用臂环",
+        "description": "寒冷和电磁伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
+  {"#": "M.I.警用瞄具"},
+  {
+    "id": "MI_Security_Scope",
+    "name": "M.I.警用瞄具·战技伤害",
+    "slot": "kit",
+    "setId": "MI_Security",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "MI_Security_Scope_b1",
+        "name": "M.I.警用瞄具",
+        "description": "战技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "MI_Security_Scope_T1",
+    "name": "M.I.警用瞄具·壹型·暴击率",
+    "slot": "kit",
+    "setId": "MI_Security",
+    "statBonuses": { "agility": 41, "intellect": 27 },
+    "buffs": [
+      {
+        "id": "MI_Security_Scope_T1_b1",
+        "name": "M.I.警用瞄具·壹型",
+        "description": "暴击率提升13.5%",
+        "effects": [
+          { "category": "critRate", "value": 0.135 }
+        ]
+      }
+    ]
+  },
+  {"#": "M.I.警用工具组"},
+  {
+    "id": "MI_Security_Toolkit",
+    "name": "M.I.警用工具组·暴击率",
+    "slot": "kit",
+    "setId": "MI_Security",
+    "statBonuses": { "intellect": 41, "agility": 27 },
+    "buffs": [
+      {
+        "id": "MI_Security_Toolkit_b1",
+        "name": "M.I.警用工具组",
+        "description": "暴击率提升13.5%",
+        "effects": [
+          { "category": "critRate", "value": 0.135 }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是动火=================="
+  },
+  {"#": "动火用外骨骼"},
+  {
+    "id": "Hot_Work_Exoskeleton",
+    "name": "动火用外骨骼·灼热自然伤害",
+    "slot": "armor",
+    "setId": "Hot_Work",
+    "statBonuses": { "strength": 113, "agility": 75 },
+    "buffs": [
+      {
+        "id": "Hot_Work_Exoskeleton_b1",
+        "name": "动火用外骨骼",
+        "description": "灼热和自然伤害提升14.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Heat" } },
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  {"#": "动火用辅助骨骼"},
+  {
+    "id": "Hot_Work_Exo-Rig",
+    "name": "动火用辅助骨骼·灼热自然伤害",
+    "slot": "armor",
+    "setId": "Hot_Work",
+    "statBonuses": { "intellect": 113, "will": 75 },
+    "buffs": [
+      {
+        "id": "Hot_Work_Exo-Rig_b1",
+        "name": "动火用辅助骨骼",
+        "description": "灼热和自然伤害提升14.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Heat" } },
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  {"#": "动火用手甲"},
+  {
+    "id": "Hot_Work_Gauntlets",
+    "name": "动火用手甲·灼热自然伤害",
+    "slot": "gloves",
+    "setId": "Hot_Work",
+    "statBonuses": { "intellect": 84, "strength": 55 },
+    "buffs": [
+      {
+        "id": "Hot_Work_Gauntlets_b1",
+        "name": "动火用手甲",
+        "description": "灼热和自然伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Heat" } },
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Hot_Work_Gauntlets_T1",
+    "name": "动火用手甲·壹型·灼热自然伤害",
+    "slot": "gloves",
+    "setId": "Hot_Work",
+    "statBonuses": { "will": 84, "intellect": 55 },
+    "buffs": [
+      {
+        "id": "Hot_Work_Gauntlets_T1_b1",
+        "name": "动火用手甲·壹型",
+        "description": "灼热和自然伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Heat" } },
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  {"#": "动火用手套"},
+  {
+    "id": "Hot_Work_Gloves",
+    "name": "动火用手套·源石技艺强度",
+    "slot": "gloves",
+    "setId": "Hot_Work",
+    "statBonuses": { "strength": 84, "will": 55 },
+    "buffs": [
+      {
+        "id": "Hot_Work_Gloves_b1",
+        "name": "动火用手套",
+        "description": "源石技艺强度提升44",
+        "statBonuses": { "artsIntensity": 44 }
+      }
+    ]
+  },
+  {"#": "动火用储能匣"},
+  {
+    "id": "Hot_Work_Power_Bank",
+    "name": "动火用储能匣·源石技艺强度",
+    "slot": "kit",
+    "setId": "Hot_Work",
+    "statBonuses": { "strength": 41, "agility": 27 },
+    "buffs": [
+      {
+        "id": "Hot_Work_Power_Bank_b1",
+        "name": "动火用储能匣",
+        "description": "源石技艺强度提升53",
+        "statBonuses": { "artsIntensity": 53 }
+      }
+    ]
+  },
+  {"#": "动火用电力匣"},
+  {
+    "id": "Hot_Work_Power_Cartridge",
+    "name": "动火用电力匣·源石技艺强度",
+    "slot": "kit",
+    "setId": "Hot_Work",
+    "statBonuses": { "will": 41, "intellect": 27 },
+    "buffs": [
+      {
+        "id": "Hot_Work_Power_Cartridge_b1",
+        "name": "动火用电力匣",
+        "description": "源石技艺强度提升53",
+        "statBonuses": { "artsIntensity": 53 }
+      }
+    ]
+  },
+  {"#": "动火用测温镜"},
+  {
+    "id": "Hot_Work_Pyrometer",
+    "name": "动火用测温镜·战技",
+    "slot": "kit",
+    "setId": "Tide_Surge",
+    "statBonuses": { "intellect": 53 },
+    "buffs": [
+      {
+        "id": "Hot_Work_Pyrometer_b1",
+        "name": "动火用测温镜",
+        "description": "战技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是生物辅助=================="
+  },
+  {"#": "生物辅助胸甲"},
+  {
+    "id": "LYNX_Cuirass",
+    "name": "生物辅助胸甲·治疗效率",
+    "slot": "armor",
+    "setId": "LYNX",
+    "statBonuses": { "will": 113, "intellect": 75 },
+    "buffs": [
+      {
+        "id": "LYNX_Cuirass_b1",
+        "name": "生物辅助胸甲",
+        "description": "治疗效率提升13.5%",
+        "effects": []
+      }
+    ]
+  },
+  {"#": "生物辅助重甲"},
+  {
+    "id": "LYNX_Heavy_Armor",
+    "name": "生物辅助重甲·治疗效率",
+    "slot": "armor",
+    "setId": "LYNX",
+    "statBonuses": { "strength": 113, "will": 75 },
+    "buffs": [
+      {
+        "id": "LYNX_Heavy_Armor_b1",
+        "name": "生物辅助重甲",
+        "description": "治疗效率提升13.5%",
+        "effects": []
+      }
+    ]
+  },
+  {"#": "生物辅助手甲"},
+  {
+    "id": "LYNX_Gauntlets",
+    "name": "生物辅助手甲·治疗效率",
+    "slot": "gloves",
+    "setId": "LYNX",
+    "statBonuses": { "will": 84, "strength": 55 },
+    "buffs": [
+      {
+        "id": "TLYNX_Gauntlets_b1",
+        "name": "生物辅助手甲",
+        "description": "治疗效率提升22.4%",
+        "effects": []
+      }
+    ]
+  },
+  {"#": "生物辅助臂甲"},
+  {
+    "id": "LYNX_Gloves",
+    "name": "生物辅助臂甲·充能",
+    "slot": "gloves",
+    "setId": "LYNX",
+    "statBonuses": { "strength": 84, "will": 55 },
+    "buffs": [
+      {
+        "id": "LYNX_Gloves_b1",
+        "name": "生物辅助臂甲",
+        "description": "充能效率提升26.7%",
+        "effects": []
+      }
+    ]
+  },
+  {"#": "生物辅助接驳器"},
+  {
+    "id": "LYNX_Connector",
+    "name": "生物辅助接驳器·伤害减免",
+    "slot": "kit",
+    "setId": "LYNX",
+    "statBonuses": { "strength": 41, "will": 27 },
+    "buffs": [
+      {
+        "id": "LYNX_Connector_b1",
+        "name": "生物辅助接驳器",
+        "description": "伤害减免提升21.2%",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "LYNX_Connector_T1",
+    "name": "生物辅助接驳器·壹型·生命",
+    "slot": "kit",
+    "setId": "LYNX",
+    "statBonuses": { "strength": 41, "will": 27 },
+    "buffs": [
+      {
+        "id": "LYNX_Connector_T1_b1",
+        "name": "生物辅助接驳器·壹型",
+        "description": "生命提升53.8%",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "LYNX_Connector_T2",
+    "name": "生物辅助接驳器·贰型·生命",
+    "slot": "kit",
+    "setId": "LYNX",
+    "statBonuses": { "strength": 53 },
+    "buffs": [
+      {
+        "id": "LYNX_Connector_T2_b1",
+        "name": "生物辅助接驳器·贰型",
+        "description": "生命提升53.8%",
+        "effects": []
+      }
+    ]
+  },
+  {"#": "生物辅助护盾针"},
+  {
+    "id": "LYNX_Aegis_Injector",
+    "name": "生物辅助护盾针·治疗效率",
+    "slot": "kit",
+    "setId": "LYNX",
+    "statBonuses": { "will": 53 },
+    "buffs": [
+      {
+        "id": "LYNX_Aegis_Injector_b1",
+        "name": "生物辅助护盾针",
+        "description": "治疗效率提升26.9%"
+      }
+    ]
+  },
+  {"#": "生物辅助护板"},
+  {
+    "id": "LYNX_Slab",
+    "name": "生物辅助护板·主能力",
+    "slot": "kit",
+    "setId": "LYNX",
+    "mainAffix": { "flat": 0, "percent": 0.269},
+    "statBonuses": { "will": 41, "intellect": 27 },
+    "buffs": [
+      {
+        "id": "LYNX_Slab",
+        "name": "生物辅助护板",
+        "description": "主能力提升26.9%"
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是点剑=================="
+  },
+  {"#": "点剑轻装甲"},
+  {
+    "id": "Swordmancer_Light_Armor",
+    "name": "点剑轻装甲·充能",
+    "slot": "armor",
+    "setId": "Swordmancer",
+    "statBonuses": { "strength": 113, "will": 75 },
+    "buffs": [
+      {
+        "id": "Swordmancer_Light_Armor_b1",
+        "name": "点剑轻装甲",
+        "description": "充能效率提升16.0%",
+        "effects": []
+      }
+    ]
+  },
+  {"#": "点剑重装甲"},
+  {
+    "id": "Swordmancer_Heavy_Armor",
+    "name": "点剑重装甲·源石技艺强度",
+    "slot": "armor",
+    "setId": "Swordmancer",
+    "statBonuses": { "agility": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "Swordmancer_Heavy_Armor_b1",
+        "name": "点剑重装甲",
+        "description": "源石技艺强度提升26",
+        "statBonuses": { "artsIntensity": 26 }
+      }
+    ]
+  },
+  {"#": "点剑战术手甲"},
+  {
+    "id": "Swordmancer_TAC_Gauntlets",
+    "name": "点剑战术手甲·终结技",
+    "slot": "gloves",
+    "setId": "Swordmancer",
+    "statBonuses": { "agility": 84, "strength": 55 },
+    "buffs": [
+      {
+        "id": "Swordmancer_TAC_Gauntlets_b1",
+        "name": "点剑战术手甲",
+        "description": "终结技伤害提升56.1%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.561, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {"#": "点剑战术手套"},
+  {
+    "id": "Swordmancer_TAC_Gloves",
+    "name": "点剑战术手套·物理伤害",
+    "slot": "gloves",
+    "setId": "Swordmancer",
+    "statBonuses": { "strength": 84, "will": 55 },
+    "buffs": [
+      {
+        "id": "Swordmancer_TAC_Gloves_b1",
+        "name": "点剑战术手套",
+        "description": "物理伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {"#": "点剑定位信标"},
+  {
+    "id": "Swordmancer_NAV_Beacon",
+    "name": "点剑定位信标·源石技艺强度",
+    "slot": "kit",
+    "setId": "Swordmancer",
+    "statBonuses": { "strength": 53 },
+    "buffs": [
+      {
+        "id": "Swordmancer_NAV_Beacon_b1",
+        "name": "点剑定位信标",
+        "description": "源石技艺强度提升53",
+        "statBonuses": { "artsIntensity": 53 }
+      }
+    ]
+  },
+  {"#": "点剑微型滤芯"},
+  {
+    "id": "Swordmancer_Micro_Filter",
+    "name": "点剑微型滤芯·物理伤害",
+    "slot": "kit",
+    "setId": "Swordmancer",
+    "statBonuses": { "strength": 41, "will": 27 },
+    "buffs": [
+      {
+        "id": "Swordmancer_Micro_Filter_b1",
+        "name": "点剑微型滤芯",
+        "description": "物理伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {"#": "点剑火石"},
+  {
+    "id": "Swordmancer_Flint",
+    "name": "点剑火石·物理伤害",
+    "slot": "kit",
+    "setId": "Swordmancer",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Swordmancer_Flint_b1",
+        "name": "点剑火石",
+        "description": "物理伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是轻超域=================="
+  },
+  {"#": "轻超域护板"},
+  {
+    "id": "Æthertech_Plating",
+    "name": "轻超域护板·失衡伤害",
+    "slot": "armor",
+    "setId": "Æthertech",
+    "statBonuses": { "strength": 113, "will": 75 },
+    "buffs": [
+      {
+        "id": "Æthertech_Plating_b1",
+        "name": "轻超域护板",
+        "description": "对失衡目标伤害提升26.9%",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.269 }
+        ]
+      }
+    ]
+  },
+  {"#": "轻超域轻护手"},
+  {
+    "id": "Æthertech_Light_Gloves",
+    "name": "轻超域轻护手·节能",
+    "slot": "gloves",
+    "setId": "Æthertech",
+    "statBonuses": { "will": 84, "agility": 55 },
+    "buffs": [
+      {
+        "id": "Æthertech_Light_Gloves_b1",
+        "name": "轻超域轻护手",
+        "description": "所有技能伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "skill" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "combo" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {"#": "轻超域护手"},
+  {
+    "id": "Æthertech_Gloves",
+    "name": "轻超域护手·源石技艺强度",
+    "slot": "gloves",
+    "setId": "Æthertech",
+    "statBonuses": { "agility": 84, "strength": 55 },
+    "buffs": [
+      {
+        "id": "Æthertech_Gloves_b1",
+        "name": "轻超域护手",
+        "description": "源石技艺强度提升44",
+        "statBonuses": { "artsIntensity": 44 }
+      }
+    ]
+  },
+  {"#": "轻超域腕表"},
+  {
+    "id": "Æthertech_Watch",
+    "name": "轻超域腕表·战技",
+    "slot": "kit",
+    "setId": "Æthertech",
+    "statBonuses": { "strength": 41, "agility": 27 },
+    "buffs": [
+      {
+        "id": "Æthertech_Watch_b1",
+        "name": "轻超域腕表",
+        "description": "战技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {"#": "轻超域稳定盘"},
+  {
+    "id": "Æthertech_Stabilizer",
+    "name": "轻超域稳定盘·源石技艺强度",
+    "slot": "kit",
+    "setId": "Æthertech",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Æthertech_Stabilizer_b1",
+        "name": "轻超域稳定盘",
+        "description": "源石技艺强度提升44",
+        "statBonuses": { "agility": 44 }
+      }
+    ]
+  },
+  {
+    "id": "Æthertech_Stabilizer_T1",
+    "name": "轻超域稳定盘·壹型·物理伤害",
+    "slot": "kit",
+    "setId": "Æthertech",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Æthertech_Stabilizer_T1_b1",
+        "name": "轻超域稳定盘·壹型",
+        "description": "物理伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {"#": "轻超域分析环"},
+  {
+    "id": "Æthertech_Analysis_Band",
+    "name": "轻超域分析环·物理伤害",
+    "slot": "kit",
+    "setId": "Æthertech",
+    "statBonuses": { "strength": 41, "will": 27 },
+    "buffs": [
+      {
+        "id": "Æthertech_Analysis_Band_b1",
+        "name": "轻超域分析环",
+        "description": "物理伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是脉冲式=================="
+  },
+  {"#": "脉冲式干扰服"},
+  {
+    "id": "Pulser_Labs_Disruptor_Suit",
+    "name": "脉冲式干扰服·源石技艺强度",
+    "slot": "armor",
+    "setId": "Pulser_Labs",
+    "statBonuses": { "intellect": 113, "will": 75 },
+    "buffs": [
+      {
+        "id": "Pulser_Labs_Disruptor_Suit_b1",
+        "name": "脉冲式干扰服",
+        "description": "源石技艺强度提升26",
+        "statBonuses": { "artsIntensity": 26 }
+      }
+    ]
+  },
+  {"#": "脉冲式手套"},
+  {
+    "id": "Pulser_Labs_Gloves",
+    "name": "脉冲式手套·寒冷电磁伤害",
+    "slot": "gloves",
+    "setId": "Pulser_Labs",
+    "statBonuses": { "will": 84, "intellect": 55 },
+    "buffs": [
+      {
+        "id": "Pulser_Labs_Gloves_b1",
+        "name": "脉冲式手套",
+        "description": "寒冷和电磁伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
+  {"#": "脉冲式侵入核"},
+  {
+    "id": "Pulser_Labs_Invasion_Core",
+    "name": "脉冲式侵入核·终结技",
+    "slot": "kit",
+    "setId": "Pulser_Labs",
+    "statBonuses": { "will": 53 },
+    "buffs": [
+      {
+        "id": "Pulser_Labs_Invasion_Core_b1",
+        "name": "脉冲式侵入核",
+        "description": "终结技伤害提升67.3%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.673, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {"#": "脉冲式校准器"},
+  {
+    "id": "Pulser_Labs_Calibrator",
+    "name": "脉冲式校准器·源石技艺强度",
+    "slot": "kit",
+    "setId": "Pulser_Labs",
+    "statBonuses": { "intellect": 53 },
+    "buffs": [
+      {
+        "id": "Pulser_Labs_Calibrator_b1",
+        "name": "脉冲式校准器",
+        "description": "源石技艺强度提升53",
+        "statBonuses": { "artsIntensity": 53 }
+      }
+    ]
+  },
+  {"#": "脉冲式探针"},
+  {
+    "id": "Pulser_Labs_Probe",
+    "name": "脉冲式探针·源石技艺强度",
+    "slot": "kit",
+    "setId": "Pulser_Labs",
+    "statBonuses": { "intellect": 41, "agility": 27 },
+    "buffs": [
+      {
+        "id": "Pulser_Labs_Probe_b1",
+        "name": "脉冲式探针",
+        "description": "源石技艺强度提升53",
+        "statBonuses": { "artsIntensity": 53 }
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是长息=================="
+  },
+  {"#": "长息装甲"},
+  {
+    "id": "Eternal_Xiranite_Armor",
+    "name": "长息装甲·源石技艺强度",
+    "slot": "armor",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": { "will": 113, "intellect": 75 },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Armor_b1",
+        "name": "长息装甲",
+        "description": "源石技艺强度提升26",
+        "statBonuses": { "artsIntensity": 26 }
+      }
+    ]
+  },
+  {"#": "长息护手"},
+  {
+    "id": "Eternal_Xiranite_Gloves",
+    "name": "长息护手·充能",
+    "slot": "gloves",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": { "intellect": 84, "strength": 55 },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Gloves_b1",
+        "name": "长息护手",
+        "description": "充能效率提升26.7%",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "Eternal_Xiranite_Gloves_T1",
+    "name": "长息护手·壹型·充能",
+    "slot": "gloves",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": { "intellect": 84, "will": 55 },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Gloves_T1_b1",
+        "name": "长息护手·壹型",
+        "description": "充能效率提升26.7%",
+        "effects": []
+      }
+    ]
+  },
+  {"#": "长息辅助臂"},
+  {
+    "id": "Eternal_Xiranite_Auxiliary_Arm",
+    "name": "长息辅助臂·充能",
+    "slot": "kit",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": { "will": 41, "intellect": 27 },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Auxiliary_Arm_b1",
+        "name": "长息辅助臂",
+        "description": "充能效率提升32.0%",
+        "effects": []
+      }
+    ]
+  },
+  {"#": "长息蓄电核"},
+  {
+    "id": "Eternal_Xiranite_Power_Core",
+    "name": "长息蓄电核·充能",
+    "slot": "kit",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": { "intellect": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Power_Core_b1",
+        "name": "长息蓄电核",
+        "description": "充能效率提升32.0%",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "Eternal_Xiranite_Power_Core_T1",
+    "name": "长息蓄电核·壹型·治疗效率",
+    "slot": "kit",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": { "intellect": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Power_Core_T1_b1",
+        "name": "长息蓄电核·壹型",
+        "description": "治疗效率提升26.9%",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是纾难=================="
+  },
+  {"#": "纾难护甲"},
+  {
+    "id": "Redeemer_Armor",
+    "name": "纾难护甲·充能",
+    "slot": "armor",
+    "setId": "Redeemer",
+    "statBonuses": { "intellect": 149 },
+    "buffs": [
+      {
+        "id": "Redeemer_Armor_b1",
+        "name": "纾难护甲",
+        "description": "充能效率提升16.7%"
+      }
+    ]
+  },
+  {"#": "纾难重甲"},
+  {
+    "id": "Redeemer_Plates",
+    "name": "纾难重甲·普通攻击",
+    "slot": "armor",
+    "setId": "Redeemer",
+    "statBonuses": { "agility": 149 },
+    "buffs": [
+      {
+        "id": "Redeemer_Plates_b1",
+        "name": "纾难重甲",
+        "description": "普通攻击伤害提升18.7%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.187, "condition": { "skillType": "basic" } },
+          { "category": "DMG_Dealt", "value": 0.187, "condition": { "skillType": "strike" } }
+        ]
+        
+      }
+    ]
+  },
+  {"#": "纾难护手"},
+  {
+    "id": "Redeemer_Gloves",
+    "name": "纾难护手·终结技",
+    "slot": "gloves",
+    "setId": "Redeemer",
+    "statBonuses": { "agility": 111 },
+    "buffs": [
+      {
+        "id": "Redeemer_Gloves_b1",
+        "name": "纾难护手",
+        "description": "终结技伤害提升58.5%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.585, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {"#": "纾难手套"},
+  {
+    "id": "Redeemer_Hands",
+    "name": "纾难手套·技能",
+    "slot": "gloves",
+    "setId": "Redeemer",
+    "statBonuses": { "strength": 111 },
+    "buffs": [
+      {
+        "id": "Redeemer_Hands_b1",
+        "name": "纾难手套",
+        "description": "所有技能伤害提升31.2%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.312, "condition": { "skillType": "skill" } },
+          { "category": "DMG_Dealt", "value": 0.312, "condition": { "skillType": "combo" } },
+          { "category": "DMG_Dealt", "value": 0.312, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {"#": "纾难印章"},
+  {
+    "id": "Redeemer_Seal",
+    "name": "纾难印章·充能",
+    "slot": "kit",
+    "setId": "Redeemer",
+    "statBonuses": { "intellect": 55 },
+    "buffs": [
+      {
+        "id": "Redeemer_Seal_b1",
+        "name": "纾难印章",
+        "description": "充能效率提升33.4%",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "Redeemer_Seal_T1",
+    "name": "纾难印章·壹型·暴击率",
+    "slot": "kit",
+    "setId": "Redeemer",
+    "statBonuses": { "will": 55 },
+    "buffs": [
+      {
+        "id": "Redeemer_Seal_T1_b1",
+        "name": "纾难印章·壹型",
+        "description": "暴击率提升14.0%",
+        "effects": [
+          { "category": "critRate", "value": 0.14 }
+        ]
+      }
+    ]
+  },
+  {"#": "纾难识别牌"},
+  {
+    "id": "Redeemer_Tag",
+    "name": "纾难识别牌·伤害减免",
+    "slot": "kit",
+    "setId": "Redeemer",
+    "statBonuses": { "strength": 55 },
+    "buffs": [
+      {
+        "id": "Redeemer_Tag_b1",
+        "name": "纾难识别牌",
+        "description": "伤害减免提升21.9%",
+        "effects": []
+      }
+    ]
+  },
+  {
+    "id": "Redeemer_Tag_T1",
+    "name": "纾难识别牌·壹型·连携技",
+    "slot": "kit",
+    "setId": "Redeemer",
+    "statBonuses": { "agility": 55 },
+    "buffs": [
+      {
+        "id": "Redeemer_Tag_T1_b1",
+        "name": "纾难识别牌·壹型",
+        "description": "连携技伤害提升56.2%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.562, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是天灾防护=================="
+  },
+  {"#": "天灾防护重甲"},
+  {
+    "id": "Catastrophe_Heavy_Armor",
+    "name": "天灾防护重甲·终结技",
+    "slot": "armor",
+    "setId": "Catastrophe",
+    "statBonuses": { "strength": 61, "intellect": 41 },
+    "buffs": [
+      {
+        "id": "Catastrophe_Heavy_Armor_b1",
+        "name": "天灾防护重甲",
+        "description": "终结技伤害提升18.4%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.184, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Catastrophe_Heavy_Armor_T1",
+    "name": "天灾防护重甲·壹型·充能",
+    "slot": "armor",
+    "setId": "Catastrophe",
+    "statBonuses": { "strength": 61, "will": 41 },
+    "buffs": [
+      {
+        "id": "Catastrophe_Heavy_Armor_T1_b1",
+        "name": "天灾防护重甲·壹型",
+        "description": "充能效率提升8.8%"
+      }
+    ]
+  },
+  {"#": "天灾防护手套"},
+  {
+    "id": "Catastrophe Gloves",
+    "name": "天灾防护手套·源石技艺强度",
+    "slot": "gloves",
+    "setId": "Catastrophe",
+    "statBonuses": { "will": 46, "intellect": 30 },
+    "buffs": [
+      {
+        "id": "Catastrophe Gloves_b1",
+        "name": "天灾防护手套",
+        "description": "源石技艺强度提升24",
+        "statBonuses": { "artsIntensity": 24 }
+      }
+    ]
+  },
+  {"#": "天灾防护滤芯"},
+  {
+    "id": "Catastrophe_Filter",
+    "name": "天灾防护滤芯·源石技艺强度",
+    "slot": "kit",
+    "setId": "Catastrophe",
+    "statBonuses": { "will": 23, "intellect": 15 },
+    "buffs": [
+      {
+        "id": "Catastrophe_Filter_b1",
+        "name": "天灾防护滤芯",
+        "description": "源石技艺强度提升29",
+        "statBonuses": { "artsIntensity": 29 }
+      }
+    ]
+  },
+  {"#": "天灾防护净芯"},
+  {
+    "id": "Catastrophe_Gauze_Cartridge",
+    "name": "天灾防护净芯·终结技",
+    "slot": "kit",
+    "setId": "Catastrophe",
+    "statBonuses": { "strength": 23, "intellect": 15 },
+    "buffs": [
+      {
+        "id": "Catastrophe_Gauze_Cartridge_b1",
+        "name": "天灾防护净芯",
+        "description": "终结技伤害提升36.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.368, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Catastrophe_Gauze_Cartridge_T1",
+    "name": "天灾防护净芯·壹型·终结技",
+    "slot": "kit",
+    "setId": "Catastrophe",
+    "subAffixes": [ { "flat": 0 , "percent": 0.147 } ],
+    "statBonuses": { "strength": 23, "will": 15 },
+    "buffs": [
+      {
+        "id": "Catastrophe_Gauze_Cartridge_T1_b1",
+        "name": "天灾防护净芯·壹型",
+        "description": "副能力提升14.7%"
+      }
+    ]
+  }
+]

@@ -1,0 +1,141 @@
+{
+  "id": "Gilberta",
+  "name": "洁尔佩塔",
+  "baseAtk": 329,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 89, "agility": 92, "intellect": 127, "will": 171 },
+  "statConfig": {
+    "primary": { "stat": "will", "ratio": 0.005 },
+    "secondary": [{ "stat": "intellect", "ratio": 0.002 }]
+  },
+  "weaponType": "Arts_Unit",
+  "skills": [
+    {
+      "name": "普通攻击一段·秘杖·束能技艺",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 0.68 }]
+    },
+    {
+      "name": "普通攻击二段·秘杖·束能技艺",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 0.81 }]
+    },
+    {
+      "name": "普通攻击三段·秘杖·束能技艺",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 0.91 }]
+    },
+    {
+      "name": "重击·秘杖·束能技艺",
+      "type": "strike",
+      "hits": [{ "element": "Nature", "multiplier": 1.12 }]
+    },
+    {
+      "name": "秘杖·引力模式",
+      "type": "skill",
+      "hits": [
+        { "element": "Nature", "multiplier": 2.19 },
+        { "element": "Nature", "multiplier": 1.3 }
+    ]
+    },
+    {
+      "name": "秘杖·矩阵位移",
+      "type": "combo",
+      "hits": [{ "element": "Nature", "multiplier": 3.15 }]
+    },
+    {
+      "name": "秘杖·重力场",
+      "type": "ultimate",
+      "hits": [{ "element": "Nature", "multiplier": 7.5 }]
+    },
+    {
+      "name": "下落攻击·洁尔佩塔",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·洁尔佩塔",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Gilberta",
+      "name": "信赖·洁尔佩塔",
+      "description": "意志+60",
+      "statBonuses": { "will": 60 }
+    },
+    {
+      "id": "Arcane_Staff:_Gravity_Field",
+      "name": "秘杖·重力场",
+      "description": "30%+3%*破防层数的法术脆弱",
+      "scope": "team",
+      "optional": true,
+      "userInput": { "label": "破防", "default": 0, "scale": 1 },
+      "effects": [
+        { "category": "Susceptibility", "value": 0.3, "condition": { "element":"Heat" } },
+        { "category": "Susceptibility", "value": 0.3, "condition": { "element":"Cryo" } },
+        { "category": "Susceptibility", "value": 0.3, "condition": { "element":"Electric" } },
+        { "category": "Susceptibility", "value": 0.3, "condition": { "element":"Nature" } },
+        { "category": "Susceptibility", "scaleRatio": 0.03, "scaleCap": 0.12, "userInput": "scaleValue", "condition": { "element":"Heat" } },
+        { "category": "Susceptibility", "scaleRatio": 0.03, "scaleCap": 0.12, "userInput": "scaleValue", "condition": { "element":"Cryo" } },
+        { "category": "Susceptibility", "scaleRatio": 0.03, "scaleCap": 0.12, "userInput": "scaleValue", "condition": { "element":"Electric" } },
+        { "category": "Susceptibility", "scaleRatio": 0.03, "scaleCap": 0.12, "userInput": "scaleValue", "condition": { "element":"Nature" } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Above_the_Clouds",
+      "name": "潜能1·云层之上",
+      "description": "范围扩大20%"
+    },
+    {
+      "id": "Wind_Walker",
+      "name": "潜能2·乘风而行",
+      "description": "破防的法术脆弱加倍，视为额外拥有1层破防",
+      "bundle": [
+        {
+          "id": "Arcane_Staff:_Gravity_Field_p2",
+          "name": "秘杖·重力场·潜能2",
+          "description": "30%+6%*破防层数的法术脆弱",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Arcane_Staff:_Gravity_Field",
+          "userInput": { "label": "破防", "default": 0, "scale": 1 },
+          "effects": [
+            { "category": "Susceptibility", "value": 0.36, "condition": { "element":"Heat" } },
+            { "category": "Susceptibility", "value": 0.36, "condition": { "element":"Cryo" } },
+            { "category": "Susceptibility", "value": 0.36, "condition": { "element":"Electric" } },
+            { "category": "Susceptibility", "value": 0.36, "condition": { "element":"Nature" } },
+            { "category": "Susceptibility", "scaleRatio": 0.06, "scaleCap": 0.18, "userInput": "scaleValue", "condition": { "element":"Heat" } },
+            { "category": "Susceptibility", "scaleRatio": 0.06, "scaleCap": 0.18, "userInput": "scaleValue", "condition": { "element":"Cryo" } },
+            { "category": "Susceptibility", "scaleRatio": 0.06, "scaleCap": 0.18, "userInput": "scaleValue", "condition": { "element":"Electric" } },
+            { "category": "Susceptibility", "scaleRatio": 0.06, "scaleCap": 0.18, "userInput": "scaleValue", "condition": { "element":"Nature" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Quick,_Gentle_Steps",
+      "name": "潜能3·轻盈脚步",
+      "description": "天赋加强：终结技充能效率额外+5%"
+    },
+    {
+      "id": "Dances_with_Clouds",
+      "name": "潜能4·灰度发布",
+      "description": "终结技能量-15%"
+    },
+    {
+      "id": "Special_Mail",
+      "name": "潜能5·特别信件",
+      "description": "连携技伤害倍率提升至1.3倍",
+      "skillOverrides": [
+        { "skillIndex": 5, "hitIndex": 0, "multiplier": 4.095 }
+      ]
+    }
+  ]
+}

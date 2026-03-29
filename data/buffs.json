@@ -1,0 +1,93 @@
+[
+  {
+    "id": "remove_crit",
+    "name": "去除暴击",
+    "group": "通用",
+    "description": "强制暴击率为0%",
+    "effects":[
+      { "category": "critRate", "value": -10 }
+    ]
+  },
+  {
+    "id": "must_crit",
+    "name": "强制暴击",
+    "group": "通用",
+    "description": "强制暴击率为100%",
+    "effects":[
+      { "category": "critRate", "value": 10 }
+    ]
+  },
+  {
+    "id": "Electrification",
+    "name": "导电",
+    "group": "通用",
+    "description": "易伤",
+    "userInput": { "label": "级", "default": 1, "scale": 0.04 },
+    "effects":[
+      {
+        "category": "DMG_Taken",
+        "value": 0.08,
+        "saturationScale": { "stat": "artsIntensity", "x": 1, "y": 2.0, "z": 300 },
+        "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] }
+      },
+      {
+        "category": "DMG_Taken",
+        "saturationScale": { "stat": "artsIntensity", "x": 1, "y": 2.0, "z": 300 },
+        "userInput": true,
+        "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] }
+      }
+    ]
+  },
+  {
+    "id": "Corrosion",
+    "name": "腐蚀（最大）",
+    "group": "通用",
+    "description": "抗性减少",
+    "userInput": { "label": "级", "default": 1, "scale": 0.04 },
+    "effects":[
+      {
+        "category": "Resistance",
+        "value": 0.08,
+        "saturationScale": { "stat": "artsIntensity", "x": 1, "y": 2.0, "z": 300 }
+      },
+      {
+        "category": "Resistance",
+        "saturationScale": { "stat": "artsIntensity", "x": 1, "y": 2.0, "z": 300 },
+        "userInput": true
+      }
+    ]
+  },
+  {
+    "id": "Resistance_Change",
+    "name": "抗性改变",
+    "group": "通用",
+    "description": "抗性增加/减少",
+    "userInput": { "label": "抗性", "default": 0, "scale": 1 },
+    "effects":[
+      { "category": "Resistance", "scaleRatio": -0.01, "scaleCap": 100, "userInput": "scaleValue" }
+    ]
+  },
+  {
+    "id": "Link",
+    "name": "连击",
+    "group": "通用",
+    "description": "下一次战技或终结技伤害增加",
+    "userInput": { "label": "级", "default": 1, "scale": 1 },
+    "effects":[
+      { "category": "Link", "value": 0.15, "condition": { "skillType": "skill" } },
+      { "category": "Link", "scaleRatio": 0.15, "scaleCap": 0.6, "userInput": "scaleValue", "condition": { "skillType": "skill" } },
+      { "category": "Link", "value": 0.1, "condition": { "skillType": "ultimate" } },
+      { "category": "Link", "scaleRatio": 0.1, "scaleCap": 0.4, "userInput": "scaleValue", "condition": { "skillType": "ultimate" } }
+    ]
+  },
+  {
+    "id": "Staggered",
+    "name": "失衡",
+    "group": "通用",
+    "description": "伤害提升",
+    "userInput": { "label": "乘区", "default": 30, "scale": 1 },
+    "effects":[
+      { "category": "Staggered", "scaleRatio": 0.01, "userInput": "scaleValue" }
+    ]
+  }
+]

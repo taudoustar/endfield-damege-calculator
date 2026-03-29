@@ -1,0 +1,285 @@
+[
+  {"#": "潮涌"},
+  {
+    "id": "Tide_Surge",
+    "name": "潮涌装备组",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Tide_Surge_b1",
+        "name": "潮涌·被动",
+        "description": "装备者所有技能伤害+20%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.2, "condition": { "skillType": "combo" } },
+          { "category": "DMG_Dealt", "value": 0.2, "condition": { "skillType": "ultimate" } }
+        ]
+      },
+      {
+        "id": "Tide_Surge_b2",
+        "name": "潮涌·触发",
+        "description": "造成的法术伤害+35%",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.35, "condition": { "element": "Heat" } },
+          { "category": "DMG_Dealt", "value": 0.35, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.35, "condition": { "element": "Electric" } },
+          { "category": "DMG_Dealt", "value": 0.35, "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  {"#": "拓荒"},
+  {
+    "id": "Frontiers",
+    "name": "拓荒",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Frontiers_b1",
+        "name": "拓荒·触发",
+        "description": "全队伤害+16%",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.16 }
+        ]
+      }
+    ]
+  },
+  {"#": "应龙"},
+  {
+    "id": "Type_50_Yinglung",
+    "name": "50式应龙",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_b1",
+        "name": "50式应龙·被动",
+        "description": "攻击力+15%",
+        "effects": [
+          { "category": "atkPercent", "value": 0.15 }
+        ]
+      },
+      {
+        "id": "Type_50_Yinglung_b2",
+        "name": "50式应龙·触发",
+        "description": "连携技伤害+20%*层数",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt", "scaleRatio": 0.2, "scaleCap": 0.6, "userInput": "scaleValue", "condition": { "skillType":"combo" } }
+        ]
+      }
+    ]
+  },
+  {"#": "碾骨"},
+  {
+    "id": "Bonekrusha",
+    "name": "碾骨",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Bonekrusha_b1",
+        "name": "碾骨·被动",
+        "description": "攻击力+15%",
+        "effects": [
+          { "category": "atkPercent", "value": 0.15 }
+        ]
+      },
+      {
+        "id": "Bonekrusha_b2",
+        "name": "碾骨·触发",
+        "description": "战技伤害+20%*层数",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt", "scaleRatio": 0.2, "scaleCap": 0.6, "userInput": "scaleValue", "condition": { "skillType":"skill" } }
+        ]
+      }
+    ]
+  },
+  {"#": "警用"},
+  {
+    "id": "MI_Security",
+    "name": "M.I.警用",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "MI_Security_b1",
+        "name": "M.I.警用·被动",
+        "description": "暴击率+5%",
+        "effects": [
+          { "category": "critRate", "value": 0.05 }
+        ]
+      },
+      {
+        "id": "MI_Security_b2",
+        "name": "M.I.警用·触发",
+        "description": "暴击后，5秒内+5%攻击力，该效果最多叠加5层。层数叠满后，额外+5%暴击率。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "atkPercent", "scaleRatio": 0.05, "scaleCap": 0.25, "userInput": "scaleValue" },
+          { "category": "critRate", "scaleCurve": [[0,0], [4,0], [5,0.05]], "userInput": "scaleValue" }
+        ]
+      }
+    ]
+  },
+  {"#": "动火"},
+  {
+    "id": "Hot_Work",
+    "name": "动火用",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Hot_Work_b1",
+        "name": "动火用·被动",
+        "description": "源石技艺强度+30",
+        "statBonuses": { "artsIntensity": 30 }
+      },
+      {
+        "id": "Hot_Work_b2",
+        "name": "动火用·触发·灼热",
+        "description": "当装备者施加燃烧后，灼热伤害+50%。",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.5, "condition": { "element": "Heat" } }
+        ]
+      },
+      {
+        "id": "Hot_Work_b3",
+        "name": "动火用·触热·自然",
+        "description": "当装备者施加腐蚀后，自然伤害+50%",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.5, "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  {"#": "生物辅助"},
+  {
+    "id": "LYNX",
+    "name": "生物辅助",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "LYNX_b1",
+        "name": "生物辅助·被动",
+        "description": "装备者治疗效率+20%。当装备者治疗我方目标后，使该目标在10秒内受到的所有类型伤害-15%；如果该目标受到的治疗量溢出，则受到的所有类型伤害-30%。上述效果无法叠加。",
+        "effects": []
+      }
+    ]
+  },
+  {"#": "点剑"},
+  {
+    "id": "Swordmancer",
+    "name": "点剑",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Swordmancer_b1",
+        "name": "点剑·被动",
+        "description": "装备者失衡效率加成+20%。当装备者造成物理异常后，额外造成一次250%攻击力的物理伤害[10点失衡值]。该效果每15秒最多触发一次。",
+        "effects": []
+      }
+    ]
+  },
+  {"#": "轻超域"},
+  {
+    "id": "Æthertech",
+    "name": "轻超域",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Æthertech_b1",
+        "name": "轻超域·被动",
+        "description": "攻击力+15%",
+        "effects": [
+          { "category": "atkPercent", "value": 0.08 }
+        ]
+      },
+      {
+        "id": "Æthertech_b2",
+        "name": "轻超域·触发",
+        "description": "施加破防后，物理伤害+8%，持续15秒，最多可叠加4层。若使目标达到4层破防，物理伤害额外+16%。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt", "scaleRatio": 0.08, "scaleCap": 0.32, "userInput": "scaleValue", "condition": { "element": "Physical" } },
+          { "category": "DMG_Dealt", "scaleCurve": [[0,0], [3,0], [4,0.16]], "userInput": "scaleValue", "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {"#": "脉冲"},
+  {
+    "id": "Pulser_Labs",
+    "name": "脉冲式",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Pulser_Labs_b1",
+        "name": "脉冲式·被动",
+        "description": "源石技艺强度+30",
+        "statBonuses": { "artsIntensity": 30 }
+      },
+      {
+        "id": "Pulser_Labs_b2",
+        "name": "脉冲式·触发·寒冷",
+        "description": "当装备者施加冰冻后，寒冷伤害+50%。",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.5, "condition": { "element": "Cryo" } }
+        ]
+      },
+      {
+        "id": "Pulser_Labs_b3",
+        "name": "脉冲式·触热·电磁",
+        "description": "当装备者施加导电后，电磁伤害+50%",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.5, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
+  {"#": "长息"},
+  {
+    "id": "Eternal_Xiranite",
+    "name": "长息",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_b1",
+        "name": "长息·被动",
+        "description": "装备者生命值+1000",
+        "effects": []
+      },
+      {
+        "id": "Eternal_Xiranite_b2",
+        "name": "长息·触发",
+        "description": "施加增幅、庇护、脆弱、虚弱后，使其他队友造成的伤害+16%。",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.16 }
+        ]
+      }
+    ]
+  },
+  {"#": "天灾防护"},
+  {
+    "id": "Catastrophe",
+    "name": "天灾防护",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Catastrophe_b1",
+        "name": "天灾防护·被动",
+        "description": "装备者终结技充能效率+20%。装备者施放战技时返还50点技力，此效果每场战斗最多触发一次。",
+        "effects": []
+      }
+    ]
+  }
+]

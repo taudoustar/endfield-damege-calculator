@@ -1,0 +1,111 @@
+{
+  "id": "Ardelia",
+  "name": "艾尔黛拉",
+  "baseAtk": 323,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 112, "agility": 93, "intellect": 145, "will": 118 },
+  "statConfig": {
+    "primary": { "stat": "intellect", "ratio": 0.005 },
+    "secondary": [{ "stat": "will", "ratio": 0.002 }]
+  },
+  "weaponType": "Arts_Unit",
+  "skills": [
+    {
+      "name": "普通攻击一段·岩石的轻语",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 0.68 }]
+    },
+    {
+      "name": "普通攻击二段·岩石的轻语",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 0.9 }]
+    },
+    {
+      "name": "普通攻击三段·岩石的轻语",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 1.18 }]
+    },
+    {
+      "name": "重击·岩石的轻语",
+      "type": "strike",
+      "hits": [{ "element": "Nature", "multiplier": 1.24 }]
+    },
+    {
+      "name": "奔腾的多利",
+      "type": "skill",
+      "hits": [{ "element": "Nature", "multiplier": 3.2 }]
+    },
+    {
+      "name": "火山蘑菇云",
+      "type": "combo",
+      "hits": [{ "element": "Nature", "multiplier": 3.5 }]
+    },
+    {
+      "name": "终结技·毛茸茸派对",
+      "type": "ultimate",
+      "hits": [{ "element": "Nature", "multiplier": 1.65 }]
+    },
+    {
+      "name": "下落攻击·艾尔黛拉",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·艾尔黛拉",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Ardelia",
+      "name": "信赖·艾尔黛拉",
+      "description": "智识+60",
+      "statBonuses": { "intellect": 60 }
+    },
+    {
+      "id": "Dolly_Rush",
+      "name": "奔腾的多利·脆弱",
+      "scope": "team",
+      "optional": true,
+      "description": "脆弱20%",
+      "effects": [{ "category": "Susceptibility", "value": 0.2, "condition": { "element": ["Physical", "Heat", "Cryo", "Electric", "Nature"] } }]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Dolly_Paradise",
+      "name": "奔腾的多利·脆弱·潜能1",
+      "description": "脆弱28%",
+      "scope": "team",
+      "optional": true,
+      "replaces": "Dolly_Rush",
+      "effects": [{ "category": "Susceptibility", "value": 0.28, "condition": { "element": ["Physical", "Heat", "Cryo", "Electric", "Nature"] } }]
+    },
+    {
+      "id": "Game_Rewards",
+      "name": "潜能2·游戏奖励",
+      "description": "天赋朋友的身影效果加强：当主控干员触碰多利先生的影子后，艾尔黛拉会以一半的效果额外治疗另一名生命值百分比最低的友方干员。"
+    },
+    {
+      "id": "Explosive_Eruption",
+      "name": "潜能3·爆炸式喷发",
+      "description": "终结技毛茸茸派对的持续时间+1秒，且生成多利先生的影子的概率提升至原本的1.2倍。"
+    },
+    {
+      "id": "Rock_Blossom",
+      "name": "潜能4·岩中花朵",
+      "description": "终结技能量-15%"
+    },
+    {
+      "id": "Volcanic_Steam",
+      "name": "潜能5·火山蒸汽",
+      "description": "连携技火山蘑菇云冷却时间-2秒，伤害倍率提升至原本的1.2倍，施加的腐蚀效果持续时间+4秒。",
+      "skillOverrides": [
+        { "skillIndex": 5, "hitIndex": 0, "multiplier": 4.2 }
+      ]
+    }
+  ]
+}

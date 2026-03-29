@@ -1,0 +1,146 @@
+{
+  "id": "Lifeng",
+  "name": "黎风",
+  "baseAtk": 312,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 123, "agility": 132, "intellect": 115, "will": 117 },
+  "statConfig": {
+    "primary": { "stat": "agility", "ratio": 0.005 },
+    "secondary": [{ "stat": "strength", "ratio": 0.002 }]
+  },
+  "weaponType": "Polearm",
+  "skills": [
+    {
+      "name": "普通攻击一段·摧破",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.55 }]
+    },
+    {
+      "name": "普通攻击二段·摧破",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.65 }]
+    },
+    {
+      "name": "普通攻击三段·摧破",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.79 }]
+    },
+    {
+      "name": "重击·摧破",
+      "type": "strike",
+      "hits": [{ "element": "Physical", "multiplier": 1.52 }]
+    },
+    {
+      "name": "荡浊身",
+      "type": "skill",
+      "hits": [{ "element": "Physical", "multiplier": 4.4 }]
+    },
+    {
+      "name": "忿怒相",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 4.8 }]
+    },
+    {
+      "name": "不动心",
+      "type": "ultimate",
+      "hits": [{ "element": "Physical", "multiplier": 8.0 }]
+    },
+    {
+      "name": "不动心·追加伤害",
+      "type": "ultimate",
+      "hits": [{ "element": "Physical", "multiplier": 6.0 }]
+    },
+    {
+      "name": "下落攻击·黎风",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·黎风",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 9.0 }]
+    },
+    {
+      "name": "天赋·伏魔",
+      "type": "other",
+      "hits": [{ "element": "Physical", "multiplier": 1.0 }]
+    },
+    {
+      "name": "天赋·伏魔·潜能5",
+      "type": "other",
+      "hits": [{ "element": "Physical", "multiplier": 2.5 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Lifeng",
+      "name": "信赖·黎风",
+      "description": "敏捷+60",
+      "statBonuses": { "agility": 60 }
+    },
+    {
+      "id": "Illumination",
+      "name": "天赋·顿悟",
+      "description": "每点智识和意志都会使攻击力额外+0.15%。",
+      "effects": [
+        { "category": "extraStatAtk", "scaleStat": "will", "scaleRatio": 0.0015 },
+        { "category": "extraStatAtk", "scaleStat": "intellect", "scaleRatio": 0.0015 }
+      ]
+    },
+    {
+      "id": "Subduer_of_Evil",
+      "name": "天赋·伏魔",
+      "description": "每当自身造成倒地时，额外造成攻击力100%的物理伤害。"
+    },
+    {
+      "id": "Turbid_Avatar",
+      "name": "荡浊身·物理脆弱",
+      "description": "物理脆弱12%",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "Susceptibility", "value": 0.12, "condition": { "element": "Physical" } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Turbid_Avatar_p1",
+      "name": "荡浊身·物理脆弱·潜能1",
+      "description": "物理脆弱16%",
+      "scope": "team",
+      "optional": true,
+      "replaces": "Turbid_Avatar",
+      "effects": [
+        { "category": "Susceptibility", "value": 0.17, "condition": { "element": "Physical" } }
+      ]
+    },
+    {
+      "id": "Self_Refinement",
+      "name": "潜能2·修身",
+      "description": "全属性+15%",
+      "statBonuses": { "strength": 15, "agility": 15, "intellect": 15, "will": 15 }
+    },
+    {
+      "id": "Spiritual_Cultivation",
+      "name": "潜能3·养性",
+      "description": "天赋顿悟效果加强：每点智识和意志使攻击力额外+0.05%。",
+      "effects": [
+        { "category": "extraStatAtk", "scaleStat": "will", "scaleRatio": 0.0005 },
+        { "category": "extraStatAtk", "scaleStat": "intellect", "scaleRatio": 0.0005 }
+      ]
+    },
+    {
+      "id": "Brief_Instant",
+      "name": "潜能4·刹那",
+      "description": "终结技能量-15%"
+    },
+    {
+      "id": "Unremitting",
+      "name": "潜能5·不懈",
+      "description": "天赋伏魔效果加强：每隔15秒，下一次触发时额外造成攻击力250%的物理伤害和5点失衡。"
+    }
+  ]
+}

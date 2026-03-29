@@ -1,0 +1,144 @@
+{
+  "id": "Xaihi",
+  "name": "赛希",
+  "baseAtk": 291,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 89, "agility": 91, "intellect": 127, "will": 150 },
+  "statConfig": {
+    "primary": { "stat": "will", "ratio": 0.005 },
+    "secondary": [{ "stat": "intellect", "ratio": 0.002 }]
+  },
+  "weaponType": "Arts_Unit",
+  "skills": [
+    {
+      "name": "普通攻击一段·冷却",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.34 }]
+    },
+    {
+      "name": "普通攻击二段·冷却",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.36 }]
+    },
+    {
+      "name": "普通攻击三段·冷却",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.47 }]
+    },
+    {
+      "name": "普通攻击四段·冷却",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.74 }]
+    },
+    {
+      "name": "重击·冷却",
+      "type": "strike",
+      "hits": [{ "element": "Cryo", "multiplier": 1.24 }]
+    },
+    {
+      "name": "压力测试",
+      "type": "combo",
+      "hits": [{ "element": "Cryo", "multiplier": 4.5 }]
+    },
+    {
+      "name": "下落攻击·赛希",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·赛希",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Xaihi",
+      "name": "信赖·赛希",
+      "description": "意志+60",
+      "statBonuses": { "will": 60 }
+    },
+    {
+      "id": "Execute_Process",
+      "name": "天赋·启动进程",
+      "description": "寒冷伤害易伤10%",
+      "scope": "team",
+      "optional": true,
+      "effects": [{ "category": "DMG_Taken", "value": 0.1, "condition": { "element":"Cryo" } }]
+    },
+    {
+      "id": "Distributed_DoS",
+      "name": "战技·分布式拒绝服务",
+      "description": "法术增幅15%",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "Arts_Amp", "value": 0.15, "condition": { "element":"Heat" } },
+        { "category": "Arts_Amp", "value": 0.15, "condition": { "element":"Cryo" } },
+        { "category": "Arts_Amp", "value": 0.15, "condition": { "element":"Electric" } },
+        { "category": "Arts_Amp", "value": 0.15, "condition": { "element":"Nature" } }
+      ]
+    },
+    {
+      "id": "Stack_Overflow",
+      "name": "终结技·栈溢出",
+      "description": "按照智识提供寒冷和自然增幅",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "Arts_Amp", "value": 0.24, "condition": { "element":"Cryo" } },
+        { "category": "Arts_Amp", "value": 0.24, "condition": { "element":"Nature" } },
+        { "category": "Arts_Amp", "scaleStat": "intellect", "scaleRatio": 0.0003, "scaleCap": 0.36, "condition": { "element":"Cryo" } },
+        { "category": "Arts_Amp", "scaleStat": "intellect", "scaleRatio": 0.0003, "scaleCap": 0.36, "condition": { "element":"Nature" } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Distributed_DoS_p1",
+      "name": "战技·分布式拒绝服务·潜能1",
+      "description": "战技法术增幅提升至20%",
+      "scope": "team",
+      "optional": true,
+      "replaces": "Distributed_DoS",
+      "effects": [
+        { "category": "Arts_Amp", "value": 0.2, "condition": { "element":"Heat" } },
+        { "category": "Arts_Amp", "value": 0.2, "condition": { "element":"Cryo" } },
+        { "category": "Arts_Amp", "value": 0.2, "condition": { "element":"Electric" } },
+        { "category": "Arts_Amp", "value": 0.2, "condition": { "element":"Nature" } }
+      ]
+    },
+    {
+      "id": "Link_Aggregation",
+      "name": "潜能2·链路聚合",
+      "description": "所需终结技能量-10%"
+    },
+    {
+      "id": "Mapping_Node",
+      "name": "潜能3·映射节点",
+      "description": "连携技额外弹射一次"
+    },
+    {
+      "id": "Grayscale_Release",
+      "name": "潜能4·灰度发布",
+      "description": "智识+15，治疗效率+10%",
+      "statBonuses": { "intellect": 15 }
+    },
+    {
+      "id": "Stack_Overflow_p5",
+      "name": "终结技·栈溢出·潜能5",
+      "description": "终结技提供的增幅效果提高至原本的1.1倍",
+      "scope": "team",
+      "optional": true,
+      "replaces": "Stack_Overflow",
+      "effects": [
+        { "category": "Arts_Amp", "value": 0.264, "condition": { "element":"Cryo" } },
+        { "category": "Arts_Amp", "value": 0.264, "condition": { "element":"Nature" } },
+        { "category": "Arts_Amp", "scaleStat": "intellect", "scaleRatio": 0.00033, "scaleCap": 0.396, "condition": { "element":"Cryo" } },
+        { "category": "Arts_Amp", "scaleStat": "intellect", "scaleRatio": 0.00033, "scaleCap": 0.396, "condition": { "element":"Nature" } }
+      ]
+    }
+  ]
+}

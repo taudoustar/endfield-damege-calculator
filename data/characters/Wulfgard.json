@@ -1,0 +1,116 @@
+{
+  "id": "Wulfgard",
+  "name": "狼卫",
+  "baseAtk": 294,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 161, "agility": 95, "intellect": 92, "will": 111 },
+  "statConfig": {
+    "primary": { "stat": "strength", "ratio": 0.005 },
+    "secondary": [{ "stat": "agility", "ratio": 0.002 }]
+  },
+  "weaponType": "Handcannon",
+  "skills": [
+    {
+      "name": "普通攻击一段·多重连射",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 0.68 }]
+    },
+    {
+      "name": "普通攻击二段·多重连射",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 0.79 }]
+    },
+    {
+      "name": "普通攻击三段·多重连射",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 1.25 }]
+    },
+    {
+      "name": "重击·多重连射",
+      "type": "strike",
+      "hits": [{ "element": "Heat", "multiplier": 1.52 }]
+    },
+    {
+      "name": "灼热弹痕",
+      "type": "skill",
+      "hits": [{ "element": "Heat", "multiplier": 2.3 }]
+    },
+    {
+      "name": "灼热弹痕·追加攻击",
+      "type": "skill",
+      "hits": [{ "element": "Heat", "multiplier": 8.5 }]
+    },
+    {
+      "name": "爆裂手雷·β型",
+      "type": "combo",
+      "hits": [{ "element": "Heat", "multiplier": 1.35 }]
+    },
+    {
+      "name": "狼之怒",
+      "type": "ultimate",
+      "hits": [{ "element": "Heat", "multiplier": 3.6 }]
+    },
+    {
+      "name": "下落攻击·狼卫",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·狼卫",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Wulfgard",
+      "name": "信赖·狼卫",
+      "description": "力量+60",
+      "statBonuses": { "strength": 60 }
+    },
+    {
+      "id": "Scorching_Fangs",
+      "name": "灼热獠牙（自身）",
+      "description": "灼热伤害+30%",
+      "optional": true,
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.3, "condition": { "element": "Heat" } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Lone_Wolf",
+      "name": "潜能1·独狼",
+      "description": "力量+15，敏捷+15",
+      "statBonuses": { "strength": 15, "agility": 15 }
+    },
+    {
+      "id": "Firearm_Mods",
+      "name": "潜能2·铳械改造",
+      "description": "天赋额外返还技力"
+    },
+    {
+      "id": "Hunting_Hour",
+      "name": "灼热獠牙（队友）·潜能3",
+      "description": "队友获得灼热伤害+15%",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.15, "condition": { "element": "Heat" } }
+      ]
+    },
+    {
+      "id": "Will_of_the_Pack",
+      "name": "潜能4·狼群意志",
+      "description": "终结技所需能量-15%"
+    },
+    {
+      "id": "Natural_Predator",
+      "name": "潜能5·天生掠食者",
+      "description": "施放终结技后刷新连携冷却时间"
+    }
+  ]
+}

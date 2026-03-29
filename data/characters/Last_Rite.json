@@ -1,0 +1,128 @@
+{
+  "id": "Last_Rite",
+  "name": "别礼",
+  "baseAtk": 332,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 155, "agility": 104, "intellect": 93, "will": 109 },
+  "statConfig": {
+    "primary": { "stat": "strength", "ratio": 0.005 },
+    "secondary": [{ "stat": "will", "ratio": 0.002 }]
+  },
+  "weaponType": "Greatsword",
+  "skills": [
+    {
+      "name": "普通攻击一段·严霜之舞",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.68 }]
+    },
+    {
+      "name": "普通攻击二段·严霜之舞",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 1.24 }]
+    },
+    {
+      "name": "普通攻击三段·严霜之舞",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 1.53 }]
+    },
+    {
+      "name": "重击·严霜之舞",
+      "type": "strike",
+      "hits": [{ "element": "Cryo", "multiplier": 2.03 }]
+    },
+    {
+      "name": "战技·塞什卡的秘传",
+      "type": "skill",
+      "hits": [{ "element": "Cryo", "multiplier": 3.2 }]
+    },
+    {
+      "name": "连携技·噬冬（三冰）",
+      "type": "combo",
+      "hits": [{ "element": "Cryo", "multiplier": 10.4 }]
+    },
+    {
+      "name": "连携技·噬冬（四冰）",
+      "type": "combo",
+      "hits": [{ "element": "Cryo", "multiplier": 12.8 }]
+    },
+    {
+      "name": "终结技·临终别礼",
+      "type": "ultimate",
+      "hits": [{ "element": "Cryo", "multiplier": 16.0 }]
+    },
+    {
+      "name": "下落攻击·别礼",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·别礼",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Last_Rite",
+      "name": "信赖·别礼",
+      "description": "力量+60",
+      "statBonuses": { "strength": 60 }
+    },
+    {
+      "id": "Cryogenic_Embrittlement",
+      "name": "天赋·低温脆性",
+      "description": "寒冷脆弱提升至1.5倍",
+      "metas": [{ "category": "Susceptibility", "multiplier": 1.5 }]
+    },
+    {
+      "id": "Hypothermia",
+      "name": "天赋·低温症",
+      "description": "一层冰4%脆弱",
+      "scope": "team",
+      "optional": true,
+      "userInput": { "label": "冰", "default": 0, "scale": 0.04 },
+      "effects": [{ "category": "Susceptibility", "userInput": true }]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Undertaker's_Gift",
+      "name": "潜能1·守墓人之赠",
+      "description": "重击伤害+20%",
+      "optional": true,
+      "effects": [{ "category": "DMG_Dealt", "value": 0.2, "condition": { "skillType":["strike"] }}]
+    },
+    {
+      "id": "Absolute_Zero_Armament",
+      "name": "潜能2·零度武装",
+      "description": "力量+20，寒冷伤害+10%",
+      "statBonuses": { "strength": 20 },
+      "effects": [{ "category": "DMG_Dealt", "value": 0.1, "condition": { "element": "Cryo" } }]
+    },
+    {
+      "id": "Overlord_of_Winter",
+      "name": "潜能3·统御严冬",
+      "description": "连携技和终结技倍率提高至1.15倍",
+      "skillOverrides": [
+        { "skillIndex": 5, "hitIndex": 0, "multiplier": 11.96 },
+        { "skillIndex": 6, "hitIndex": 0, "multiplier": 14.72 },
+        { "skillIndex": 7, "hitIndex": 0, "multiplier": 18.4 }
+      ]
+    },
+    {
+      "id": "Sincere_Wake",
+      "name": "潜能4·诚挚告别",
+      "description": "终结技能量-15%"
+    },
+    {
+      "id": "Winter_is_Returning",
+      "name": "潜能5·寒风再起",
+      "description": "战技白绿提高至1.2倍",
+      "skillOverrides": [
+        { "skillIndex": 4, "hitIndex": 0, "multiplier": 3.84 }
+      ]
+    }
+  ]
+}

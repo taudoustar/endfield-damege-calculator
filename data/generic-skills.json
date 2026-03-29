@@ -1,0 +1,84 @@
+[
+  {
+    "id": "Knock_Down",
+    "name": "倒地",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 1.4724 }],
+    "#": "具体公式为120%*(1+89/392)"
+  },
+  {
+    "id": "Crush_0",
+    "name": "猛击·零层",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 1.8406 }],
+    "#": "具体公式为150%*(1+89/392)"
+  },
+  {
+    "id": "Crush_1",
+    "name": "猛击·一层",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 3.6811 }],
+    "#": "具体公式为300%*(1+89/392)"
+  },
+  {
+    "id": "Crush_2",
+    "name": "猛击·二层",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 5.5217 }],
+    "#": "具体公式为450%*(1+89/392)"
+  },
+  {
+    "id": "Crush_3",
+    "name": "猛击·三层",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 7.3622 }],
+    "#": "具体公式为600%*(1+89/392)"
+  },
+  {
+    "id": "Crush_4",
+    "name": "猛击·四层",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 9.2028 }],
+    "#": "具体公式为750%*(1+89/392)"
+  },
+  {
+    "id": "element_burst_Heat",
+    "name": "元素爆发·灼热",
+    "type": "status",
+    "hits": [{ "element": "Heat", "multiplier": 2.3265 }],
+    "#": "具体公式为160%*(1+89/196)"
+  },
+  {
+    "id": "element_burst_Cryo",
+    "name": "元素爆发·寒冷",
+    "type": "status",
+    "hits": [{ "element": "Cryo", "multiplier": 2.3265 }],
+    "#": "具体公式为160%*(1+89/196)"
+  },
+  {
+    "id": "element_burst_Electric",
+    "name": "元素爆发·电磁",
+    "type": "status",
+    "hits": [{ "element": "Electric", "multiplier": 2.3265 }],
+    "#": "具体公式为160%*(1+89/196)"
+  },
+  {
+    "id": "element_burst_Nature",
+    "name": "元素爆发·自然",
+    "type": "status",
+    "hits": [{ "element": "Nature", "multiplier": 2.3265 }],
+    "#": "具体公式为160%*(1+89/196)"
+  },
+  {
+    "id": "Swordmancer_Heat",
+    "name": "点剑被动",
+    "type": "other",
+    "hits": [{ "element": "Physical", "multiplier": 2.5 }]
+  },
+  {
+    "id": "Valiant_Heat",
+    "name": "骁勇被动",
+    "type": "other",
+    "hits": [{ "element": "Physical", "multiplier": 1.92 }]
+  }
+]

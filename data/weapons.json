@@ -1,0 +1,850 @@
+[
+  {
+    "#": "=====================单手剑====================="
+  },
+  { "#": "宏愿" },
+  {
+    "id": "Grand_Vision",
+    "name": "宏愿",
+    "type": "Sword",
+    "baseAtk": 500,
+    "statBonuses": { "agility": 156 },
+    "potentialBuffs":[
+      {
+        "id": "Grand_Vision_p1",
+        "name": "攻击提升·大",
+        "description": "攻击提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.39 }
+        ]
+      },
+      {
+        "id": "Grand_Vision_p2",
+        "name": "附术·长愿·被动",
+        "description": "源石技艺强度提升",
+        "statBonuses": { "artsIntensity": [48, 54, 60, 66, 72, 84] }
+      },
+      {
+        "id": "Grand_Vision_p3",
+        "name": "附术·长愿·触发",
+        "description": "施加源石结晶或冻结时,造成的物理伤害增加",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.576, 0.648, 0.720, 0.792, 0.864, 1.008], "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  { "#": "热熔切割器" },
+  {
+    "id": "Thermite_Cutter",
+    "name": "热熔切割器",
+    "type": "Sword",
+    "baseAtk": 490,
+    "statBonuses": { "will": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Thermite_Cutter_p1",
+        "name": "攻击提升·大",
+        "description": "攻击提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.39 }
+        ]
+      },
+      {
+        "id": "Thermite_Cutter_p2",
+        "name": "流转·高热解放·被动",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28] }
+        ]
+      },
+      {
+        "id": "Thermite_Cutter_p3",
+        "name": "流转·高热解放·触发",
+        "description": "全队攻击力提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "atkPercent", "value": [0.08, 0.09, 0.10, 0.11, 0.12, 0.14] }
+        ]
+      }
+    ]
+  },
+  { "#": "显赫声名" },
+  {
+    "id": "Eminent_Repute",
+    "name": "显赫声名",
+    "type": "Sword",
+    "baseAtk": 490,
+    "mainAffix": { "flat": 132, "percent": 0 },
+    "potentialBuffs":[
+      {
+        "id": "Eminent_Repute_p1",
+        "name": "物理伤害提升·大",
+        "description": "物理伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.433, "condition": { "element": "Physical" } }
+        ]
+      },
+      {
+        "id": "Eminent_Repute_p2",
+        "name": "残暴·规行矩止·被动",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28] }
+        ]
+      },
+      {
+        "id": "Eminent_Repute_p3",
+        "name": "残暴·规行矩止·触发（自身）",
+        "description": "攻击力提升",
+        "optional": true,
+        "userInput": { "label": "破防", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "atkPercent", "value": [0.08, 0.09, 0.10, 0.11, 0.12, 0.14] },
+          { "category": "atkPercent",
+          "scaleRatio": [0.04, 0.045, 0.05, 0.055, 0.06, 0.07],
+          "scaleCap": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28],
+          "userInput": "scaleValue" }
+        ]
+      },
+      {
+        "id": "Eminent_Repute_p4",
+        "name": "残暴·规行矩止·触发（队友）",
+        "description": "攻击力提升",
+        "optional": true,
+        "userInput": { "label": "破防", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "atkPercent", "value": [0.04, 0.045, 0.05, 0.055, 0.06, 0.07] },
+          { "category": "atkPercent",
+          "scaleRatio": [0.02, 0.0225, 0.025, 0.0275, 0.03, 0.035],
+          "scaleCap": [0.08, 0.09, 0.10, 0.11, 0.12, 0.14],
+          "userInput": "scaleValue" }
+        ]
+      }
+    ]
+  },
+  { "#": "光荣记忆" },
+  {
+    "id": "Glorious_Memory",
+    "name": "光荣记忆",
+    "type": "Sword",
+    "baseAtk": 490,
+    "statBonuses": { "agility": 156 },
+    "potentialBuffs":[
+      {
+        "id": "Glorious_Memory_p1",
+        "name": "暴击率提升·大",
+        "description": "暴击率提升",
+        "effects": [
+          { "category": "critRate", "value": 0.195 }
+        ]
+      },
+      {
+        "id": "Glorious_Memory_p2",
+        "name": "夜幕·余辉未消·被动",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": [0.112, 0.126, 0.140, 0.154, 0.168, 0.196] }
+        ]
+      },
+      {
+        "id": "Glorious_Memory_p3",
+        "name": "夜幕·余辉未消·触发",
+        "description": "通过技能施加破防时，30秒内的下次终结技期间造成的伤害提升，最多叠加3层",
+        "optional": true,
+        "userInput": { "label": "破防", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt",
+            "scaleRatio": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336],
+            "scaleCap": [0.576, 0.648, 0.720, 0.792, 0.864, 1.008],
+            "userInput": "scaleValue"
+          }
+        ]
+      }
+    ]
+  },
+  { "#": "不知归" },
+  {
+    "id": "Never_Rest",
+    "name": "不知归",
+    "type": "Sword",
+    "baseAtk": 500,
+    "statBonuses": { "will": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Never_Rest_p1",
+        "name": "攻击提升·大",
+        "description": "攻击提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.39 }
+        ]
+      },
+      {
+        "id": "Never_Rest_p2",
+        "name": "流转·轮回·被动",
+        "description": "物理伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448], "condition": { "element": "Physical" } }
+        ]
+      },
+      {
+        "id": "Never_Rest_p3",
+        "name": "流转·轮回·触发（自身）",
+        "description": "通过自身技能恢复技力后，自身造成的物理伤害提升",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.08, 0.09, 0.10, 0.11, 0.12, 0.14], "condition": { "element": "Physical" } }
+        ]
+      },
+      {
+        "id": "Never_Rest_p4",
+        "name": "流转·轮回·触发（队友）",
+        "description": "通过自身技能恢复技力后，小队内其他干员造成的物理伤害提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.04, 0.045, 0.05, 0.055, 0.06, 0.07], "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  { "#": "狼之绯" },
+  {
+    "id": "wpn_sword_0022",
+    "name": "狼之绯",
+    "type": "Sword",
+    "baseAtk": 505,
+    "statBonuses": { "agility": 156 },
+    "potentialBuffs":[
+      {
+        "id": "wpn_sword_0022_p1",
+        "name": "暴击率提升·大",
+        "description": "暴击率提升",
+        "effects": [
+          { "category": "critRate", "value": 0.195 }
+        ]
+      },
+      {
+        "id": "wpn_sword_0022_p2",
+        "name": "切骨·群狼啃噬·被动",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448] }
+        ]
+      },
+      {
+        "id": "wpn_sword_0022_p3",
+        "name": "切骨·群狼啃噬·触发",
+        "description": "击伤害后，获得1层狼血，物理和灼热伤害提升，最多叠加16层。当狼血叠加至16层后，物理和灼热伤害额外提升",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt",
+            "scaleRatio": [0.016, 0.018, 0.020, 0.022, 0.024, 0.28],
+            "scaleCap": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448],
+            "userInput": "scaleValue",
+            "condition": { "element": ["Physical", "Heat"] }
+          },
+          { "category": "DMG_Dealt",
+            "scaleRatio": [0.384, 0.432, 0.480, 0.528, 0.576, 0.672],
+            "scaleCurve": [[0,0], [15,0], [16,1]],
+            "userInput": "scaleValue",
+            "condition": { "element": ["Physical", "Heat"] }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "=====================双手剑====================="
+  },
+  { "#": "赫拉芬格" },
+  {
+    "id": "Khravengger",
+    "name": "赫拉芬格",
+    "type": "Greatsword",
+    "baseAtk": 505,
+    "statBonuses": { "strength": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Khravengger_p1",
+        "name": "攻击提升·大",
+        "description": "攻击提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.39 }
+        ]
+      },
+      {
+        "id": "Khravengger_p2",
+        "name": "迸发·切骨之寒·被动",
+        "description": "所有技能增伤",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.32, 0.36, 0.40, 0.44, 0.48, 0.56], "condition": { "skillType": "skill" } },
+          { "category": "DMG_Dealt", "value": [0.32, 0.36, 0.40, 0.44, 0.48, 0.56], "condition": { "skillType": "combo" } },
+          { "category": "DMG_Dealt", "value": [0.32, 0.36, 0.40, 0.44, 0.48, 0.56], "condition": { "skillType": "ultimate" } }
+        ]
+      },
+      {
+        "id": "Khravengger_p3",
+        "name": "迸发·切骨之寒·触发1",
+        "description": "寒冷伤害提升",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "element": "Cryo" } }
+        ]
+      },
+      {
+        "id": "Khravengger_p4",
+        "name": "迸发·切骨之寒·触发2",
+        "description": "寒冷伤害进一步提升",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.32, 0.36, 0.40, 0.44, 0.48, 0.56], "condition": { "element": "Cryo" } }
+        ]
+      }
+    ]
+  },
+  { "#": "典范" },
+  {
+    "id": "Exemplar",
+    "name": "典范",
+    "type": "Greatsword",
+    "baseAtk": 500,
+    "mainAffix": { "flat": 132 , "percent": 0 },
+    "potentialBuffs": [
+      {
+        "id": "Exemplar_p1",
+        "name": "攻击提升·大",
+        "description": "攻击提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.39 }
+        ]
+      },
+      {
+        "id": "Exemplar_p2",
+        "name": "压制·多层斩断·被动",
+        "description": "所有技能增伤",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "element": "Physical" } }
+        ]
+      },
+      {
+        "id": "Exemplar_p3",
+        "name": "压制·多层斩断·触发",
+        "description": "战技和终结技命中敌人时，物理伤害额外提升",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt",
+          "scaleRatio": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28],
+          "scaleCap": [0.48, 0.54, 0.60, 0.66, 0.72, 0.84],
+          "userInput": "scaleValue",
+          "condition": { "element": "Physical" }}
+        ]
+      }
+    ]
+  },
+  {
+    "#": "=====================施术单元====================="
+  },
+  { "#": "爆破单元" },
+  {
+    "id": "Detonation_Unit",
+    "name": "爆破单元",
+    "type": "Arts_Unit",
+    "baseAtk": 490,
+    "mainAffix": { "flat": 132 },
+    "subAffixes": [{ "flat": 0 , "percent": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28] }],
+    "potentialBuffs": [
+      {
+        "id": "Detonation_Unit_p1",
+        "name": "源石技艺强度提升·大",
+        "description": "源石技艺强度提升",
+        "statBonuses": { "artsIntensity": 78 }
+      },
+      {
+        "id": "Detonation_Unit_p2",
+        "name": "迸发·冠军威赫·被动",
+        "description": "副能力提升"
+      },
+      {
+        "id": "Detonation_Unit_p3",
+        "name": "迸发·冠军威赫·触发",
+        "description": "受到的法术伤害提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Taken", "value": [0.144, 0.162, 0.180, 0.198, 0.216, 0.252], "condition": { "element": "Heat" } },
+          { "category": "DMG_Taken", "value": [0.144, 0.162, 0.180, 0.198, 0.216, 0.252], "condition": { "element": "Cryo" } },
+          { "category": "DMG_Taken", "value": [0.144, 0.162, 0.180, 0.198, 0.216, 0.252], "condition": { "element": "Electric" } },
+          { "category": "DMG_Taken", "value": [0.144, 0.162, 0.180, 0.198, 0.216, 0.252], "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  { "#": "使命必达" },
+  {
+    "id": "Delivery_Guaranteed",
+    "name": "使命必达",
+    "type": "Arts_Unit",
+    "baseAtk": 500,
+    "statBonuses": { "will": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Delivery_Guaranteed_p1",
+        "name": "终结技充能效率提升·大",
+        "description": "充能效率提升"
+      },
+      {
+        "id": "Delivery_Guaranteed_p2",
+        "name": "追袭·不辱使命·被动",
+        "description": "自然伤害提升",
+        "effects": [
+          { "category": "DMG_Taken", "value": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448], "condition": { "element": "Nature" } }
+        ]
+      },
+      {
+        "id": "Delivery_Guaranteed_p3",
+        "name": "追袭·不辱使命·触发",
+        "description": "通过自身连携技造成击飞后，全队造成的法术伤害提升。每有一个被击飞的敌人，全队造成的法术伤害额外提升",
+        "scope": "team",
+        "optional": true,
+        "userInput": { "label": "击飞", "default": 1, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336], "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } },
+          { "category": "DMG_Dealt",
+            "scaleRatio": [0.056, 0.063, 0.070, 0.077, 0.084, 0.098],
+            "scaleCap": [0.168, 0.189, 0.210, 0.231, 0.252, 0.294],
+            "userInput": "scaleValue",
+            "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] }
+          }
+        ]
+      }
+    ]
+  },
+  { "#": "骑士精神" },
+  {
+    "id": "Chivalric_Virtues",
+    "name": "骑士精神",
+    "type": "Arts_Unit",
+    "baseAtk": 485,
+    "statBonuses": { "will": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Chivalric_Virtues_p1",
+        "name": "生命提升·大",
+        "description": "生命提升"
+      },
+      {
+        "id": "Chivalric_Virtues_p2",
+        "name": "医疗·侵蚀性狂热·被动",
+        "description": "治疗效率提升"
+      },
+      {
+        "id": "Chivalric_Virtues_p3",
+        "name": "医疗·侵蚀性狂热·触发",
+        "description": "通过自身技能治疗后，全队攻击力提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "atkPercent", "value": [0.144, 0.162, 0.180, 0.198, 0.216, 0.252] }
+        ]
+      }
+    ]
+  },
+  { "#": "沧溟星梦" },
+  {
+    "id": "Dreams_of_the_Starry_Beach",
+    "name": "沧溟星梦",
+    "type": "Arts_Unit",
+    "baseAtk": 495,
+    "statBonuses": { "intellect": 156 },
+    "subAffixes": [{ "flat": 0 , "percent": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448] }],
+    "potentialBuffs": [
+      {
+        "id": "Dreams_of_the_Starry_Beach_p1",
+        "name": "治疗效率提升·大",
+        "description": "治疗效率提升"
+      },
+      {
+        "id": "Dreams_of_the_Starry_Beach_p2",
+        "name": "附术·潮汐低语·被动",
+        "description": "副能力提升"
+      },
+      {
+        "id": "Dreams_of_the_Starry_Beach_p3",
+        "name": "附术·潮汐低语·触发",
+        "description": "消耗腐蚀后，使目标敌人受到的法术伤害提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Taken", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+        ]
+      }
+    ]
+  },
+  { "#": "悼亡诗" },
+  {
+    "id": "Stanza_of_Memorials",
+    "name": "悼亡诗",
+    "type": "Arts_Unit",
+    "baseAtk": 411,
+    "statBonuses": { "intellect": 124 },
+    "potentialBuffs": [
+      {
+        "id": "Stanza_of_Memorials_p1",
+        "name": "攻击提升·中",
+        "description": "治疗效率提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.312 }
+        ]
+      },
+      {
+        "id": "Stanza_of_Memorials_p2",
+        "name": "夜幕·冢火成莹·被动",
+        "description": "生命提升"
+      },
+      {
+        "id": "Stanza_of_Memorials_p3",
+        "name": "夜幕·冢火成莹·触发",
+        "description": "施放终结技时，和自身属性不同的干员获得攻击力提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "atkPercent", "value": [0.128, 0.144, 0.16, 0.176, 0.192, 0.224] }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "=====================铳械====================="
+  },
+  { "#": "艺术暴君" },
+  {
+    "id": "Artzy_Tyrannical",
+    "name": "艺术暴君",
+    "type": "Handcannon",
+    "baseAtk": 505,
+    "statBonuses": { "intellect": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Artzy_Tyrannical_p1",
+        "name": "暴击率提升·大",
+        "description": "暴击率提升",
+        "effects": [
+          { "category": "critRate", "value": 0.195 }
+        ]
+      },
+      {
+        "id": "Artzy_Tyrannical_p2",
+        "name": "切骨·艺术暴论·被动",
+        "description": "寒冷伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448], "condition": { "element": "Cryo" }}
+        ]
+      },
+      {
+        "id": "Artzy_Tyrannical_p3",
+        "name": "切骨·艺术暴论·触发",
+        "description": "战技或连携技暴击后，寒冷伤害提升",
+        "optional": true,
+        "userInput": { "label": "次暴击", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt",
+          "scaleRatio": [0.224, 0.252, 0.280, 0.308, 0.336, 0.392],
+          "scaleCap": [0.672, 0.756, 0.840, 0.924, 1.008, 1.176],
+          "userInput": "scaleValue",
+          "condition": { "element": "Cryo" }}
+        ]
+      }
+    ]
+  },
+  { "#": "同类相食" },
+  {
+    "id": "Clannibal",
+    "name": "同类相食",
+    "type": "Handcannon",
+    "baseAtk": 490,
+    "mainAffix": { "flat": 132, "percent": 0 },
+    "potentialBuffs": [
+      {
+        "id": "Clannibal_p1",
+        "name": "法术提升·大",
+        "description": "法术伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.433 }
+        ]
+      },
+      {
+        "id": "Clannibal_p2",
+        "name": "附术·残酷清洗·被动",
+        "description": "法术伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336], "condition": { "element": "Heat" }},
+          { "category": "DMG_Dealt", "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336], "condition": { "element": "Cryo" }},
+          { "category": "DMG_Dealt", "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336], "condition": { "element": "Electric" }},
+          { "category": "DMG_Dealt", "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336], "condition": { "element": "Nature" }}
+        ]
+      },
+      {
+        "id": "Clannibal_p3_1",
+        "name": "附术·残酷清洗·灼热",
+        "description": "消耗灼热附着，灼热伤害提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "element": "Heat" }}
+        ]
+      },
+      {
+        "id": "Clannibal_p3_2",
+        "name": "附术·残酷清洗·寒冷",
+        "description": "消耗寒冷附着，寒冷伤害提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "element": "Cryo" }}
+        ]
+      },
+      {
+        "id": "Clannibal_p3_3",
+        "name": "附术·残酷清洗·电磁",
+        "description": "消耗电磁附着，电磁伤害提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "element": "Electric" }}
+        ]
+      },
+      {
+        "id": "Clannibal_p3_4",
+        "name": "附术·残酷清洗·自然",
+        "description": "消耗自然附着，自然伤害提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "element": "Nature" }}
+        ]
+      }
+    ]
+  },
+  { "#": "落草" },
+  {
+    "id": "Brigand's_Calling",
+    "name": "落草",
+    "type": "Handcannon",
+    "baseAtk": 505,
+    "statBonuses": { "agility": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Brigand's_Calling_p1",
+        "name": "攻击提升·大",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.39 }
+        ]
+      },
+      {
+        "id": "Brigand's_Calling_p2",
+        "name": "迸发·荡寇仇·被动",
+        "description": "寒冷伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448], "condition": { "element": "Cryo" } }
+        ]
+      },
+      {
+        "id": "Brigand's_Calling_p3",
+        "name": "迸发·荡寇仇·触发1",
+        "description": "通过战技或终结技施加寒冷附着时，获得寒冷伤害提升",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.32, 0.36, 0.40, 0.44, 0.48, 0.56], "condition": { "element": "Cryo" }}
+        ]
+      },
+      {
+        "id": "Brigand's_Calling_p4",
+        "name": "迸发·荡寇仇·触发2",
+        "description": "通过战技或终结技施加法术脆弱时，使目标敌人受到的法术伤害提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Taken", "value": [0.096, 0.108, 0.120, 0.132, 0.144, 0.168], "condition": { "element": "Heat" }},
+          { "category": "DMG_Taken", "value": [0.096, 0.108, 0.120, 0.132, 0.144, 0.168], "condition": { "element": "Cryo" }},
+          { "category": "DMG_Taken", "value": [0.096, 0.108, 0.120, 0.132, 0.144, 0.168], "condition": { "element": "Electric" }},
+          { "category": "DMG_Taken", "value": [0.096, 0.108, 0.120, 0.132, 0.144, 0.168], "condition": { "element": "Nature" }}
+        ]
+      }
+    ]
+  },
+  { "#": "望乡" },
+  {
+    "id": "Home_Longing",
+    "name": "望乡",
+    "type": "Handcannon",
+    "baseAtk": 490,
+    "statBonuses": { "agility": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Home_Longing_p1",
+        "name": "寒冷伤害提升·大",
+        "description": "寒冷伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.433, "condition": { "element": "Cryo" } }
+        ]
+      },
+      {
+        "id": "Home_Longing_p2",
+        "name": "压制·旧时月·被动",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": [0.112, 0.126, 0.140, 0.154, 0.168, 0.196] }
+        ]
+      },
+      {
+        "id": "Home_Longing_p3",
+        "name": "压制·旧时月·触发",
+        "description": "施放连携技后，战技造成的寒冷和自然伤害提升",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.128, 0.144, 0.160, 0.176, 0.192, 0.224], "condition": { "element": ["Cryo", "Nature"], "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "=====================长柄武器====================="
+  },
+  { "#": "骁勇" },
+  {
+    "id": "Valiant",
+    "name": "骁勇",
+    "type": "Polearm",
+    "baseAtk": 495,
+    "statBonuses": { "agility": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Valiant_p1",
+        "name": "物理伤害提升·大",
+        "description": "物理伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.433, "condition": { "element": "Physical" } }
+        ]
+      },
+      {
+        "id": "Valiant_p2",
+        "name": "巧技·美德盈利·被动1",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28] }
+        ]
+      },
+      {
+        "id": "Valiant_p3",
+        "name": "巧技·美德盈利·被动2",
+        "description": "装备者造成物理异常后，额外造成物理伤害。",
+        "skillOverrides": [
+          {
+            "skillId": "Valiant_Heat",
+            "hitIndex": 0,
+            "multiplier": [1.92, 2.16, 2.40, 2.64, 2.88, 3.36]
+          }
+        ]
+      }
+    ]
+  },
+  { "#": "负山" },
+  {
+    "id": "Mountain_Bearer",
+    "name": "负山",
+    "type": "Polearm",
+    "baseAtk": 500,
+    "statBonuses": { "agility": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Mountain_Bearer_p1",
+        "name": "物理伤害提升·大",
+        "description": "物理伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.433, "condition": { "element": "Physical" } }
+        ]
+      },
+      {
+        "id": "Mountain_Bearer_p2",
+        "name": "效益·山川在我·触发1",
+        "description": "对处于破防状态的敌人造成的伤害提升",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.32, 0.36, 0.40, 0.44, 0.48, 0.56] }
+        ]
+      },
+      {
+        "id": "Mountain_Bearer_p3",
+        "name": "效益·山川在我·触发2",
+        "description": "通过自身战技施加破防时，获得全能力提升",
+        "optional": true,
+        "allAffix": { "flat": 0, "percent": [0.128, 0.144, 0.160, 0.176, 0.192, 0.224] }
+      },
+      {
+        "id": "Mountain_Bearer_p4",
+        "name": "效益·山川在我·触发3",
+        "optional": true,
+        "description": "通过自身战技施加物理脆弱时，获得全能力提升",
+        "allAffix": { "flat": 0, "percent": [0.128, 0.144, 0.160, 0.176, 0.192, 0.224] }
+      }
+    ]
+  },
+  {
+    "#": "=====================tteesstt====================="
+  },
+  { "#": "究极无敌·天神下凡·超级至尊·一刀9999·最强之枪" },
+  {
+    "id": "Polearm_test",
+    "name": "究极无敌·天神下凡·超级至尊·一刀9999·最强之枪",
+    "type": "not_weapon",
+    "baseAtk": 0,
+    "potentialBuffs": [
+      {
+        "id": "Polearm_test_1",
+        "name": "究极无敌",
+        "description": "易伤提升",
+        "effects": [
+          { "category": "DMG_Taken", "value": [10, 10, 10, 10, 10, 10] }
+        ]
+      },
+      {
+        "id": "Polearm_test_2",
+        "name": "天神下凡",
+        "description": "增伤提升",
+        "effects": [
+          { "DMG_Dealt": "DMG_Taken", "value": [10, 10, 10, 10, 10, 10] }
+        ]
+      },
+      {
+        "id": "Polearm_test_3",
+        "name": "超级至尊",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": [10, 10, 10, 10, 10, 10] }
+        ]
+      },
+      {
+        "id": "Polearm_test_4",
+        "name": "一刀999",
+        "description": "固定攻击力提升",
+        "effects": [
+          { "category": "flatAtk", "value": [9999, 9999, 9999, 99999, 9999, 9999] }
+        ]
+      },
+      {
+        "id": "Polearm_test_5",
+        "name": "最强之枪",
+        "description": "增幅提升",
+        "effects": [
+          { "category": "Arts_Amp", "value": [10, 10, 10, 10, 10, 10] }
+        ]
+      }
+    ]
+  }
+]
