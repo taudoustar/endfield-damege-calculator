@@ -237,7 +237,7 @@
       {
         "id": "Lupine_Scarlet_p3",
         "name": "切骨·群狼啃噬·触发",
-        "description": "击伤害后，获得1层狼血，物理和灼热伤害提升，最多叠加16层。当狼血叠加至16层后，物理和灼热伤害额外提升",
+        "description": "暴击伤害后，获得1层狼血，物理和灼热伤害提升，最多叠加16层。当狼血叠加至16层后，物理和灼热伤害额外提升",
         "optional": true,
         "userInput": { "label": "层", "default": 0, "scale": 1 },
         "effects": [
@@ -252,6 +252,120 @@
             "scaleCurve": [[0,0], [15,0], [16,1]],
             "userInput": "scaleValue",
             "condition": { "element": ["Physical", "Heat"] }
+          }
+        ]
+      }
+    ]
+  },
+  { "#": "熔铸火焰" },
+  {
+    "id": "Forgeborn_Scathe",
+    "name": "熔铸火焰",
+    "type": "Sword",
+    "baseAtk": 510,
+    "statBonuses": { "intellect": 156 },
+    "potentialBuffs":[
+      {
+        "id": "Forgeborn_Scathe_p1",
+        "name": "攻击提升·大",
+        "description": "攻击提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.39 }
+        ]
+      },
+      {
+        "id": "Forgeborn_Scathe_p2",
+        "name": "夜幕·嘶鸣烈火·被动",
+        "description": "灼热伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448], "condition": { "element": "Heat" } }
+        ]
+      },
+      {
+        "id": "Forgeborn_Scathe_p3",
+        "name": "夜幕·嘶鸣烈火·触发",
+        "description": "装备者施放终结技时，获得普通攻击伤害提升",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [1.2, 1.35, 1.5, 1.65, 1.8, 2.1], "condition": { "skillType": ["basic", "strike"] }
+          }
+        ]
+      }
+    ]
+  },
+  { "#": "黯色火炬" },
+  {
+    "id": "Umbral_Torch",
+    "name": "黯色火炬",
+    "type": "Sword",
+    "baseAtk": 490,
+    "statBonuses": { "intellect": 156 },
+    "potentialBuffs":[
+      {
+        "id": "Umbral_Torch_p1",
+        "name": "灼热伤害提升·大",
+        "description": "灼热伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.433, "condition": { "element": "Heat" } }
+        ]
+      },
+      {
+        "id": "Umbral_Torch_p2",
+        "name": "附术·觊觎堆叠·被动",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": [0.112, 0.126, 0.149, 0.154, 0.168, 0.196] }
+        ]
+      },
+      {
+        "id": "Umbral_Torch_p3",
+        "name": "附术·觊觎堆叠·触发",
+        "description": "场上每有一个敌人被施加燃烧或腐蚀状态时，装备者获得灼热和自然伤害，同名效果最多叠加2层",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt",
+            "scaleRatio": [0.128, 0.144, 0.160, 0.176, 0.192, 0.224],
+            "scaleCap": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448],
+            "userInput": "scaleValue",
+            "condition": { "element": ["Heat", "Nature"] }
+          }
+        ]
+      }
+    ]
+  },
+  { "#": "扶摇" },
+  {
+    "id": "Rapid_Ascent",
+    "name": "扶摇",
+    "type": "Sword",
+    "baseAtk": 495,
+    "mainAffix": { "flat": 132, "percent": 0 },
+    "potentialBuffs":[
+      {
+        "id": "Rapid_Ascent_p1",
+        "name": "暴击率提升·大",
+        "description": "暴击率提升",
+        "effects": [
+          { "category": "critRate", "value": 0.195 }
+        ]
+      },
+      {
+        "id": "Rapid_Ascent_p2",
+        "name": "夜幕·青云·被动",
+        "description": "战技和终结技造成的物理伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.24, 0.27, 0.30, 0.33, 0.36, 0.42], "condition": { "element": "Physical", "skillType": [ "skill", "ultimate" ] } }
+        ]
+      },
+      {
+        "id": "Rapid_Ascent_p3",
+        "name": "夜幕·青云·触发",
+        "description": "对处于失衡状态的敌人造成的伤害提升",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt",
+            "value": [0.56, 0.63, 0.70, 0.77, 0.84, 0.98]
           }
         ]
       }

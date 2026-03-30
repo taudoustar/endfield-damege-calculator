@@ -1,0 +1,119 @@
+{
+  "id": "Estella",
+  "name": "埃特拉",
+  "baseAtk": 297,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 106, "agility": 171, "intellect": 85, "will": 93 },
+  "statConfig": {
+    "primary": { "stat": "will", "ratio": 0.005 },
+    "secondary": [{ "stat": "strength", "ratio": 0.002 }]
+  },
+  "weaponType": "Polearm",
+  "skills": [
+    {
+      "name": "普通攻击一段·噪点",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.56 }]
+    },
+    {
+      "name": "普通攻击二段·噪点",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.68 }]
+    },
+    {
+      "name": "普通攻击三段·噪点",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.79 }]
+    },
+    {
+      "name": "重击·噪点",
+      "type": "strike",
+      "hits": [{ "element": "Physical", "multiplier": 0.90 }]
+    },
+    {
+      "name": "凝声",
+      "type": "skill",
+      "hits": [{ "element": "Cryo", "multiplier": 3.5 }]
+    },
+    {
+      "name": "失真·非冻结",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 3.6 }]
+    },
+    {
+      "name": "失真·冻结",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 6.3 }]
+    },
+    {
+      "name": "震音",
+      "type": "ultimate",
+      "hits": [{ "element": "Physical", "multiplier": 11.0 }]
+    },
+    {
+      "name": "下落攻击·埃特拉",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.8 }]
+    },
+    {
+      "name": "处决·埃特拉",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Estella",
+      "name": "信赖·埃特拉",
+      "description": "意志+60",
+      "statBonuses": { "will": 60 }
+    },
+    {
+      "id": "Distortion",
+      "name": "失真·物理脆弱",
+      "description": "如果失真命中处于冻结状态的敌人，还会造成额外伤害并施加物理脆弱。",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        {
+          "category": "Susceptibility",
+          "value": 0.04,
+          "condition": { "element": "Physical" }
+        }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Habitual_Delay",
+      "name": "潜能1·习惯性延误",
+      "description": "连携技失真施加的物理脆弱持续时间+3秒。"
+    },
+    {
+      "id": "Lowered_Expectations",
+      "name": "潜能2·放低预期",
+      "description": "终结技震音所需的终结技能量-10%。"
+    },
+    {
+      "id": "Delayed_Work",
+      "name": "潜能3·延后工作",
+      "description": "战技凝声激发的制冷声波飞行距离+50%，并对首个命中敌人的伤害+40%。",
+      "optional": true,
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.5, "condition": { "skillType": "skill" } }
+      ]
+    },
+    {
+      "id": "Life_Over_Mission",
+      "name": "潜能4·生命大于任务",
+      "description": "意志+10，力量+10。",
+      "statBonuses": { "will": 10, "strength": 10 }
+    },
+    {
+      "id": "Survival_is_a_Win",
+      "name": "潜能5·活着就是胜利",
+      "description": "每当有敌人被施加冻结后，获得5点终结技能量，该效果每1秒最多触发一次。"
+    }
+  ]
+}

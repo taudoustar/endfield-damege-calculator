@@ -1,0 +1,128 @@
+{
+  "id": "Chen_Qianyu",
+  "name": "陈千语",
+  "baseAtk": 297,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 106, "agility": 171, "intellect": 85, "will": 93 },
+  "statConfig": {
+    "primary": { "stat": "agility", "ratio": 0.005 },
+    "secondary": [{ "stat": "strength", "ratio": 0.002 }]
+  },
+  "weaponType": "Sword",
+  "skills": [
+    {
+      "name": "普通攻击一段·破飞霞",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.45 }]
+    },
+    {
+      "name": "普通攻击二段·破飞霞",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.54 }]
+    },
+    {
+      "name": "普通攻击三段·破飞霞",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.60 }]
+    },
+    {
+      "name": "普通攻击四段·破飞霞",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.68 }]
+    },
+    {
+      "name": "重击·破飞霞",
+      "type": "strike",
+      "hits": [{ "element": "Physical", "multiplier": 0.90 }]
+    },
+    {
+      "name": "归穹宇",
+      "type": "skill",
+      "hits": [{ "element": "Physical", "multiplier": 3.8 }]
+    },
+    {
+      "name": "见天河",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 2.7 }]
+    },
+    {
+      "name": "冽风霜",
+      "type": "ultimate",
+      "hits": [{ "element": "Physical", "multiplier": 15.09 }]
+    },
+    {
+      "name": "下落攻击·陈千语",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.8 }]
+    },
+    {
+      "name": "处决·陈千语",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Laevatain",
+      "name": "信赖·陈千语",
+      "description": "智识+60",
+      "statBonuses": { "intellect": 60 }
+    },
+    {
+      "id": "Slashing_Edge!",
+      "name": "斩锋",
+      "description": "技能每次命中敌人后，攻击力+4%，该效果最多叠加5层。",
+      "optional": true,
+      "userInput": { "label": "层", "default": 0, "scale": 1 },
+      "effects": [
+        {
+          "category": "atkPercent",
+          "scaleRatio": 0.04,
+          "scaleCap": 0.2,
+          "userInput": "scaleValue"
+        }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Shadowless",
+      "name": "潜能1·绝影",
+      "description": "对生命值少于50%的敌人造成的伤害+20%。",
+      "optional": true,
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.2 }
+      ]
+    },
+    {
+      "id": "Heirloom_Martial_Arts",
+      "name": "潜能2·家传武学",
+      "description": "敏捷+15，造成的物理伤害+8%。",
+      "statBonuses": { "agility": 15 },
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.08, "condition": { "element": "Physical" } }
+      ]
+    },
+    {
+      "id": "Dual-Wielding_Swordmancer",
+      "name": "潜能3·双剑奇侠",
+      "description": "战技归穹宇、连携技见天河和终结技冽风霜的伤害倍率提升至原本的1.1倍。",
+      "skillOverrides": [
+        { "skillIndex": 5, "hitIndex": 0, "multiplier": 4.18 },
+        { "skillIndex": 6, "hitIndex": 0, "multiplier": 2.97 },
+        { "skillIndex": 7, "hitIndex": 0, "multiplier": 16.599 }
+      ]
+    },
+    {
+      "id": "Improvised_Chi_Xiao",
+      "name": "潜能4·自研赤霄剑",
+      "description": "终结技冽风霜所需的终结技能量-15%。"
+    },
+    {
+      "id": "Bonded_with_the_World",
+      "name": "潜能5·心兼人间",
+      "description": "连携技见天河的冷却时间-3秒。"
+    }
+  ]
+}

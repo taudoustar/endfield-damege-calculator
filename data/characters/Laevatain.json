@@ -1,0 +1,157 @@
+{
+  "id": "Laevatain",
+  "name": "莱万汀",
+  "baseAtk": 319,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 121, "agility": 99, "intellect": 177, "will": 89 },
+  "statConfig": {
+    "primary": { "stat": "intellect", "ratio": 0.005 },
+    "secondary": [{ "stat": "strength", "ratio": 0.002 }]
+  },
+  "weaponType": "Sword",
+  "skills": [
+    {
+      "name": "普通攻击一段·燃烬！",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 0.36 }]
+    },
+    {
+      "name": "普通攻击二段·燃烬",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 0.54 }]
+    },
+    {
+      "name": "普通攻击三段·燃烬",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 0.56 }]
+    },
+    {
+      "name": "普通攻击四段·燃烬",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 0.88 }]
+    },
+    {
+      "name": "重击·燃烬",
+      "type": "strike",
+      "hits": [{ "element": "Heat", "multiplier": 1.19 }]
+    },
+    {
+      "name": "强化普攻一段·黄昏",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 1.46 }]
+    },
+    {
+      "name": "强化普攻二段·黄昏",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 1.82 }]
+    },
+    {
+      "name": "强化普攻三段·黄昏",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 2.60}]
+    },
+    {
+      "name": "强化重击·燃烬",
+      "type": "strike",
+      "hits": [{ "element": "Heat", "multiplier": 4.56 }]
+    },
+    {
+      "name": "焚灭",
+      "type": "skill",
+      "hits": [{ "element": "Heat", "multiplier": 2.8 }]
+    },
+    {
+      "name": "焚灭·追加伤害",
+      "type": "skill",
+      "hits": [{ "element": "Heat", "multiplier": 7.7 }]
+    },
+    {
+      "name": "强化焚灭",
+      "type": "skill",
+      "hits": [{ "element": "Heat", "multiplier": 7.0 }]
+    },
+    {
+      "name": "强化焚灭·追加伤害",
+      "type": "skill",
+      "hits": [{ "element": "Heat", "multiplier": 9.0 }]
+    },
+    {
+      "name": "沸腾",
+      "type": "combo",
+      "hits": [{ "element": "Heat", "multiplier": 5.4 }]
+    },
+    {
+      "name": "下落攻击·莱万汀",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 1.8 }]
+    },
+    {
+      "name": "处决·莱万汀",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Laevatain",
+      "name": "信赖·莱万汀",
+      "description": "智识+60",
+      "statBonuses": { "intellect": 60 }
+    },
+    {
+      "id": "Scorching_Heart!",
+      "name": "灼心",
+      "description": "熔火达到4层后，莱万汀造成的伤害无视敌人20点灼热抗性",
+      "optional": true,
+      "effects": [
+        { "category": "Resistance", "value": 0.2, "condition": { "element": "Heat" } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Heart_of_Melting_Flame",
+      "name": "潜能1·熔火之心",
+      "description": "战技焚灭的追加攻击的伤害倍率提升至原本的1.2倍",
+      "skillOverrides": [
+        { "skillIndex": 10, "hitIndex": 0, "multiplier": 9.24 },
+        { "skillIndex": 12, "hitIndex": 0, "multiplier": 10.8 }
+      ]
+    },
+    {
+      "id": "Pursuit_of_Memories",
+      "name": "潜能2·追忆之旅",
+      "description": "智识+20，普通攻击伤害+15%。",
+      "statBonuses": { "intellect": 20 },
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.15, "condition": { "skillType": "basic" } },
+        { "category": "DMG_Dealt", "value": 0.15, "condition": { "skillType": "strike" } }
+      ]
+    },
+    {
+      "id": "Fragments_from_the_Past",
+      "name": "潜能3·往事碎片",
+      "description": "战技焚灭造成的燃烧持续时间+50%，且燃烧的伤害提升至原本的1.5倍。",
+      "effects": [
+        { "category": "Laevatain_Fragments_from_the_Past", "value": 0.5, "condition": { "skillType": "status", "element": "Heat" } }
+      ]
+    },
+    {
+      "id": "Ice_Cream_Furnace",
+      "name": "潜能4·冰淇淋熔炉",
+      "description": "终结技黄昏所需的终结技能量-15%。"
+    },
+    {
+      "id": "Proof_of_Existence",
+      "name": "潜能5·存在的证明",
+      "description": "终结技黄昏的强化普通攻击的伤害倍率提升至原本的1.2倍，且终结技期间，莱万汀每击败一个敌人，终结技的持续时间+1秒。",
+      "skillOverrides": [
+        { "skillIndex": 5, "hitIndex": 0, "multiplier": 1.752 },
+        { "skillIndex": 6, "hitIndex": 0, "multiplier": 2.184 },
+        { "skillIndex": 7, "hitIndex": 0, "multiplier": 3.12 },
+        { "skillIndex": 8, "hitIndex": 0, "multiplier": 5.472 }
+      ]
+    }
+  ]
+}

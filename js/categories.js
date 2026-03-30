@@ -17,5 +17,6 @@ export const categories = [
 
 
   { key: "Da_Pan_MORE_SPICE!", label: "大潘独有" },
-  { key: "Rossi_Boiling_Blood", label: "洛茜独有" }
+  { key: "Rossi_Boiling_Blood", label: "洛茜独有" },
+  { key: "Laevatain_Fragments_from_the_Past", label: "莱万汀独有" }
 ];

@@ -7,6 +7,13 @@
     "#": "具体公式为120%*(1+89/392)"
   },
   {
+    "id": "Lift",
+    "name": "击飞",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 1.4724 }],
+    "#": "具体公式为120%*(1+89/392)"
+  },
+  {
     "id": "Crush_0",
     "name": "猛击·零层",
     "type": "status",
