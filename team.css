@@ -230,6 +230,33 @@
   min-width: 120px;
   text-align: left;
   padding-left: 8px;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #0f1923;
+}
+
+.grid-cell-skill.filled {
+  background: #1a2a3a;
+}
+
+.grid-th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: #0f1923;
+}
+
+/* Top scrollbar mirror */
+.grid-scroll-top {
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: 12px;
+  margin-bottom: 2px;
+}
+
+.grid-scroll-top-inner {
+  height: 1px;
 }
 
 .grid-cell-count {

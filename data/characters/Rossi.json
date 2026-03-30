@@ -99,7 +99,7 @@
       "statBonuses": { "agility": 60 }
     },
     {
-      "id": "Rossi_t1",
+      "id": "Nicks_and_Scratches",
       "name": "天赋·斫痕·易伤",
       "description": "受到的物理伤害和灼热伤害+12.0%",
       "scope": "team",
@@ -117,7 +117,7 @@
       ]
     },
     {
-      "id": "Rossi_t3",
+      "id": "Seething_Blood",
       "name": "天赋·沸血·燃烧",
       "optional": true,
       "description": "若目标同时处于燃烧状态，则“天赋·沸血”的伤害提升至1.5倍。",
@@ -126,7 +126,7 @@
       ]
     },
     {
-      "id": "Rossi_t4",
+      "id": "Ambuscade",
       "name": "燎影时刻·双暴",
       "optional": true,
       "description": "若在一段时间内提升自身的暴击率和暴击伤害。 ",
@@ -138,7 +138,7 @@
   ],
   "potentialBuffs": [
     {
-      "id": "Rossi_p1",
+      "id": "Origin_of_Admiration",
       "name": "潜能1·憧憬的起点",
       "description": "战技血红之影和连携技燎影时刻的伤害倍率提升至原本的1.15倍。",
       "skillOverrides": [
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "id": "Rossi_p2",
+      "id": "Gap_to_Perfection",
       "name": "潜能2·理想的距离",
       "description": "敏捷+20，暴击率+7.0%。",
       "statBonuses": { "agility": 20 },
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": "Rossi_p3",
+      "id": "Tangible_Duties",
       "name": "潜能3·有形的责任",
       "description": "天赋沸血效果加强：触发的基础伤害倍率+8.0%",
       "skillOverrides": [
@@ -167,17 +167,17 @@
       ]
     },
     {
-      "id": "Rossi_p4",
+      "id": "Innocent_Wish",
       "name": "潜能4·纯真的心愿",
       "description": "终结技能量-15%"
     },
     {
-      "id": "Rossi_p5",
+      "id": "Legendary_Destination",
       "name": "潜能5·传说的终点",
       "description": "终结技“利爪”奇袭的伤害倍率提升至原本的1.1倍，暴击伤害额外+30.0%。",
       "bundle": [
         {
-          "id": "Rossi_p5_1",
+          "id": "Legendary_Destination_1",
           "name": "潜能5·传说的终点1",
           "description": "终结技“利爪”奇袭的伤害倍率提升至原本的1.1倍",
           "skillOverrides": [
@@ -185,7 +185,7 @@
           ]
         },
         {
-          "id": "Rossi_p5_2",
+          "id": "Legendary_Destination_2",
           "name": "潜能5·传说的终点2",
           "description": "暴击伤害额外+30.0%。",
           "effects": [

@@ -72,19 +72,30 @@ export function initSaveLoad(config) {
   });
 
   // 保存文件
-  container.querySelector(".sl-file-export-btn").addEventListener("click", () => {
+  container.querySelector(".sl-file-export-btn").addEventListener("click", async () => {
     try {
       const data = exportFn();
       const json = JSON.stringify(data, null, 2);
-      const blob = new Blob([json], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "damage-calc.json";
-      a.click();
-      URL.revokeObjectURL(url);
+      if (window.showSaveFilePicker) {
+        const handle = await window.showSaveFilePicker({
+          suggestedName: "damage-calc.json",
+          types: [{ description: "JSON", accept: { "application/json": [".json"] } }],
+        });
+        const writable = await handle.createWritable();
+        await writable.write(json);
+        await writable.close();
+        showToast("保存成功");
+      } else {
+        const blob = new Blob([json], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "damage-calc.json";
+        a.click();
+        URL.revokeObjectURL(url);
+      }
     } catch (e) {
-      showToast("保存失败: " + e.message);
+      if (e.name !== "AbortError") showToast("保存失败: " + e.message);
     }
   });
 

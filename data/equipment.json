@@ -523,7 +523,7 @@
   },
   {
     "id": "Bonekrusha_Heavy_Armor_T2",
-    "name": "碾骨重护甲·贰型·连携技",
+    "name": "碾骨重护甲·贰型·寒冷电磁伤害",
     "slot": "armor",
     "setId": "Bonekrusha",
     "statBonuses": { "agility": 113, "strength": 75 },
@@ -616,7 +616,7 @@
     "id": "Bonekrusha_Mask",
     "name": "碾骨面具·失衡伤害",
     "slot": "kit",
-    "setId": "Tide_Surge",
+    "setId": "Bonekrusha",
     "statBonuses": { "agility": 41, "strength": 27 },
     "buffs": [
       {
@@ -634,14 +634,13 @@
     "id": "Bonekrusha_Mask_T1",
     "name": "碾骨面具·壹型·暴击率",
     "slot": "kit",
-    "setId": "Tide_Surge",
+    "setId": "Bonekrusha",
     "statBonuses": { "agility": 41, "strength": 27 },
     "buffs": [
       {
         "id": "Bonekrusha_Mask_T1_b1",
         "name": "碾骨面具·壹型",
         "description": "暴击率提升13.5%",
-        "optional": true,
         "effects": [
           { "category": "critRate", "value": 0.135 }
         ]
@@ -652,14 +651,13 @@
     "id": "Bonekrusha_Mask_T2",
     "name": "碾骨面具·贰型·战技",
     "slot": "kit",
-    "setId": "Tide_Surge",
+    "setId": "Bonekrusha",
     "statBonuses": { "agility": 41, "strength": 27 },
     "buffs": [
       {
         "id": "Bonekrusha_Mask_T2_b1",
         "name": "碾骨面具·贰型",
         "description": "战技伤害提升53.8%",
-        "optional": true,
         "effects": [
           { "category": "critRate", "value": 0.538, "condition":{ "skillType": "skill" } }
         ]

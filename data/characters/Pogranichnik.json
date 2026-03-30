@@ -1,0 +1,163 @@
+{
+  "id": "Pogranichnik",
+  "name": "骏卫",
+  "baseAtk": 321,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 101, "agility": 110, "intellect": 97, "will": 173 },
+  "statConfig": {
+    "primary": { "stat": "will", "ratio": 0.005 },
+    "secondary": [{ "stat": "agility", "ratio": 0.002 }]
+  },
+  "weaponType": "Sword",
+  "skills": [
+    {
+      "name": "普通攻击一段·全面攻势",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.52 }]
+    },
+    {
+      "name": "普通攻击二段·全面攻势",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.63 }]
+    },
+    {
+      "name": "普通攻击三段·全面攻势",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.74 }]
+    },
+    {
+      "name": "普通攻击四段·全面攻势",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.86 }]
+    },
+    {
+      "name": "重击·全面攻势",
+      "type": "strike",
+      "hits": [{ "element": "Physical", "multiplier": 0.97 }]
+    },
+    {
+      "name": "粉碎阵线",
+      "type": "skill",
+      "hits": [{ "element": "Physical", "multiplier": 4.0 }]
+    },
+    {
+      "name": "盈月邀击一段",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 0.95 }]
+    },
+    {
+      "name": "盈月邀击二段",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 1.22 }]
+    },
+    {
+      "name": "盈月邀击三段",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 1.49 }]
+    },
+    {
+      "name": "盈月邀击四段",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 2.97 }]
+    },
+    {
+      "name": "盾卫旗队，上前",
+      "type": "ultimate",
+      "hits": [{ "element": "Physical", "multiplier": 3.0 }]
+    },
+    {
+      "name": "盾卫·袭扰",
+      "type": "ultimate",
+      "hits": [{ "element": "Physical", "multiplier": 1.0 }]
+    },
+    {
+      "name": "盾卫·决胜",
+      "type": "ultimate",
+      "hits": [{ "element": "Physical", "multiplier": 4.5 }]
+    },
+    {
+      "name": "下落攻击·骏卫",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·骏卫",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Pogranichnik",
+      "name": "信赖·骏卫",
+      "description": "意志+60",
+      "statBonuses": { "will": 60 }
+    },
+    {
+      "id": "The_Living_Banner_1",
+      "name": "天赋·士气激昂（1层）",
+      "description": "攻击力+8%，源石技艺强度+8",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "atkPercent", "value": 0.08 }
+      ],
+      "statBonuses": { "artsIntensity": 8 }
+    },
+    {
+      "id": "The_Living_Banner_2",
+      "name": "天赋·士气激昂（2层）",
+      "description": "攻击力+16%，源石技艺强度+16",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "atkPercent", "value": 0.16 }
+      ],
+      "statBonuses": { "artsIntensity": 16 }
+    },
+    {
+      "id": "The_Living_Banner_3",
+      "name": "天赋·士气激昂（3层）",
+      "description": "攻击力+24%，源石技艺强度+24",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "atkPercent", "value": 0.24 }
+      ],
+      "statBonuses": { "artsIntensity": 24 }
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Frontline_Sweep",
+      "name": "潜能1·阵线扫荡",
+      "description": "阵线扫荡"
+    },
+    {
+      "id": "Advance",
+      "name": "潜能2·行军",
+      "description": "意志+20，造成的物理伤害+10%。",
+      "statBonuses": { "will": 20 },
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.1, "condition": { "element": "Physical" } }
+      ]
+    },
+    {
+      "id": "When_the_Banner_Flutters",
+      "name": "潜能3·战旗飘扬时",
+      "description": "天赋活着的旗帜效果加强：自身士气激昂最大叠加层数+2。"
+    },
+    {
+      "id": "Shield_of_Talos-II",
+      "name": "潜能4·塔卫二之盾",
+      "description": "终结技盾卫旗队，上前所需的终结技能量-15%。"
+    },
+    {
+      "id": "Newly_Forged_Blade",
+      "name": "潜能5·新铸剑锋",
+      "description": "新铸剑锋"
+    }
+  ]
+}

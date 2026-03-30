@@ -1,0 +1,177 @@
+{
+  "id": "Tangtang",
+  "name": "汤汤",
+  "baseAtk": 321,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 123, "agility": 179, "intellect": 85, "will": 102 },
+  "statConfig": {
+    "primary": { "stat": "agility", "ratio": 0.005 },
+    "secondary": [{ "stat": "strength", "ratio": 0.002 }]
+  },
+  "weaponType": "Handcannon",
+  "skills": [
+    {
+      "name": "普通攻击一段·崩你脑壳！",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.51 }]
+    },
+    {
+      "name": "普通攻击二段·崩你脑壳！",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.56 }]
+    },
+    {
+      "name": "普通攻击三段·崩你脑壳！",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.79 }]
+    },
+    {
+      "name": "普通攻击四段·崩你脑壳！",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.82 }]
+    },
+    {
+      "name": "重击·崩你脑壳！",
+      "type": "strike",
+      "hits": [{ "element": "Cryo", "multiplier": 1.13 }]
+    },
+    {
+      "name": "踏潮卷浪！·射击",
+      "type": "skill",
+      "hits": [{ "element": "Cryo", "multiplier": 1.8 }]
+    },
+    {
+      "name": "踏潮卷浪！·水龙卷",
+      "type": "skill",
+      "hits": [{ "element": "Cryo", "multiplier": 3.0 }]
+    },
+    {
+      "name": "河水，助我！",
+      "type": "combo",
+      "hits": [{ "element": "Cryo", "multiplier": 2.4 }]
+    },
+    {
+      "name": "大当家盯着呢！·持续伤害",
+      "type": "ultimate",
+      "hits": [{ "element": "Cryo", "multiplier": 3.2 }]
+    },
+    {
+      "name": "大当家盯着呢！·巨浪",
+      "type": "ultimate",
+      "hits": [{ "element": "Cryo", "multiplier": 4.0 }]
+    },
+    {
+      "name": "大当家盯着呢！·提前巨浪",
+      "type": "ultimate",
+      "hits": [{ "element": "Cryo", "multiplier": 7.0 }]
+    },
+    {
+      "name": "下落攻击·汤汤",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 1.8 }]
+    },
+    {
+      "name": "处决·汤汤",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Tangtang",
+      "name": "信赖·汤汤",
+      "description": "敏捷+60",
+      "statBonuses": { "agility": 60 }
+    },
+    {
+      "id": "Riot_Bringer",
+      "name": "天赋·呼风唤浪",
+      "description": "主控干员在古老图形中进行下落攻击，提前结束演化时，形成的水龙卷造成的伤害+60%。",
+      "optional": true,
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.6, "condition": { "skillType": "skill" } }
+      ]
+    },
+    {
+      "id": "IMA_WAVERIDAAH!",
+      "name": "踏潮卷浪！·脆弱",
+      "description": "若战技形成多个水龙卷，将对敌人额外施加法术脆弱",
+      "scope": "team",
+      "optional": true,
+      "userInput": { "label": "龙卷", "default": 2, "scale": 1 },
+      "effects": [
+        { "category": "Susceptibility", "scaleCurve": [[2,0.05],[3,0.10]], "userInput": "scaleValue", "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Reserve_Hoard",
+      "name": "潜能1·财宝储备",
+      "description": "连携技河水，助我！的伤害倍率提升至原本的1.2倍，冷却时间-2秒。战技踏潮卷浪！每消耗一处涡流形成水龙卷，额外返还5点技力。",
+      "skillOverrides": [
+        { "skillIndex": 7, "hitIndex": 0, "multiplier": 2.88 }
+      ]
+    },
+    {
+      "id": "River's_Daughter",
+      "name": "潜能2·河流的女儿",
+      "description": "敏捷+20，寒冷伤害+10%。",
+      "statBonuses": { "agility": 20 },
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.1, "condition": { "element": "Cryo" } }
+      ]
+    },
+    {
+      "id": "Chiefly_Vibe",
+      "name": "潜能3·当家气魄",
+      "description": "战技踏潮卷浪！伤害倍率提升至原本的1.1倍，且同时形成多个水龙卷时造成的法术脆弱效果额外+5%。",
+      "skillOverrides": [
+        { "skillIndex": 5, "hitIndex": 0, "multiplier": 1.98 },
+        { "skillIndex": 6, "hitIndex": 0, "multiplier": 3.3 }
+      ],
+      "bundle": [
+        {
+          "id": "IMA_WAVERIDAAH!_p3",
+          "name": "踏潮卷浪！·脆弱·潜能3",
+          "description": "同时形成多个水龙卷时造成的法术脆弱效果额外+5%。",
+          "scope": "team",
+          "optional": true,
+          "replaces": "IMA_WAVERIDAAH!",
+          "userInput": { "label": "龙卷", "default": 2, "scale": 1 },
+          "effects": [
+            { "category": "Susceptibility", "scaleCurve": [[2,0.10],[3,0.15]], "userInput": "scaleValue", "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Qingbo_Meditation",
+      "name": "潜能4·清波修炼法",
+      "description": "终结技大当家盯着呢！所需的终结技能量-15%。"
+    },
+    {
+      "id": "Chief's_All-Eldritch_Gaze",
+      "name": "潜能5·魔眼效能",
+      "description": "终结技大当家盯着呢！的伤害倍率提升至原本的1.15倍。天赋呼风唤浪效果加强：终结技大当家盯着呢！形成的水龙卷伤害提升效果额外+80%。",
+      "skillOverrides": [
+        { "skillIndex": 8, "hitIndex": 0, "multiplier": 3.68 },
+        { "skillIndex": 9, "hitIndex": 0, "multiplier": 4.6 },
+        { "skillIndex": 10, "hitIndex": 0, "multiplier": 8.05 }
+      ],
+      "bundle": [
+        {
+          "id": "Riot_Bringer_p5",
+          "name": "天赋·呼风唤浪·潜能5",
+          "description": "主控干员在古老图形中进行下落攻击，提前结束演化时，形成的水龙卷造成的伤害+140%（60%+80%）。",
+          "optional": true,
+          "replaces": "Riot_Bringer",
+          "effects": [
+            { "category": "DMG_Dealt", "value": 1.4, "condition": { "skillType": "skill" } }
+          ]
+        }
+      ]
+    }
+  ]
+}

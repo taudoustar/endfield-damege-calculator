@@ -21,7 +21,7 @@
     "id": "Electrification",
     "name": "导电",
     "group": "通用",
-    "description": "易伤",
+    "description": "法术易伤",
     "userInput": { "label": "级", "default": 1, "scale": 0.04 },
     "effects":[
       {
@@ -54,6 +54,27 @@
         "category": "Resistance",
         "saturationScale": { "stat": "artsIntensity", "x": 1, "y": 2.0, "z": 300 },
         "userInput": true
+      }
+    ]
+  },
+  {
+    "id": "Breach",
+    "name": "碎甲",
+    "group": "通用",
+    "description": "物理易伤",
+    "userInput": { "label": "级", "default": 1, "scale": 0.04 },
+    "effects":[
+      {
+        "category": "DMG_Taken",
+        "value": 0.08,
+        "saturationScale": { "stat": "artsIntensity", "x": 1, "y": 2.0, "z": 300 },
+        "condition": { "element": "Physical" }
+      },
+      {
+        "category": "DMG_Taken",
+        "saturationScale": { "stat": "artsIntensity", "x": 1, "y": 2.0, "z": 300 },
+        "userInput": true,
+        "condition": { "element": "Physical" }
       }
     ]
   },

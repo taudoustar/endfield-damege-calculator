@@ -250,6 +250,26 @@ export function renderGrid() {
       render();
     });
   });
+
+  // ---- 顶部镜像滚动条 ----
+  const wrapper = el.closest(".grid-wrapper");
+  if (wrapper) {
+    let topBar = wrapper.querySelector(".grid-scroll-top");
+    if (!topBar) {
+      topBar = document.createElement("div");
+      topBar.className = "grid-scroll-top";
+      const inner = document.createElement("div");
+      inner.className = "grid-scroll-top-inner";
+      topBar.appendChild(inner);
+      wrapper.insertBefore(topBar, el);
+    }
+    const table = el.querySelector(".grid-table");
+    const inner = topBar.querySelector(".grid-scroll-top-inner");
+    inner.style.width = table ? table.scrollWidth + "px" : "100%";
+    let syncing = false;
+    topBar.onscroll = () => { if (!syncing) { syncing = true; wrapper.scrollLeft = topBar.scrollLeft; syncing = false; } };
+    wrapper.onscroll = () => { if (!syncing) { syncing = true; topBar.scrollLeft = wrapper.scrollLeft; syncing = false; } };
+  }
 }
 
 /* ------------------------------------------------------------------ */

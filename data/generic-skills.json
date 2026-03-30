@@ -70,6 +70,34 @@
     "#": "具体公式为160%*(1+89/196)"
   },
   {
+    "id": "Breach_1",
+    "name": "碎甲一级",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 1.2270 }],
+    "#": "具体公式为100%*(1+89/392)"
+  },
+  {
+    "id": "Breach_2",
+    "name": "碎甲二级",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 1.8406 }],
+    "#": "具体公式为150%*(1+89/392)"
+  },
+  {
+    "id": "Breach_3",
+    "name": "碎甲三级",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 2.4540 }],
+    "#": "具体公式为200%*(1+89/392)"
+  },
+  {
+    "id": "Breach_4",
+    "name": "碎甲四级",
+    "type": "status",
+    "hits": [{ "element": "Physical", "multiplier": 3.0676 }],
+    "#": "具体公式为250%*(1+89/392)"
+  },
+  {
     "id": "Swordmancer_Heat",
     "name": "点剑被动",
     "type": "other",
