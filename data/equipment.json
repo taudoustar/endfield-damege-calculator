@@ -144,6 +144,21 @@
       }
     ]
   },
+  {"#": "拓荒护服"},
+  {
+    "id": "Frontiers_Protection_Suit",
+    "name": "拓荒护服·充能",
+    "slot": "armor",
+    "setId": "Frontiers",
+    "statBonuses": { "intellect": 113, "agility": 75 },
+    "buffs": [
+      {
+        "id": "Frontiers_Protection_Suit_b1",
+        "name": "拓荒护服",
+        "description": "终结技充能效率提升16.0%"
+      }
+    ]
+  },
   {"#": "拓荒耐蚀手套"},
   {
     "id": "Frontiers_Blight_RES_Gloves",

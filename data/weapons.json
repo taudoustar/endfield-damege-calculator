@@ -159,7 +159,8 @@
           { "category": "DMG_Dealt",
             "scaleRatio": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336],
             "scaleCap": [0.576, 0.648, 0.720, 0.792, 0.864, 1.008],
-            "userInput": "scaleValue"
+            "userInput": "scaleValue",
+            "condition": { "skillType": "ultimate" }
           }
         ]
       }
@@ -857,6 +858,43 @@
         "optional": true,
         "effects": [
           { "category": "DMG_Dealt", "value": [0.128, 0.144, 0.160, 0.176, 0.192, 0.224], "condition": { "element": ["Cryo", "Nature"], "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  { "#": "O.B.J.迅极" },
+  {
+    "id": "OBJ_Velocitous",
+    "name": "O.B.J.迅极",
+    "type": "Handcannon",
+    "baseAtk": 411,
+    "statBonuses": { "agility": 124 },
+    "potentialBuffs": [
+      {
+        "id": "OBJ_Velocitous_p1",
+        "name": "终结技充能效率提升·中",
+        "description": "终结技充能效率提升"
+      },
+      {
+        "id": "OBJ_Velocitous_p2",
+        "name": "迸发·迅击·被动",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": [0.08, 0.09, 0.10, 0.11, 0.12, 0.14] }
+        ]
+      },
+      {
+        "id": "OBJ_Velocitous_p3",
+        "name": "迸发·迅击·触发",
+        "description": "消耗法术附着后，自然伤害+[7.0%×消耗层数]",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt",
+          "scaleRatio": [0.08, 0.09, 0.10, 0.11, 0.12, 0.14],
+          "scaleCap": [0.32, 0.36, 0.40, 0.44, 0.48, 0.56],
+          "userInput": "scaleValue",
+          "condition": { "element": "Nature" }}
         ]
       }
     ]
