@@ -981,6 +981,85 @@
       }
     ]
   },
+  { "#": "J.E.T." },
+  {
+    "id": "JET",
+    "name": "J.E.T.",
+    "type": "Polearm",
+    "baseAtk": 500,
+    "mainAffix": { "flat": 132, "percent": 0 },
+    "potentialBuffs": [
+      {
+        "id": "JET_p1",
+        "name": "攻击提升·大",
+        "description": "攻击提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.39 }
+        ]
+      },
+      {
+        "id": "JET_p2",
+        "name": "压制·太空物理学·被动",
+        "description": "法术伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336], "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+        ]
+      },
+      {
+        "id": "JET_p3",
+        "name": "压制·太空物理学·触发1",
+        "description": "装备者施放战技时，获得法术伤害提示",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336], "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+        ]
+      },
+      {
+        "id": "JET_p4",
+        "name": "压制·太空物理学·触发2",
+        "optional": true,
+        "description": "装备者施放连携技时，获得法术伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336], "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+        ]
+      }
+    ]
+  },
+  { "#": "向心之引" },
+  {
+    "id": "Cohesive_Traction",
+    "name": "向心之引",
+    "type": "Polearm",
+    "baseAtk": 411,
+    "statBonuses": { "will": 124 },
+    "potentialBuffs": [
+      {
+        "id": "Cohesive_Traction_p1",
+        "name": "电磁伤害提升·中",
+        "description": "电磁伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.347, "condition": { "element": "Electric" } }
+        ]
+      },
+      {
+        "id": "Cohesive_Traction_p2",
+        "name": "压制·同心圆·被动",
+        "description": "连携技伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "skillType": "combo" } }
+        ]
+      },
+      {
+        "id": "Cohesive_Traction_p3",
+        "name": "压制·同心圆·触发",
+        "description": "装备者施放连携技时，30秒内的下次战技期间造成的电磁伤害提升",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "element": "Electric", "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
   {
     "#": "=====================tteesstt====================="
   },
