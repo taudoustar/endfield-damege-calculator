@@ -1,0 +1,129 @@
+{
+  "id": "Avywenna",
+  "name": "艾维文娜",
+  "baseAtk": 312,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 107, "agility": 106, "intellect": 114, "will": 148 },
+  "statConfig": {
+    "primary": { "stat": "will", "ratio": 0.005 },
+    "secondary": [{ "stat": "agility", "ratio": 0.002 }]
+  },
+  "weaponType": "Polearm",
+  "skills": [
+    {
+      "name": "普通攻击一段·雷枪·疾袭",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.37 }]
+    },
+    {
+      "name": "普通攻击二段·雷枪·疾袭",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.48 }]
+    },
+    {
+      "name": "普通攻击三段·雷枪·疾袭",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.46 }]
+    },
+    {
+      "name": "普通攻击四段·雷枪·疾袭",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.68 }]
+    },
+    {
+      "name": "重击·雷枪·疾袭",
+      "type": "strike",
+      "hits": [{ "element": "Physical", "multiplier": 1.13 }]
+    },
+    {
+      "name": "雷枪·截回",
+      "type": "skill",
+      "hits": [{ "element": "Electric", "multiplier": 1.5 }]
+    },
+    {
+      "name": "收回雷枪",
+      "type": "skill",
+      "hits": [{ "element": "Electric", "multiplier": 1.68 }]
+    },
+    {
+      "name": "收回强雷枪",
+      "type": "skill",
+      "hits": [{ "element": "Electric", "multiplier": 4.32 }]
+    },
+    {
+      "name": "雷枪·掣击",
+      "type": "combo",
+      "hits": [{ "element": "Electric", "multiplier": 3.8 }]
+    },
+    {
+      "name": "雷枪·决颤",
+      "type": "ultimate",
+      "hits": [{ "element": "Electric", "multiplier": 9.5 }]
+    },
+    {
+      "name": "下落攻击·艾维文娜",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·艾维文娜",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Avywenna",
+      "name": "信赖·艾维文娜",
+      "description": "意志+60",
+      "statBonuses": { "will": 60 }
+    },
+    {
+      "id": "Tactful_Approach",
+      "name": "委婉手段",
+      "description": "终结技雷枪·决颤命中敌人时对其施加10%电磁脆弱",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "Susceptibility", "value": 0.1, "condition": { "element": "Electric" } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Doubling_Down",
+      "name": "潜能1·筹码加倍",
+      "description": "天赋高效派送效果加强：获得的终结技能量+2点。"
+    },
+    {
+      "id": "Pole_of_Menace",
+      "name": "潜能2·大棒悬头",
+      "description": "雷枪、强雷枪的存在时间+20秒。"
+    },
+    {
+      "id": "Hard_Negotiator",
+      "name": "潜能3·绝不让步",
+      "description": "意志+15，造成的电磁伤害+8%。",
+      "statBonuses": { "will": 15 },
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.09, "condition": { "element": "Electric" } }
+      ]
+    },
+    {
+      "id": "Very_Experienced",
+      "name": "潜能4·师者教诲",
+      "description": "终结技雷枪·决颤所需的终结技能量-15%。"
+    },
+    {
+      "id": "Carrot_and_Sharp_Stick",
+      "name": "潜能5·恩威并施",
+      "description": "召回的雷枪、强雷枪命中处于电磁脆弱状态的敌人时，伤害倍率提升至原本的1.15倍。",
+      "optional": true,
+      "effects": [
+        { "category": "Avywenna_Carrot_and_Sharp_Stick", "value": 0.15, "condition": { "skillType": "skill", "element": "Electric" } }
+      ]
+    }
+  ]
+}

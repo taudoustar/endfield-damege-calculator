@@ -1,0 +1,137 @@
+{
+  "id": "Antal",
+  "name": "安塔尔",
+  "baseAtk": 297,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 129, "agility": 86, "intellect": 165, "will": 82 },
+  "statConfig": {
+    "primary": { "stat": "intellect", "ratio": 0.005 },
+    "secondary": [{ "stat": "strength", "ratio": 0.002 }]
+  },
+  "weaponType": "Arts_Unit",
+  "skills": [
+    {
+      "name": "普通攻击一段·交换电流",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.52 }]
+    },
+    {
+      "name": "普通攻击二段·交换电流",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.63 }]
+    },
+    {
+      "name": "普通攻击三段·交换电流",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.77 }]
+    },
+    {
+      "name": "重击·交换电流",
+      "type": "strike",
+      "hits": [{ "element": "Electric", "multiplier": 1.15 }]
+    },
+    {
+      "name": "指定研究对象",
+      "type": "skill",
+      "hits": [{ "element": "Electric", "multiplier": 2.0 }]
+    },
+    {
+      "name": "磁暴试验场",
+      "type": "combo",
+      "hits": [{ "element": "Electric", "multiplier": 3.4 }]
+    },
+    {
+      "name": "下落攻击·安塔尔",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·安塔尔",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Antal",
+      "name": "信赖·安塔尔",
+      "description": "智识+60",
+      "statBonuses": { "intellect": 60 }
+    },
+    {
+      "id": "Specified_Research_Subject",
+      "name": "指定研究对象·脆弱",
+      "description": "战技对敌人施加长时间聚焦，被聚焦的敌人受到10%的电磁脆弱和灼热脆弱，同时最多聚焦1个敌人。",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "Susceptibility", "value": 0.1, "condition": { "element": ["Heat", "Electric"] } }
+      ]
+    },
+    {
+      "id": "Overclocked_Moment",
+      "name": "超频时刻·增幅",
+      "description": "终结技对全队施加20%的电磁增幅和灼热增幅。",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "Arts_Amp", "value": 0.2, "condition": { "element": ["Heat", "Electric"] } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Arts_Talent",
+      "name": "潜能1·危机处理",
+      "description": "终结技超频时刻提供的电磁增幅和灼热增幅效果提高至原本的1.1倍。",
+      "bundle": [
+        {
+          "id": "Overclocked_Moment_p1",
+          "name": "超频时刻·增幅·潜能1",
+          "description": "终结技对全队施加22%的电磁增幅和灼热增幅。",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Overclocked_Moment",
+          "effects": [
+            { "category": "Arts_Amp", "value": 0.22, "condition": { "element": ["Heat", "Electric"] } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Improved_Automation",
+      "name": "潜能2·谈判策略",
+      "description": "终结技超频时刻所需的终结技能量-10%。"
+    },
+    {
+      "id": "Applied_Originium_Theory",
+      "name": "潜能3·监督重任",
+      "description": "若被聚焦的敌人在聚焦期间被击败，返还15点技力。"
+    },
+    {
+      "id": "Granny's_Reminder",
+      "name": "导电1级·潜能4",
+      "description": "智识+10，最大生命值+10%。",
+      "statBonuses": { "intellect": 10 }
+    },
+    {
+      "id": "High_Specs_Tech_Tester",
+      "name": "潜能5·再入控制",
+      "description": "聚焦同一个目标20秒以后，电磁脆弱和灼热脆弱效果会提高4%。",
+      "bundle": [
+        {
+          "id": "Specified_Research_Subject_p5",
+          "name": "指定研究对象·脆弱·潜能5",
+          "description": "战技聚焦同一个目标20秒以后，被聚焦的敌人受到14%的电磁脆弱和灼热脆弱，同时最多聚焦1个敌人。",
+          "scope": "team",
+          "optional": true,
+          "effects": [
+            { "category": "Susceptibility", "value": 0.14, "condition": { "element": ["Heat", "Electric"] } }
+          ]
+        }
+      ]
+    }
+  ]
+}

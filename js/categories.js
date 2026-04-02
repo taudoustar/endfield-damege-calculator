@@ -19,5 +19,6 @@ export const categories = [
   { key: "Da_Pan_MORE_SPICE!", label: "大潘独有" },
   { key: "Rossi_Boiling_Blood", label: "洛茜独有" },
   { key: "Laevatain_Fragments_from_the_Past", label: "莱万汀独有" },
-  { key: "Alesh_Mega_Lunker_Rumors", label: "阿列什独有" }
+  { key: "Alesh_Mega_Lunker_Rumors", label: "阿列什独有" },
+  { key: "Avywenna_Carrot_and_Sharp_Stick", label: "艾维文娜独有" }
 ];

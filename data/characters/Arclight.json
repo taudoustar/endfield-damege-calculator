@@ -1,0 +1,130 @@
+{
+  "id": "Arclight",
+  "name": "弧光",
+  "baseAtk": 306,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 107, "agility": 145, "intellect": 123, "will": 100 },
+  "statConfig": {
+    "primary": { "stat": "agility", "ratio": 0.005 },
+    "secondary": [{ "stat": "intellect", "ratio": 0.002 }]
+  },
+  "weaponType": "Sword",
+  "skills": [
+    {
+      "name": "普通攻击一段·循迹逐猎",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.23 }]
+    },
+    {
+      "name": "普通攻击二段·循迹逐猎",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.28 }]
+    },
+    {
+      "name": "普通攻击三段·循迹逐猎",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.59 }]
+    },
+    {
+      "name": "普通攻击四段·循迹逐猎",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.81 }]
+    },
+    {
+      "name": "重击·循迹逐猎",
+      "type": "strike",
+      "hits": [{ "element": "Physical", "multiplier": 1.07 }]
+    },
+    {
+      "name": "疾风迅雷",
+      "type": "skill",
+      "hits": [{ "element": "Physical", "multiplier": 2.02 }]
+    },
+    {
+      "name": "疾风迅雷·追加伤害",
+      "type": "skill",
+      "hits": [{ "element": "Electric", "multiplier": 4.05 }]
+    },
+    {
+      "name": "鸣雷",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 3.5 }]
+    },
+    {
+      "name": "轰雷掣电",
+      "type": "ultimate",
+      "hits": [{ "element": "Electric", "multiplier": 9.0 }]
+    },
+    {
+      "name": "下落攻击·弧光",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·弧光",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Arclight",
+      "name": "信赖·弧光",
+      "description": "敏捷+60",
+      "statBonuses": { "agility": 60 }
+    },
+    {
+      "id": "Wildland_Trekker",
+      "name": "荒野游人",
+      "description": "使用战技疾风迅雷成功触发3次额外效果后，根据自身的智识，提升全队造成的电磁伤害，每点智识+0.08%",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "DMG_Dealt", "scaleStat": "intellect", "scaleRatio": 0.0008, "condition": { "element":"Electric" } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Child_of_the_Storm",
+      "name": "潜能1·风暴中的孩子",
+      "description": "连携技即时协议·闪链施加的导电持续时间+75%。"
+    },
+    {
+      "id": "Speed_Battler",
+      "name": "潜能2·速战速决",
+      "description": "敏捷+15，智识+15。",
+      "statBonuses": { "agility": 15, "intellect": 15 }
+    },
+    {
+      "id": "Hanna",
+      "name": "潜能3·监督重任",
+      "description": "天赋荒野游人效果加强：伤害提升效果提升至原本的1.3倍。",
+      "bundle": [
+        {
+          "id": "Wildland_Trekker_p3",
+          "name": "荒野游人·潜能3",
+          "description": "使用战技疾风迅雷成功触发3次额外效果后，根据自身的智识，提升全队造成的电磁伤害，每点智识+0.104%。",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Wildland_Trekker",
+          "effects": [
+            { "category": "DMG_Dealt", "scaleStat": "intellect", "scaleRatio": 0.00104, "condition": { "element":"Electric" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Aldertone's_Teachings",
+      "name": "潜能4·师者教诲",
+      "description": "终结技轰雷掣电所需的终结技能量-15%。"
+    },
+    {
+      "id": "Servant_of_the_Wildlands",
+      "name": "潜能5·荒野的徒从",
+      "description": "天赋荒野游人效果加强：触发所需次数降低至2次。"
+    }
+  ]
+}
