@@ -8,6 +8,8 @@
  *   id: string,
  *   name: string,
  *   baseAtk: number,                    // 基础攻击力
+ *   "baseCritRate": number,             // 基础暴击率
+ *   "baseCritDamage": number,           // 基础暴击伤害
  *   baseStats: { strength, agility, intellect, will },  // 基础属性
  *   statConfig: {
  *     primary: { stat, ratio },          // 主属性及攻击力转化比例

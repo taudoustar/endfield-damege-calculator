@@ -1,42 +1,41 @@
 /**
- * team-grid.js — Battle grid rendering and drag interaction module.
+ * team-grid.js — 战斗表格渲染与拖拽交互模块
  *
- * Renders an Excel-like grid where users place skills and buffs into a
- * damage rotation.  Supports click-to-place and drag-to-fill from the
- * palette selection held in `state.paletteSelection`.
+ * 渲染类似 Excel 的表格，用户可将技能和 buff 放入伤害循环中。
+ * 支持点击放置和拖拽填充，面板选中项保存在 `state.paletteSelection` 中。
  */
 
 import { state, render, renderResult, getSlotChar, findBuffById } from "./team-app.js";
 import { genericSkills } from "./generic-skills.js";
 
 /* ------------------------------------------------------------------ */
-/*  Internal state                                                     */
+/*  内部状态                                                            */
 /* ------------------------------------------------------------------ */
 
 let isDragging = false;
 let dragMode = null; // "place" | "erase"
 
 /* ------------------------------------------------------------------ */
-/*  Cell helpers                                                       */
+/*  格子辅助函数                                                        */
 /* ------------------------------------------------------------------ */
 
 /**
- * Place the currently selected palette item into a grid cell.
+ * 将当前面板选中项放入表格格子。
  *
- * @param {Array}  grid      - The grid array for the active slot.
- * @param {Object} char      - The character object for the active slot.
- * @param {number} row       - Row index.
- * @param {number} col       - Column index (0 = skill, 1 = count, 2+ = buff).
- * @param {Object} selection - `{ type: "skill"|"buff", id }`.
+ * @param {Array}  grid      - 当前槽位的表格数组。
+ * @param {Object} char      - 当前槽位的角色对象。
+ * @param {number} row       - 行索引。
+ * @param {number} col       - 列索引（0 = 技能，1 = 次数，2+ = buff）。
+ * @param {Object} selection - `{ type: "skill"|"buff", id }`。
  */
 function placeItem(grid, char, row, col, selection) {
   if (col === 0 && selection.type === "skill") {
-    // Place skill in skill column
-    grid[row].skillIndex = selection.id; // id is skillIndex (number)
+    // 放置技能到技能列
+    grid[row].skillIndex = selection.id;
   } else if (col >= 2 && selection.type === "buff") {
-    // Place buff in buff column
+    // 放置 buff 到 buff 列
     const buffCol = col - 2;
-    // Extend buffCells if needed
+    // 按需扩展 buffCells
     while (grid[row].buffCells.length <= buffCol) {
       grid[row].buffCells.push(null);
     }
@@ -55,15 +54,15 @@ function placeItem(grid, char, row, col, selection) {
       ? { id: selection.id, inputValue: initInput }
       : { id: selection.id };
   }
-  // col 1 (count) is not a valid placement target
+  // 列 1（次数）不是有效的放置目标
 }
 
 /**
- * Clear the contents of a single grid cell.
+ * 清除单个表格格子的内容。
  *
- * @param {Array}  grid - The grid array for the active slot.
- * @param {number} row  - Row index.
- * @param {number} col  - Column index.
+ * @param {Array}  grid - 当前槽位的表格数组。
+ * @param {number} row  - 行索引。
+ * @param {number} col  - 列索引。
  */
 function clearCell(grid, row, col) {
   if (col === 0) {
@@ -77,15 +76,14 @@ function clearCell(grid, row, col) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  renderGrid                                                         */
+/*  renderGrid — 渲染表格                                               */
 /* ------------------------------------------------------------------ */
 
 /**
- * Render the battle grid table for the currently active slot.
+ * 渲染当前活动槽位的战斗表格。
  *
- * Reads `state.grids[state.activeSlotIndex]` and writes the resulting
- * HTML into the `#battle-grid` container.  Also wires up count-input
- * change handlers and add/remove row/column buttons.
+ * 读取 `state.grids[state.activeSlotIndex]`，将生成的 HTML 写入
+ * `#battle-grid` 容器。同时绑定次数输入框和增删行列按钮的事件。
  */
 export function renderGrid() {
   const el = document.getElementById("battle-grid");
@@ -97,12 +95,12 @@ export function renderGrid() {
     return;
   }
 
-  // Determine number of buff columns (max buffCells.length across rows, min 3)
+  // 确定 buff 列数（所有行中 buffCells 的最大长度，最少 3 列）
   const numBuffCols = Math.max(3, ...grid.map((r) => r.buffCells.length));
 
   let html = '<table class="grid-table">';
 
-  // ---- Header row ----
+  // ---- 表头行 ----
   html += "<thead><tr>";
   html += '<th class="grid-th">技能</th>';
   html += '<th class="grid-th grid-th-count">次数</th>';
@@ -114,14 +112,14 @@ export function renderGrid() {
   html += '<th class="grid-th">伤害</th>';
   html += "</tr></thead>";
 
-  // ---- Body rows ----
+  // ---- 数据行 ----
   html += "<tbody>";
 
   for (let r = 0; r < grid.length; r++) {
     const row = grid[r];
     html += '<tr class="grid-row">';
 
-    // Skill cell (col 0)
+    // 技能格（列 0）
     if (row.skillIndex != null) {
       const skill = typeof row.skillIndex === "string"
         ? genericSkills.find((s) => s.id === row.skillIndex)
@@ -135,12 +133,12 @@ export function renderGrid() {
       html += `<td class="grid-cell grid-cell-skill" data-row="${r}" data-col="0"></td>`;
     }
 
-    // Count cell (col 1)
+    // 次数格（列 1）
     html += '<td class="grid-cell grid-cell-count">';
     html += `<input type="number" class="grid-count-input" min="1" value="${row.count}" data-row="${r}">`;
     html += "</td>";
 
-    // Buff cells (col 2+)
+    // Buff 格（列 2+）
     for (let c = 0; c < numBuffCols; c++) {
       const cell = row.buffCells[c] ?? null;
       // 兼容旧格式（纯字符串 ID）和新格式（{ id, inputValue? }）
@@ -168,19 +166,19 @@ export function renderGrid() {
       }
     }
 
-    // Add-col placeholder
+    // 添加列占位符
     html += '<td class="grid-cell-placeholder"></td>';
 
-    // Row damage display
+    // 行伤害显示
     html += `<td class="grid-cell grid-cell-damage" data-row="${r}">-</td>`;
 
-    // Remove row button
+    // 删除行按钮
     html += `<td class="grid-cell-action"><button class="grid-remove-row-btn" data-row="${r}" title="删除行">×</button></td>`;
 
     html += "</tr>";
   }
 
-  // Add row button (spans all columns)
+  // 添加行按钮（跨所有列）
   html += '<tr><td colspan="' + (numBuffCols + 4) + '">';
   html += '<button class="grid-add-row-btn">+ 添加行</button>';
   html += "</td></tr>";
@@ -188,7 +186,7 @@ export function renderGrid() {
   html += "</tbody></table>";
   el.innerHTML = html;
 
-  // ---- Bind count input events ----
+  // ---- 绑定次数输入框事件 ----
   el.querySelectorAll(".grid-count-input").forEach((input) => {
     input.addEventListener("change", () => {
       const r = parseInt(input.dataset.row);
@@ -197,7 +195,7 @@ export function renderGrid() {
     });
   });
 
-  // ---- Bind add-row button ----
+  // ---- 绑定添加行按钮 ----
   el.querySelector(".grid-add-row-btn")?.addEventListener("click", () => {
     const cols = Math.max(3, ...grid.map((r) => r.buffCells.length));
     grid.push({
@@ -208,7 +206,7 @@ export function renderGrid() {
     render();
   });
 
-  // ---- Bind add-col button ----
+  // ---- 绑定添加列按钮 ----
   el.querySelector(".grid-add-col-btn")?.addEventListener("click", () => {
     for (const row of grid) {
       row.buffCells.push(null);
@@ -216,7 +214,7 @@ export function renderGrid() {
     render();
   });
 
-  // ---- Bind remove-col buttons ----
+  // ---- 绑定删除列按钮 ----
   el.querySelectorAll(".grid-remove-col-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const c = parseInt(btn.dataset.col);
@@ -235,7 +233,7 @@ export function renderGrid() {
     });
   });
 
-  // ---- Bind remove-row buttons ----
+  // ---- 绑定删除行按钮 ----
   el.querySelectorAll(".grid-remove-row-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const r = parseInt(btn.dataset.row);
@@ -273,18 +271,17 @@ export function renderGrid() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  initGridEvents                                                     */
+/*  initGridEvents — 初始化表格事件                                      */
 /* ------------------------------------------------------------------ */
 
 /**
- * Set up mousedown / mousemove / mouseup on the grid container for
- * click-to-place and drag-to-fill interactions.
+ * 在表格容器上设置 mousedown / mousemove / mouseup 事件，
+ * 实现点击放置和拖拽填充交互。
  *
- * - When a palette item is selected (`state.paletteSelection`), clicking
- *   or dragging over cells places the item.
- * - When no palette item is selected, clicking a filled cell clears it.
+ * - 当面板有选中项（`state.paletteSelection`）时，点击或拖拽格子会放置该项。
+ * - 当没有选中项时，点击已填充的格子会清除它。
  *
- * Call this once at startup.
+ * 启动时调用一次即可。
  */
 export function initGridEvents() {
   const container = document.getElementById("battle-grid");
@@ -320,7 +317,7 @@ export function initGridEvents() {
     if (!char || !grid[row]) return;
 
     if (e.button === 0) {
-      // Left click: place or clear
+      // 左键：放置或清除
       e.preventDefault();
       const sel = state.paletteSelection;
       if (sel) {
@@ -332,7 +329,7 @@ export function initGridEvents() {
       }
       render();
     } else if (e.button === 2) {
-      // Right click: erase
+      // 右键：清除
       e.preventDefault();
       clearCell(grid, row, col);
       isDragging = true;
@@ -341,17 +338,17 @@ export function initGridEvents() {
     }
   });
 
-  // --- block context menu on grid ---
+  // --- 禁用表格上的右键菜单 ---
   container.addEventListener("contextmenu", (e) => {
     if (e.target.closest("[data-row][data-col]")) {
       e.preventDefault();
     }
   });
 
-  // --- mousemove: drag-to-fill or drag-to-erase ---
+  // --- 鼠标移动：拖拽填充或拖拽清除 ---
   container.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
-    // Stop dragging if button was released (e.buttons: 1=left, 2=right)
+    // 如果按键已松开则停止拖拽（e.buttons: 1=左键, 2=右键）
     if (dragMode === "place" && !(e.buttons & 1)) { isDragging = false; dragMode = null; return; }
     if (dragMode === "erase" && !(e.buttons & 2)) { isDragging = false; dragMode = null; return; }
 
@@ -378,7 +375,7 @@ export function initGridEvents() {
     }
   });
 
-  // --- mouseup: end drag ---
+  // --- 鼠标松开：结束拖拽 ---
   document.addEventListener("mouseup", () => {
     isDragging = false;
     dragMode = null;
@@ -386,16 +383,16 @@ export function initGridEvents() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  updateGridDamage                                                   */
+/*  updateGridDamage — 更新伤害列                                       */
 /* ------------------------------------------------------------------ */
 
 /**
- * Update the damage column after a calculation pass.
+ * 计算完成后更新表格的伤害列。
  *
- * Called by team-app with an array of per-row results.  Each entry is
- * expected to have a `rowDamage` numeric property.
+ * 由 team-app 调用，传入每行的计算结果数组。
+ * 每个条目应包含 `rowDamage` 数值属性。
  *
- * @param {Array|null} rowResults - Array of `{ rowDamage: number }` or null.
+ * @param {Array|null} rowResults - `{ rowDamage: number }` 数组或 null。
  */
 export function updateGridDamage(rowResults) {
   const cells = document.querySelectorAll(".grid-cell-damage");

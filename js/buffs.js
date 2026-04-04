@@ -6,6 +6,7 @@
  * 结构：
  * {
  *   id, name, description,
+ *   scope: string,                // 为 "team" 时表示为团队buff, 没有该字段时表示不为团队buff
  *   optional?: boolean,           // true = 需要手动勾选, 默认 false = 永久生效
  *   effects?: [{ category, value, condition? }],
  *   metas?: [{ category, multiplier, condition? }]

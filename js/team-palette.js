@@ -1,9 +1,8 @@
 /**
- * team-palette.js — Sidebar skill/buff palette for the team damage calculator.
+ * team-palette.js — 组队伤害计算器的侧边栏技能/buff 面板。
  *
- * Renders a palette sidebar where the user can select skills and buffs,
- * then click/drag them onto the battle grid.  Also provides management UI
- * for generic skills and generic buffs (add/remove).
+ * 渲染一个面板，用户可以选择技能和 buff，然后点击放置到战斗表格中。
+ * 同时提供通用技能和通用 buff 的添加/移除管理界面。
  */
 
 import {
@@ -21,7 +20,7 @@ import { commonBuffs } from "./buffs.js";
 import { createSearchableSelect } from "./searchable-select.js";
 
 /* ------------------------------------------------------------------ */
-/*  Helpers                                                            */
+/*  辅助函数                                                           */
 /* ------------------------------------------------------------------ */
 
 function isSelected(type, id) {
@@ -30,7 +29,7 @@ function isSelected(type, id) {
   return sel.type === type && sel.id === id;
 }
 
-// Pending selections for add controls (persisted across re-renders within session)
+// 面板添加控件的待选值（在重渲染之间保持）
 let pendingGsId = null;
 let pendingGbBuffId = null;
 let pendingGbSourceSlot = null;
@@ -40,7 +39,7 @@ function buffDesc(buff) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  renderPalette                                                      */
+/*  渲染面板                                                           */
 /* ------------------------------------------------------------------ */
 
 export function renderPalette() {
@@ -58,7 +57,7 @@ export function renderPalette() {
 
   let html = '<div class="palette">';
 
-  // ---- 1. Character skills section ----
+  // ---- 1. 角色技能 ----
   html += '<div class="palette-section">';
   html += '<h3 class="palette-title">技能</h3>';
 
@@ -71,11 +70,11 @@ export function renderPalette() {
 
   html += "</div>";
 
-  // ---- 2. Generic skills (added ones shown as draggable + add/remove UI) ----
+  // ---- 2. 通用技能（已添加的可拖放 + 添加/移除界面）----
   html += '<div class="palette-section">';
   html += '<h3 class="palette-title">通用技能</h3>';
 
-  // Added generic skills (draggable)
+  // 已添加的通用技能（可拖放）
   for (const gsId of slot.addedGenericSkillIds) {
     const gs = genericSkills.find((s) => s.id === gsId);
     if (!gs) continue;
@@ -86,8 +85,7 @@ export function renderPalette() {
     html += `</div>`;
   }
 
-  // Add control
-  const availableGs = genericSkills.filter((gs) => !slot.addedGenericSkillIds.includes(gs.id));
+  // 添加控件 = genericSkills.filter((gs) => !slot.addedGenericSkillIds.includes(gs.id));
   if (availableGs.length > 0) {
     html += '<div class="palette-add-row">';
     html += '<div id="ss-gs-add" class="palette-ss-container"></div>';
@@ -97,11 +95,11 @@ export function renderPalette() {
 
   html += "</div>";
 
-  // ---- 3. Generic buffs (added ones as draggable + add/remove UI) ----
+  // ---- 3. 通用Buff（已添加的可拖放 + 添加/移除界面）----
   html += '<div class="palette-section">';
   html += '<h3 class="palette-title">通用Buff</h3>';
 
-  // Added generic buffs (draggable, like optional buffs)
+  // 已添加的通用 buff（可拖放，类似可选 buff）
   for (let gi = 0; gi < slot.genericBuffs.length; gi++) {
     const gb = slot.genericBuffs[gi];
     const buff = findBuffById(gb.buffId);
@@ -121,7 +119,7 @@ export function renderPalette() {
     html += `</div>`;
   }
 
-  // Add control
+  // 添加控件
   html += '<div class="palette-add-row">';
   html += '<div id="ss-gb-buff" class="palette-ss-container"></div>';
   html += '<div id="ss-gb-source" class="palette-ss-container palette-ss-narrow"></div>';
@@ -130,7 +128,7 @@ export function renderPalette() {
 
   html += "</div>";
 
-  // ---- 4. Optional buffs section (clickable for grid placement) ----
+  // ---- 4. 可选 buff（点击后放置到表格）----
   const availableBuffs = getAvailableBuffsForPalette(slotIndex);
 
   if (availableBuffs.length > 0) {
@@ -187,7 +185,7 @@ export function renderPalette() {
     html += "</div>";
   }
 
-  // ---- 5. Permanent buffs section (display-only) ----
+  // ---- 5. 永久 buff（仅展示）----
   const permanentBuffs = getSlotPermanentBuffs(slotIndex);
 
   if (permanentBuffs.length > 0) {
@@ -216,9 +214,9 @@ export function renderPalette() {
   html += "</div>"; // end .palette wrapper
   el.innerHTML = html;
 
-  // ---- Initialize searchable selects ----
+  // ---- 初始化可搜索下拉框 ----
 
-  // Generic skill add
+  // 通用技能添加
   const gsContainer = el.querySelector("#ss-gs-add");
   if (gsContainer) {
     const availGs = genericSkills.filter((gs) => !slot.addedGenericSkillIds.includes(gs.id));
@@ -234,7 +232,7 @@ export function renderPalette() {
     });
   }
 
-  // Generic buff add - buff select
+  // 通用 buff 添加 - buff 选择
   const gbBuffContainer = el.querySelector("#ss-gb-buff");
   if (gbBuffContainer) {
     createSearchableSelect(gbBuffContainer, {
@@ -246,7 +244,7 @@ export function renderPalette() {
     });
   }
 
-  // Generic buff add - source select
+  // 通用 buff 添加 - 来源角色选择
   const gbSourceContainer = el.querySelector("#ss-gb-source");
   if (gbSourceContainer) {
     const sourceOptions = [];
@@ -265,7 +263,7 @@ export function renderPalette() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  initPaletteEvents                                                  */
+/*  面板事件绑定                                                       */
 /* ------------------------------------------------------------------ */
 
 export function initPaletteEvents() {
@@ -285,14 +283,14 @@ export function initPaletteEvents() {
   container.addEventListener("click", (e) => {
     // --- 防止点击输入框触发选中 ---
     if (e.target.classList.contains("user-input-field")) return;
-    // --- Remove generic skill ---
+    // --- 移除通用技能 ---
     const removeGs = e.target.closest("[data-remove-gs]");
     if (removeGs) {
       e.stopPropagation();
       const slot = state.slots[state.activeSlotIndex];
       const gsId = removeGs.dataset.removeGs;
       slot.addedGenericSkillIds = slot.addedGenericSkillIds.filter((id) => id !== gsId);
-      // Also clear from grid
+      // 同时从表格中清除
       const grid = state.grids[state.activeSlotIndex];
       for (const row of grid) {
         if (row.skillIndex === gsId) row.skillIndex = null;
@@ -304,7 +302,7 @@ export function initPaletteEvents() {
       return;
     }
 
-    // --- Remove generic buff ---
+    // --- 移除通用 buff ---
     const removeGb = e.target.closest("[data-remove-gb]");
     if (removeGb) {
       e.stopPropagation();
@@ -314,7 +312,7 @@ export function initPaletteEvents() {
       return;
     }
 
-    // --- Add generic skill ---
+    // --- 添加通用技能 ---
     if (e.target.id === "gs-add-btn" || e.target.closest("#gs-add-btn")) {
       if (pendingGsId) {
         const slot = state.slots[state.activeSlotIndex];
@@ -325,7 +323,7 @@ export function initPaletteEvents() {
       return;
     }
 
-    // --- Add generic buff ---
+    // --- 添加通用 buff ---
     if (e.target.id === "gb-add-btn" || e.target.closest("#gb-add-btn")) {
       if (pendingGbBuffId && pendingGbSourceSlot != null) {
         const slot = state.slots[state.activeSlotIndex];
@@ -340,7 +338,7 @@ export function initPaletteEvents() {
       return;
     }
 
-    // --- Select skill / buff for grid placement ---
+    // --- 选择技能/buff 用于放置到表格 ---
     const item = e.target.closest(".palette-item[data-type]");
     if (!item) return;
 
