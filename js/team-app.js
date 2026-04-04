@@ -16,6 +16,7 @@ import { calculate, matchesCondition, applyBuffReplacements, applySkillOverrides
 import { renderGrid, initGridEvents } from "./team-grid.js";
 import { renderPalette, initPaletteEvents } from "./team-palette.js";
 import { createSearchableSelect } from "./searchable-select.js";
+import { renderAnalysis } from "./analysis.js";
 import { initSaveLoad } from "./save-load.js";
 import { loadAllData } from "./data-loader.js";
 import { genericSkills } from "./generic-skills.js";
@@ -202,7 +203,10 @@ function getTeammateTeamBuffs(activeSlotIndex) {
         teamBuffs.push(...resolved.filter((b) => b.scope === "team"));
       }
     }
-    for (const buff of teamBuffs) {
+    // 用所有已解锁 buff 检测替换，避免新旧版本同时出现
+    const allUnlocked = collectCharBuffs(char, slot.charPotLevel, () => true);
+    const filtered = applyBuffReplacements(teamBuffs, allUnlocked);
+    for (const buff of filtered) {
       results.push({ fromCharName: char.name, buff });
     }
   }
@@ -729,12 +733,14 @@ function renderResult() {
 
   let html = "";
   let teamTotal = 0;
+  const slotResults = [];
 
   for (let i = 0; i < 4; i++) {
     const char = getSlotChar(i);
     const charName = char ? char.name : `槽位${i + 1}`;
     const { rowResults, totalDamage } = calculateSlotDamage(i);
     teamTotal += totalDamage;
+    slotResults.push({ charName: char ? char.name : null, totalDamage, rowResults });
 
     html += `<div class="slot-result${i === state.activeSlotIndex ? " active-slot-result" : ""}">`;
     html += `<div class="slot-result-header">`;
@@ -781,16 +787,101 @@ function renderResult() {
 
   html += `<div class="team-total">全队总伤害: ${teamTotal.toFixed(0)}</div>`;
   el.innerHTML = html;
+
+  renderAnalysis(slotResults);
 }
 
 // ===== 主渲染 =====
 
 function render() {
+  updateGridBuffIds();
   renderSlotTabs();
   renderSlotConfig();
   renderGrid(state.activeSlotIndex);
   renderPalette(state.activeSlotIndex);
   renderResult();
+}
+
+/**
+ * 潜能变化时，自动更新格子中的旧 buff ID 为新版本。
+ * 构建全局替换映射（所有 slot 的角色），然后扫描每个 slot 的 grid。
+ */
+function updateGridBuffIds() {
+  // 构建全局替换映射（所有角色的已解锁 buff）
+  const globalReplaceMap = new Map();  // 旧 ID → 新 ID
+  const globalReverseMap = new Map();  // 新 ID → 旧 ID
+  const globalUnlockedIds = new Set();
+
+  for (let s = 0; s < 4; s++) {
+    const char = getSlotChar(s);
+    if (!char) continue;
+    const slot = state.slots[s];
+    const allUnlocked = collectCharBuffs(char, slot.charPotLevel, () => true);
+    for (const b of allUnlocked) {
+      globalUnlockedIds.add(b.id);
+      if (b.replaces) {
+        const ids = Array.isArray(b.replaces) ? b.replaces : [b.replaces];
+        for (const oldId of ids) {
+          globalReplaceMap.set(oldId, b.id);
+          globalReverseMap.set(b.id, oldId);
+        }
+      }
+    }
+    // 全部潜能（不限等级）用于降级回退
+    const allPotBuffs = collectCharBuffs(char, char.potentialBuffs?.length || 0, () => true);
+    for (const b of allPotBuffs) {
+      if (b.replaces) {
+        const ids = Array.isArray(b.replaces) ? b.replaces : [b.replaces];
+        for (const oldId of ids) globalReverseMap.set(b.id, oldId);
+      }
+    }
+  }
+
+  // 扫描每个 slot 的 grid
+  for (let s = 0; s < 4; s++) {
+    const grid = state.grids[s];
+    if (!grid) continue;
+    for (const row of grid) {
+      for (let c = 0; c < row.buffCells.length; c++) {
+        const cell = row.buffCells[c];
+        if (cell == null) continue;
+        const cellObj = typeof cell === "object" ? cell : { id: cell };
+        const cellId = cellObj.id;
+
+        // 处理通用 buff 格式：gb:buffId:sourceSlot
+        if (typeof cellId === "string" && cellId.startsWith("gb:")) {
+          const parts = cellId.split(":");
+          const buffId = parts[1];
+          const sourceSlot = parts[2];
+          const newBuffId = globalReplaceMap.get(buffId);
+          if (newBuffId) {
+            row.buffCells[c] = { ...cellObj, id: `gb:${newBuffId}:${sourceSlot}` };
+            continue;
+          }
+          if (!globalUnlockedIds.has(buffId) && globalReverseMap.has(buffId)) {
+            const oldBuffId = globalReverseMap.get(buffId);
+            if (globalUnlockedIds.has(oldBuffId)) {
+              row.buffCells[c] = { ...cellObj, id: `gb:${oldBuffId}:${sourceSlot}` };
+            }
+          }
+          continue;
+        }
+
+        // 处理普通 buff ID
+        const newId = globalReplaceMap.get(cellId);
+        if (newId) {
+          row.buffCells[c] = { ...cellObj, id: newId };
+          continue;
+        }
+        if (!globalUnlockedIds.has(cellId) && globalReverseMap.has(cellId)) {
+          const oldId = globalReverseMap.get(cellId);
+          if (globalUnlockedIds.has(oldId)) {
+            row.buffCells[c] = { ...cellObj, id: oldId };
+          }
+        }
+      }
+    }
+  }
 }
 
 // ===== 初始化 =====
