@@ -85,7 +85,8 @@ export function renderPalette() {
     html += `</div>`;
   }
 
-  // 添加控件 = genericSkills.filter((gs) => !slot.addedGenericSkillIds.includes(gs.id));
+  // 添加控件
+  const availableGs = genericSkills.filter((gs) => !slot.addedGenericSkillIds.includes(gs.id));
   if (availableGs.length > 0) {
     html += '<div class="palette-add-row">';
     html += '<div id="ss-gs-add" class="palette-ss-container"></div>';
