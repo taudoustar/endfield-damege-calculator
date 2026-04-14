@@ -482,6 +482,9 @@ function calculateSlotDamage(slotIndex) {
         artsInfo = { artsIntensity, artsMultiplier };
       }
 
+      // 怪物默认50%防御
+      dmgAfterArts *= 0.5;
+
       const crit = collectCrit(rowBuffs, context, char.baseCritRate || 0, char.baseCritDamage || 0);
       const expectedDamage = dmgAfterArts * crit.expectedMultiplier;
 

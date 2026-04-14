@@ -1,6 +1,8 @@
 {
   "id": "Yvonne",
   "name": "伊冯",
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
   "baseAtk": 321,
   "baseStats": { "strength": 82, "agility": 128, "intellect": 176, "will": 105 },
   "statConfig": {
