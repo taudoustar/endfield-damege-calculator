@@ -372,6 +372,44 @@
       }
     ]
   },
+  { "#": "白夜新星" },
+  {
+    "id": "White_Night_Nova",
+    "name": "白夜新星",
+    "type": "Sword",
+    "baseAtk": 505,
+    "mainAffix": { "flat": 132, "percent": 0 },
+    "potentialBuffs":[
+      {
+        "id": "White_Night_Nova_p1",
+        "name": "源石技艺强度提升·大",
+        "description": "源石技艺强度提升",
+        "statBonuses": { "artsIntensity": 78 }
+      },
+      {
+        "id": "White_Night_Nova_p2",
+        "name": "附术·白夜新星·被动",
+        "description": "法术伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336], "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+        ]
+      },
+      {
+        "id": "White_Night_Nova_p3",
+        "name": "附术·白夜新星·触发",
+        "description": "装备者施加燃烧或导电后，法术伤害提升，源石技艺强度提升，持续15秒。",
+        "optional": true,
+        "statBonuses": { "artsIntensity": [40, 45, 50, 55, 60, 70] },
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336],
+            "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] }
+          }
+        ]
+      }
+    ]
+  },
   {
     "#": "=====================双手剑====================="
   },
@@ -765,6 +803,81 @@
         "optional": true,
         "effects": [
           { "category": "DMG_Dealt", "value": [0.128, 0.144, 0.16, 0.176, 0.192, 0.224], "condition": { "element": ["Physical", "Electric"] } }
+        ]
+      }
+    ]
+  },
+  { "#": "O.B.J.术识" },
+  {
+    "id": "OBJ_Arts_Identifier",
+    "name": "O.B.J.术识",
+    "type": "Arts_Unit",
+    "baseAtk": 411,
+    "statBonuses": { "intellect": 124 },
+    "potentialBuffs": [
+      {
+        "id": "OBJ_Arts_Identifier_p1",
+        "name": "源石技艺强度提升·中",
+        "description": "源石技艺强度提升",
+        "statBonuses": { "artsIntensity": [27, 33, 40, 46, 52, 62] }
+      },
+      {
+        "id": "OBJ_Arts_Identifier_p2",
+        "name": "追袭·术法升华·被动",
+        "description": "最大生命值提升"
+      },
+      {
+        "id": "OBJ_Arts_Identifier_p3",
+        "name": "追袭·术法升华·触发",
+        "description": "通过自身连携技造成法术爆发或物理异常时，全队获得灼热和电磁伤害提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.128, 0.144, 0.16, 0.176, 0.192, 0.224], "condition": { "element": ["Heat", "Electric"] } }
+        ]
+      }
+    ]
+  },
+  { "#": "遗忘" },
+  {
+    "id": "Oblivion",
+    "name": "遗忘",
+    "type": "Arts_Unit",
+    "baseAtk": 495,
+    "statBonuses": { "intellect": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Oblivion_p1",
+        "name": "法术提升·大",
+        "description": "法术伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.433 ,  "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+        ]
+      },
+      {
+        "id": "Oblivion_p2",
+        "name": "夜幕·耻辱·被动",
+        "description": "暴击率提升",
+        "effects": [
+          { "category": "critRate", "value": [0.08, 0.09, 0.10, 0.11, 0.12, 0.14] }
+        ]
+      },
+      {
+        "id": "Oblivion_p3",
+        "name": "夜幕·耻辱·触发1",
+        "description": "备者施放终结技时，获得法术伤害提升，持续15秒；",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.384, 0.432, 0.480, 0.528, 0.576, 0.672], "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+        ]
+      },
+      {
+        "id": "Oblivion_p4",
+        "name": "夜幕·耻辱·触发2",
+        "description": "装备者施放连携技时，获得法术伤害提升，持续15秒；",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336], "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
         ]
       }
     ]

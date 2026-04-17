@@ -29,10 +29,10 @@ const skillTypeLabels = { basic: "普攻", skill: "战技", combo: "连携", ult
 // ===== 状态 =====
 const state = {
   slots: [
-    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {} },
-    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {} },
-    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {} },
-    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {} },
+    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null },
+    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null },
+    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null },
+    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null },
   ],
   activeSlotIndex: 0,
   grids: [[], [], [], []], // each is GridRow[]
@@ -86,6 +86,48 @@ function getSlotStatTotals(slotIndex) {
   applyPercentBonuses(totals, pendingPercent);
 
   return totals;
+}
+
+// ===== 辅助：增强属性总值（含团队 buff 激活的可选 buff 属性加成）=====
+
+function getGridPlacedBuffIds(slotIndex) {
+  const grid = state.grids[slotIndex];
+  const ids = new Set();
+  if (!grid) return ids;
+  for (const row of grid) {
+    for (const cell of row.buffCells) {
+      if (!cell) continue;
+      const cellObj = typeof cell === "object" ? cell : { id: cell };
+      if (cellObj.id) {
+        // 去掉 gb: 前缀
+        const rawId = typeof cellObj.id === "string" && cellObj.id.startsWith("gb:")
+          ? cellObj.id.split(":")[1] : cellObj.id;
+        ids.add(rawId);
+      }
+    }
+  }
+  return ids;
+}
+
+function getEnhancedSlotStatTotals(slotIndex) {
+  const baseTotals = getSlotStatTotals(slotIndex);
+  const slot = state.slots[slotIndex];
+  const char = getSlotChar(slotIndex);
+  if (!char) return baseTotals;
+
+  let activeIds;
+  if (slot.teamBuffActiveOptionals != null) {
+    activeIds = new Set(slot.teamBuffActiveOptionals);
+  } else {
+    activeIds = getGridPlacedBuffIds(slotIndex);
+  }
+  if (activeIds.size === 0) return baseTotals;
+
+  const optionalBuffs = getSlotOptionalBuffs(slotIndex);
+  const selectedBuffs = optionalBuffs.filter(b => activeIds.has(b.id));
+  if (selectedBuffs.length === 0) return baseTotals;
+
+  return applyBuffStatBonuses(baseTotals, selectedBuffs, char.statConfig);
 }
 
 // ===== 辅助：攻击力配置 =====
@@ -207,7 +249,7 @@ function getTeammateTeamBuffs(activeSlotIndex) {
     const allUnlocked = collectCharBuffs(char, slot.charPotLevel, () => true);
     const filtered = applyBuffReplacements(teamBuffs, allUnlocked);
     for (const buff of filtered) {
-      results.push({ fromCharName: char.name, buff });
+      results.push({ fromCharName: char.name, fromSlotIndex: i, buff });
     }
   }
   return results;
@@ -224,8 +266,8 @@ function getAvailableBuffsForPalette(slotIndex) {
   }
 
   // 队友 team buff
-  for (const { fromCharName, buff } of getTeammateTeamBuffs(slotIndex)) {
-    entries.push({ id: buff.id, buff, source: `teammate:${fromCharName}` });
+  for (const { fromCharName, fromSlotIndex, buff } of getTeammateTeamBuffs(slotIndex)) {
+    entries.push({ id: buff.id, buff, source: `teammate:${fromCharName}`, sourceSlotIndex: fromSlotIndex });
   }
 
   // 场地 buff
@@ -353,17 +395,23 @@ function resolveUserInputBuffs(buffs, slotIndex, rowOverrides = {}) {
 
 function resolveBuffStatSource(buff, sourceStatTotals) {
   if (!buff.effects) return buff;
-  const hasScale = buff.effects.some((e) => e.scaleStat);
+  const hasScale = buff.effects.some((e) => e.scaleStat || e.saturationScale);
   if (!hasScale) return buff;
   return {
     ...buff,
     effects: buff.effects.map((e) => {
-      if (!e.scaleStat) return e;
-      return {
-        category: e.category,
-        value: (sourceStatTotals[e.scaleStat] || 0) * e.scaleRatio,
-        condition: e.condition,
-      };
+      if (e.scaleStat) {
+        return {
+          category: e.category,
+          value: (sourceStatTotals[e.scaleStat] || 0) * e.scaleRatio,
+          condition: e.condition,
+        };
+      }
+      if (e.saturationScale) {
+        const statVal = sourceStatTotals[e.saturationScale.stat] || 0;
+        return { ...e, scaleValue: statVal };
+      }
+      return e;
     }),
   };
 }
@@ -399,7 +447,7 @@ function collectRowBuffs(slotIndex, rowIndex) {
       const sourceSlot = parseInt(parts[2], 10);
       const buff = findBuffById(buffId, slotIndex);
       if (buff) {
-        const sourceStatTotals = getSlotStatTotals(sourceSlot);
+        const sourceStatTotals = getEnhancedSlotStatTotals(sourceSlot);
         buffs.push(resolveBuffStatSource(buff, sourceStatTotals));
       }
       continue;
@@ -925,6 +973,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0,
         equipment: { armor: null, gloves: null, kit1: null, kit2: null },
         foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {},
+        teamBuffActiveOptionals: null,
       });
       if (data.slots) {
         for (let i = 0; i < 4; i++) {
@@ -964,7 +1013,9 @@ export {
   getSlotChar,
   getSlotStatTotals,
   getSlotPermanentBuffs,
+  getSlotOptionalBuffs,
   getAvailableBuffsForPalette,
+  getGridPlacedBuffIds,
   collectRowBuffs,
   calculateSlotDamage,
   findBuffById,

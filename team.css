@@ -442,6 +442,68 @@
   padding: 4px 0 2px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 团队 buff 属性加成配置按钮 */
+.team-buff-config-btn {
+  background: none;
+  border: 1px solid #444;
+  border-radius: 3px;
+  color: #888;
+  font-size: 0.7rem;
+  cursor: pointer;
+  padding: 0 3px;
+  line-height: 1.2;
+}
+.team-buff-config-btn:hover {
+  color: #7c8cf8;
+  border-color: #7c8cf8;
+}
+
+/* 弹出面板 */
+.team-buff-popup {
+  background: #1e1e2e;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 8px 10px;
+  min-width: 200px;
+  max-width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+.team-buff-popup-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #aab;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #333;
+}
+.team-buff-popup-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 3px 0;
+  font-size: 0.78rem;
+  color: #ccc;
+  cursor: pointer;
+}
+.team-buff-popup-item:hover {
+  color: #fff;
+}
+.team-buff-popup-item input[type="checkbox"] {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.popup-buff-desc {
+  color: #777;
+  font-size: 0.7rem;
+  margin-left: 4px;
 }
 
 .palette-item {

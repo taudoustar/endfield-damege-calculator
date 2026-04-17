@@ -12,7 +12,9 @@ import {
   getSlotChar,
   getSlotStatTotals,
   getSlotPermanentBuffs,
+  getSlotOptionalBuffs,
   getAvailableBuffsForPalette,
+  getGridPlacedBuffIds,
   findBuffById,
 } from "./team-app.js";
 import { genericSkills } from "./generic-skills.js";
@@ -180,7 +182,14 @@ export function renderPalette() {
         sourceLabel = group.source;
       }
 
-      html += `<div class="palette-subgroup">${sourceLabel}</div>`;
+      html += `<div class="palette-subgroup">${sourceLabel}`;
+      if (group.source.startsWith("teammate:")) {
+        const srcSlot = group.entries[0].sourceSlotIndex;
+        if (srcSlot != null) {
+          html += ` <button class="team-buff-config-btn" data-source-slot="${srcSlot}" title="配置来源属性加成">&#9881;</button>`;
+        }
+      }
+      html += `</div>`;
 
       for (const entry of group.entries) {
         const selectedClass = isSelected("buff", entry.id) ? " selected" : "";
@@ -281,6 +290,78 @@ export function renderPalette() {
 }
 
 /* ------------------------------------------------------------------ */
+/*  团队 buff 属性加成弹出面板                                           */
+/* ------------------------------------------------------------------ */
+
+function showTeamBuffStatPopup(sourceSlotIndex, anchorEl) {
+  document.querySelector(".team-buff-popup")?.remove();
+
+  const slot = state.slots[sourceSlotIndex];
+  const optionalBuffs = getSlotOptionalBuffs(sourceSlotIndex);
+  if (optionalBuffs.length === 0) return;
+
+  // 初始化：null 表示自动模式，从 grid 推导
+  if (slot.teamBuffActiveOptionals == null) {
+    const gridIds = getGridPlacedBuffIds(sourceSlotIndex);
+    slot.teamBuffActiveOptionals = optionalBuffs
+      .filter(b => gridIds.has(b.id))
+      .map(b => b.id);
+  }
+
+  const popup = document.createElement("div");
+  popup.className = "team-buff-popup";
+  const rect = anchorEl.getBoundingClientRect();
+  popup.style.position = "fixed";
+  popup.style.left = `${rect.right + 4}px`;
+  popup.style.top = `${rect.top}px`;
+
+  const srcChar = getSlotChar(sourceSlotIndex);
+  let html = `<div class="team-buff-popup-title">${srcChar ? srcChar.name : ""} 属性加成</div>`;
+  for (const buff of optionalBuffs) {
+    const checked = slot.teamBuffActiveOptionals.includes(buff.id) ? "checked" : "";
+    const desc = buff.description || "";
+    html += `<label class="team-buff-popup-item">`;
+    html += `<input type="checkbox" data-buff-id="${buff.id}" ${checked} />`;
+    html += `<span>${buff.name}</span>`;
+    if (desc) html += `<span class="popup-buff-desc">${desc}</span>`;
+    html += `</label>`;
+  }
+  popup.innerHTML = html;
+  document.body.appendChild(popup);
+
+  // 确保不超出视口
+  const popupRect = popup.getBoundingClientRect();
+  if (popupRect.bottom > window.innerHeight) {
+    popup.style.top = `${window.innerHeight - popupRect.height - 8}px`;
+  }
+  if (popupRect.right > window.innerWidth) {
+    popup.style.left = `${rect.left - popupRect.width - 4}px`;
+  }
+
+  popup.addEventListener("change", (e) => {
+    const cb = e.target;
+    if (!cb.dataset.buffId) return;
+    const id = cb.dataset.buffId;
+    if (cb.checked) {
+      if (!slot.teamBuffActiveOptionals.includes(id)) {
+        slot.teamBuffActiveOptionals.push(id);
+      }
+    } else {
+      slot.teamBuffActiveOptionals = slot.teamBuffActiveOptionals.filter(x => x !== id);
+    }
+    renderResult();
+  });
+
+  const closeHandler = (e) => {
+    if (!popup.contains(e.target) && e.target !== anchorEl) {
+      popup.remove();
+      document.removeEventListener("click", closeHandler);
+    }
+  };
+  setTimeout(() => document.addEventListener("click", closeHandler), 0);
+}
+
+/* ------------------------------------------------------------------ */
 /*  面板事件绑定                                                       */
 /* ------------------------------------------------------------------ */
 
@@ -311,6 +392,14 @@ export function initPaletteEvents() {
   container.addEventListener("click", (e) => {
     // --- 防止点击输入框触发选中 ---
     if (e.target.classList.contains("user-input-field") || e.target.classList.contains("skill-input-field")) return;
+    // --- 团队 buff 属性加成配置按钮 ---
+    const configBtn = e.target.closest(".team-buff-config-btn");
+    if (configBtn) {
+      e.stopPropagation();
+      const sourceSlot = parseInt(configBtn.dataset.sourceSlot, 10);
+      showTeamBuffStatPopup(sourceSlot, configBtn);
+      return;
+    }
     // --- 移除通用技能 ---
     const removeGs = e.target.closest("[data-remove-gs]");
     if (removeGs) {
