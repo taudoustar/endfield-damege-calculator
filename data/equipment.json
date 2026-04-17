@@ -1,5 +1,186 @@
 [
   {
+    "#": "==================这里开始是壤流=================="
+  },
+  {"#": "壤流轻甲"},
+  {
+    "id": "Xiranflow_Light_Armor",
+    "name": "壤流轻甲·寒冷电磁伤害",
+    "slot": "armor",
+    "setId": "Xiranflow",
+    "statBonuses": { "will": 113, "intellect": 75 },
+    "buffs": [
+      {
+        "id": "Xiranflow_Light_Armor_b1",
+        "name": "壤流轻甲",
+        "description": "寒冷和电磁伤害提升14.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
+  {"#": "壤流护手"},
+  {
+    "id": "Xiranflow_Gloves",
+    "name": "壤流护手·寒冷电磁伤害",
+    "slot": "gloves",
+    "setId": "Xiranflow",
+    "statBonuses": { "will": 84, "intellect": 55 },
+    "buffs": [
+      {
+        "id": "Xiranflow_Gloves_b1",
+        "name": "壤流护手",
+        "description": "寒冷和电磁伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
+  {"#": "壤流短棍"},
+  {
+    "id": "Xiranflow_Baton",
+    "name": "壤流短棍·战技",
+    "slot": "kit",
+    "setId": "Xiranflow",
+    "statBonuses": { "will": 41, "intellect": 27 },
+    "buffs": [
+      {
+        "id": "Xiranflow_Baton_b1",
+        "name": "壤流短棍",
+        "description": "战技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是清波=================="
+  },
+  {"#": "清波重甲"},
+  {
+    "id": "Qingbo_Heavy_Armor",
+    "name": "清波重甲·充能",
+    "slot": "armor",
+    "setId": "Qingbo",
+    "statBonuses": { "agility": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "Qingbo_Heavy_Armor_b1",
+        "name": "清波重甲",
+        "description": "终结技充能效率提升16%"
+      }
+    ]
+  },
+  {"#": "清波轻甲"},
+  {
+    "id": "Qingbo_Light_Armor",
+    "name": "清波轻甲·源石技艺强度",
+    "slot": "armor",
+    "setId": "Qingbo",
+    "statBonuses": { "intellect": 113, "will": 75 },
+    "buffs": [
+      {
+        "id": "Qingbo_Light_Armor_b1",
+        "name": "清波轻甲",
+        "description": "源石技艺强度提升26",
+        "statBonuses": { "artsIntensity": 26 }
+      }
+    ]
+  },
+  {"#": "清波手甲"},
+  {
+    "id": "Qingbo_Gauntlets",
+    "name": "清波手甲·技能",
+    "slot": "gloves",
+    "setId": "Qingbo",
+    "statBonuses": { "agility": 84, "strength": 55 },
+    "buffs": [
+      {
+        "id": "Qingbo_Gauntlets_b1",
+        "name": "清波手甲",
+        "description": "所有技能伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "skill" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "combo" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
+  {"#": "清波护手"},
+  {
+    "id": "Qingbo_Gloves",
+    "name": "清波护手·充能",
+    "slot": "gloves",
+    "setId": "Qingbo",
+    "statBonuses": { "intellect": 84, "will": 55 },
+    "buffs": [
+      {
+        "id": "Qingbo_Gloves_b1",
+        "name": "清波护手",
+        "description": "终结技充能效率提升26.7%"
+      }
+    ]
+  },
+  {"#": "清波水罐"},
+  {
+    "id": "Qingbo_Cask",
+    "name": "清波水罐·源石技艺强度",
+    "slot": "kit",
+    "setId": "Qingbo",
+    "statBonuses": { "intellect": 41, "will": 27 },
+    "buffs": [
+      {
+        "id": "Qingbo_Cask_b1",
+        "name": "清波水罐",
+        "description": "源石技艺强度提升53",
+        "statBonuses": { "artsIntensity": 53 }
+      }
+    ]
+  },
+  {"#": "清波定位仪"},
+  {
+    "id": "Qingbo_Positioning_Kit",
+    "name": "清波定位仪·战技",
+    "slot": "kit",
+    "setId": "Qingbo",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Qingbo_Positioning_Kit_b1",
+        "name": "清波定位仪",
+        "description": "战技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  {"#": "清波竹刃"},
+  {
+    "id": "Qingbo_Bamboo_Cutter",
+    "name": "清波竹刃·灼热自然伤害",
+    "slot": "kit",
+    "setId": "Qingbo",
+    "statBonuses": { "strength": 41, "agility": 27 },
+    "buffs": [
+      {
+        "id": "Qingbo_Bamboo_Cutter_b1",
+        "name": "清波竹刃",
+        "description": "灼热和自然伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Heat" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  {
     "#": "==================这里开始是潮涌=================="
   },
   {"#": "落潮轻甲"},
@@ -188,12 +369,26 @@
       {
         "id": "Frontiers_Fiber_Gloves_b1",
         "name": "拓荒纤维手套",
-        "description": "所以技能伤害提升29.9%",
+        "description": "所有技能伤害提升29.9%",
         "effects": [
           { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "skill" } },
           { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "combo" } },
           { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "ultimate" } }
         ]
+      }
+    ]
+  },
+  {
+    "id": "Frontiers_Fiber_Gloves_T1",
+    "name": "拓荒纤维手套·壹型·充能",
+    "slot": "gloves",
+    "setId": "Frontiers",
+    "statBonuses": { "intellect": 84, "agility": 55 },
+    "buffs": [
+      {
+        "id": "Frontiers_Fiber_Gloves_T1_b1",
+        "name": "拓荒纤维手套·壹型",
+        "description": "终结技充能效率26.7%"
       }
     ]
   },
@@ -227,6 +422,21 @@
       {
         "id": "Frontiers_Extra_O2_Tube_b1",
         "name": "拓荒增量供氧栓",
+        "description": "副能力提升26.9%"
+      }
+    ]
+  },
+  {
+    "id": "Frontiers_Extra_O2_Tube_T1",
+    "name": "拓荒增量供氧栓·壹型·副能力",
+    "slot": "kit",
+    "setId": "Frontiers",
+    "statBonuses": { "intellect": 41, "agility": 27 },
+    "subAffixes": [{ "flat": 0, "percent": 0.269 }],
+    "buffs": [
+      {
+        "id": "Frontiers_Extra_O2_Tube_T1_b1",
+        "name": "拓荒增量供氧栓·壹型",
         "description": "副能力提升26.9%"
       }
     ]
@@ -554,6 +764,25 @@
       }
     ]
   },
+  {"#": "碾骨手套"},
+  {
+    "id": "Bonekrusha_Gloves",
+    "name": "碾骨手套·寒冷电磁伤害",
+    "slot": "gloves",
+    "setId": "Bonekrusha",
+    "statBonuses": { "will": 84, "agility": 55 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Gloves_b1",
+        "name": "碾骨手套",
+        "description": "寒冷和电磁伤害提升24.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Cryo" } },
+          { "category": "DMG_Dealt", "value": 0.249, "condition": { "element": "Electric" } }
+        ]
+      }
+    ]
+  },
   {"#": "碾骨腕带"},
   {
     "id": "Bonekrusha_Wristband",
@@ -622,6 +851,23 @@
         "description": "连携技伤害提升53.8%",
         "effects": [
           { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "combo" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Bonekrusha_Figurine_T2",
+    "name": "碾骨小雕像·贰型·战技",
+    "slot": "kit",
+    "setId": "Bonekrusha",
+    "statBonuses": { "will": 41, "intellect": 27 },
+    "buffs": [
+      {
+        "id": "Bonekrusha_Figurine_T2_b1",
+        "name": "碾骨小雕像·贰型",
+        "description": "战技伤害提升53.8%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.538, "condition": { "skillType": "skill" } }
         ]
       }
     ]
@@ -1261,6 +1507,23 @@
       }
     ]
   },
+  {
+    "id": "Swordmancer_Heavy_Armor_T1",
+    "name": "点剑重装甲·壹型·物理伤害",
+    "slot": "armor",
+    "setId": "Swordmancer",
+    "statBonuses": { "agility": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "Swordmancer_Heavy_Armor_T1_b1",
+        "name": "点剑重装甲·壹型",
+        "description": "物理伤害提升14.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
   {"#": "点剑战术手甲"},
   {
     "id": "Swordmancer_TAC_Gauntlets",
@@ -1276,6 +1539,21 @@
         "effects": [
           { "category": "DMG_Dealt", "value": 0.561, "condition": { "skillType": "ultimate" } }
         ]
+      }
+    ]
+  },
+  {
+    "id": "Swordmancer_TAC_Gauntlets_T1",
+    "name": "点剑战术手甲·壹型·源石技艺强度",
+    "slot": "gloves",
+    "setId": "Swordmancer",
+    "statBonuses": { "strength": 84, "will": 55 },
+    "buffs": [
+      {
+        "id": "Swordmancer_TAC_Gauntlets_T1_b1",
+        "name": "点剑战术手甲·壹型",
+        "description": "源石技艺强度提升44",
+        "statBonuses": { "artsIntensity": 44 }
       }
     ]
   },
@@ -1345,6 +1623,24 @@
         "description": "物理伤害提升29.9%",
         "effects": [
           { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {"#": "点剑短剑"},
+  {
+    "id": "Swordmancer_Dagger",
+    "name": "点剑短剑·终结技",
+    "slot": "kit",
+    "setId": "Swordmancer",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Swordmancer_Dagger_b1",
+        "name": "点剑短剑",
+        "description": "终结技伤害提升67.3%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.673, "condition": { "skillType": "ultimate" } }
         ]
       }
     ]

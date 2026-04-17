@@ -211,7 +211,13 @@ export function applySkillOverrides(skills, activeBuffs) {
     const newHits = skill.hits.map((h) => ({ ...h }));
     for (const o of relevant) {
       if (o.hitIndex != null && newHits[o.hitIndex]) {
-        if (o.multiplier != null) newHits[o.hitIndex].multiplier = o.multiplier;
+        if (o.multiplier != null) {
+          const cur = newHits[o.hitIndex].multiplier;
+          // 只在类型匹配时替换：数组替换数组，数字替换数字
+          if (Array.isArray(o.multiplier) === Array.isArray(cur)) {
+            newHits[o.hitIndex].multiplier = o.multiplier;
+          }
+        }
         if (o.element != null) newHits[o.hitIndex].element = o.element;
       }
       if (o.addHit) {
@@ -240,7 +246,12 @@ export function applyGenericSkillOverrides(skill, activeBuffs) {
   const newHits = skill.hits.map((h) => ({ ...h }));
   for (const o of overrides) {
     if (o.hitIndex != null && newHits[o.hitIndex]) {
-      if (o.multiplier != null) newHits[o.hitIndex].multiplier = o.multiplier;
+      if (o.multiplier != null) {
+        const cur = newHits[o.hitIndex].multiplier;
+        if (Array.isArray(o.multiplier) === Array.isArray(cur)) {
+          newHits[o.hitIndex].multiplier = o.multiplier;
+        }
+      }
       if (o.element != null) newHits[o.hitIndex].element = o.element;
     }
     if (o.addHit) {
@@ -281,41 +292,4 @@ export function collectCrit(activeBuffs, context, baseCritRate = 0, baseCritDama
   const expectedMultiplier = 1 + critRate * critDamage;
 
   return { critRate, critDamage, expectedMultiplier };
-}
-
-/**
- * 计算角色所有技能的伤害（含攻击力计算）
- * @param {Array}  skills       - 角色技能列表
- * @param {Array}  activeBuffs  - 所有激活的 buff
- * @param {Array}  categoryDefs - 伤害乘区定义
- * @param {Object} atkConfig    - 攻击力配置 { baseAtk, weaponAtk, statConfig, statTotals }
- */
-export function calculateAllWithAtk(skills, activeBuffs, categoryDefs, atkConfig) {
-  return skills.map((skill) => {
-    const hits = skill.hits.map((hit) => {
-      const context = { skillType: skill.type, element: hit.element, statTotals: atkConfig.statTotals };
-
-      // 阶段1: 攻击力
-      const atkResult = calculateAtk(atkConfig, activeBuffs, context);
-      const effectiveBase = hit.multiplier * atkResult.totalAtk;
-
-      // 阶段2: 伤害乘区
-      const { finalDamage, breakdown } = calculate(
-        effectiveBase, activeBuffs, categoryDefs, context
-      );
-
-      return {
-        element: hit.element,
-        multiplier: hit.multiplier,
-        totalAtk: atkResult.totalAtk,
-        atkBreakdown: atkResult.breakdown,
-        effectiveBase,
-        finalDamage: finalDamage * 0.5, // 怪物默认50%防御
-        breakdown,
-      };
-    });
-
-    const totalDamage = hits.reduce((sum, h) => sum + h.finalDamage, 0);
-    return { skill, hits, totalDamage };
-  });
 }

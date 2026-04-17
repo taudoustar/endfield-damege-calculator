@@ -32,6 +32,16 @@ function placeItem(grid, char, row, col, selection) {
   if (col === 0 && selection.type === "skill") {
     // 放置技能到技能列
     grid[row].skillIndex = selection.id;
+    // 从 palette 的 skillInputValues 同步初始值
+    const slot = state.slots[state.activeSlotIndex];
+    const skill = typeof selection.id === "string"
+      ? genericSkills.find((s) => s.id === selection.id)
+      : char.skills[selection.id];
+    if (skill?.userInput) {
+      grid[row].skillInputValue = slot.skillInputValues?.[selection.id] ?? skill.userInput.default ?? 0;
+    } else {
+      delete grid[row].skillInputValue;
+    }
   } else if (col >= 2 && selection.type === "buff") {
     // 放置 buff 到 buff 列
     const buffCol = col - 2;
@@ -128,6 +138,14 @@ export function renderGrid() {
       const skillName = skill ? skill.name : row.skillIndex;
       html += `<td class="grid-cell grid-cell-skill filled" data-row="${r}" data-col="0">`;
       html += `<span class="grid-chip skill-chip ${skillTypeClass}">${skillName}</span>`;
+      if (skill?.userInput) {
+        const curVal = row.skillInputValue ?? skill.userInput.default ?? 0;
+        const label = skill.userInput.label || "";
+        const minAttr = skill.userInput.min != null ? ` min="${skill.userInput.min}"` : "";
+        const maxAttr = skill.userInput.max != null ? ` max="${skill.userInput.max}"` : "";
+        html += `<input type="number" class="grid-skill-input" data-row="${r}" value="${curVal}"${minAttr}${maxAttr} step="1" />`;
+        if (label) html += `<span class="grid-cell-input-label">${label}</span>`;
+      }
       html += "</td>";
     } else {
       html += `<td class="grid-cell grid-cell-skill" data-row="${r}" data-col="0"></td>`;
@@ -288,6 +306,22 @@ export function initGridEvents() {
 
   // --- 格子内 userInput 输入框：保存值，不触发放置/清除 ---
   container.addEventListener("input", (e) => {
+    // 技能等级输入框
+    if (e.target.classList.contains("grid-skill-input")) {
+      const r = parseInt(e.target.dataset.row);
+      const grid = state.grids[state.activeSlotIndex];
+      if (!grid?.[r]) return;
+      const parsed = e.target.value.trim() === "" ? null : (parseInt(e.target.value) || 0);
+      grid[r].skillInputValue = parsed;
+      // 同步回 palette 的 skillInputValues
+      const slot = state.slots[state.activeSlotIndex];
+      if (!slot.skillInputValues) slot.skillInputValues = {};
+      const skillKey = grid[r].skillIndex;
+      if (skillKey != null && parsed != null) slot.skillInputValues[skillKey] = parsed;
+      renderResult();
+      return;
+    }
+    // buff 输入框
     if (!e.target.classList.contains("grid-cell-input")) return;
     const r = parseInt(e.target.dataset.row);
     const c = parseInt(e.target.dataset.col) - 2;
@@ -306,7 +340,7 @@ export function initGridEvents() {
 
   container.addEventListener("mousedown", (e) => {
     // 防止点击输入框触发放置/清除
-    if (e.target.classList.contains("grid-cell-input")) return;
+    if (e.target.classList.contains("grid-cell-input") || e.target.classList.contains("grid-skill-input")) return;
     const cell = e.target.closest("[data-row][data-col]");
     if (!cell) return;
 

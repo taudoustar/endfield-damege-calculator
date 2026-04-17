@@ -65,7 +65,16 @@ export function renderPalette() {
     const skill = char.skills[i];
     const typeClass = skill.type; // basic / skill / combo / ultimate
     const selectedClass = isSelected("skill", i) ? " selected" : "";
-    html += `<div class="palette-item skill-item ${typeClass}${selectedClass}" data-type="skill" data-id="${i}">${skill.name}</div>`;
+    html += `<div class="palette-item skill-item ${typeClass}${selectedClass}" data-type="skill" data-id="${i}">${skill.name}`;
+    if (skill.userInput) {
+      const curVal = slot.skillInputValues?.[i] ?? skill.userInput.default ?? 0;
+      const label = skill.userInput.label || "";
+      const minAttr = skill.userInput.min != null ? ` min="${skill.userInput.min}"` : "";
+      const maxAttr = skill.userInput.max != null ? ` max="${skill.userInput.max}"` : "";
+      html += ` <input type="number" class="user-input-field skill-input-field" data-skill-index="${i}" value="${curVal}"${minAttr}${maxAttr} step="1" />`;
+      if (label) html += `<span class="user-input-label">${label}</span>`;
+    }
+    html += `</div>`;
   }
 
   html += "</div>";
@@ -81,6 +90,14 @@ export function renderPalette() {
     const selectedClass = isSelected("skill", gs.id) ? " selected" : "";
     html += `<div class="palette-item skill-item generic${selectedClass}" data-type="skill" data-id="${gs.id}">`;
     html += `${gs.name}`;
+    if (gs.userInput) {
+      const curVal = slot.skillInputValues?.[gs.id] ?? gs.userInput.default ?? 0;
+      const label = gs.userInput.label || "";
+      const minAttr = gs.userInput.min != null ? ` min="${gs.userInput.min}"` : "";
+      const maxAttr = gs.userInput.max != null ? ` max="${gs.userInput.max}"` : "";
+      html += ` <input type="number" class="user-input-field skill-input-field" data-skill-index="${gs.id}" value="${curVal}"${minAttr}${maxAttr} step="1" />`;
+      if (label) html += `<span class="user-input-label">${label}</span>`;
+    }
     html += `<button class="palette-remove-btn" data-remove-gs="${gs.id}" title="移除">×</button>`;
     html += `</div>`;
   }
@@ -272,6 +289,16 @@ export function initPaletteEvents() {
 
   // 用户输入 buff 值变更（仅刷新结果，不重建面板，避免失焦）
   container.addEventListener("input", (e) => {
+    // 技能等级输入
+    if (e.target.classList.contains("skill-input-field")) {
+      const rawIdx = e.target.dataset.skillIndex;
+      const slot = state.slots[state.activeSlotIndex];
+      if (!slot.skillInputValues) slot.skillInputValues = {};
+      slot.skillInputValues[rawIdx] = parseInt(e.target.value) || 0;
+      renderResult();
+      return;
+    }
+    // buff 输入
     if (e.target.classList.contains("user-input-field")) {
       const buffId = e.target.dataset.buffId;
       const slot = state.slots[state.activeSlotIndex];
@@ -283,7 +310,7 @@ export function initPaletteEvents() {
 
   container.addEventListener("click", (e) => {
     // --- 防止点击输入框触发选中 ---
-    if (e.target.classList.contains("user-input-field")) return;
+    if (e.target.classList.contains("user-input-field") || e.target.classList.contains("skill-input-field")) return;
     // --- 移除通用技能 ---
     const removeGs = e.target.closest("[data-remove-gs]");
     if (removeGs) {

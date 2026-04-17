@@ -1,4 +1,56 @@
 [
+  {"#": "壤流"},
+  {
+    "id": "Xiranflow",
+    "name": "壤流",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Xiranflow_b1",
+        "name": "壤流·被动",
+        "description": "装备者攻击力+10%。",
+        "effects": [
+          { "category": "atkPercent", "value": 0.1 }
+        ]
+      },
+      {
+        "id": "Xiranflow_b2",
+        "name": "壤流·触发",
+        "description": "装备者每次消耗导电或腐蚀后，根据异常等级获得相同层数的强化状态，每层使电磁伤害和自然伤害+15%，持续25秒。强化状态最多存在3层，每层单独计算持续时间。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt", "scaleRatio": 0.15, "scaleCap": 0.45, "userInput": "scaleValue", "condition": { "element": "Electric" } },
+          { "category": "DMG_Dealt", "scaleRatio": 0.15, "scaleCap": 0.45, "userInput": "scaleValue", "condition": { "element": "Nature" } }
+        ]
+      }
+    ]
+  },
+  {"#": "清波"},
+  {
+    "id": "Qingbo",
+    "name": "清波",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Qingbo_b1",
+        "name": "清波·被动",
+        "description": "装备者连携技冷却缩减+15%。"
+      },
+      {
+        "id": "Qingbo_b2",
+        "name": "清波·触发",
+        "description": "当装备者施放连携技时，所有技能伤害+20%，持续15秒。该效果最多叠加2层，每层单独计算持续时间。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt", "scaleRatio": 0.20, "scaleCap": 0.40, "userInput": "scaleValue", "condition": { "skillType": "skill" } },
+          { "category": "DMG_Dealt", "scaleRatio": 0.20, "scaleCap": 0.40, "userInput": "scaleValue", "condition": { "skillType": "combo" } },
+          { "category": "DMG_Dealt", "scaleRatio": 0.20, "scaleCap": 0.40, "userInput": "scaleValue", "condition": { "skillType": "ultimate" } }
+        ]
+      }
+    ]
+  },
   {"#": "潮涌"},
   {
     "id": "Tide_Surge",

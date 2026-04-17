@@ -468,8 +468,14 @@ function calculateSlotDamage(slotIndex) {
         statTotals: rowStatTotals,
       };
 
+      // 支持 multiplier 数组：按行的 skillInputValue 取对应等级的倍率
+      const rawMult = hit.multiplier;
+      const multiplier = Array.isArray(rawMult)
+        ? (rawMult[row.skillInputValue ?? skill.userInput?.default ?? 0] ?? rawMult[rawMult.length - 1])
+        : rawMult;
+
       const atkResult = calculateAtk(rowAtkConfig, rowBuffs, context);
-      const effectiveBase = hit.multiplier * atkResult.totalAtk;
+      const effectiveBase = multiplier * atkResult.totalAtk;
       const { finalDamage, breakdown } = calculate(effectiveBase, rowBuffs, categories, context);
 
       // 异常技能额外乘以 f(源石技艺强度)
@@ -490,7 +496,7 @@ function calculateSlotDamage(slotIndex) {
 
       hits.push({
         element: hit.element,
-        multiplier: hit.multiplier,
+        multiplier,
         totalAtk: atkResult.totalAtk,
         atkBreakdown: atkResult.breakdown,
         effectiveBase,

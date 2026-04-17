@@ -1,0 +1,158 @@
+{
+  "id": "Zhuang_Fangyi",
+  "name": "庄方宜",
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseAtk": 326,
+  "baseStats": { "strength": 99, "agility": 99, "intellect": 123, "will": 184 },
+  "statConfig": {
+    "primary": { "stat": "will", "ratio": 0.005 },
+    "secondary": [{ "stat": "intellect", "ratio": 0.002 }]
+  },
+  "weaponType": "Arts_Unit",
+  "skills": [
+    {
+      "name": "普通攻击一段·疾电法",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.36 }]
+    },
+    {
+      "name": "普通攻击二段·疾电法",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.54 }]
+    },
+    {
+      "name": "普通攻击三段·疾电法",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.71 }]
+    },
+    {
+      "name": "普通攻击四段·疾电法",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 1.01 }]
+    },
+    {
+      "name": "重击·疾电法",
+      "type": "strike",
+      "hits": [{ "element": "Electric", "multiplier": 1.08 }]
+    },
+    {
+      "name": "惊霆诀·雷击",
+      "type": "skill",
+      "userInput": { "label": "级导电", "default": 0, "min": 0, "max": 4 },
+      "hits": [
+        { "element": "Electric", "multiplier": [0.45, 0.54, 0.63, 0.72, 0.81] }
+      ]
+    },
+    {
+      "name": "惊霆诀·雷击·终结技",
+      "type": "skill",
+      "userInput": { "label": "级导电", "default": 0, "min": 0, "max": 4 },
+      "hits": [
+        { "element": "Electric", "multiplier": [0.90, 1.08, 1.26, 1.44, 1.62] }
+      ]
+    },
+    {
+      "name": "一息万变",
+      "type": "combo",
+      "hits": [
+        { "element": "Electric", "multiplier": 3.6 }
+      ]
+    },
+    {
+      "name": "一息万变·终结技",
+      "type": "combo",
+      "hits": [
+        { "element": "Electric", "multiplier": 5.4 }
+      ]
+    },
+    {
+      "name": "万钧风雷·普通攻击一段",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 1.5}]
+    },
+    {
+      "name": "万钧风雷·普通攻击二段",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 2.1 }]
+    },
+    {
+      "name": "万钧风雷·普通攻击三段",
+      "type": "strike",
+      "hits": [{ "element": "Electric", "multiplier": 3.0 }]
+    },
+    {
+      "name": "下落攻击·庄方宜",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·庄方宜",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Zhuang_Fangyi",
+      "name": "信赖·庄方宜",
+      "description": "意志+60",
+      "statBonuses": { "will": 60 }
+    },
+    {
+      "id": "Force_of_Nature",
+      "name": "天赋·天地造化",
+      "description": "施放战技惊霆诀时对自身施加18%电磁增幅，持续5秒。战技的雷击命中时使该效果+2%。每次施放战技惊霆诀时，该电磁增幅效果重置。",
+      "optional": true,
+      "userInput": { "label": "层", "default": 0, "scale": 1 },
+      "effects": [
+        { "category": "Arts_Amp", "value": 0.18, "condition": { "element":"Electric" } },
+        { 
+          "category": "Arts_Amp",
+          "scaleRatio": 0.02,
+          "userInput": "scaleValue", "condition": { "element":"Electric" }
+        }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Four_Symbols_of_Harmony",
+      "name": "潜能1·和合四象",
+      "description": "战技惊霆诀的伤害倍率提升至原本的1.15倍。且进入战斗后首次施放战技额外生成1柄青霆剑。",
+      "skillOverrides": [
+        { "skillIndex": 5, "hitIndex": 0, "multiplier": [0.5175, 0.621, 0.7245, 0.828, 0.9315] },
+        { "skillIndex": 6, "hitIndex": 0, "multiplier": [1.035, 1.242, 1.449, 1.656, 1.863] }
+      ]
+    },
+    {
+      "id": "Acuity_of_Fine_Details",
+      "name": "潜能2·通元识微",
+      "description": "意志+20，战技伤害+15%",
+      "statBonuses": { "will": 20 },
+      "effects": [
+        { "category": "DMG_Dealt", "value": 0.15, "condition": { "skillType": "skill" } }
+      ]
+    },
+    {
+      "id": "Sense_and_Response",
+      "name": "潜能3·一感一应",
+      "description": "战技惊霆诀消耗导电后返还10点技力。青霆剑的存在时间+10秒。"
+    },
+    {
+      "id": "Absolute_Composure",
+      "name": "潜能4·千定万定",
+      "description": "终结技万钧风雷所需的终结技能量-15%。"
+    },
+    {
+      "id": "Storm_of_Transformation",
+      "name": "潜能5·风云之变",
+      "description": "天理合真状态下，自身造成的伤害无视敌人15点电磁抗性。",
+      "optional": true,
+      "effects": [
+        { "category": "Resistance", "value": 0.15, "condition": { "element": "Electric" } }
+      ]
+    }
+  ]
+}

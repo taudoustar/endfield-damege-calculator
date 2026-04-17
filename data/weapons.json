@@ -464,6 +464,108 @@
   {
     "#": "=====================施术单元====================="
   },
+  { "#": "孤舟" },
+  {
+    "id": "Lone_Barge",
+    "name": "孤舟",
+    "type": "Arts_Unit",
+    "baseAtk": 510,
+    "statBonuses": { "will": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Lone_Barge_p1",
+        "name": "攻击提升·大",
+        "description": "攻击提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.39 }
+        ]
+      },
+      {
+        "id": "Lone_Barge_p2",
+        "name": "压制·流霆·被动",
+        "description": "电磁伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448], "condition": { "element": "Electric" } }
+        ]
+      },
+      {
+        "id": "Lone_Barge_p3",
+        "name": "压制·流霆·触发1",
+        "description": "装备者通过战技消耗法术异常时，战技造成的电磁伤害+48.0%，持续20秒。该效果最多叠加2层，每层单独计算持续时间，每0.1秒最多触发一次。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { 
+            "category": "DMG_Dealt",
+            "scaleRatio": [0.32, 0.36, 0.40, 0.44, 0.48, 0.56],
+            "scaleCap": [0.64, 0.72, 0.80, 0.88, 0.96, 1.12],
+            "userInput": "scaleValue",
+            "condition": { "element": "Electric", "skillType": "skill" } 
+          }
+        ]
+      },
+      {
+        "id": "Lone_Barge_p4",
+        "name": "压制·流霆·触发2",
+        "description": "装备者施放终结技后，战技造成的电磁伤害+80.0%，持续25秒。",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.64, 0.72, 0.80, 0.88, 0.96, 1.12], "condition": { "element": "Electric", "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  { "#": "雾中微光" },
+  {
+    "id": "Flickers_in_the_Mist",
+    "name": "雾中微光",
+    "type": "Arts_Unit",
+    "baseAtk": 490,
+    "statBonuses": { "will": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Flickers_in_the_Mist_p1",
+        "name": "电磁伤害提升·大",
+        "description": "电磁伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.433, "condition": { "element": "Electric" } }
+        ]
+      },
+      {
+        "id": "Flickers_in_the_Mist_p2",
+        "name": "效益·微光层叠·被动",
+        "description": "攻击力提升",
+        "effects": [
+          { "category": "atkPercent", "value": [0.112, 0.126, 0.140, 0.154, 0.168, 0.196] }
+        ]
+      },
+      {
+        "id": "Flickers_in_the_Mist_p3",
+        "name": "效益·微光层叠·触发1",
+        "description": "装备者获得电磁增幅时，电磁伤害提升，持续30秒。同名效果最多叠加3层，每层单独计算持续时间，每0.1秒最多触发一次。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { 
+            "category": "DMG_Dealt",
+            "scaleRatio": [0.088, 0.099, 0.110, 0.121, 0.132, 0.154],
+            "scaleCap": [0.264, 0.297, 0.330, 0.363, 0.396, 0.462],
+            "userInput": "scaleValue",
+            "condition": { "element": "Electric" } 
+          }
+        ]
+      },
+      {
+        "id": "Lone_Barge_p4",
+        "name": "压制·流霆·触发2",
+        "description": "装备者施放终结技后，战技造成的电磁伤害+80.0%，持续25秒。",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.64, 0.72, 0.80, 0.88, 0.96, 1.12], "condition": { "element": "Electric", "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
   { "#": "爆破单元" },
   {
     "id": "Detonation_Unit",
