@@ -410,6 +410,46 @@
       }
     ]
   },
+  { "#": "O.B.J.轻芒" },
+  {
+    "id": "OBJ_Edge_of_Lightness",
+    "name": "O.B.J.轻芒",
+    "type": "Sword",
+    "baseAtk": 411,
+    "statBonuses": { "agility": 124 },
+    "subAffixes": [{ "flat": 0 , "percent": [0.08, 0.09, 0.10, 0.11, 0.12, 0.14] }],
+    "potentialBuffs":[
+      {
+        "id": "OBJ_Edge_of_Lightness_p1",
+        "name": "攻击提升·中",
+        "description": "攻击提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.312 }
+        ]
+      },
+      {
+        "id": "OBJ_Edge_of_Lightness_p2",
+        "name": "流转·不羁锋芒·被动",
+        "description": "副能力提升",
+      },
+      {
+        "id": "OBJ_Edge_of_Lightness_p3",
+        "name": "流转·不羁锋芒·触发",
+        "description": "装备者通过自身技能恢复技力后，全队造成的灼热和电磁伤害提升，持续20秒。同名效果最多叠加3层，每层单独计算持续时间。",
+        "scope": "team",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt",
+            "scaleRatio": [0.048, 0.054, 0.060, 0.066, 0.072, 0.084],
+            "scaleCap": [0.144, 0.162, 0.180, 0.198, 0.216, 0.252],
+            "userInput": "scaleValue",
+            "condition": { "element": ["Heat", "Electric"] }
+          }
+        ]
+      }
+    ]
+  },
   {
     "#": "=====================双手剑====================="
   },
