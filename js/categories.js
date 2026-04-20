@@ -13,6 +13,7 @@ export const categories = [
   { key: "Resistance", label: "抗性" },
   { key: "Link", label: "连击" },
   { key: "Staggered", label: "失衡" },
+  { key: "Finisher", label: "处决" },
 
 
 

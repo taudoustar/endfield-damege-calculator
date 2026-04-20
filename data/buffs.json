@@ -110,5 +110,15 @@
     "effects":[
       { "category": "Staggered", "scaleRatio": 0.01, "userInput": "scaleValue" }
     ]
+  },
+  {
+    "id": "Finisher",
+    "name": "处决",
+    "group": "通用",
+    "description": "处决额外倍率",
+    "userInput": { "label": "乘区", "default": 75, "scale": 1 },
+    "effects":[
+      { "category": "Finisher", "scaleRatio": 0.01, "userInput": "scaleValue" }
+    ]
   }
 ]

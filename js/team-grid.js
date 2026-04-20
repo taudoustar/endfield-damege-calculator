@@ -49,16 +49,12 @@ function placeItem(grid, char, row, col, selection) {
     while (grid[row].buffCells.length <= buffCol) {
       grid[row].buffCells.push(null);
     }
-    // 若已有旧值保留其 inputValue；否则快照当前槽位值作为初始独立值
-    const existing = grid[row].buffCells[buffCol];
-    const prevInput = (existing && typeof existing === "object") ? existing.inputValue : undefined;
-    let initInput = prevInput;
-    if (initInput == null) {
-      const buff = findBuffById(selection.id);
-      if (buff?.userInput) {
-        const slotVals = state.slots[state.activeSlotIndex]?.userInputValues || {};
-        initInput = slotVals[buff.id] ?? buff.userInput.default ?? 0;
-      }
+    // 始终用 palette 当前值快照
+    let initInput = undefined;
+    const buff = findBuffById(selection.id);
+    if (buff?.userInput) {
+      const slotVals = state.slots[state.activeSlotIndex]?.userInputValues || {};
+      initInput = slotVals[buff.id] ?? buff.userInput.default ?? 0;
     }
     grid[row].buffCells[buffCol] = initInput != null
       ? { id: selection.id, inputValue: initInput }
