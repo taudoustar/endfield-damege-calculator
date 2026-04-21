@@ -316,27 +316,15 @@ function findBuffById(id, slotIndex) {
     if (b.id === id) return b;
   }
 
-  // 武器 buff：返回 resolve 后的版本（标量值），避免数组参与计算导致 NaN
-  if (slotIndex != null) {
-    const slot = state.slots[slotIndex];
-    if (slot && slot.weaponId) {
-      const w = weapons.find((w) => w.id === slot.weaponId);
-      if (w) {
-        const resolved = resolveWeaponBuffs(w, slot.weaponPotLevel);
-        const found = resolved.find((b) => b.id === id);
-        if (found) return found;
-      }
-    }
-  }
-  // 兜底：无 slotIndex 时搜索所有武器的 resolved buff（使用 level 0）
-  for (const w of weapons) {
-    if (!w.potentialBuffs) continue;
-    for (const pb of w.potentialBuffs) {
-      if (pb.id === id) {
-        const resolved = resolveWeaponBuffs(w, 0);
-        return resolved.find((b) => b.id === id) || pb;
-      }
-    }
+  // 武器 buff：搜索所有 slot 的武器，用各自的 weaponPotLevel 解析
+  for (let s = 0; s < 4; s++) {
+    const scanSlot = state.slots[s];
+    if (!scanSlot?.weaponId) continue;
+    const w = weapons.find((w) => w.id === scanSlot.weaponId);
+    if (!w) continue;
+    const resolved = resolveWeaponBuffs(w, scanSlot.weaponPotLevel);
+    const found = resolved.find((b) => b.id === id);
+    if (found) return found;
   }
 
   // 装备 buff
