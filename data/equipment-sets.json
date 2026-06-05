@@ -1,4 +1,40 @@
 [
+  {"#": "旧锋"},
+  {
+    "id": "Grizzled_Edge",
+    "name": "旧锋",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Grizzled_Edge_b1",
+        "name": "旧锋·被动",
+        "description": "装备者攻击力+8%。",
+        "effects": [
+          { "category": "atkPercent", "value": 0.08 }
+        ]
+      },
+      {
+        "id": "Grizzled_Edge_b2",
+        "name": "旧锋·触发",
+        "description": "装备者造成猛击、碎甲时，根据消耗的最大破防层数，使自身物理伤害+[6%×消耗层数]，持续20秒。若目标已处于物理脆弱、失衡状态或被附着源石结晶，上述增益效果变为1.5倍。增益效果无法叠加。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt", "scaleRatio": 0.06, "scaleCap": 0.24, "userInput": "scaleValue", "condition": { "element": "Physical" } }
+        ]
+      },
+      {
+        "id": "Grizzled_Edge_b3",
+        "name": "旧锋·触发·1.5倍",
+        "description": "装备者造成猛击、碎甲时，根据消耗的最大破防层数，使自身物理伤害+[6%×消耗层数]，持续20秒。若目标已处于物理脆弱、失衡状态或被附着源石结晶，上述增益效果变为1.5倍。增益效果无法叠加。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt", "scaleRatio": 0.09, "scaleCap": 0.36, "userInput": "scaleValue", "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
   {"#": "壤流"},
   {
     "id": "Xiranflow",

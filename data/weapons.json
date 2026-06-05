@@ -523,7 +523,7 @@
       {
         "id": "Exemplar_p2",
         "name": "压制·多层斩断·被动",
-        "description": "所有技能增伤",
+        "description": "物理伤害提升",
         "effects": [
           { "category": "DMG_Dealt", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "element": "Physical" } }
         ]
@@ -538,6 +538,92 @@
           { "category": "DMG_Dealt",
           "scaleRatio": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28],
           "scaleCap": [0.48, 0.54, 0.60, 0.66, 0.72, 0.84],
+          "userInput": "scaleValue",
+          "condition": { "element": "Physical" }}
+        ]
+      }
+    ]
+  },
+  { "#": "赤缨" },
+  {
+    "id": "Amaranthine_Tassel",
+    "name": "赤缨",
+    "type": "Greatsword",
+    "baseAtk": 510,
+    "statBonuses": { "strength": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Amaranthine_Tassel_p1",
+        "name": "攻击提升·大",
+        "description": "攻击提升",
+        "effects": [
+          { "category": "atkPercent", "value": 0.39 }
+        ]
+      },
+      {
+        "id": "Amaranthine_Tassel_p2",
+        "name": "巧技·赤断·被动",
+        "description": "物理伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.256, 0.288, 0.320, 0.352, 0.384, 0.448], "condition": { "element": "Physical" } }
+        ]
+      },
+      {
+        "id": "Amaranthine_Tassel_p3",
+        "name": "巧技·赤断·触发1",
+        "description": "装备者施加物理脆弱时，源石技艺强度提升，持续20秒",
+        "optional": true,
+        "statBonuses": { "artsIntensity": [48, 54, 60, 66, 72, 84] }
+      },
+      {
+        "id": "Amaranthine_Tassel_p4",
+        "name": "巧技·赤断·触发2",
+        "description": "装备者造成猛击时，根据消耗的最大破防层数，使自身物理伤害提升，持续30秒。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.144, 0.162, 0.180, 0.198, 0.216, 0.252], "condition": { "element": "Physical" }},
+          { "category": "DMG_Dealt",
+          "scaleRatio": [0.048, 0.054, 0.060, 0.066, 0.072, 0.084],
+          "scaleCap": [0.192, 0.216, 0.240, 0.264, 0.288, 0.336],
+          "userInput": "scaleValue",
+          "condition": { "element": "Physical" }}
+        ]
+      }
+    ]
+  },
+  { "#": "幻想苦痛" },
+  {
+    "id": "Phantom_Pain",
+    "name": "幻想苦痛",
+    "type": "Greatsword",
+    "baseAtk": 490,
+    "statBonuses": { "strength": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Phantom_Pain_p1",
+        "name": "源石技艺强度·大",
+        "description": "源石技艺强度提升",
+        "statBonuses": { "artsIntensity": [34, 42, 50, 58, 66, 78]}
+      },
+      {
+        "id": "Phantom_Pain_p2",
+        "name": "压制·苦痛重叠·被动",
+        "description": "物理伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.112, 0.126, 0.149, 0.154, 0.168, 0.196], "condition": { "element": "Physical" } }
+        ]
+      },
+      {
+        "id": "Phantom_Pain_p3",
+        "name": "压制·苦痛重叠·触发",
+        "description": "装备者造成猛击时，根据消耗的最大破防层数，使自身物理伤害提升，持续30秒。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          { "category": "DMG_Dealt",
+          "scaleRatio": [0.088, 0.099, 0.110, 0.121, 0.132, 0.154],
+          "scaleCap": [0.264, 0.297, 0.330, 0.363, 0.396, 0.462],
           "userInput": "scaleValue",
           "condition": { "element": "Physical" }}
         ]
@@ -1316,6 +1402,48 @@
         "optional": true,
         "effects": [
           { "category": "DMG_Dealt", "value": [0.16, 0.18, 0.20, 0.22, 0.24, 0.28], "condition": { "element": "Electric", "skillType": "skill" } }
+        ]
+      }
+    ]
+  },
+  { "#": "灯火使命" },
+  {
+    "id": "Beacon_of_Duty",
+    "name": "灯火使命",
+    "type": "Polearm",
+    "baseAtk": 485,
+    "statBonuses": { "agility": 156 },
+    "potentialBuffs": [
+      {
+        "id": "Beacon_of_Duty_p1",
+        "name": "终结技充能效率提升·大",
+        "description": "终结技充能效率提升"
+      },
+      {
+        "id": "Beacon_of_Duty_p2",
+        "name": "效益·灯火灼身·被动",
+        "description": "灼热伤害提升",
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.128, 0.144, 0.160, 0.176, 0.192, 0.224], "condition": { "element": "Heat" } }
+        ]
+      },
+      {
+        "id": "Cohesive_Traction_p3",
+        "name": "效益·灯火灼身·触发1",
+        "description": "装备者通过自身技能施加灼热附着时，自身物理和灼热伤害+12.8%",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.128, 0.144, 0.16, 0.176, 0.192, 0.224] , "condition": { "element": ["Physical", "Heat"] } }
+        ]
+      },
+      {
+        "id": "Cohesive_Traction_p4",
+        "name": "效益·灯火灼身·触发2",
+        "description": "装备者施放连携技时，30秒内的下次战技期间造成的电磁伤害提升",
+        "scope": "team",
+        "optional": true,
+        "effects": [
+          { "category": "DMG_Dealt", "value": [0.064, 0.072, 0.080, 0.088, 0.096, 0.112] , "condition": { "element": ["Physical", "Heat"] } }
         ]
       }
     ]

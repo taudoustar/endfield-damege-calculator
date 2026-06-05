@@ -1,0 +1,165 @@
+{
+  "id": "Mi_Fu",
+  "name": "弭弗",
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseAtk": 315,
+  "baseStats": { "strength": 173, "agility": 92, "intellect": 90, "will": 119 },
+  "statConfig": {
+    "primary": { "stat": "strength", "ratio": 0.005 },
+    "secondary": [{ "stat": "will", "ratio": 0.002 }]
+  },
+  "weaponType": "Greatsword",
+  "skills": [
+    {
+      "name": "普通攻击一段·剑行拳意",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.76 }]
+    },
+    {
+      "name": "普通攻击二段·剑行拳意",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 0.86 }]
+    },
+    {
+      "name": "普通攻击三段·剑行拳意",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.36 }]
+    },
+    {
+      "name": "重击·剑行拳意",
+      "type": "strike",
+      "hits": [{ "element": "Physical", "multiplier": 1.72 }]
+    },
+    {
+      "name": "清波三艺一段",
+      "type": "skill",
+      "hits": [
+        { "element": "Physical", "multiplier": 1.5 }
+      ]
+    },
+    {
+      "name": "清波三艺二段",
+      "type": "skill",
+      "hits": [
+        { "element": "Physical", "multiplier": 2.0 }
+      ]
+    },
+    {
+      "name": "清波三艺三段",
+      "type": "status",
+      "hits": [
+        { "element": "Physical", "multiplier": 6.0 }
+      ]
+    },
+    {
+      "name": "拳出无悔",
+      "type": "combo",
+      "hits": [
+        { "element": "Physical", "multiplier": 2.5 }
+      ]
+    },
+    {
+      "name": "绝心",
+      "type": "ultimate",
+      "hits": [
+        { "element": "Physical", "multiplier": 7.0 }
+      ]
+    },
+    {
+      "name": "下落攻击·弭弗",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·弭弗",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Mi_Fu",
+      "name": "信赖·弭弗",
+      "description": "力量+60",
+      "statBonuses": { "strength": 60 }
+    },
+    {
+      "id": "Fists_of_No_Regrets",
+      "name": "拳出无悔·物理脆弱",
+      "description": "使用拳出无悔痛击前方的敌人时，施加5%的物理脆弱。",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "Susceptibility", "value": 0.05, "condition": { "element": "Physical" } }
+      ]
+    },
+    {
+      "id": "Stern_Crackdown",
+      "name": "天赋·冷面无情",
+      "description": "施战技开天命中时，若目标处于物理脆弱或失衡状态，伤害倍率提升至原本的1.2倍。",
+      "optional": true,
+      "effects": [
+        { "category": "Mi_Fu_Stern_Crackdown", "value": 0.2 }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Restless_Watch",
+      "name": "潜能1·不息巡行",
+      "description": "连携技拳出无悔的冷却时间-2秒，施加的物理脆弱效果额外+5%，持续时间+4秒。",
+      "bundle": [
+        {
+          "id": "Fists_of_No_Regrets_p1",
+          "name": "拳出无悔·物理脆弱·潜能1",
+          "description": "使用拳出无悔痛击前方的敌人时，施加5%的物理脆弱。",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Fists_of_No_Regrets",
+          "effects": [
+            { "category": "Susceptibility", "value": 0.1, "condition": { "element": "Physical" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Kinesthesia_of_Harmony",
+      "name": "潜能2·心手合一",
+      "description": "力量+20，源石技艺强度+16。",
+      "statBonuses": { "strength": 20, "artsIntensity": 16 }
+    },
+    {
+      "id": "Complete_Warmup",
+      "name": "潜能3·热身完毕",
+      "description": "天赋怒意留心效果加强：护盾持续时间+5秒，护盾触发间隔-15秒，每次触发时额外获得攻击力+6%，持续20秒。",
+      "bundle": [
+        {
+          "id": "Vigilant_Fury",
+          "name": "怒意留心·潜能3",
+          "description": "施放连携技后获得15%最大生命值的护盾，持续期间更难被打断，且攻击力+6%。",
+          "optional": true,
+          "effects": [
+            { "category": "atkPercent", "value": 0.06 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Qi_Thrice-Refined",
+      "name": "潜能4·气炼三绝",
+      "description": "终结技绝心所需的终结技能量-15%。"
+    },
+    {
+      "id": "Pugilist_of_the_Stockade",
+      "name": "潜能5·拳出山林",
+      "description": "战技断云、追形、开天的伤害倍率提升至原本的1.1倍，终结技绝心造成的失衡值+5点。",
+      "skillOverrides": [
+        { "skillIndex": 4, "hitIndex": 0, "multiplier": 1.65 },
+        { "skillIndex": 5, "hitIndex": 0, "multiplier": 2.2 },
+        { "skillIndex": 6, "hitIndex": 0, "multiplier": 6.6 }
+      ]
+    }
+  ]
+}

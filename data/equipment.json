@@ -161,6 +161,23 @@
       }
     ]
   },
+  {
+    "id": "Qingbo_Positioning_Kit_T1",
+    "name": "清波定位仪·壹型·物理伤害",
+    "slot": "kit",
+    "setId": "Qingbo",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Qingbo_Positioning_Kit_T1_b1",
+        "name": "清波定位仪·壹型",
+        "description": "物理伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
   {"#": "清波竹刃"},
   {
     "id": "Qingbo_Bamboo_Cutter",
@@ -1524,6 +1541,24 @@
       }
     ]
   },
+  {"#": "点剑纤维护甲"},
+  {
+    "id": "Swordmancer_Fiber_Armor",
+    "name": "点剑纤维护甲·物理伤害",
+    "slot": "armor",
+    "setId": "Swordmancer",
+    "statBonuses": { "strength": 113, "will": 75 },
+    "buffs": [
+      {
+        "id": "Swordmancer_Fiber_Armor_b1",
+        "name": "点剑纤维护甲",
+        "description": "物理伤害提升14.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
   {"#": "点剑战术手甲"},
   {
     "id": "Swordmancer_TAC_Gauntlets",
@@ -2136,14 +2171,14 @@
   },
   {"#": "天灾防护手套"},
   {
-    "id": "Catastrophe Gloves",
+    "id": "Catastrophe_Gloves",
     "name": "天灾防护手套·源石技艺强度",
     "slot": "gloves",
     "setId": "Catastrophe",
     "statBonuses": { "will": 46, "intellect": 30 },
     "buffs": [
       {
-        "id": "Catastrophe Gloves_b1",
+        "id": "Catastrophe_Gloves_b1",
         "name": "天灾防护手套",
         "description": "源石技艺强度提升24",
         "statBonuses": { "artsIntensity": 24 }
@@ -2196,6 +2231,108 @@
         "id": "Catastrophe_Gauze_Cartridge_T1_b1",
         "name": "天灾防护净芯·壹型",
         "description": "副能力提升14.7%"
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是旧锋=================="
+  },
+  {"#": "旧锋装甲"},
+  {
+    "id": "Grizzled_Edge_Armor",
+    "name": "旧锋装甲·物理伤害",
+    "slot": "armor",
+    "setId": "Grizzled_Edge",
+    "statBonuses": { "strength": 113, "will": 75 },
+    "buffs": [
+      {
+        "id": "Grizzled_Edge_Armor_b1",
+        "name": "旧锋装甲",
+        "description": "物理伤害提升14.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Grizzled_Edge_Armor_T1",
+    "name": "旧锋装甲·壹型·源石技艺强度",
+    "slot": "armor",
+    "setId": "Grizzled_Edge",
+    "statBonuses": { "agility": 113, "strength": 75 },
+    "buffs": [
+      {
+        "id": "Catastrophe_Heavy_Armor_T1_b1",
+        "name": "旧锋装甲·壹型·壹型",
+        "description": "源石技艺强度提升26",
+        "statBonuses": { "artsIntensity": 26 }
+      }
+    ]
+  },
+  {"#": "旧锋手甲"},
+  {
+    "id": "Grizzled_Edge_Gauntlets",
+    "name": "旧锋手甲·源石技艺强度",
+    "slot": "gloves",
+    "setId": "Grizzled_Edge",
+    "statBonuses": { "strength": 84, "will": 55 },
+    "buffs": [
+      {
+        "id": "Grizzled_Edge_Gauntlets_b1",
+        "name": "旧锋手甲",
+        "description": "源石技艺强度提升44",
+        "statBonuses": { "artsIntensity": 44 }
+      }
+    ]
+  },
+  {
+    "id": "Grizzled_Edge_Gauntlets_T1",
+    "name": "旧锋手甲·壹型·源石技艺强度",
+    "slot": "gloves",
+    "setId": "Grizzled_Edge",
+    "statBonuses": { "agility": 84, "strength": 55 },
+    "buffs": [
+      {
+        "id": "Grizzled_Edge_Gauntlets_T1_b1",
+        "name": "旧锋手甲·壹型",
+        "description": "源石技艺强度提升44",
+        "statBonuses": { "artsIntensity": 44 }
+      }
+    ]
+  },
+  {"#": "旧锋刺刃"},
+  {
+    "id": "Grizzled_Edge_Push_Knife",
+    "name": "旧锋刺刃·物理伤害",
+    "slot": "kit",
+    "setId": "Grizzled_Edge",
+    "statBonuses": { "strength": 41, "will": 27 },
+    "buffs": [
+      {
+        "id": "Grizzled_Edge_Push_Knife_b1",
+        "name": "旧锋刺刃",
+        "description": "物理伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Grizzled_Edge_Push_Knife_T1",
+    "name": "旧锋刺刃·壹型·物理伤害",
+    "slot": "kit",
+    "setId": "Grizzled_Edge",
+    "statBonuses": { "agility": 41, "strength": 27 },
+    "buffs": [
+      {
+        "id": "Grizzled_Edge_Push_Knife_T1_b1",
+        "name": "旧锋刺刃·壹型",
+        "description": "物理伤害提升29.9%",
+        "effects": [
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
       }
     ]
   }
