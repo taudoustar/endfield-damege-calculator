@@ -120,5 +120,15 @@
     "effects":[
       { "category": "Finisher", "scaleRatio": 0.01, "userInput": "scaleValue" }
     ]
+  },
+  {
+    "id": "Primary_Stat_Reduce",
+    "name": "主能力降低",
+    "group": "通用",
+    "description": "主属性最终值降低指定百分比（装备/武器加成后乘算）",
+    "userInput": { "label": "%", "default": 0, "scale": 0.01 },
+    "effects":[
+      { "category": "primaryStatMultiplier", "scaleRatio": -1, "userInput": "scaleValue" }
+    ]
   }
 ]

@@ -64,7 +64,21 @@ export function calculateAtk(config, activeBuffs, context) {
 
   // 3. 计算属性攻击力加成
   const primaryStat = statConfig.primary;
-  const primaryValue = statTotals[primaryStat.stat] || 0;
+  let primaryValue = statTotals[primaryStat.stat] || 0;
+
+  // 收集主属性最终乘算（在所有加成之后）
+  let primaryStatMultiplier = 1;
+  for (const buff of activeBuffs) {
+    if (!buff.effects) continue;
+    for (const effect of buff.effects) {
+      if (effect.category !== "primaryStatMultiplier") continue;
+      if (!matchesCondition(effect.condition, context)) continue;
+      const v = resolveEffectValue(effect, statTotals);
+      primaryStatMultiplier *= (1 + v);
+    }
+  }
+  primaryValue *= primaryStatMultiplier;
+
   const primaryContrib = primaryValue * primaryStat.ratio;
 
   const secondaryContribs = statConfig.secondary.map((sec) => ({

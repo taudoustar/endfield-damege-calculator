@@ -1,0 +1,217 @@
+{
+  "id": "Camille",
+  "name": "卡缪",
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseAtk": 315,
+  "baseStats": { "strength": 102, "agility": 160, "intellect": 129, "will": 92 },
+  "statConfig": {
+    "primary": { "stat": "agility", "ratio": 0.005 },
+    "secondary": [{ "stat": "intellect", "ratio": 0.002 }]
+  },
+  "weaponType": "Polearm",
+  "skills": [
+    {
+      "name": "普通攻击一段·歃血涤罪",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 0.56 }]
+    },
+    {
+      "name": "普通攻击二段·歃血涤罪",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 0.45 }]
+    },
+    {
+      "name": "普通攻击三段·歃血涤罪",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 0.68 }]
+    },
+    {
+      "name": "普通攻击四段·歃血涤罪",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 0.77 }]
+    },
+    {
+      "name": "重击·歃血涤罪",
+      "type": "strike",
+      "hits": [{ "element": "Heat", "multiplier": 1.13 }]
+    },
+    {
+      "name": "驱火焚影",
+      "type": "skill",
+      "hits": [{ "element": "Heat", "multiplier": 2.0 }]
+    },
+    {
+      "name": "驱火焚影·爆裂",
+      "type": "skill",
+      "hits": [{ "element": "Heat", "multiplier": 1.0 }]
+    },
+    {
+      "name": "锥心之棘",
+      "type": "combo",
+      "hits": [
+        { "element": "Heat", "multiplier": 3.0 }
+      ]
+    },
+    {
+      "name": "锥心之棘·追猎",
+      "type": "combo",
+      "hits": [
+        { "element": "Heat", "multiplier": 5.0 }
+      ]
+    },
+    {
+      "name": "猩红坠雨",
+      "type": "ultimate",
+      "hits": [{ "element": "Heat", "multiplier": 6.0 }]
+    },
+    {
+      "name": "下落攻击·卡缪",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 1.8 }]
+    }
+    ,
+    {
+      "name": "处决·卡缪",
+      "type": "basic",
+      "hits": [{ "element": "Heat", "multiplier": 9.0 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Camille",
+      "name": "信赖·卡缪",
+      "description": "敏捷+60",
+      "statBonuses": { "agility": 60 }
+    },
+    {
+      "id": "Bloodfount_Revival_1",
+      "name": "天赋·血涌苏生（自身）",
+      "description": "每当通过技能回复自身生命值时，获得灼热伤害+4%（最多5层），持续40秒，小队内其他干员获得该效果的25%。该效果最多叠加5层。",
+      "optional": true,
+      "userInput": { "label": "层", "default": 0, "scale": 1 },
+      "effects": [
+        { 
+          "category": "DMG_Dealt",
+          "scaleRatio": 0.04,
+          "scaleCap": 0.20,
+          "userInput": "scaleValue", "condition": { "element":"Heat" }
+        }
+      ]
+    },
+    {
+      "id": "Bloodfount_Revival_2",
+      "name": "天赋·血涌苏生（队友）",
+      "description": "每当通过技能回复自身生命值时，获得灼热伤害+4%（最多5层），持续40秒，小队内其他干员获得该效果的25%。该效果最多叠加5层。",
+      "optional": true,
+      "scope": "team",
+      "userInput": { "label": "层", "default": 0, "scale": 1 },
+      "effects": [
+        { 
+          "category": "DMG_Dealt",
+          "scaleRatio": 0.01,
+          "scaleCap": 0.05,
+          "userInput": "scaleValue", "condition": { "element":"Heat" }
+        }
+      ]
+    },
+    {
+      "id": "Blazing_Exorcism",
+      "name": "驱火焚影·灼热脆弱",
+      "description": "驱火焚影召唤衔火血翼会飞向一个敌人，对目标施加7%灼热脆弱。",
+      "optional": true,
+      "scope": "team",
+      "effects": [
+        { 
+          "category": "Susceptibility",
+          "value": 0.07,
+          "condition": { "element": "Heat" }
+        }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Flame-Anointed_Lance",
+      "name": "潜能1·烈火洗枪",
+      "description": "战技驱火焚影施加的虚弱效果+5%，灼热脆弱效果+5%，衔火血翼盘桓的持续时间+15秒。",
+      "bundle": [
+        {
+          "id": "Blazing_Exorcism_p1",
+          "name": "驱火焚影·灼热脆弱·潜能1",
+          "description": "驱火焚影召唤衔火血翼会飞向一个敌人，对目标施加12%灼热脆弱。",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Blazing_Exorcism",
+          "effects": [
+            { 
+              "category": "Susceptibility",
+              "value": 0.12,
+              "condition": { "element": "Heat" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Tracker_of_Witch_Scent",
+      "name": "潜能2·巫术嗅觉",
+      "description": "敏捷+20，智识+20。",
+      "statBonuses": { "agility": 20, "intellect": 20 }
+    },
+    {
+      "id": "Thorned_Incapacitor",
+      "name": "潜能3·荆棘破韧",
+      "description": "连携技锥心之棘冷却时间-2秒，锥心之棘和追猎伤害倍率提升至原本的1.3倍，技力恢复量提升至原本的1.15倍。",
+      "skillOverrides": [
+        { "skillIndex": 7, "hitIndex": 0, "multiplier": 3.9 },
+        { "skillIndex": 8, "hitIndex": 0, "multiplier": 6.5 }
+      ]
+    },
+    {
+      "id": "Agašlehem's_Sigil",
+      "name": "潜能4·看护之证",
+      "description": "终结技猩红坠雨所需的终结技能量-15%。"
+    },
+    {
+      "id": "Sanguine_Convention",
+      "name": "潜能5·予血同在",
+      "description": "天赋血涌苏生效果加强：每层灼热伤害提升效果+6%。",
+      "bundle": [
+        {
+          "id": "Bloodfount_Revival_1_p5",
+          "name": "天赋·血涌苏生（自身）·潜能5",
+          "description": "驱火焚影召唤衔火血翼会飞向一个敌人，对目标施加12%灼热脆弱。",
+          "optional": true,
+          "replaces": "Bloodfount_Revival_1",
+          "userInput": { "label": "层", "default": 0, "scale": 1 },
+          "effects": [
+            { 
+            "category": "DMG_Dealt",
+            "scaleRatio": 0.10,
+            "scaleCap": 0.50,
+            "userInput": "scaleValue", "condition": { "element":"Heat" }
+            }
+          ]
+        },
+        {
+          "id": "Bloodfount_Revival_2_p5",
+          "name": "天赋·血涌苏生（队友）·潜能5",
+          "description": "驱火焚影召唤衔火血翼会飞向一个敌人，对目标施加12%灼热脆弱。",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Bloodfount_Revival_2",
+          "userInput": { "label": "层", "default": 0, "scale": 1 },
+          "effects": [
+            { 
+            "category": "DMG_Dealt",
+            "scaleRatio": 0.025,
+            "scaleCap": 0.125,
+            "userInput": "scaleValue", "condition": { "element":"Heat" }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
