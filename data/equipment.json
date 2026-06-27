@@ -1332,7 +1332,7 @@
     "id": "Hot_Work_Pyrometer",
     "name": "动火用测温镜·战技",
     "slot": "kit",
-    "setId": "Tide_Surge",
+    "setId": "Hot_Work",
     "statBonuses": { "intellect": 53 },
     "buffs": [
       {
