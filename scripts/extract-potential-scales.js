@@ -47,7 +47,7 @@ const sorted = [...scales.values()].sort((a, b) => {
   return 0;
 });
 
-// 输出到文件
+// 输出到文件（详细版）
 const outputPath = path.join(__dirname, "potential-scales.txt");
 const lines = [];
 
@@ -66,4 +66,10 @@ for (const { array, sources } of sorted) {
 }
 
 fs.writeFileSync(outputPath, lines.join("\n"), "utf-8");
-console.log(`结果已保存到: ${outputPath}`);
+console.log(`详细结果已保存到: ${outputPath}`);
+
+// 输出到文件（纯数组版）
+const arraysOnlyPath = path.join(__dirname, "potential-scales-arrays.txt");
+const arrayLines = sorted.map(({ array }) => `[${array.join(", ")}]`);
+fs.writeFileSync(arraysOnlyPath, arrayLines.join("\n"), "utf-8");
+console.log(`纯数组已保存到: ${arraysOnlyPath}`);

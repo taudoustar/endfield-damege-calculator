@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>武器 JSON 编辑器</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Microsoft YaHei", sans-serif; background: #1a1a2e; color: #eee; padding: 20px; }
+    h1 { margin-bottom: 16px; font-size: 22px; }
+    .form-section { background: #2a2a4a; padding: 16px; border-radius: 8px; margin-bottom: 12px; }
+    .form-section h3 { margin-bottom: 10px; font-size: 15px; color: #aac; }
+    .form-row { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+    .form-row label { min-width: 80px; font-size: 13px; color: #aaa; }
+    .form-row input, .form-row select { background: #1a1a2e; border: 1px solid #444; color: #eee; padding: 5px 8px; border-radius: 4px; font-size: 13px; }
+    .form-row input[type="text"] { width: 200px; }
+    .form-row input[type="number"] { width: 80px; }
+    .form-row select { width: 160px; }
+    button.btn { padding: 6px 14px; background: #4a6fa5; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; }
+    button.btn:hover { background: #5a8fc5; }
+    button.btn-danger { background: #a54a4a; }
+    button.btn-danger:hover { background: #c55a5a; }
+    .buff-card { background: #1e1e3a; border: 1px solid #444; border-radius: 6px; padding: 12px; margin-bottom: 8px; }
+    .buff-card h4 { font-size: 13px; color: #8af; margin-bottom: 8px; }
+    .effect-row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; font-size: 12px; }
+    .effect-row select, .effect-row input { font-size: 12px; padding: 3px 6px; background: #1a1a2e; border: 1px solid #555; color: #eee; border-radius: 3px; }
+    .effect-row input[type="number"] { width: 65px; }
+    .effect-row input[type="text"] { width: 200px; }
+    .output-area { background: #111; border: 1px solid #333; border-radius: 6px; padding: 12px; margin-top: 16px; max-height: 400px; overflow: auto; }
+    .output-area pre { white-space: pre-wrap; font-size: 12px; color: #8f8; }
+    .copy-btn { margin-top: 8px; }
+    .checkbox-row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .checkbox-row input[type="checkbox"] { width: 16px; height: 16px; }
+    .potential-hint { font-size: 11px; color: #888; margin-left: 8px; }
+  </style>
+</head>
+<body>
+  <h1>武器 JSON 编辑器</h1>
+  <div id="panel-weapon"></div>
+  <div class="output-area">
+    <pre id="json-output">// 编辑后的 JSON 会显示在这里</pre>
+  </div>
+  <button class="btn copy-btn" onclick="copyOutput()">复制 JSON</button>
+
+<script>
+// ===== 常量 =====
+const WEAPON_TYPES = [
+  { value: "Sword", label: "单手剑" },
+  { value: "Greatsword", label: "双手剑" },
+  { value: "Polearm", label: "长柄武器" },
+  { value: "Handcannon", label: "手铳" },
+  { value: "Arts_Unit", label: "施术单元" },
+];
+
+const CATEGORIES = [
+  { key: "atkPercent", label: "攻击力%" },
+  { key: "flatAtk", label: "固定攻击力" },
+  { key: "critRate", label: "暴击率" },
+  { key: "critDamage", label: "暴击伤害" },
+  { key: "DMG_Dealt", label: "增伤" },
+  { key: "DMG_Taken", label: "易伤" },
+  { key: "Susceptibility", label: "脆弱" },
+  { key: "Arts_Amp", label: "增幅" },
+  { key: "Resistance", label: "抗性" },
+  { key: "Link", label: "连击" },
+  { key: "Staggered", label: "失衡" },
+  { key: "Finisher", label: "处决" },
+  { key: "primaryStatMultiplier", label: "主属性乘算" },
+];
+
+const ELEMENTS = [
+  { value: "", label: "无限制" },
+  { value: "Physical", label: "物理" },
+  { value: "Heat", label: "灼热" },
+  { value: "Cryo", label: "寒冷" },
+  { value: "Electric", label: "电磁" },
+  { value: "Nature", label: "自然" },
+];
+
+const SKILL_TYPES = [
+  { value: "", label: "无限制" },
+  { value: "basic", label: "普攻" },
+  { value: "skill", label: "战技" },
+  { value: "combo", label: "连携" },
+  { value: "ultimate", label: "终结" },
+  { value: "strike", label: "重击" },
+  { value: "status", label: "异常" },
+];
+
+const STATS = [
+  { value: "", label: "无" },
+  { value: "strength", label: "力量" },
+  { value: "agility", label: "敏捷" },
+  { value: "intellect", label: "智识" },
+  { value: "will", label: "意志" },
+  { value: "artsIntensity", label: "源石技艺强度" },
+];
+
+const BUFF_TYPES = [
+  { value: "被动", label: "被动" },
+  { value: "触发", label: "触发" },
+  { value: "触发·1.5倍", label: "触发·1.5倍" },
+  { value: "触发·灼热", label: "触发·灼热" },
+  { value: "触发·寒冷", label: "触发·寒冷" },
+  { value: "触发·电磁", label: "触发·电磁" },
+  { value: "触发·自然", label: "触发·自然" },
+  { value: "触发·物理", label: "触发·物理" },
+];
+
+// ===== 状态 =====
+let weaponState = {
+  id: "", name: "", type: "Sword", baseAtk: 500,
+  statBonuses: {},
+  mainAffix: { flat: null, percent: null },
+  buffs: [],
+};
+
+// ===== 渲染 =====
+function renderAll() {
+  renderWeaponPanel();
+  updateOutput();
+}
+
+// PLACEHOLDER_RENDER_PARTS
+
+function renderEffectRow(effect, index, buffIndex) {
+  const isValArray = Array.isArray(effect.value);
+  const valStr = isValArray ? effect.value.join(", ") : (effect.value ?? "");
+  const ratioIsArr = Array.isArray(effect.scaleRatio);
+  const ratioStr = ratioIsArr ? effect.scaleRatio.join(", ") : (effect.scaleRatio ?? "");
+  const capIsArr = Array.isArray(effect.scaleCap);
+  const capStr = capIsArr ? effect.scaleCap.join(", ") : (effect.scaleCap ?? "");
+  return `
+    <div class="effect-row">
+      <select onchange="updateEffect(${buffIndex}, ${index}, 'category', this.value)">
+        ${CATEGORIES.map(c => `<option value="${c.key}" ${effect.category === c.key ? "selected" : ""}>${c.label}</option>`).join("")}
+      </select>
+      <span>值${isValArray ? '(数组)' : ''}:</span>
+      <input type="text" value="${valStr}" placeholder="单值或逗号分隔数组" style="width:200px"
+        onchange="updateEffect(${buffIndex}, ${index}, 'value', this.value)">
+      <button class="btn" style="padding:2px 6px;font-size:11px" onclick="toggleArray(${buffIndex}, ${index}, 'value')">${isValArray ? '→单值' : '→数组'}</button>
+      <select onchange="updateEffect(${buffIndex}, ${index}, 'element', this.value)">
+        ${ELEMENTS.map(e => `<option value="${e.value}" ${(effect.condition?.element || '') === e.value ? "selected" : ""}>${e.label}</option>`).join("")}
+      </select>
+      <select onchange="updateEffect(${buffIndex}, ${index}, 'skillType', this.value)">
+        ${SKILL_TYPES.map(s => `<option value="${s.value}" ${(effect.condition?.skillType || '') === s.value ? "selected" : ""}>${s.label}</option>`).join("")}
+      </select>
+      <button class="btn btn-danger" onclick="removeEffect(${buffIndex}, ${index})">×</button>
+    </div>
+    <div class="effect-row" style="padding-left:20px">
+      <span>scaleRatio${ratioIsArr ? '(数组)' : ''}:</span>
+      <input type="text" value="${ratioStr}" placeholder="比率" style="width:180px"
+        onchange="updateEffect(${buffIndex}, ${index}, 'scaleRatio', this.value)">
+      <button class="btn" style="padding:2px 6px;font-size:11px" onclick="toggleArray(${buffIndex}, ${index}, 'scaleRatio')">${ratioIsArr ? '→单值' : '→数组'}</button>
+      <span>scaleCap${capIsArr ? '(数组)' : ''}:</span>
+      <input type="text" value="${capStr}" placeholder="上限" style="width:180px"
+        onchange="updateEffect(${buffIndex}, ${index}, 'scaleCap', this.value)">
+      <button class="btn" style="padding:2px 6px;font-size:11px" onclick="toggleArray(${buffIndex}, ${index}, 'scaleCap')">${capIsArr ? '→单值' : '→数组'}</button>
+      <select onchange="updateEffect(${buffIndex}, ${index}, 'userInput', this.value)">
+        <option value="" ${!effect.userInput ? "selected" : ""}>无userInput</option>
+        <option value="scaleValue" ${effect.userInput === "scaleValue" ? "selected" : ""}>scaleValue</option>
+        <option value="true" ${effect.userInput === true ? "selected" : ""}>true</option>
+      </select>
+    </div>`;
+}
+
+function renderBuffCard(buff, buffIndex) {
+  const effects = (buff.effects || []).map((e, i) => renderEffectRow(e, i, buffIndex)).join("");
+  return `
+    <div class="buff-card">
+      <h4>潜能 Buff #${buffIndex + 1} (ID: ${weaponState.id}_p${buffIndex + 1})</h4>
+      <div class="form-row">
+        <label>名称:</label>
+        <input type="text" value="${buff.name || ''}" style="width:250px" placeholder="如：附术·长愿·被动"
+          onchange="updateBuff(${buffIndex}, 'name', this.value)">
+        <button class="btn btn-danger" onclick="removeBuff(${buffIndex})">删除</button>
+      </div>
+      <div class="form-row">
+        <label>描述:</label>
+        <input type="text" value="${buff.description || ''}" style="width:400px" onchange="updateBuff(${buffIndex}, 'description', this.value)">
+      </div>
+      <div class="form-row">
+        <div class="checkbox-row">
+          <input type="checkbox" ${buff.optional ? "checked" : ""} onchange="updateBuff(${buffIndex}, 'optional', this.checked)">
+          <label>可选(optional)</label>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" ${buff.scope === 'team' ? "checked" : ""} onchange="updateBuff(${buffIndex}, 'scope', this.checked ? 'team' : '')">
+          <label>队伍范围(team)</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>userInput:</label>
+        <input type="text" value="${buff.userInput?.label || ''}" placeholder="label" style="width:60px"
+          onchange="updateUserInput(${buffIndex}, 'label', this.value)">
+        <input type="number" step="any" value="${buff.userInput?.default ?? ''}" placeholder="default" style="width:60px"
+          onchange="updateUserInput(${buffIndex}, 'default', this.value)">
+        <input type="number" step="any" value="${buff.userInput?.scale ?? ''}" placeholder="scale" style="width:60px"
+          onchange="updateUserInput(${buffIndex}, 'scale', this.value)">
+      </div>
+      <div class="form-row">
+        <label>statBonuses:</label>
+        ${STATS.filter(s=>s.value).map(s => `
+          <span style="font-size:12px">${s.label}</span>
+          <input type="text" value="${formatStatVal(buff.statBonuses?.[s.value])}" style="width:120px" placeholder="数值或数组"
+            onchange="updateBuffStat(${buffIndex}, '${s.value}', this.value)">
+        `).join("")}
+      </div>
+      <h4>Effects</h4>
+      ${effects}
+      <button class="btn" onclick="addEffect(${buffIndex})">+ 添加 Effect</button>
+    </div>`;
+}
+
+function formatStatVal(val) {
+  if (val == null) return "";
+  if (Array.isArray(val)) return val.join(", ");
+  return String(val);
+}
+
+function renderWeaponPanel() {
+  const s = weaponState;
+  let html = `
+    <div class="form-section">
+      <h3>基本信息</h3>
+      <div class="form-row">
+        <label>ID:</label>
+        <input type="text" value="${s.id}" onchange="weaponState.id=this.value.replace(/ /g,'_'); this.value=weaponState.id; renderAll()">
+        <label>名称:</label>
+        <input type="text" value="${s.name}" onchange="weaponState.name=this.value; updateOutput()">
+      </div>
+      <div class="form-row">
+        <label>类型:</label>
+        <select onchange="weaponState.type=this.value; updateOutput()">
+          ${WEAPON_TYPES.map(t => `<option value="${t.value}" ${s.type === t.value ? "selected" : ""}>${t.label}</option>`).join("")}
+        </select>
+        <label>基础攻击:</label>
+        <input type="number" value="${s.baseAtk}" onchange="weaponState.baseAtk=parseInt(this.value)||0; updateOutput()">
+      </div>
+      <div class="form-row">
+        <label>statBonuses:</label>
+        ${STATS.filter(st=>st.value).map(st => `
+          <span style="font-size:12px">${st.label}</span>
+          <input type="number" step="1" value="${s.statBonuses[st.value] ?? ''}" style="width:60px"
+            onchange="updateWeaponStat('${st.value}', this.value)">
+        `).join("")}
+      </div>
+    </div>
+    <div class="form-section">
+      <h3>主能力加成 (mainAffix) <span class="potential-hint">可选，部分武器有</span></h3>
+      <div class="form-row">
+        <label>固定值:</label>
+        <input type="number" step="any" value="${s.mainAffix.flat ?? ''}" placeholder="无"
+          onchange="weaponState.mainAffix.flat = this.value === '' ? null : parseFloat(this.value); updateOutput()">
+        <label>百分比:</label>
+        <input type="number" step="any" value="${s.mainAffix.percent ?? ''}" placeholder="无"
+          onchange="weaponState.mainAffix.percent = this.value === '' ? null : parseFloat(this.value); updateOutput()">
+      </div>
+    </div>
+    <div class="form-section">
+      <h3>潜能 Buffs (potentialBuffs) <span class="potential-hint">数组值用逗号分隔表示6个潜能等级</span></h3>
+      ${s.buffs.map((b, i) => renderBuffCard(b, i)).join("")}
+      <button class="btn" onclick="addBuff()">+ 添加潜能 Buff</button>
+    </div>`;
+  document.getElementById("panel-weapon").innerHTML = html;
+}
+
+// ===== 操作函数 =====
+function addBuff() {
+  weaponState.buffs.push({ name: "", description: "", effects: [] });
+  renderAll();
+}
+function removeBuff(index) {
+  weaponState.buffs.splice(index, 1);
+  renderAll();
+}
+function updateBuff(index, field, value) {
+  const buff = weaponState.buffs[index];
+  if (field === "optional") buff.optional = value;
+  else if (field === "scope") buff.scope = value || undefined;
+  else if (field === "buffType") { buff.buffType = value; if (value !== '_custom') delete buff.customType; renderAll(); return; }
+  else if (field === "customType") buff.customType = value;
+  else buff[field] = value;
+  updateOutput();
+}
+function updateUserInput(buffIndex, field, value) {
+  const buff = weaponState.buffs[buffIndex];
+  if (!value && value !== 0) {
+    if (buff.userInput) { delete buff.userInput[field]; if (Object.keys(buff.userInput).length === 0) delete buff.userInput; }
+    updateOutput(); return;
+  }
+  if (!buff.userInput) buff.userInput = {};
+  buff.userInput[field] = field === "label" ? value : parseFloat(value);
+  updateOutput();
+}
+function updateBuffStat(buffIndex, stat, value) {
+  const buff = weaponState.buffs[buffIndex];
+  if (!value) {
+    if (buff.statBonuses) { delete buff.statBonuses[stat]; if (Object.keys(buff.statBonuses).length === 0) delete buff.statBonuses; }
+  } else {
+    if (!buff.statBonuses) buff.statBonuses = {};
+    buff.statBonuses[stat] = parseNumOrArray(value);
+  }
+  updateOutput();
+}
+function addEffect(buffIndex) {
+  const buff = weaponState.buffs[buffIndex];
+  if (!buff.effects) buff.effects = [];
+  buff.effects.push({ category: "DMG_Dealt", value: 0 });
+  renderAll();
+}
+function toggleArray(buffIndex, effectIndex, field) {
+  const effect = weaponState.buffs[buffIndex].effects[effectIndex];
+  const val = effect[field];
+  if (Array.isArray(val)) {
+    effect[field] = val[0] || 0;
+  } else {
+    const base = val || 0;
+    effect[field] = [base, base, base, base, base, base];
+  }
+  renderAll();
+}
+function removeEffect(buffIndex, effectIndex) {
+  weaponState.buffs[buffIndex].effects.splice(effectIndex, 1);
+  renderAll();
+}
+function updateEffect(buffIndex, effectIndex, field, value) {
+  const effect = weaponState.buffs[buffIndex].effects[effectIndex];
+  if (field === "element" || field === "skillType") {
+    if (!value) {
+      if (effect.condition) { delete effect.condition[field]; if (Object.keys(effect.condition).length === 0) delete effect.condition; }
+    } else {
+      if (!effect.condition) effect.condition = {};
+      effect.condition[field] = value;
+    }
+  } else if (field === "value" || field === "scaleRatio" || field === "scaleCap") {
+    if (value === "" || value == null) delete effect[field];
+    else effect[field] = parseNumOrArray(value);
+  } else if (field === "userInput") {
+    if (!value) delete effect.userInput;
+    else if (value === "true") effect.userInput = true;
+    else effect.userInput = value;
+  } else {
+    effect[field] = value;
+  }
+  updateOutput();
+}
+function updateWeaponStat(stat, value) {
+  if (!value) delete weaponState.statBonuses[stat];
+  else weaponState.statBonuses[stat] = parseInt(value);
+  updateOutput();
+}
+
+function parseNumOrArray(str) {
+  str = String(str).trim();
+  if (str.includes(",")) {
+    const arr = str.split(",").map(s => parseFloat(s.trim())).filter(n => !isNaN(n));
+    return arr.length > 0 ? arr : 0;
+  }
+  const n = parseFloat(str);
+  return isNaN(n) ? 0 : n;
+}
+
+// ===== JSON 输出 =====
+function cleanBuff(buff, parentId, parentName, buffIndex) {
+  const autoId = `${parentId}_p${buffIndex + 1}`;
+  const b = { id: autoId, name: buff.name || parentName, description: buff.description };
+  if (buff.optional) b.optional = true;
+  if (buff.scope) b.scope = buff.scope;
+  if (buff.userInput && Object.keys(buff.userInput).length > 0) b.userInput = buff.userInput;
+  if (buff.statBonuses && Object.keys(buff.statBonuses).length > 0) b.statBonuses = buff.statBonuses;
+  if (buff.effects && buff.effects.length > 0) {
+    b.effects = buff.effects.map(e => {
+      const clean = { category: e.category };
+      if (e.value != null) clean.value = e.value;
+      if (e.scaleRatio != null) clean.scaleRatio = e.scaleRatio;
+      if (e.scaleCap != null) clean.scaleCap = e.scaleCap;
+      if (e.userInput) clean.userInput = e.userInput;
+      if (e.condition) clean.condition = e.condition;
+      return clean;
+    });
+  }
+  return b;
+}
+
+function generateWeaponJSON() {
+  const s = weaponState;
+  const obj = { id: s.id, name: s.name, type: s.type, baseAtk: s.baseAtk };
+  if (Object.keys(s.statBonuses).length > 0) obj.statBonuses = { ...s.statBonuses };
+  if (s.mainAffix.flat != null || s.mainAffix.percent != null) {
+    obj.mainAffix = { flat: s.mainAffix.flat || 0, percent: s.mainAffix.percent || 0 };
+  }
+  if (s.buffs.length > 0) obj.potentialBuffs = s.buffs.map((b, i) => cleanBuff(b, s.id, s.name, i));
+  return obj;
+}
+
+function compactJSON(obj, indent = 0) {
+  const pad = "  ".repeat(indent);
+  const pad1 = "  ".repeat(indent + 1);
+  if (Array.isArray(obj)) {
+    if (obj.length === 0) return "[]";
+    const flat = JSON.stringify(obj);
+    if (flat.length < 80 && !obj.some(i => typeof i === "object" && i !== null)) return flat;
+    const items = obj.map(item => {
+      if (item && typeof item === "object" && !Array.isArray(item)) {
+        const f = JSON.stringify(item);
+        if (f.length < 120) return pad1 + f;
+        return pad1 + compactJSON(item, indent + 1);
+      }
+      return pad1 + JSON.stringify(item);
+    });
+    return "[\n" + items.join(",\n") + "\n" + pad + "]";
+  }
+  if (obj && typeof obj === "object") {
+    const keys = Object.keys(obj);
+    if (keys.length === 0) return "{}";
+    const flat = JSON.stringify(obj);
+    if (flat.length < 80 && !keys.some(k => Array.isArray(obj[k]) || (typeof obj[k] === "object" && obj[k] !== null))) return flat;
+    const entries = keys.map(k => {
+      const v = obj[k];
+      if (v && typeof v === "object") {
+        const vFlat = JSON.stringify(v);
+        if (!Array.isArray(v) && vFlat.length < 100) return pad1 + JSON.stringify(k) + ": " + vFlat;
+        if (Array.isArray(v) && vFlat.length < 80 && !v.some(i => typeof i === "object" && i !== null)) return pad1 + JSON.stringify(k) + ": " + vFlat;
+        return pad1 + JSON.stringify(k) + ": " + compactJSON(v, indent + 1);
+      }
+      return pad1 + JSON.stringify(k) + ": " + JSON.stringify(v);
+    });
+    return "{\n" + entries.join(",\n") + "\n" + pad + "}";
+  }
+  return JSON.stringify(obj);
+}
+
+function updateOutput() {
+  let output = "";
+  if (weaponState.name) {
+    output += JSON.stringify({"#": weaponState.name}) + ",\n";
+  }
+  output += compactJSON(generateWeaponJSON());
+  document.getElementById("json-output").textContent = output;
+}
+
+function copyOutput() {
+  const text = document.getElementById("json-output").textContent;
+  navigator.clipboard.writeText(text).then(() => alert("已复制到剪贴板"));
+}
+
+// 初始渲染
+renderAll();
+</script>
+</body>
+</html>

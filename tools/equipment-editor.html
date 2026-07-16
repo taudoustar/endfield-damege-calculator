@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>装备 / 套装 JSON 编辑器</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Microsoft YaHei", sans-serif; background: #1a1a2e; color: #eee; padding: 20px; }
+    h1 { margin-bottom: 16px; font-size: 22px; }
+    .tabs { display: flex; gap: 4px; margin-bottom: 16px; }
+    .tabs button { padding: 8px 16px; border: none; background: #2a2a4a; color: #ccc; cursor: pointer; border-radius: 4px 4px 0 0; }
+    .tabs button.active { background: #3a3a6a; color: #fff; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .form-section { background: #2a2a4a; padding: 16px; border-radius: 8px; margin-bottom: 12px; }
+    .form-section h3 { margin-bottom: 10px; font-size: 15px; color: #aac; }
+    .form-row { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+    .form-row label { min-width: 80px; font-size: 13px; color: #aaa; }
+    .form-row input, .form-row select { background: #1a1a2e; border: 1px solid #444; color: #eee; padding: 5px 8px; border-radius: 4px; font-size: 13px; }
+    .form-row input[type="text"] { width: 200px; }
+    .form-row input[type="number"] { width: 80px; }
+    .form-row select { width: 160px; }
+    button.btn { padding: 6px 14px; background: #4a6fa5; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 13px; }
+    button.btn:hover { background: #5a8fc5; }
+    button.btn-danger { background: #a54a4a; }
+    button.btn-danger:hover { background: #c55a5a; }
+    .buff-card { background: #1e1e3a; border: 1px solid #444; border-radius: 6px; padding: 12px; margin-bottom: 8px; }
+    .buff-card h4 { font-size: 13px; color: #8af; margin-bottom: 8px; }
+    .effect-row { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; font-size: 12px; }
+    .effect-row select, .effect-row input { font-size: 12px; padding: 3px 6px; background: #1a1a2e; border: 1px solid #555; color: #eee; border-radius: 3px; }
+    .effect-row input[type="number"] { width: 65px; }
+    .output-area { background: #111; border: 1px solid #333; border-radius: 6px; padding: 12px; margin-top: 16px; max-height: 400px; overflow: auto; }
+    .output-area pre { white-space: pre-wrap; font-size: 12px; color: #8f8; }
+    .copy-btn { margin-top: 8px; }
+    .item-list { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .item-list .item-chip { padding: 4px 10px; background: #3a3a6a; border-radius: 4px; font-size: 12px; cursor: pointer; }
+    .item-list .item-chip.active { background: #5a7fb5; }
+    .item-list .item-chip:hover { background: #4a6fa5; }
+    .checkbox-row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .checkbox-row input[type="checkbox"] { width: 16px; height: 16px; }
+  </style>
+</head>
+<body>
+  <h1>装备 / 套装 JSON 编辑器</h1>
+  <div class="tabs">
+    <button class="active" data-tab="equipment">单件装备</button>
+    <button data-tab="set">套装效果</button>
+  </div>
+
+  <!-- 单件装备面板 -->
+  <div id="panel-equipment" class="panel active"></div>
+
+  <!-- 套装面板 -->
+  <div id="panel-set" class="panel"></div>
+
+  <!-- 输出区域 -->
+  <div class="output-area">
+    <pre id="json-output">// 编辑后的 JSON 会显示在这里</pre>
+  </div>
+  <button class="btn copy-btn" onclick="copyOutput()">复制 JSON</button>
+
+<script>
+// ===== 常量 =====
+const SLOTS = [
+  { value: "armor", label: "护甲" },
+  { value: "gloves", label: "护手" },
+  { value: "kit", label: "配件" },
+];
+
+const CATEGORIES = [
+  { key: "atkPercent", label: "攻击力%" },
+  { key: "flatAtk", label: "固定攻击力" },
+  { key: "critRate", label: "暴击率" },
+  { key: "critDamage", label: "暴击伤害" },
+  { key: "DMG_Dealt", label: "增伤" },
+  { key: "DMG_Taken", label: "易伤" },
+  { key: "Susceptibility", label: "脆弱" },
+  { key: "Arts_Amp", label: "增幅" },
+  { key: "Resistance", label: "抗性" },
+  { key: "Link", label: "连击" },
+  { key: "Staggered", label: "失衡" },
+  { key: "Finisher", label: "处决" },
+  { key: "primaryStatMultiplier", label: "主属性乘算" },
+];
+
+const ELEMENTS = [
+  { value: "", label: "无限制" },
+  { value: "Physical", label: "物理" },
+  { value: "Heat", label: "灼热" },
+  { value: "Cryo", label: "寒冷" },
+  { value: "Electric", label: "电磁" },
+  { value: "Nature", label: "自然" },
+];
+
+const SKILL_TYPES = [
+  { value: "", label: "无限制" },
+  { value: "basic", label: "普攻" },
+  { value: "skill", label: "战技" },
+  { value: "combo", label: "连携" },
+  { value: "ultimate", label: "终结" },
+  { value: "strike", label: "重击" },
+  { value: "status", label: "异常" },
+];
+
+const STATS = [
+  { value: "", label: "无" },
+  { value: "strength", label: "力量" },
+  { value: "agility", label: "敏捷" },
+  { value: "intellect", label: "智识" },
+  { value: "will", label: "意志" },
+  { value: "artsIntensity", label: "源石技艺强度" },
+];
+
+// 已有套装列表（从 equipment-sets.json 动态加载）
+let KNOWN_SETS = [{ value: "", label: "（无套装）" }];
+
+(function loadSets() {
+  fetch("../data/equipment-sets.json")
+    .then(r => r.json())
+    .then(data => { parseSets(data); renderAll(); })
+    .catch(() => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "../data/equipment-sets.json", true);
+      xhr.onload = function() {
+        if (xhr.status === 200 || xhr.status === 0) {
+          try { parseSets(JSON.parse(xhr.responseText)); renderAll(); } catch(e) {}
+        }
+      };
+      xhr.send();
+    });
+})();
+
+function parseSets(data) {
+  const sets = [{ value: "", label: "（无套装）" }];
+  for (const item of data) {
+    if (item.id && item.name) sets.push({ value: item.id, label: item.name });
+  }
+  KNOWN_SETS = sets;
+}
+
+// Buff 类型选项
+const BUFF_TYPES = [
+  { value: "被动", label: "被动" },
+  { value: "触发", label: "触发" },
+  { value: "触发·1.5倍", label: "触发·1.5倍" },
+  { value: "触发·灼热", label: "触发·灼热" },
+  { value: "触发·寒冷", label: "触发·寒冷" },
+  { value: "触发·电磁", label: "触发·电磁" },
+  { value: "触发·自然", label: "触发·自然" },
+  { value: "触发·物理", label: "触发·物理" },
+];
+
+// 装备类型选项（从 equipment.json 提取）
+const EQUIP_TYPES = [
+  { value: "物理伤害", label: "物理伤害" },
+  { value: "寒冷电磁伤害", label: "寒冷电磁伤害" },
+  { value: "灼热自然伤害", label: "灼热自然伤害" },
+  { value: "战技", label: "战技" },
+  { value: "战技伤害", label: "战技伤害" },
+  { value: "技能", label: "技能" },
+  { value: "技能伤害", label: "技能伤害" },
+  { value: "终结技", label: "终结技" },
+  { value: "终结技伤害", label: "终结技伤害" },
+  { value: "连携技", label: "连携技" },
+  { value: "连携技伤害", label: "连携技伤害" },
+  { value: "普通攻击", label: "普通攻击" },
+  { value: "普通攻击伤害", label: "普通攻击伤害" },
+  { value: "暴击率", label: "暴击率" },
+  { value: "失衡伤害", label: "失衡伤害" },
+  { value: "充能", label: "充能" },
+  { value: "源石技艺强度", label: "源石技艺强度" },
+  { value: "主能力", label: "主能力" },
+  { value: "副能力", label: "副能力" },
+  { value: "治疗效率", label: "治疗效率" },
+  { value: "伤害减免", label: "伤害减免" },
+  { value: "生命", label: "生命" },
+  { value: "节能", label: "节能" },
+];
+
+// 按装备类型分组的 buff description（从 equipment.json 动态加载）
+let BUFF_DESCRIPTIONS_BY_TYPE = {};
+
+(function loadEquipDescriptions() {
+  fetch("../data/equipment.json")
+    .then(r => r.json())
+    .then(data => {
+      parseEquipDescriptions(data);
+      renderAll();
+    })
+    .catch(() => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "../data/equipment.json", true);
+      xhr.onload = function() {
+        if (xhr.status === 200 || xhr.status === 0) {
+          try {
+            parseEquipDescriptions(JSON.parse(xhr.responseText));
+            renderAll();
+          } catch(e) {}
+        }
+      };
+      xhr.send();
+    });
+})();
+
+function parseEquipDescriptions(data) {
+  const map = {};
+  for (const item of data) {
+    if (!item.name || !item.buffs) continue;
+    const parts = item.name.split("·");
+    const eType = parts.length >= 2 ? parts[parts.length - 1] : "";
+    if (!eType) continue;
+    if (!map[eType]) map[eType] = new Set();
+    for (const b of item.buffs) {
+      if (b.description) map[eType].add(b.description);
+    }
+  }
+  for (const [k, v] of Object.entries(map)) {
+    BUFF_DESCRIPTIONS_BY_TYPE[k] = [...v].sort();
+  }
+};
+
+function getDescOptions() {
+  const eType = equipState.equipType === '_custom' ? (equipState.customEquipType || '') : equipState.equipType;
+  return BUFF_DESCRIPTIONS_BY_TYPE[eType] || [];
+}
+
+// ===== 状态 =====
+let equipState = {
+  id: "", baseName: "", equipType: "物理伤害", slot: "armor", setId: "",
+  statBonuses: {},
+  mainAffix: { flat: null, percent: null },
+  subAffixes: [{ flat: null, percent: null }],
+  buffs: [],
+};
+
+let setState = {
+  id: "", name: "", requiredCount: 3,
+  buffs: [],
+};
+
+// ===== Tab 切换 =====
+document.querySelectorAll(".tabs button").forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("panel-" + btn.dataset.tab).classList.add("active");
+    renderAll();
+  };
+});
+
+// ===== 渲染 =====
+function renderAll() {
+  renderEquipPanel();
+  renderSetPanel();
+  updateOutput();
+}
+
+function makeOptions(list, valueKey = "value", labelKey = "label") {
+  return list.map(item => `<option value="${item[valueKey]}">${item[labelKey]}</option>`).join("");
+}
+
+function renderEffectRow(effect, index, buffIndex, prefix) {
+  const id = `${prefix}_buff${buffIndex}_effect${index}`;
+  return `
+    <div class="effect-row" data-prefix="${prefix}" data-buff="${buffIndex}" data-effect="${index}">
+      <select onchange="updateEffect('${prefix}', ${buffIndex}, ${index}, 'category', this.value)">
+        ${CATEGORIES.map(c => `<option value="${c.key}" ${effect.category === c.key ? "selected" : ""}>${c.label}</option>`).join("")}
+      </select>
+      <label>值:</label>
+      <input type="number" step="any" value="${effect.value ?? ''}" placeholder="固定值"
+        onchange="updateEffect('${prefix}', ${buffIndex}, ${index}, 'value', this.value)">
+      <label>缩放属性:</label>
+      <select onchange="updateEffect('${prefix}', ${buffIndex}, ${index}, 'scaleStat', this.value)">
+        ${STATS.map(s => `<option value="${s.value}" ${(effect.scaleStat || '') === s.value ? "selected" : ""}>${s.label}</option>`).join("")}
+      </select>
+      <label>缩放比:</label>
+      <input type="number" step="any" value="${effect.scaleRatio ?? ''}" placeholder="scaleRatio"
+        onchange="updateEffect('${prefix}', ${buffIndex}, ${index}, 'scaleRatio', this.value)">
+      <label>上限:</label>
+      <input type="number" step="any" value="${effect.scaleCap ?? ''}" placeholder="scaleCap"
+        onchange="updateEffect('${prefix}', ${buffIndex}, ${index}, 'scaleCap', this.value)">
+      <div class="checkbox-row">
+        <input type="checkbox" ${effect.userInput === "scaleValue" ? "checked" : ""}
+          onchange="updateEffect('${prefix}', ${buffIndex}, ${index}, 'userInput', this.checked ? 'scaleValue' : '')">
+        <label>用户输入缩放</label>
+      </div>
+      <select onchange="updateEffect('${prefix}', ${buffIndex}, ${index}, 'element', this.value)">
+        ${ELEMENTS.map(e => `<option value="${e.value}" ${(effect.condition?.element || '') === e.value ? "selected" : ""}>${e.label}</option>`).join("")}
+      </select>
+      <select onchange="updateEffect('${prefix}', ${buffIndex}, ${index}, 'skillType', this.value)">
+        ${SKILL_TYPES.map(s => `<option value="${s.value}" ${(effect.condition?.skillType || '') === s.value ? "selected" : ""}>${s.label}</option>`).join("")}
+      </select>
+      <button class="btn btn-danger" onclick="removeEffect('${prefix}', ${buffIndex}, ${index})">×</button>
+    </div>`;
+}
+
+function renderBuffCard(buff, buffIndex, prefix) {
+  const effects = (buff.effects || []).map((e, i) => renderEffectRow(e, i, buffIndex, prefix)).join("");
+  return `
+    <div class="buff-card">
+      <h4>Buff #${buffIndex + 1}</h4>
+      <div class="form-row">
+        <label>类型:</label>
+        <select onchange="updateBuff('${prefix}', ${buffIndex}, 'buffType', this.value)">
+          ${BUFF_TYPES.map(t => `<option value="${t.value}" ${(buff.buffType || '被动') === t.value ? "selected" : ""}>${t.label}</option>`).join("")}
+          <option value="_custom" ${buff.buffType === '_custom' ? "selected" : ""}>自定义...</option>
+        </select>
+        ${buff.buffType === '_custom' ? `<input type="text" value="${buff.customType || ''}" placeholder="自定义类型" onchange="updateBuff('${prefix}', ${buffIndex}, 'customType', this.value)">` : ''}
+        <button class="btn btn-danger" onclick="removeBuff('${prefix}', ${buffIndex})">删除 Buff</button>
+      </div>
+      <div class="form-row">
+        <label>描述:</label>
+        <select onchange="updateBuff('${prefix}', ${buffIndex}, 'description', this.value); renderAll()">
+          <option value="">（自定义）</option>
+          ${getDescOptions().map(d => `<option value="${d}" ${buff.description === d ? "selected" : ""}>${d}</option>`).join("")}
+        </select>
+        ${!getDescOptions().includes(buff.description) ? `<input type="text" value="${buff.description || ''}" style="width:300px" onchange="updateBuff('${prefix}', ${buffIndex}, 'description', this.value)">` : ''}
+      </div>
+      <div class="form-row">
+        <div class="checkbox-row">
+          <input type="checkbox" ${buff.optional ? "checked" : ""} onchange="updateBuff('${prefix}', ${buffIndex}, 'optional', this.checked)">
+          <label>可选(optional)</label>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" ${buff.scope === 'team' ? "checked" : ""} onchange="updateBuff('${prefix}', ${buffIndex}, 'scope', this.checked ? 'team' : '')">
+          <label>队伍范围(team)</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>userInput:</label>
+        <input type="text" value="${buff.userInput?.label || ''}" placeholder="label" style="width:60px"
+          onchange="updateUserInput('${prefix}', ${buffIndex}, 'label', this.value)">
+        <input type="number" step="any" value="${buff.userInput?.default ?? ''}" placeholder="default" style="width:60px"
+          onchange="updateUserInput('${prefix}', ${buffIndex}, 'default', this.value)">
+        <input type="number" step="any" value="${buff.userInput?.scale ?? ''}" placeholder="scale" style="width:60px"
+          onchange="updateUserInput('${prefix}', ${buffIndex}, 'scale', this.value)">
+      </div>
+      <div class="form-row">
+        <label>statBonuses:</label>
+        ${STATS.map(s => `
+          <span style="font-size:12px">${s.label}</span>
+          <input type="number" step="any" value="${buff.statBonuses?.[s.value] ?? ''}" style="width:55px"
+            onchange="updateBuffStat('${prefix}', ${buffIndex}, '${s.value}', this.value)">
+        `).join("")}
+      </div>
+      <h4>Effects</h4>
+      ${effects}
+      <button class="btn" onclick="addEffect('${prefix}', ${buffIndex})">+ 添加 Effect</button>
+    </div>`;
+}
+// PLACEHOLDER_RENDER_PANELS
+
+function renderEquipPanel() {
+  const s = equipState;
+  const equipTypeActual = s.equipType === '_custom' ? (s.customEquipType || '') : s.equipType;
+  const fullName = s.baseName + (equipTypeActual ? "·" + equipTypeActual : "");
+  let html = `
+    <div class="form-section">
+      <h3>基本信息</h3>
+      <div class="form-row">
+        <label>ID:</label>
+        <input type="text" value="${s.id}" onchange="equipState.id=this.value.replace(/ /g,'_'); this.value=equipState.id; updateOutput()">
+        <label>装备名称:</label>
+        <input type="text" value="${s.baseName}" onchange="equipState.baseName=this.value; updateOutput()">
+      </div>
+      <div class="form-row">
+        <label>类型:</label>
+        <select onchange="equipState.equipType=this.value; renderAll()">
+          ${EQUIP_TYPES.map(t => `<option value="${t.value}" ${s.equipType === t.value ? "selected" : ""}>${t.label}</option>`).join("")}
+          <option value="_custom" ${s.equipType === '_custom' ? "selected" : ""}>自定义...</option>
+        </select>
+        ${s.equipType === '_custom' ? `<input type="text" value="${s.customEquipType || ''}" placeholder="自定义类型" onchange="equipState.customEquipType=this.value; updateOutput()">` : ''}
+        <label style="color:#8f8; margin-left:12px">完整名称: ${fullName}</label>
+      </div>
+      <div class="form-row">
+        <label>栏位:</label>
+        <select onchange="equipState.slot=this.value; updateOutput()">
+          ${SLOTS.map(sl => `<option value="${sl.value}" ${s.slot === sl.value ? "selected" : ""}>${sl.label}</option>`).join("")}
+        </select>
+        <label>套装:</label>
+        <select onchange="equipState.setId=this.value; updateOutput()">
+          ${KNOWN_SETS.map(st => `<option value="${st.value}" ${s.setId === st.value ? "selected" : ""}>${st.label}</option>`).join("")}
+        </select>
+      </div>
+    </div>
+    <div class="form-section">
+      <h3>属性加成 (statBonuses)</h3>
+      <div class="form-row">
+        ${STATS.filter(st => st.value && st.value !== "artsIntensity").map(st => `
+          <label>${st.label}:</label>
+          <input type="number" value="${s.statBonuses[st.value] ?? ''}"
+            onchange="updateEquipStat('${st.value}', this.value)">
+        `).join("")}
+      </div>
+    </div>
+    <div class="form-section">
+      <h3>主能力加成 (mainAffix)</h3>
+      <div class="form-row">
+        <label>固定值:</label>
+        <input type="number" step="any" value="${s.mainAffix.flat ?? ''}" placeholder="0"
+          onchange="equipState.mainAffix.flat = this.value === '' ? null : parseFloat(this.value); updateOutput()">
+        <label>百分比:</label>
+        <input type="number" step="any" value="${s.mainAffix.percent ?? ''}" placeholder="0"
+          onchange="equipState.mainAffix.percent = this.value === '' ? null : parseFloat(this.value); updateOutput()">
+      </div>
+    </div>
+    <div class="form-section">
+      <h3>副能力加成 (subAffixes)</h3>
+      ${s.subAffixes.map((affix, i) => `
+        <div class="form-row">
+          <label>副属性${i + 1}:</label>
+          <label>固定值:</label>
+          <input type="number" step="any" value="${affix.flat ?? ''}" placeholder="0"
+            onchange="equipState.subAffixes[${i}].flat = this.value === '' ? null : parseFloat(this.value); updateOutput()">
+          <label>百分比:</label>
+          <input type="number" step="any" value="${affix.percent ?? ''}" placeholder="0"
+            onchange="equipState.subAffixes[${i}].percent = this.value === '' ? null : parseFloat(this.value); updateOutput()">
+          ${s.subAffixes.length > 1 ? `<button class="btn btn-danger" onclick="equipState.subAffixes.splice(${i}, 1); renderAll()">×</button>` : ''}
+        </div>
+      `).join("")}
+      <button class="btn" onclick="equipState.subAffixes.push({flat: null, percent: null}); renderAll()">+ 添加副属性</button>
+    </div>
+    <div class="form-section">
+      <h3>Buffs</h3>
+      ${s.buffs.map((b, i) => renderBuffCard(b, i, "equip")).join("")}
+      <button class="btn" onclick="addBuff('equip')">+ 添加 Buff</button>
+    </div>`;
+  document.getElementById("panel-equipment").innerHTML = html;
+}
+
+function renderSetPanel() {
+  const s = setState;
+  let html = `
+    <div class="form-section">
+      <h3>套装基本信息</h3>
+      <div class="form-row">
+        <label>ID:</label>
+        <input type="text" value="${s.id}" onchange="setState.id=this.value.replace(/ /g,'_'); this.value=setState.id; updateOutput()">
+        <label>名称:</label>
+        <input type="text" value="${s.name}" onchange="setState.name=this.value; updateOutput()">
+        <label>需要件数:</label>
+        <input type="number" min="1" max="4" value="${s.requiredCount}" onchange="setState.requiredCount=parseInt(this.value)||3; updateOutput()">
+      </div>
+    </div>
+    <div class="form-section">
+      <h3>套装 Buffs</h3>
+      ${s.buffs.map((b, i) => renderBuffCard(b, i, "set")).join("")}
+      <button class="btn" onclick="addBuff('set')">+ 添加 Buff</button>
+    </div>`;
+  document.getElementById("panel-set").innerHTML = html;
+}
+
+// ===== 操作函数 =====
+function getState(prefix) { return prefix === "equip" ? equipState : setState; }
+function getBuffs(prefix) { return getState(prefix).buffs; }
+
+function addBuff(prefix) {
+  getBuffs(prefix).push({ buffType: "被动", description: "", effects: [] });
+  renderAll();
+}
+function removeBuff(prefix, index) {
+  getBuffs(prefix).splice(index, 1);
+  renderAll();
+}
+function updateBuff(prefix, index, field, value) {
+  const buff = getBuffs(prefix)[index];
+  if (field === "optional") buff.optional = value;
+  else if (field === "scope") buff.scope = value || undefined;
+  else if (field === "buffType") {
+    buff.buffType = value;
+    if (value !== '_custom') delete buff.customType;
+    renderAll();
+    return;
+  } else if (field === "customType") {
+    buff.customType = value;
+  } else buff[field] = value;
+  updateOutput();
+}
+function updateUserInput(prefix, buffIndex, field, value) {
+  const buff = getBuffs(prefix)[buffIndex];
+  if (!value && value !== 0) {
+    if (buff.userInput) {
+      delete buff.userInput[field];
+      if (Object.keys(buff.userInput).length === 0) delete buff.userInput;
+    }
+    updateOutput(); return;
+  }
+  if (!buff.userInput) buff.userInput = {};
+  buff.userInput[field] = field === "label" ? value : parseFloat(value);
+  updateOutput();
+}
+function updateBuffStat(prefix, buffIndex, stat, value) {
+  const buff = getBuffs(prefix)[buffIndex];
+  if (!value) {
+    if (buff.statBonuses) { delete buff.statBonuses[stat]; if (Object.keys(buff.statBonuses).length === 0) delete buff.statBonuses; }
+  } else {
+    if (!buff.statBonuses) buff.statBonuses = {};
+    buff.statBonuses[stat] = parseFloat(value);
+  }
+  updateOutput();
+}
+
+function addEffect(prefix, buffIndex) {
+  const buff = getBuffs(prefix)[buffIndex];
+  if (!buff.effects) buff.effects = [];
+  buff.effects.push({ category: "DMG_Dealt", value: 0 });
+  renderAll();
+}
+function removeEffect(prefix, buffIndex, effectIndex) {
+  getBuffs(prefix)[buffIndex].effects.splice(effectIndex, 1);
+  renderAll();
+}
+function updateEffect(prefix, buffIndex, effectIndex, field, value) {
+  const effect = getBuffs(prefix)[buffIndex].effects[effectIndex];
+  if (field === "element" || field === "skillType") {
+    if (!value) {
+      if (effect.condition) { delete effect.condition[field]; if (Object.keys(effect.condition).length === 0) delete effect.condition; }
+    } else {
+      if (!effect.condition) effect.condition = {};
+      effect.condition[field] = value;
+    }
+  } else if (field === "value" || field === "scaleRatio" || field === "scaleCap") {
+    if (value === "" || value == null) delete effect[field];
+    else effect[field] = parseFloat(value);
+  } else if (field === "scaleStat") {
+    if (!value) delete effect.scaleStat;
+    else effect.scaleStat = value;
+  } else if (field === "userInput") {
+    if (!value) delete effect.userInput;
+    else effect.userInput = value;
+  } else {
+    effect[field] = value;
+  }
+  updateOutput();
+}
+
+function updateEquipStat(stat, value) {
+  if (!value) delete equipState.statBonuses[stat];
+  else equipState.statBonuses[stat] = parseInt(value);
+  updateOutput();
+}
+
+// ===== JSON 输出 =====
+function cleanBuff(buff, parentId, parentName, buffIndex) {
+  const autoId = `${parentId}_b${buffIndex + 1}`;
+  const buffType = buff.buffType === '_custom' ? (buff.customType || '') : (buff.buffType || '被动');
+  const autoName = buffType ? `${parentName}·${buffType}` : parentName;
+  const b = { id: autoId, name: autoName, description: buff.description };
+  if (buff.optional) b.optional = true;
+  if (buff.scope) b.scope = buff.scope;
+  if (buff.userInput && Object.keys(buff.userInput).length > 0) b.userInput = buff.userInput;
+  if (buff.statBonuses && Object.keys(buff.statBonuses).length > 0) b.statBonuses = buff.statBonuses;
+  if (buff.effects && buff.effects.length > 0) {
+    b.effects = buff.effects.map(e => {
+      const clean = { category: e.category };
+      if (e.value != null) clean.value = e.value;
+      if (e.scaleStat) clean.scaleStat = e.scaleStat;
+      if (e.scaleRatio != null) clean.scaleRatio = e.scaleRatio;
+      if (e.scaleCap != null) clean.scaleCap = e.scaleCap;
+      if (e.scaleCurve) clean.scaleCurve = e.scaleCurve;
+      if (e.userInput) clean.userInput = e.userInput;
+      if (e.condition) clean.condition = e.condition;
+      return clean;
+    });
+  }
+  return b;
+}
+
+function generateEquipJSON() {
+  const s = equipState;
+  const equipTypeActual = s.equipType === '_custom' ? (s.customEquipType || '') : s.equipType;
+  const fullName = s.baseName + (equipTypeActual ? "·" + equipTypeActual : "");
+  const obj = { id: s.id, name: fullName, slot: s.slot, setId: s.setId };
+  if (Object.keys(s.statBonuses).length > 0) obj.statBonuses = { ...s.statBonuses };
+  if (s.mainAffix.flat != null || s.mainAffix.percent != null) {
+    obj.mainAffix = { flat: s.mainAffix.flat || 0, percent: s.mainAffix.percent || 0 };
+  }
+  const validSubs = s.subAffixes.filter(a => a.flat != null || a.percent != null);
+  if (validSubs.length > 0) {
+    obj.subAffixes = validSubs.map(a => ({ flat: a.flat || 0, percent: a.percent || 0 }));
+  }
+  if (s.buffs.length > 0) obj.buffs = s.buffs.map((b, i) => cleanBuff(b, s.id, s.baseName, i));
+  return obj;
+}
+
+function generateSetJSON() {
+  const s = setState;
+  const obj = { id: s.id, name: s.name, requiredCount: s.requiredCount };
+  if (s.buffs.length > 0) obj.buffs = s.buffs.map((b, i) => cleanBuff(b, s.id, s.name, i));
+  return obj;
+}
+
+function compactJSON(obj, indent = 0) {
+  const pad = "  ".repeat(indent);
+  const pad1 = "  ".repeat(indent + 1);
+  if (Array.isArray(obj)) {
+    if (obj.length === 0) return "[]";
+    const items = obj.map(item => {
+      if (item && typeof item === "object" && !Array.isArray(item)) {
+        const flat = JSON.stringify(item);
+        if (flat.length < 120) return pad1 + flat;
+        return pad1 + compactJSON(item, indent + 1);
+      }
+      return pad1 + JSON.stringify(item);
+    });
+    return "[\n" + items.join(",\n") + "\n" + pad + "]";
+  }
+  if (obj && typeof obj === "object") {
+    const keys = Object.keys(obj);
+    if (keys.length === 0) return "{}";
+    const flat = JSON.stringify(obj);
+    if (flat.length < 80 && !keys.some(k => Array.isArray(obj[k]) || (typeof obj[k] === "object" && obj[k] !== null))) return flat;
+    const entries = keys.map(k => {
+      const v = obj[k];
+      if (v && typeof v === "object") {
+        const vFlat = JSON.stringify(v);
+        if (!Array.isArray(v) && vFlat.length < 100) return pad1 + JSON.stringify(k) + ": " + vFlat;
+        return pad1 + JSON.stringify(k) + ": " + compactJSON(v, indent + 1);
+      }
+      return pad1 + JSON.stringify(k) + ": " + JSON.stringify(v);
+    });
+    return "{\n" + entries.join(",\n") + "\n" + pad + "}";
+  }
+  return JSON.stringify(obj);
+}
+
+function updateOutput() {
+  const activeTab = document.querySelector(".tabs button.active").dataset.tab;
+  const json = activeTab === "equipment" ? generateEquipJSON() : generateSetJSON();
+  let output = "";
+  if (activeTab === "equipment" && equipState.baseName) {
+    output += JSON.stringify({"#": equipState.baseName}) + ",\n";
+  } else if (activeTab === "set" && setState.name) {
+    output += JSON.stringify({"#": setState.name}) + ",\n";
+  }
+  output += compactJSON(json);
+  document.getElementById("json-output").textContent = output;
+}
+
+function copyOutput() {
+  const text = document.getElementById("json-output").textContent;
+  navigator.clipboard.writeText(text).then(() => alert("已复制到剪贴板"));
+}
+
+// 初始渲染
+renderAll();
+</script>
+</body>
+</html>

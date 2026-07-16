@@ -354,10 +354,40 @@ function findBuffById(id, slotIndex) {
  *   buff.userInput = { label: "%", default: 0, scale: 0.01 }
  *   effect/meta 中 userInput: true 的条目，value/multiplier 会被替换为 rawVal × scale
  */
-function resolveUserInputBuffs(buffs, slotIndex, rowOverrides = {}) {
+function resolveUserInputBuffs(buffs, slotIndex, rowOverrides = {}, statTotals = {}) {
   const slot = state.slots[slotIndex];
   const vals = slot?.userInputValues || {};
   return buffs.map(buff => {
+    // 多输入模式（userInputs + formula）
+    if (buff.userInputs) {
+      const resolved = {};
+      for (const input of buff.userInputs) {
+        const compositeKey = `${buff.id}__${input.key}`;
+        const rawVal = rowOverrides[compositeKey] ?? vals[compositeKey] ?? input.default ?? 0;
+        resolved[input.key] = rawVal * (input.scale ?? 1);
+      }
+      const evalFormula = (formula) => {
+        const allVars = { ...statTotals, ...resolved };
+        const keys = Object.keys(allVars);
+        const values = Object.values(allVars);
+        try {
+          return new Function("min", "max", ...keys, "return " + formula)(
+            Math.min, Math.max, ...values
+          );
+        } catch { return 0; }
+      };
+      return {
+        ...buff,
+        effects: buff.effects?.map(e => {
+          if (!e.formula) return e;
+          return { ...e, value: evalFormula(e.formula) };
+        }),
+        metas: buff.metas?.map(m => {
+          if (!m.formula) return m;
+          return { ...m, multiplier: evalFormula(m.formula) };
+        }),
+      };
+    }
     if (!buff.userInput) return buff;
     const rawVal = rowOverrides[buff.id] ?? vals[buff.id] ?? buff.userInput.default ?? 0;
     const scale = buff.userInput.scale ?? 1;
@@ -425,6 +455,15 @@ function collectRowBuffs(slotIndex, rowIndex) {
         : cellId;
       rowOverrides[rawBuffId] = cellObj.inputValue;
     }
+    // 多输入模式
+    if (cellObj.inputValues) {
+      const rawBuffId = typeof cellId === "string" && cellId.startsWith("gb:")
+        ? cellId.split(":")[1]
+        : cellId;
+      for (const [key, val] of Object.entries(cellObj.inputValues)) {
+        rowOverrides[`${rawBuffId}__${key}`] = val;
+      }
+    }
 
     if (cellId == null) continue;
 
@@ -449,7 +488,7 @@ function collectRowBuffs(slotIndex, rowIndex) {
   const char = getSlotChar(slotIndex);
   const slot = state.slots[slotIndex];
   const allUnlocked = char ? collectCharBuffs(char, slot.charPotLevel, () => true) : [];
-  return resolveUserInputBuffs(applyBuffReplacements(buffs, allUnlocked), slotIndex, rowOverrides);
+  return resolveUserInputBuffs(applyBuffReplacements(buffs, allUnlocked), slotIndex, rowOverrides, getEnhancedSlotStatTotals(slotIndex));
 }
 
 function calculateSlotDamage(slotIndex) {

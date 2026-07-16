@@ -130,5 +130,18 @@
     "effects":[
       { "category": "primaryStatMultiplier", "scaleRatio": -1, "userInput": "scaleValue" }
     ]
+  },
+  {
+    "id": "Resistance_Over_Time",
+    "name": "抗性随时间降低",
+    "group": "通用",
+    "description": "根据层数和秒数降低抗性（最终值 = 每层每秒值 × 层 × 秒）",
+    "userInputs": [
+      { "key": "level", "label": "层", "default": 1, "scale": 0.02 },
+      { "key": "seconds", "label": "秒", "default": 0, "scale": 1 }
+    ],
+    "effects":[
+      { "category": "Resistance", "formula": "level * seconds" }
+    ]
   }
 ]

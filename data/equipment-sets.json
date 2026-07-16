@@ -369,5 +369,21 @@
         "effects": []
       }
     ]
+  },
+  {"#": "集成实训"},
+  {
+    "id": "AIC_Fieldwork",
+    "name": "集成实训",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "AIC_Fieldwork_b1",
+        "name": "集成实训·被动",
+        "description": "装备者造成的所有类型伤害+20%，受到的所有类型伤害-10%，终结技充能效率+10%。",
+        "effects": [
+          {"category":"DMG_Dealt","value":0.2}
+        ]
+      }
+    ]
   }
 ]

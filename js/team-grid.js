@@ -51,14 +51,23 @@ function placeItem(grid, char, row, col, selection) {
     }
     // 始终用 palette 当前值快照
     let initInput = undefined;
+    let initInputs = undefined;
     const buff = findBuffById(selection.id);
-    if (buff?.userInput) {
+    if (buff?.userInputs) {
+      const slotVals = state.slots[state.activeSlotIndex]?.userInputValues || {};
+      initInputs = {};
+      for (const input of buff.userInputs) {
+        initInputs[input.key] = slotVals[`${buff.id}__${input.key}`] ?? input.default ?? 0;
+      }
+    } else if (buff?.userInput) {
       const slotVals = state.slots[state.activeSlotIndex]?.userInputValues || {};
       initInput = slotVals[buff.id] ?? buff.userInput.default ?? 0;
     }
-    grid[row].buffCells[buffCol] = initInput != null
-      ? { id: selection.id, inputValue: initInput }
-      : { id: selection.id };
+    grid[row].buffCells[buffCol] = initInputs != null
+      ? { id: selection.id, inputValues: initInputs }
+      : initInput != null
+        ? { id: selection.id, inputValue: initInput }
+        : { id: selection.id };
   }
   // 列 1（次数）不是有效的放置目标
 }
@@ -162,7 +171,16 @@ export function renderGrid() {
         const buff = findBuffById(buffId);
         const name = buff ? buff.name : buffId;
         html += `<td class="grid-cell grid-cell-buff filled" data-row="${r}" data-col="${c + 2}">`;
-        if (buff?.userInput) {
+        if (buff?.userInputs) {
+          const slotVals = state.slots[state.activeSlotIndex]?.userInputValues || {};
+          html += `<span class="grid-chip buff-chip" title="${buff?.description || ""}">${name}</span>`;
+          for (const input of buff.userInputs) {
+            const compositeKey = `${buff.id}__${input.key}`;
+            const curVal = cellObj.inputValues?.[input.key] ?? slotVals[compositeKey] ?? input.default ?? 0;
+            html += `<input type="number" class="grid-cell-input" data-row="${r}" data-col="${c + 2}" data-key="${input.key}" value="${curVal}" step="any" />`;
+            if (input.label) html += `<span class="grid-cell-input-label">${input.label}</span>`;
+          }
+        } else if (buff?.userInput) {
           const slotVals = state.slots[state.activeSlotIndex]?.userInputValues || {};
           const defaultVal = buff.userInput.default ?? 0;
           // 优先用格子自己的值，其次用面板右侧填的值，最后用 default
@@ -326,10 +344,20 @@ export function initGridEvents() {
     const cell = grid[r].buffCells[c];
     // 空字符串表示用户未填，inputValue 设为 null（计算时回落到槽位级别值）
     const parsed = e.target.value.trim() === "" ? null : (parseFloat(e.target.value) || 0);
+    const dataKey = e.target.dataset.key;
     if (cell && typeof cell === "object") {
-      cell.inputValue = parsed;
+      if (dataKey) {
+        if (!cell.inputValues) cell.inputValues = {};
+        cell.inputValues[dataKey] = parsed;
+      } else {
+        cell.inputValue = parsed;
+      }
     } else if (cell) {
-      grid[r].buffCells[c] = { id: cell, inputValue: parsed };
+      if (dataKey) {
+        grid[r].buffCells[c] = { id: cell, inputValues: { [dataKey]: parsed } };
+      } else {
+        grid[r].buffCells[c] = { id: cell, inputValue: parsed };
+      }
     }
     renderResult();
   });

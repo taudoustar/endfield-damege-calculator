@@ -633,6 +633,122 @@
   {
     "#": "=====================施术单元====================="
   },
+  {"#":"四二式·肃阵"},
+  {
+    "id": "Type_42:_Solemn_Phalanx",
+    "name": "四二式·肃阵",
+    "type": "Arts_Unit",
+    "baseAtk": 505,
+    "potentialBuffs": [
+      {"id":"Type_42:_Solemn_Phalanx_p1","name":"智识提升·大","description":"智识提升","statBonuses":{"intellect":156}},
+      {"id":"Type_42:_Solemn_Phalanx_p2","name":"终结技充能效率提升·大","description":"终结技充能效率提升"},
+      {
+        "id": "Type_42:_Solemn_Phalanx_p3",
+        "name": "迸发·陷坚挫锐·被动",
+        "description": "攻击力提升",
+        "effects": [
+          {"category":"atkPercent","value":[0.256,0.288,0.32,0.352,0.384,0.448]}
+        ]
+      },
+      {
+        "id": "Type_42:_Solemn_Phalanx_p4",
+        "name": "迸发·陷坚挫锐·智·触发1",
+        "description": "装备者智识值≥意志值：装备者通过自身技能施加法术附着时，造成的法术伤害提升，持续20秒；",
+        "optional": true,
+        "effects": [
+          {"category":"DMG_Dealt","value":[0.032, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Heat"}},
+          {"category":"DMG_Dealt","value":[0.032, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Cryo"}},
+          {"category":"DMG_Dealt","value":[0.032, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Electric"}},
+          {"category":"DMG_Dealt","value":[0.032, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Nature"}}
+        ]
+      },
+      {
+        "id": "Type_42:_Solemn_Phalanx_p5",
+        "name": "迸发·陷坚挫锐·智·触发2",
+        "description": "装备者智识值≥意志值：装备者通过自身技能施加法术脆弱时，攻击力提升，持续20秒。",
+        "optional": true,
+        "effects": [
+          {"category":"atkPercent","value":[0.32, 0.36,0.4,0.44,0.48,0.56]}
+        ]
+      },
+      {
+        "id": "Type_42:_Solemn_Phalanx_p6",
+        "name": "迸发·陷坚挫锐·意志·触发1",
+        "description": "装备者意志值>智识值：装备者通过自身技能施加法术爆发时，使目标敌人受到的法术伤害提升，持续25秒；",
+        "optional": true,
+        "scope": "team",
+        "effects": [
+          {"category":"DMG_Taken","value":[0.096, 0.108,0.12,0.132,0.144,0.168],"condition":{"element":"Heat"}},
+          {"category":"DMG_Taken","value":[0.096, 0.108,0.12,0.132,0.144,0.168],"condition":{"element":"Cryo"}},
+          {"category":"DMG_Taken","value":[0.096, 0.108,0.12,0.132,0.144,0.168],"condition":{"element":"Electric"}},
+          {"category":"DMG_Taken","value":[0.096, 0.108,0.12,0.132,0.144,0.168],"condition":{"element":"Nature"}}
+        ]
+      },
+      {
+        "id": "Type_42:_Solemn_Phalanx_p7",
+        "name": "迸发·陷坚挫锐·意志·触发2",
+        "description": "装备者意志值>智识值：装备者通过自身技能施加法术脆弱时，使目标敌人受到的法术伤害+16.8%，持续25秒。",
+        "optional": true,
+        "scope": "team",
+        "effects": [
+          {"category":"DMG_Taken","value":[0.096, 0.108,0.12,0.132,0.144,0.168],"condition":{"element":"Heat"}},
+          {"category":"DMG_Taken","value":[0.096, 0.108,0.12,0.132,0.144,0.168],"condition":{"element":"Cryo"}},
+          {"category":"DMG_Taken","value":[0.096, 0.108,0.12,0.132,0.144,0.168],"condition":{"element":"Electric"}},
+          {"category":"DMG_Taken","value":[0.096, 0.108,0.12,0.132,0.144,0.168],"condition":{"element":"Nature"}}
+        ]
+      }
+    ]
+  },
+  {"#":"联结点"},
+  {
+    "id": "Junction_Point",
+    "name": "联结点",
+    "type": "Arts_Unit",
+    "baseAtk": 490,
+    "potentialBuffs": [
+      {"id":"Junction_Point_p1","name":"智识提升·大","description":"智识提升","statBonuses":{"intellect":156}},
+      {"id":"Junction_Point_p2","name":"终结技充能效率提升·大","description":"终结技充能效率提升"},
+      {
+        "id": "Junction_Point_p3",
+        "name": "效益·回环·被动",
+        "description": "自然伤害提升",
+        "effects": [
+          {"category":"DMG_Dealt","value":[0.126,0.14,0.154,0.168,0.196],"condition":{"element":"Nature"}}
+        ]
+      },
+      {
+        "id": "Junction_Point_p4",
+        "name": "效益·回环·触发（自身）",
+        "description": "装备者通过连携技施加法术脆弱或法术附着时，攻击力提升，持续20秒。同名效果最多叠加2层，每层单独计算持续时间。",
+        "optional": true,
+        "userInput": {"label":"层","default":0,"scale":1},
+        "effects": [
+          {
+            "category": "atkPercent",
+            "scaleRatio": [0.096,0.108,0.12,0.132,0.144,0.168],
+            "scaleCap": [0.192,0.216,0.24,0.264,0.288,0.336],
+            "userInput": "scaleValue"
+          }
+        ]
+      },
+      {
+        "id": "Junction_Point_p5",
+        "name": "效益·回环·触发（队友）",
+        "description": "装备者通过连携技施加法术脆弱或法术附着时，小队内其他干员攻击力+4.2%，持续20秒。同名效果最多叠加2层，每层单独计算持续时间。",
+        "optional": true,
+        "scope": "team",
+        "userInput": {"label":"层","scale":1,"default":0},
+        "effects": [
+          {
+            "category": "atkPercent",
+            "scaleRatio": [0.024,0.027,0.03,0.033,0.036,0.042],
+            "scaleCap": [0.048,0.054,0.06,0.066,0.072,0.084],
+            "userInput": "scaleValue"
+          }
+        ]
+      }
+    ]
+  },
   { "#": "孤舟" },
   {
     "id": "Lone_Barge",
@@ -1248,6 +1364,39 @@
   {
     "#": "=====================长柄武器====================="
   },
+  {"#":"黄金时代"},
+  {
+    "id": "Golden_Age",
+    "name": "黄金时代",
+    "type": "Polearm",
+    "baseAtk": 485,
+    "potentialBuffs": [
+      {"id":"Golden_Age_p1","name":"意志提升·大","description":"意志提升","statBonuses":{"will":156}},
+      {"id":"Golden_Age_p2","name":"治疗效率提升·大","description":"治疗效率提升"},
+      {
+        "id": "Golden_Age_p3",
+        "name": "追袭·大英雄·被动",
+        "description": "电磁伤害提升",
+        "effects": [
+          {"category":"DMG_Dealt","value":[0.096,0.108,0.12,0.132,0.144,0.168],"condition":{"element":"Electric"}}
+        ]
+      },
+      {"id":"Golden_Age_p4","name":"追袭·大英雄·触发1","description":"装备者通过连携技造成伤害时，治疗效率+9.6%，持续15秒"},
+      {
+        "id": "Golden_Age_p5",
+        "name": "追袭·大英雄·触发2",
+        "description": "装备者通过连携技治疗小队内其他干员时，全队法术伤害+12.0%，持续20秒。",
+        "optional": true,
+        "scope": "team",
+        "effects": [
+          {"category":"DMG_Dealt","value":[0.08,0.09,0.1,0.11,0.12,0.14],"condition":{"element":"Heat"}},
+          {"category":"DMG_Dealt","value":[0.08,0.09,0.1,0.11,0.12,0.14],"condition":{"element":"Cryo"}},
+          {"category":"DMG_Dealt","value":[0.08,0.09,0.1,0.11,0.12,0.14],"condition":{"element":"Electric"}},
+          {"category":"DMG_Dealt","value":[0.08,0.09,0.1,0.11,0.12,0.14],"condition":{"element":"Nature"}}
+        ]
+      }
+    ]
+  },
   { "#": "骁勇" },
   {
     "id": "Valiant",
@@ -1487,58 +1636,6 @@
         "optional": true,
         "effects": [
           { "category": "DMG_Dealt", "value": [0.096, 0.108, 0.12, 0.132, 0.144, 0.168] , "condition": { "element": ["Heat"] } }
-        ]
-      }
-    ]
-  },
-  {
-    "#": "=====================tteesstt====================="
-  },
-  { "#": "究极无敌·天神下凡·超级至尊·一刀9999·最强之枪" },
-  {
-    "id": "Polearm_test",
-    "name": "究极无敌·天神下凡·超级至尊·一刀9999·最强之枪",
-    "type": "not_weapon",
-    "baseAtk": 0,
-    "potentialBuffs": [
-      {
-        "id": "Polearm_test_1",
-        "name": "究极无敌",
-        "description": "易伤提升",
-        "effects": [
-          { "category": "DMG_Taken", "value": [10, 10, 10, 10, 10, 10] }
-        ]
-      },
-      {
-        "id": "Polearm_test_2",
-        "name": "天神下凡",
-        "description": "增伤提升",
-        "effects": [
-          { "DMG_Dealt": "DMG_Taken", "value": [10, 10, 10, 10, 10, 10] }
-        ]
-      },
-      {
-        "id": "Polearm_test_3",
-        "name": "超级至尊",
-        "description": "攻击力提升",
-        "effects": [
-          { "category": "atkPercent", "value": [10, 10, 10, 10, 10, 10] }
-        ]
-      },
-      {
-        "id": "Polearm_test_4",
-        "name": "一刀999",
-        "description": "固定攻击力提升",
-        "effects": [
-          { "category": "flatAtk", "value": [9999, 9999, 9999, 99999, 9999, 9999] }
-        ]
-      },
-      {
-        "id": "Polearm_test_5",
-        "name": "最强之枪",
-        "description": "增幅提升",
-        "effects": [
-          { "category": "Arts_Amp", "value": [10, 10, 10, 10, 10, 10] }
         ]
       }
     ]

@@ -1,4 +1,4 @@
-共发现 35 种不同的潜能缩放数组:
+共发现 36 种不同的潜能缩放数组:
 
 数组值 [lv0, lv1, lv2, lv3, lv4, lv5]
 ============================================================
@@ -6,16 +6,26 @@
     <- 狼之绯[2].effects[0].scaleRatio
 [0.02, 0.0225, 0.025, 0.0275, 0.03, 0.035]    倍率: x1.75  (1处使用)
     <- 显赫声名[3].effects[1].scaleRatio
+[0.024, 0.027, 0.03, 0.033, 0.036, 0.042]     倍率: x1.75  (1处使用)
+    <- 联结点[4].effects[0].scaleRatio
+[0.032, 0.36, 0.4, 0.44, 0.48, 0.56]          倍率: x17.50  (4处使用)
+    <- 四二式·肃阵[3].effects[0].value
+    <- 四二式·肃阵[3].effects[1].value
+    <- 四二式·肃阵[3].effects[2].value
+    <- 四二式·肃阵[3].effects[3].value
 [0.04, 0.045, 0.05, 0.055, 0.06, 0.07]        倍率: x1.75  (3处使用)
     <- 显赫声名[2].effects[1].scaleRatio
     <- 显赫声名[3].effects[0].value
     <- 不知归[3].effects[0].value
-[0.048, 0.054, 0.06, 0.066, 0.072, 0.084]     倍率: x1.75  (2处使用)
+[0.048, 0.054, 0.06, 0.066, 0.072, 0.084]     倍率: x1.75  (3处使用)
     <- O.B.J.轻芒[2].effects[0].scaleRatio
     <- 赤缨[3].effects[1].scaleRatio
+    <- 联结点[4].effects[0].scaleCap
 [0.056, 0.063, 0.07, 0.077, 0.084, 0.098]     倍率: x1.75  (1处使用)
     <- 使命必达[2].effects[1].scaleRatio
-[0.08, 0.09, 0.1, 0.11, 0.12, 0.14]           倍率: x1.75  (7处使用)
+[0.064, 0.072, 0.08, 0.088, 0.096, 0.112]     倍率: x1.75  (1处使用)
+    <- 灯火使命[3].effects[0].value
+[0.08, 0.09, 0.1, 0.11, 0.12, 0.14]           倍率: x1.75  (11处使用)
     <- 热熔切割器[2].effects[0].scaleRatio
     <- 显赫声名[2].effects[0].value
     <- 显赫声名[3].effects[1].scaleCap
@@ -23,14 +33,30 @@
     <- 遗忘[1].effects[0].value
     <- O.B.J.迅极[1].effects[0].value
     <- O.B.J.迅极[2].effects[0].scaleRatio
+    <- 黄金时代[4].effects[0].value
+    <- 黄金时代[4].effects[1].value
+    <- 黄金时代[4].effects[2].value
+    <- 黄金时代[4].effects[3].value
 [0.088, 0.099, 0.11, 0.121, 0.132, 0.154]     倍率: x1.75  (2处使用)
     <- 幻想苦痛[2].effects[0].scaleRatio
     <- 雾中微光[2].effects[0].scaleRatio
-[0.096, 0.108, 0.12, 0.132, 0.144, 0.168]     倍率: x1.75  (4处使用)
+[0.096, 0.108, 0.12, 0.132, 0.144, 0.168]     倍率: x1.75  (16处使用)
+    <- 四二式·肃阵[5].effects[0].value
+    <- 四二式·肃阵[5].effects[1].value
+    <- 四二式·肃阵[5].effects[2].value
+    <- 四二式·肃阵[5].effects[3].value
+    <- 四二式·肃阵[6].effects[0].value
+    <- 四二式·肃阵[6].effects[1].value
+    <- 四二式·肃阵[6].effects[2].value
+    <- 四二式·肃阵[6].effects[3].value
+    <- 联结点[3].effects[0].scaleRatio
     <- 落草[3].effects[0].value
     <- 落草[3].effects[1].value
     <- 落草[3].effects[2].value
     <- 落草[3].effects[3].value
+    <- 黄金时代[2].effects[0].value
+    <- 镀红祝福[2].effects[0].value
+    <- 镀红祝福[3].effects[0].value
 [0.112, 0.126, 0.14, 0.154, 0.168, 0.196]     倍率: x1.75  (3处使用)
     <- 光荣记忆[1].effects[0].value
     <- 雾中微光[1].effects[0].value
@@ -38,7 +64,7 @@
 [0.112, 0.126, 0.149, 0.154, 0.168, 0.196]    倍率: x1.75  (2处使用)
     <- 黯色火炬[1].effects[0].value
     <- 幻想苦痛[1].effects[0].value
-[0.128, 0.144, 0.16, 0.176, 0.192, 0.224]     倍率: x1.75  (8处使用)
+[0.128, 0.144, 0.16, 0.176, 0.192, 0.224]     倍率: x1.75  (9处使用)
     <- 黯色火炬[2].effects[0].scaleRatio
     <- 悼亡诗[2].effects[0].value
     <- 迷失荒野[2].effects[0].value
@@ -47,6 +73,7 @@
     <- 负山[2].allAffix.percent
     <- 负山[3].allAffix.percent
     <- 灯火使命[1].effects[0].value
+    <- 灯火使命[2].effects[0].value
 [0.144, 0.162, 0.18, 0.198, 0.216, 0.252]     倍率: x1.75  (7处使用)
     <- O.B.J.轻芒[2].effects[0].scaleCap
     <- 赤缨[3].effects[0].value
@@ -55,7 +82,7 @@
     <- 爆破单元[2].effects[2].value
     <- 爆破单元[2].effects[3].value
     <- 骑士精神[2].effects[0].value
-[0.16, 0.18, 0.2, 0.22, 0.24, 0.28]           倍率: x1.75  (17处使用)
+[0.16, 0.18, 0.2, 0.22, 0.24, 0.28]           倍率: x1.75  (15处使用)
     <- 热熔切割器[1].effects[0].value
     <- 热熔切割器[2].effects[0].scaleCap
     <- 显赫声名[1].effects[0].value
@@ -71,15 +98,14 @@
     <- 骁勇[1].effects[0].value
     <- 向心之引[1].effects[0].value
     <- 向心之引[2].effects[0].value
-    <- 灯火使命[2].effects[0].value
-    <- 灯火使命[3].effects[0].value
 [0.168, 0.189, 0.21, 0.231, 0.252, 0.294]     倍率: x1.75  (1处使用)
     <- 使命必达[2].effects[1].scaleCap
-[0.192, 0.216, 0.24, 0.264, 0.288, 0.336]     倍率: x1.75  (13处使用)
+[0.192, 0.216, 0.24, 0.264, 0.288, 0.336]     倍率: x1.75  (14处使用)
     <- 光荣记忆[2].effects[0].scaleRatio
     <- 白夜新星[1].effects[0].value
     <- 白夜新星[2].effects[0].value
     <- 赤缨[3].effects[1].scaleCap
+    <- 联结点[3].effects[0].scaleCap
     <- 使命必达[2].effects[0].value
     <- 遗忘[3].effects[0].value
     <- 同类相食[1].effects[0].value
@@ -93,13 +119,14 @@
     <- 艺术暴君[2].effects[0].scaleRatio
 [0.24, 0.27, 0.3, 0.33, 0.36, 0.42]           倍率: x1.75  (1处使用)
     <- 扶摇[1].effects[0].value
-[0.256, 0.288, 0.32, 0.352, 0.384, 0.448]     倍率: x1.75  (10处使用)
+[0.256, 0.288, 0.32, 0.352, 0.384, 0.448]     倍率: x1.75  (11处使用)
     <- 不知归[1].effects[0].value
     <- 狼之绯[1].effects[0].value
     <- 狼之绯[2].effects[0].scaleCap
     <- 熔铸火焰[1].effects[0].value
     <- 黯色火炬[2].effects[0].scaleCap
     <- 赤缨[1].effects[0].value
+    <- 四二式·肃阵[2].effects[0].value
     <- 孤舟[1].effects[0].value
     <- 使命必达[1].effects[0].value
     <- 艺术暴君[1].effects[0].value
@@ -107,11 +134,12 @@
 [0.264, 0.297, 0.33, 0.363, 0.396, 0.462]     倍率: x1.75  (2处使用)
     <- 幻想苦痛[2].effects[0].scaleCap
     <- 雾中微光[2].effects[0].scaleCap
-[0.32, 0.36, 0.4, 0.44, 0.48, 0.56]           倍率: x1.75  (8处使用)
+[0.32, 0.36, 0.4, 0.44, 0.48, 0.56]           倍率: x1.75  (9处使用)
     <- 赫拉芬格[1].effects[0].value
     <- 赫拉芬格[1].effects[1].value
     <- 赫拉芬格[1].effects[2].value
     <- 赫拉芬格[3].effects[0].value
+    <- 四二式·肃阵[4].effects[0].value
     <- 孤舟[2].effects[0].scaleRatio
     <- 落草[2].effects[0].value
     <- O.B.J.迅极[2].effects[0].scaleCap
@@ -136,11 +164,6 @@
     <- 熔铸火焰[2].effects[0].value
 [1.92, 2.16, 2.4, 2.64, 2.88, 3.36]           倍率: x1.75  (1处使用)
     <- 骁勇[2].skillOverrides[0].multiplier
-[10, 10, 10, 10, 10, 10]                      倍率: x1.00  (4处使用)
-    <- 究极无敌·天神下凡·超级至尊·一刀9999·最强之枪[0].effects[0].value
-    <- 究极无敌·天神下凡·超级至尊·一刀9999·最强之枪[1].effects[0].value
-    <- 究极无敌·天神下凡·超级至尊·一刀9999·最强之枪[2].effects[0].value
-    <- 究极无敌·天神下凡·超级至尊·一刀9999·最强之枪[4].effects[0].value
 [16, 18, 20, 22, 24, 28]                      倍率: x1.75  (1处使用)
     <- 迷失荒野[1].statBonuses.artsIntensity
 [27, 33, 40, 46, 52, 62]                      倍率: x2.30  (1处使用)
@@ -152,5 +175,3 @@
 [48, 54, 60, 66, 72, 84]                      倍率: x1.75  (2处使用)
     <- 宏愿[1].statBonuses.artsIntensity
     <- 赤缨[2].statBonuses.artsIntensity
-[9999, 9999, 9999, 99999, 9999, 9999]         倍率: x1.00  (1处使用)
-    <- 究极无敌·天神下凡·超级至尊·一刀9999·最强之枪[3].effects[0].value

@@ -1242,6 +1242,40 @@
       }
     ]
   },
+  {"#": "动火用护手"},
+  {
+    "id": "Hot_Work_Hands_PPE",
+    "name": "动火用护手·灼热自然伤害",
+    "slot": "gloves",
+    "setId": "Hot_Work",
+    "statBonuses": {
+      "will": 55,
+      "intellect": 84
+    },
+    "buffs": [
+      {
+        "id": "Hot_Work_Hands_PPE_b1",
+        "name": "动火用护手·被动",
+        "description": "灼热和自然伤害提升24.9%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.249,
+            "condition": {
+              "element": "Heat"
+            }
+          },
+          {
+            "category": "DMG_Dealt",
+            "value": 0.249,
+            "condition": {
+              "element": "Nature"
+            }
+          }
+        ]
+      }
+    ]
+  },
   {"#": "动火用手甲"},
   {
     "id": "Hot_Work_Gauntlets",
@@ -1292,6 +1326,26 @@
         "name": "动火用手套",
         "description": "源石技艺强度提升44",
         "statBonuses": { "artsIntensity": 44 }
+      }
+    ]
+  },
+  {"#": "动火用隔温板"},
+  {
+    "id": "Hot_Work_Insulation_Slab",
+    "name": "动火用隔温板·技能",
+    "slot": "kit",
+    "setId": "Hot_Work",
+    "statBonuses": {"intellect":41,"will":27},
+    "buffs": [
+      {
+        "id": "Hot_Work_Insulation_Slab_b1",
+        "name": "动火用隔温板·被动",
+        "description": "所有技能伤害提升35.9%",
+        "effects": [
+          {"category":"DMG_Dealt","value":0.359,"condition":{"skillType":"skill"}},
+          {"category":"DMG_Dealt","value":0.359,"condition":{"skillType":"combo"}},
+          {"category":"DMG_Dealt","value":0.359,"condition":{"skillType":"ultimate"}}
+        ]
       }
     ]
   },
@@ -1364,6 +1418,16 @@
       }
     ]
   },
+  {
+    "id": "LYNX_Cuirass_T1",
+    "name": "生物辅助胸甲·壹型·充能",
+    "slot": "armor",
+    "setId": "LYNX",
+    "statBonuses": {"will":113,"agility":75},
+    "buffs": [
+      {"id":"LYNX_Cuirass_T1_b1","name":"生物辅助胸甲·壹型·被动","description":"充能效率提升16.0%"}
+    ]
+  },
   {"#": "生物辅助重甲"},
   {
     "id": "LYNX_Heavy_Armor",
@@ -1394,6 +1458,16 @@
         "description": "治疗效率提升22.4%",
         "effects": []
       }
+    ]
+  },
+  {
+    "id": "LYNX_Gauntlets_T1",
+    "name": "生物辅助手甲·壹型·充能",
+    "slot": "gloves",
+    "setId": "LYNX",
+    "statBonuses": {"will":84,"agility":55},
+    "buffs": [
+      {"id":"LYNX_Gauntlets_T1_b1","name":"生物辅助手甲·壹型·被动","description":"充能效率提升26.7%"}
     ]
   },
   {"#": "生物辅助臂甲"},
@@ -1898,6 +1972,46 @@
   {
     "#": "==================这里开始是长息=================="
   },
+  {"#": "长息轻护甲"},
+  {
+    "id": "Eternal_Xiranite_Light_Armor",
+    "name": "长息轻护甲·充能",
+    "slot": "armor",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": {
+      "will": 143
+    },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Light_Armor_b1",
+        "name": "长息轻护甲·被动",
+        "description": "充能效率提升16.0%"
+      }
+    ]
+  },
+  {
+    "id": "Eternal_Xiranite_Light_Armor_T1",
+    "name": "长息轻护甲·壹型·副能力",
+    "slot": "armor",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": {
+      "will": 75,
+      "intellect": 113
+    },
+    "subAffixes": [
+      {
+        "flat": 0,
+        "percent": 0.135
+      }
+    ],
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Light_Armor_T1_b1",
+        "name": "长息轻护甲·壹型·被动",
+        "description": "副能力提升13.5%"
+      }
+    ]
+  },
   {"#": "长息装甲"},
   {
     "id": "Eternal_Xiranite_Armor",
@@ -1942,6 +2056,65 @@
         "name": "长息护手·壹型",
         "description": "充能效率提升26.7%",
         "effects": []
+      }
+    ]
+  },
+  {"#": "长息裹手"},
+  {
+    "id": "Eternal_Xiranite_Wraps",
+    "name": "长息裹手·充能",
+    "slot": "gloves",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": {
+      "will": 84,
+      "intellect": 55
+    },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Wraps_b1",
+        "name": "长息裹手·被动",
+        "description": "充能效率提升26.7%"
+      }
+    ]
+  },
+  {"#": "长息手套"},
+  {
+  "id": "Eternal_Xiranite_Hands",
+  "name": "长息手套·充能",
+  "slot": "gloves",
+  "setId": "Eternal_Xiranite",
+  "statBonuses": {
+    "will": 84,
+    "agility": 55
+  },
+  "buffs": [
+    {
+      "id": "Eternal_Xiranite_Hands_b1",
+      "name": "长息手套·被动",
+      "description": "充能效率提升26.7%"
+    }
+  ]
+  },
+  {"#": "长息加固板"},
+  {
+    "id": "Eternal_Xiranite_Bracing_Slab",
+    "name": "长息加固板·副能力",
+    "slot": "kit",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": {
+      "will": 53
+    },
+    "subAffixes": [
+      {
+        "flat": 0,
+        "percent": 0.267
+      }
+    ],
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Bracing_Slab_b1",
+        "name": "长息加固板·被动",
+        "description": "副能力提升26.9%"
       }
     ]
   },
@@ -2332,6 +2505,233 @@
         "description": "物理伤害提升29.9%",
         "effects": [
           { "category": "DMG_Dealt", "value": 0.299, "condition": { "element": "Physical" } }
+        ]
+      }
+    ]
+  },
+  {
+    "#": "==================这里开始是涉渊=================="
+  },
+  {"#": "涉渊重甲"},
+  {
+    "id": "Rift_Trekker_Heavy_Armor",
+    "name": "涉渊重甲·源石技艺强度",
+    "slot": "armor",
+    "setId": "",
+    "statBonuses": {"strength":149},
+    "buffs": [
+      {"id":"Rift_Trekker_Heavy_Armor_b1","name":"涉渊重甲·被动","description":"源石技艺强度提升28","statBonuses":{"artsIntensity":28}}
+    ]
+  },
+  {"#": "涉渊轻甲"},
+  {
+    "id": "Rift_Trekker_Light_Armor",
+    "name": "涉渊轻甲·治疗效率",
+    "slot": "armor",
+    "setId": "",
+    "statBonuses": {"will":149},
+    "buffs": [
+      {"id":"Rift_Trekker_Light_Armor_b1","name":"涉渊轻甲·被动","description":"治疗效率提升14%"}
+    ]
+  },
+  {"#": "涉渊护手"},
+  {
+    "id": "Rift_Trekker_Gloves",
+    "name": "涉渊护手·充能",
+    "slot": "gloves",
+    "setId": "",
+    "statBonuses": {"intellect":111},
+    "buffs": [
+      {"id":"Rift_Trekker_Gloves_b1","name":"涉渊护手·被动","description":"充能效率提升27.9%"}
+    ]
+  },
+  {"#": "涉渊手套"},
+  {
+    "id": "Rift_Trekker_Hands",
+    "name": "涉渊手套·战技",
+    "slot": "gloves",
+    "setId": "",
+    "statBonuses": {"will":111},
+    "buffs": [
+      {
+        "id": "Rift_Trekker_Hands_b1",
+        "name": "涉渊手套·被动",
+        "description": "战技伤害提升46.8%",
+        "effects": [
+          {"category":"DMG_Dealt","value":0.468,"condition":{"skillType":"skill"}}
+        ]
+      }
+    ]
+  },
+  {"#": "涉渊护甲板"},
+  {
+    "id": "Rift_Trekker_Armor_Slab",
+    "name": "涉渊护甲板·副能力",
+    "slot": "kit",
+    "setId": "",
+    "statBonuses": {"agility":55},
+    "subAffixes": [
+      {"flat":0,"percent":0.281}
+    ],
+    "buffs": [
+      {"id":"Rift_Trekker_Armor_Slab_b1","name":"涉渊护甲板·被动","description":"副能力提升28.1%"}
+    ]
+  },
+  {
+    "#": "==================这里开始是集成实训=================="
+  },
+  {"#": "集成实训护甲"},
+  {
+    "id": "AIC_Fieldwork_Armor",
+    "name": "集成实训护甲·法术伤害",
+    "slot": "armor",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":96,"percent":0},
+    "subAffixes": [
+      {"flat":63,"percent":0}
+    ],
+    "buffs": [
+      {
+        "id": "AIC_Fieldwork_Armor_b1",
+        "name": "集成实训护甲·被动",
+        "description": "法术伤害提升12.1%",
+        "effects": [
+          {"category":"DMG_Dealt","value":0.121,"condition":{"element":"Heat"}},
+          {"category":"DMG_Dealt","value":0.121,"condition":{"element":"Cryo"}},
+          {"category":"DMG_Dealt","value":0.121,"condition":{"element":"Electric"}},
+          {"category":"DMG_Dealt","value":0.121,"condition":{"element":"Nature"}}
+        ]
+      }
+    ]
+  },
+  {"#":"集成实训胸甲"},
+  {
+    "id": "AIC_Fieldwork_Vest",
+    "name": "集成实训胸甲·副能力",
+    "slot": "armor",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":63,"percent":0},
+    "subAffixes": [
+      {"flat":96,"percent":0.115}
+    ],
+    "buffs": [
+      {"id":"AIC_Fieldwork_Vest_b1","name":"集成实训胸甲·被动","description":"副能力提升11.5%"}
+    ]
+  },
+  {"#":"集成实训钢甲"},
+  {
+    "id": "AIC_Fieldwork_Plate",
+    "name": "集成实训钢甲·充能",
+    "slot": "armor",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":96,"percent":0},
+    "subAffixes": [
+      {"flat":63,"percent":0}
+    ],
+    "buffs": [
+      {"id":"AIC_Fieldwork_Plate_b1","name":"集成实训钢甲·被动","description":"充能效率提升13.7%"}
+    ]
+  },
+  {"#":"集成实训缠带"},
+  {
+    "id": "AIC_Fieldwork_Wraps",
+    "name": "集成实训缠带·副能力",
+    "slot": "gloves",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":48,"percent":0},
+    "subAffixes": [
+      {"flat":71,"percent":0.192}
+    ],
+    "buffs": [
+      {"id":"AIC_Fieldwork_Wraps_b1","name":"集成实训缠带·被动","description":"副能力提升19.2%"}
+    ]
+  },
+  {"#":"集成实训手套"},
+  {
+    "id": "AIC_Fieldwork_Gloves",
+    "name": "集成实训手套·法术伤害",
+    "slot": "gloves",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":71,"percent":0},
+    "subAffixes": [
+      {"flat":48,"percent":0}
+    ],
+    "buffs": [
+      {
+        "id": "AIC_Fieldwork_Gloves_b1",
+        "name": "集成实训手套·被动",
+        "description": "法术伤害提升20.2%",
+        "effects": [
+          {"category":"DMG_Dealt","value":0.202,"condition":{"element":"Heat"}},
+          {"category":"DMG_Dealt","value":0.202,"condition":{"element":"Cryo"}},
+          {"category":"DMG_Dealt","value":0.202,"condition":{"element":"Electric"}},
+          {"category":"DMG_Dealt","value":0.202,"condition":{"element":"Nature"}}
+        ]
+      }
+    ]
+  },
+  {"#":"集成实训护手"},
+  {
+    "id": "AIC_Fieldwork_Hands",
+    "name": "集成实训护手·充能",
+    "slot": "gloves",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":71,"percent":0},
+    "subAffixes": [
+      {"flat":48,"percent":0}
+    ],
+    "buffs": [
+      {"id":"AIC_Fieldwork_Hands_b1","name":"集成实训护手·被动","description":"充能效率提升22.8%"}
+    ]
+  },
+  {"#":"集成实训照明器"},
+  {
+    "id": "AIC_Fieldwork_Flashlight",
+    "name": "集成实训照明器·副能力",
+    "slot": "kit",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":23,"percent":0},
+    "subAffixes": [
+      {"flat":35,"percent":0.23}
+    ],
+    "buffs": [
+      {"id":"AIC_Fieldwork_Flashlight_b1","name":"集成实训照明器·被动","description":"副能力提升23%"}
+    ]
+  },
+  {"#":"集成实训火种石"},
+  {
+    "id": "AIC_Fieldwork_Ember",
+    "name": "集成实训火种石·充能",
+    "slot": "kit",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":35,"percent":0},
+    "subAffixes": [
+      {"flat":23,"percent":0}
+    ],
+    "buffs": [
+      {"id":"AIC_Fieldwork_Ember_b1","name":"集成实训火种石·被动","description":"充能效率提升27.4%"}
+    ]
+  },
+  {"#":"集成实训排障刀"},
+  {
+    "id": "AIC_Fieldwork_Machete",
+    "name": "集成实训排障刀·法术伤害",
+    "slot": "kit",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":35,"percent":0},
+    "subAffixes": [
+      {"flat":23,"percent":0}
+    ],
+    "buffs": [
+      {
+        "id": "AIC_Fieldwork_Machete_b1",
+        "name": "集成实训排障刀·被动",
+        "description": "法术伤害提升24.2%",
+        "effects": [
+          {"category":"DMG_Dealt","value":0.242,"condition":{"element":"Heat"}},
+          {"category":"DMG_Dealt","value":0.242,"condition":{"element":"Cryo"}},
+          {"category":"DMG_Dealt","value":0.242,"condition":{"element":"Electric"}},
+          {"category":"DMG_Dealt","value":0.242,"condition":{"element":"Nature"}}
         ]
       }
     ]
