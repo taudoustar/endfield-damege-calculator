@@ -97,7 +97,7 @@
     {
       "id": "Trust_Arcane",
       "name": "信赖·诀",
-      "description": "智识+43，意志+42",
+      "description": "智识+43，意志+43",
       "statBonuses": { "intellect": 43, "will": 43 }
     },
     {

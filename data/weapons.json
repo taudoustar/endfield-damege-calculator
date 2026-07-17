@@ -656,10 +656,10 @@
         "description": "装备者智识值≥意志值：装备者通过自身技能施加法术附着时，造成的法术伤害提升，持续20秒；",
         "optional": true,
         "effects": [
-          {"category":"DMG_Dealt","value":[0.032, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Heat"}},
-          {"category":"DMG_Dealt","value":[0.032, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Cryo"}},
-          {"category":"DMG_Dealt","value":[0.032, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Electric"}},
-          {"category":"DMG_Dealt","value":[0.032, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Nature"}}
+          {"category":"DMG_Dealt","value":[0.32, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Heat"}},
+          {"category":"DMG_Dealt","value":[0.32, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Cryo"}},
+          {"category":"DMG_Dealt","value":[0.32, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Electric"}},
+          {"category":"DMG_Dealt","value":[0.32, 0.36,0.4,0.44,0.48,0.56],"condition":{"element":"Nature"}}
         ]
       },
       {
