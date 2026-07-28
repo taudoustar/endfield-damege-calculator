@@ -140,24 +140,30 @@ export function calculateAtk(config, activeBuffs, context) {
  *
  * @returns {{ totals: Object, pendingPercent: Object }}
  */
-export function calculateStatTotals(baseStats, equippedItems, equipmentList, weapon, statConfig) {
+export function calculateStatTotals(baseStats, equippedItems, equipmentList, weapon, statConfig, weaponPotLevel) {
   const totals = { ...baseStats };
   const pendingPercent = {};
   const primaryStat = statConfig?.primary?.stat;
   const secondaryStats = statConfig?.secondary || [];
 
+  const rv = (v) => (Array.isArray(v) ? v[Math.max(0, Math.min(5, weaponPotLevel || 0))] : v);
+
   // 辅助：收集一个对象的词条（固定值直接加，百分比存入 pendingPercent）
-  function applyAffixes(obj) {
+  function applyAffixes(obj, resolveArrays) {
     if (obj.mainAffix && primaryStat) {
-      if (obj.mainAffix.flat) totals[primaryStat] = (totals[primaryStat] || 0) + obj.mainAffix.flat;
-      if (obj.mainAffix.percent) pendingPercent[primaryStat] = (pendingPercent[primaryStat] || 0) + obj.mainAffix.percent;
+      const flat = resolveArrays ? rv(obj.mainAffix.flat) : obj.mainAffix.flat;
+      const pct = resolveArrays ? rv(obj.mainAffix.percent) : obj.mainAffix.percent;
+      if (flat) totals[primaryStat] = (totals[primaryStat] || 0) + flat;
+      if (pct) pendingPercent[primaryStat] = (pendingPercent[primaryStat] || 0) + pct;
     }
     if (obj.subAffixes) {
       obj.subAffixes.forEach((affix, i) => {
         const sec = secondaryStats[i];
         if (!sec) return;
-        if (affix.flat) totals[sec.stat] = (totals[sec.stat] || 0) + affix.flat;
-        if (affix.percent) pendingPercent[sec.stat] = (pendingPercent[sec.stat] || 0) + affix.percent;
+        const flat = resolveArrays ? rv(affix.flat) : affix.flat;
+        const pct = resolveArrays ? rv(affix.percent) : affix.percent;
+        if (flat) totals[sec.stat] = (totals[sec.stat] || 0) + flat;
+        if (pct) pendingPercent[sec.stat] = (pendingPercent[sec.stat] || 0) + pct;
       });
     }
   }
@@ -173,7 +179,7 @@ export function calculateStatTotals(baseStats, equippedItems, equipmentList, wea
         totals[stat] = (totals[stat] || 0) + val;
       }
     }
-    applyAffixes(eq);
+    applyAffixes(eq, false);
   }
 
   // 武器固定属性 + 词条
@@ -183,7 +189,7 @@ export function calculateStatTotals(baseStats, equippedItems, equipmentList, wea
         totals[stat] = (totals[stat] || 0) + val;
       }
     }
-    applyAffixes(weapon);
+    applyAffixes(weapon, true);
   }
 
   return { totals, pendingPercent };

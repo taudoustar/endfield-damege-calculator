@@ -56,7 +56,7 @@ function getSlotStatTotals(slotIndex) {
   if (!char) return {};
   const slot = state.slots[slotIndex];
   const weapon = slot.weaponId ? weapons.find((w) => w.id === slot.weaponId) : null;
-  const { totals, pendingPercent } = calculateStatTotals(char.baseStats, slot.equipment, equipment, weapon, char.statConfig);
+  const { totals, pendingPercent } = calculateStatTotals(char.baseStats, slot.equipment, equipment, weapon, char.statConfig, slot.weaponPotLevel);
 
   // 收集永久 buff（含潜能）的属性加成（固定值 + 词条）
   const permanentBuffs = getSlotPermanentBuffs(slotIndex);
