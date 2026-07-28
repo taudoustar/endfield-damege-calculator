@@ -821,7 +821,7 @@
   },
   {
     "id": "Bonekrusha_Wristband_T1",
-    "name": "碾骨腕带·壹型·灼热自然伤害",
+    "name": "碾骨腕带·壹型·寒冷电磁伤害",
     "slot": "gloves",
     "setId": "Bonekrusha",
     "statBonuses": { "agility": 84, "strength": 55 },
