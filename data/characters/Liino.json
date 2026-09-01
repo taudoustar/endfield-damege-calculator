@@ -1,0 +1,188 @@
+{
+  "id": "Liino",
+  "name": "梨诺",
+  "baseAtk": 309,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 89, "agility": 121, "intellect": 91, "will": 177 },
+  "statConfig": {
+    "primary": { "stat": "will", "ratio": 0.005 },
+    "secondary": [{ "stat": "agility", "ratio": 0.002 }]
+  },
+  "weaponType": "Polearm",
+  "skills": [
+    {
+      "name": "普通攻击一段·怦然星动",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.42 }]
+    },
+    {
+      "name": "普通攻击二段·怦然星动",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.60 }]
+    },
+    {
+      "name": "普通攻击三段·怦然星动",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.60 }]
+    },
+    {
+      "name": "普通攻击四段·怦然星动",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 0.81 }]
+    },
+    {
+      "name": "重击·怦然星动",
+      "type": "strike",
+      "hits": [{ "element": "Electric", "multiplier": 1.00 }]
+    },
+    {
+      "name": "闪耀焦点·初次攻击",
+      "type": "skill",
+      "hits": [{ "element": "Electric", "multiplier": 2.40 }]
+    },
+    {
+      "name": "闪耀焦点·追加攻击",
+      "type": "skill",
+      "hits": [{ "element": "Electric", "multiplier": 1.20 }]
+    },
+    {
+      "name": "悦心音调",
+      "type": "combo",
+      "hits": [{ "element": "Electric", "multiplier": 3.60 }]
+    },
+    {
+      "name": "晨星的协奏曲·舞台焰火",
+      "type": "ultimate",
+      "hits": [{ "element": "Electric", "multiplier": 3.20 }]
+    },
+    {
+      "name": "晨星的协奏曲·华彩爆点",
+      "type": "ultimate",
+      "hits": [{ "element": "Electric", "multiplier": 6.40 }]
+    },
+    {
+      "name": "晨星的协奏曲·单次歌声",
+      "type": "ultimate",
+      "hits": [{ "element": "Electric", "multiplier": 0.60 }]
+    },
+    {
+      "name": "晨星的协奏曲·谢幕",
+      "type": "ultimate",
+      "hits": [{ "element": "Electric", "multiplier": 1.80 }]
+    },
+    {
+      "name": "下落攻击·梨诺",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 1.80 }]
+    },
+    {
+      "name": "处决·梨诺",
+      "type": "basic",
+      "hits": [{ "element": "Electric", "multiplier": 9.00 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Liino",
+      "name": "信赖·梨诺",
+      "description": "意志+60",
+      "statBonuses": { "will": 60 }
+    },
+    {
+      "id": "Shining_Focus_Stance",
+      "name": "闪耀焦点·演唱姿态",
+      "scope": "team",
+      "optional": true,
+      "description": "演唱姿态期间全队攻击力+10%",
+      "effects": [{ "category": "atkPercent", "value": 0.10 }]
+    },
+    {
+      "id": "Starlight_Symphony_Stance",
+      "name": "晨星的协奏曲·高歌姿态",
+      "scope": "team",
+      "optional": true,
+      "description": "高歌姿态期间全队攻击力+10%，电磁和自然增幅按意志提高（最高60%）",
+      "effects": [
+        { "category": "atkPercent", "value": 0.10 },
+        { "category": "Arts_Amp", "scaleStat": "will", "scaleRatio": 0.0004, "scaleCap": 0.60, "condition": { "element": ["Electric", "Nature"] } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Flawless_Onstage",
+      "name": "潜能1·台前的无瑕",
+      "description": "演唱姿态和高歌姿态的攻击力提升效果额外+6%",
+      "bundle": [
+        {
+          "id": "Shining_Focus_Stance_p1",
+          "name": "闪耀焦点·演唱姿态·潜能1",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Shining_Focus_Stance",
+          "description": "演唱姿态期间全队攻击力+16%",
+          "effects": [{ "category": "atkPercent", "value": 0.16 }]
+        },
+        {
+          "id": "Starlight_Symphony_Stance_p1",
+          "name": "晨星的协奏曲·高歌姿态·潜能1",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Starlight_Symphony_Stance",
+          "description": "高歌姿态期间全队攻击力+16%，电磁和自然增幅按意志提高（最高60%）",
+          "effects": [
+            { "category": "atkPercent", "value": 0.16 },
+            { "category": "Arts_Amp", "scaleStat": "will", "scaleRatio": 0.0004, "scaleCap": 0.60, "condition": { "element": ["Electric", "Nature"] } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Resolve_Backstage",
+      "name": "潜能2·幕后的决意",
+      "description": "意志+20",
+      "statBonuses": { "will": 20 }
+    },
+    {
+      "id": "Longing_Beyond_Sky",
+      "name": "潜能3·天际的憧憬",
+      "description": "悦心音调的伤害倍率提升至原本的1.4倍",
+      "skillOverrides": [
+        { "skillIndex": 7, "hitIndex": 0, "multiplier": 5.04 }
+      ]
+    },
+    {
+      "id": "Meteor_Leap",
+      "name": "潜能4·流星的跃动",
+      "description": "晨星的协奏曲所需的终结技能量-15%"
+    },
+    {
+      "id": "Mind_Taming_QA",
+      "name": "潜能5·笞心的问答",
+      "description": "晨星的协奏曲增幅效果提升至原本的1.2倍，闪耀焦点和晨星的协奏曲伤害倍率提升至原本的1.2倍",
+      "skillOverrides": [
+        { "skillIndex": 5, "hitIndex": 0, "multiplier": 2.88 },
+        { "skillIndex": 6, "hitIndex": 0, "multiplier": 1.44 },
+        { "skillIndex": 8, "hitIndex": 0, "multiplier": 3.84 },
+        { "skillIndex": 9, "hitIndex": 0, "multiplier": 7.68 },
+        { "skillIndex": 10, "hitIndex": 0, "multiplier": 0.72 },
+        { "skillIndex": 11, "hitIndex": 0, "multiplier": 2.16 }
+      ],
+      "bundle": [
+        {
+          "id": "Starlight_Symphony_Stance_p5",
+          "name": "晨星的协奏曲·高歌姿态·潜能5",
+          "scope": "team",
+          "optional": true,
+          "description": "高歌姿态提供的电磁和自然增幅额外提高20%",
+          "replaces": "Starlight_Symphony_Stance",
+          "effects": [
+            { "category": "atkPercent", "value": 0.10 },
+            { "category": "Arts_Amp", "scaleStat": "will", "scaleRatio": 0.00048, "scaleCap": 0.72, "condition": { "element": ["Electric", "Nature"] } }
+          ]
+        }
+      ]
+    }
+  ]
+}
