@@ -54,7 +54,7 @@
     {
       "name": "风矢穿林·自然爆发",
       "type": "status",
-      "hits": [{ "element": "Nature", "multiplier": 1.3 }]
+      "hits": [{ "element": "Nature", "multiplier": 2.3265 }]
     },
     {
       "name": "野棘丛生·命中伤害",
@@ -105,7 +105,7 @@
       "description": "强化射击消耗自然附着时，造成的自然爆发伤害提升至原本的1.1倍",
       "optional": true,
       "effects": [
-        { "category": "Typhoeus_Power_Shot", "value": 0.10, "condition": { "skillType": "status", "element": "Nature" } }
+        { "category": "Typhoeus_Power_Shot", "value": 0.30, "condition": { "skillType": "status", "element": "Nature" } }
       ]
     },
     {
@@ -181,7 +181,7 @@
       "name": "潜能5·应弦而倒",
       "description": "冰山呼告获得的猎矢数量+1，终结技伤害提升至原本的1.2倍，强化射击自然爆发伤害倍率提升至原本的1.1倍",
       "skillOverrides": [
-        { "skillIndex": 8, "hitIndex": 0, "multiplier": 1.43 },
+        { "skillIndex": 8, "hitIndex": 0, "multiplier": 2.7918 },
         { "skillIndex": 11, "hitIndex": 0, "multiplier": 3.60 },
         { "skillIndex": 12, "hitIndex": 0, "multiplier": 0.90 },
         { "skillIndex": 13, "hitIndex": 0, "multiplier": 2.40 }
