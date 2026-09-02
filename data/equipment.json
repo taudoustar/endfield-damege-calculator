@@ -215,6 +215,35 @@
       }
     ]
   },
+  {
+    "id": "Tide_Fall_Light_Armor_T1",
+    "name": "落潮轻甲·壹型·充能",
+    "slot": "armor",
+    "setId": "Tide_Surge",
+    "statBonuses": {"intellect":113,"will":75},
+    "buffs": [
+      {"id":"Tide_Fall_Light_Armor_T1_b1","name":"落潮轻甲·壹型·被动","description":"充能效率提升16.0%"}
+    ]
+  },
+  {"#":"涌浪重装甲"},
+  {
+    "id": "Wave_Swell_Heavy_Armor",
+    "name": "涌浪重装甲·寒冷电磁伤害",
+    "slot": "armor",
+    "setId": "Tide_Surge",
+    "statBonuses": {"will":75,"strength":113},
+    "buffs": [
+      {
+        "id": "Wave_Swell_Heavy_Armor_b1",
+        "name": "涌浪重装甲·被动",
+        "description": "寒冷和电磁伤害提升14.9%",
+        "effects": [
+          {"category":"DMG_Dealt","value":0.149,"condition":{"element":"Cryo"}},
+          {"category":"DMG_Dealt","value":0.149,"condition":{"element":"Electric"}}
+        ]
+      }
+    ]
+  },
   {"#": "潮涌手甲"},
   {
     "id": "Tide_Surge_Gauntlets",
@@ -234,6 +263,26 @@
       }
     ]
   },
+  {"#":"沉水手套"},
+  {
+    "id": "Wave_Swell_Heavy_Armor",
+    "name": "沉水手套·技能",
+    "slot": "gloves",
+    "setId": "Tide_Surge",
+    "statBonuses": {"will":55,"intellect":84},
+    "buffs": [
+      {
+        "id": "Wave_Swell_Heavy_Armor_b1",
+        "name": "沉水手套·被动",
+        "description": "所有技能伤害提升29.9%",
+        "effects": [
+          {"category":"DMG_Dealt","value":0.299,"condition":{"skillType":"skill"}},
+          {"category":"DMG_Dealt","value":0.299,"condition":{"skillType":"combo"}},
+          {"category":"DMG_Dealt","value":0.299,"condition":{"skillType":"ultimate"}}
+        ]
+      }
+    ]
+  },
   {"#": "浊流切割炬"},
   {
     "id": "Turbid_Cutting_Torch",
@@ -249,6 +298,24 @@
         "effects": [
           { "category": "DMG_Dealt", "value": 0.359, "condition": { "skillType": "basic" } },
           { "category": "DMG_Dealt", "value": 0.359, "condition": { "skillType": "strike" } }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Turbid_Cutting_Torch_T1",
+    "name": "浊流切割炬·壹型·灼热自然伤害",
+    "slot": "kit",
+    "setId": "Tide_Surge",
+    "statBonuses": {"will":27,"intellect":41},
+    "buffs": [
+      {
+        "id": "Turbid_Cutting_Torch_T1_b1",
+        "name": "浊流切割炬·壹型·被动",
+        "description": "灼热和自然伤害提升29.9%",
+        "effects": [
+          {"category":"DMG_Dealt","value":0.299,"condition":{"element":"Heat"}},
+          {"category":"DMG_Dealt","value":0.299,"condition":{"element":"Nature"}}
         ]
       }
     ]
@@ -1779,7 +1846,7 @@
   {"#": "轻超域轻护手"},
   {
     "id": "Æthertech_Light_Gloves",
-    "name": "轻超域轻护手·节能",
+    "name": "轻超域轻护手·技能",
     "slot": "gloves",
     "setId": "Æthertech",
     "statBonuses": { "will": 84, "agility": 55 },
@@ -2116,6 +2183,27 @@
         "name": "长息加固板·被动",
         "description": "副能力提升26.9%"
       }
+    ]
+  },
+  {
+    "id": "Eternal_Xiranite_Bracing_Slab_T1",
+    "name": "长息加固板·壹型·充能",
+    "slot": "kit",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": {"will":41,"agility":27},
+    "buffs": [
+      {"id":"Eternal_Xiranite_Bracing_Slab_T1_b1","name":"长息加固板·壹型·被动","description":"充能效率提升32.0%"}
+    ]
+  },
+  {"#":"长息重护板"},
+  {
+    "id": "Eternal_Xiranite_Heavy_Slab",
+    "name": "长息重护板·充能",
+    "slot": "kit",
+    "setId": "Eternal_Xiranite",
+    "statBonuses": {"will":27,"strength":41},
+    "buffs": [
+      {"id":"Eternal_Xiranite_Heavy_Slab_b1","name":"长息重护板·被动","description":"充能效率提升32.0%"}
     ]
   },
   {"#": "长息辅助臂"},
@@ -2580,6 +2668,39 @@
   {
     "#": "==================这里开始是集成实训=================="
   },
+  {"#":"集成实训医疗护甲"},
+  {
+    "id": "AIC_Fieldwork_Medic_Armor",
+    "name": "集成实训医疗护甲·治疗效率",
+    "slot": "armor",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":96,"percent":0},
+    "subAffixes": [
+      {"flat":63,"percent":0}
+    ],
+    "buffs": [
+      {"id":"AIC_Fieldwork_Medic_Armor_b1","name":"集成实训医疗护甲·被动","description":"治疗效率提升11.5%"}
+    ]
+  },
+  {"#":"集成实训突袭护甲"},
+  {
+    "id": "AIC_Fieldwork_Assault_Armor",
+    "name": "集成实训突袭护甲·源石技艺强度",
+    "slot": "armor",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":96,"percent":0},
+    "subAffixes": [
+      {"flat":63,"percent":0}
+    ],
+    "buffs": [
+      {
+        "id": "AIC_Fieldwork_Assault_Armor_b1",
+        "name": "集成实训突袭护甲·被动",
+        "description": "源石技艺强度提升23",
+        "statBonuses": {"artsIntensity":23}
+      }
+    ]
+  },
   {"#": "集成实训护甲"},
   {
     "id": "AIC_Fieldwork_Armor",
@@ -2630,6 +2751,39 @@
     ],
     "buffs": [
       {"id":"AIC_Fieldwork_Plate_b1","name":"集成实训钢甲·被动","description":"充能效率提升13.7%"}
+    ]
+  },
+  {"#":"集成实训医疗护手"},
+  {
+    "id": "AIC_Fieldwork_Medic_Gloves",
+    "name": "集成实训医疗护手·治疗效率",
+    "slot": "gloves",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":71,"percent":0},
+    "subAffixes": [
+      {"flat":48,"percent":0}
+    ],
+    "buffs": [
+      {"id":"AIC_Fieldwork_Medic_Gloves_b1","name":"集成实训医疗护手·被动","description":"治疗效率提升19.2%"}
+    ]
+  },
+  {"#":"集成实训突袭护手"},
+  {
+    "id": "AIC_Fieldwork_Assault_Gloves",
+    "name": "集成实训突袭护手·源石技艺强度",
+    "slot": "gloves",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":71,"percent":0},
+    "subAffixes": [
+      {"flat":48,"percent":0}
+    ],
+    "buffs": [
+      {
+        "id": "AIC_Fieldwork_Assault_Gloves_b1",
+        "name": "集成实训突袭护手·被动",
+        "description": "源石技艺强度提升38",
+        "statBonuses": {"artsIntensity":38}
+      }
     ]
   },
   {"#":"集成实训缠带"},
@@ -2684,6 +2838,39 @@
       {"id":"AIC_Fieldwork_Hands_b1","name":"集成实训护手·被动","description":"充能效率提升22.8%"}
     ]
   },
+  {"#":"集成实训供能栓"},
+  {
+    "id": "AIC_Fieldwork_Power_Bank",
+    "name": "集成实训供能栓·治疗效率",
+    "slot": "kit",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":35,"percent":0},
+    "subAffixes": [
+      {"flat":23,"percent":0}
+    ],
+    "buffs": [
+      {"id":"AIC_Fieldwork_Power_Bank_b1","name":"集成实训供能栓·被动","description":"治疗效率提升23%"}
+    ]
+  },
+  {"#":"集成实训突袭刺刃"},
+  {
+    "id": "AIC_Fieldwork_Assault_Push_Knife",
+    "name": "集成实训突袭刺刃·源石技艺强度",
+    "slot": "kit",
+    "setId": "AIC_Fieldwork",
+    "mainAffix": {"flat":35,"percent":0},
+    "subAffixes": [
+      {"flat":23,"percent":0}
+    ],
+    "buffs": [
+      {
+        "id": "AIC_Fieldwork_Assault_Push_Knife_b1",
+        "name": "集成实训突袭刺刃·被动",
+        "description": "源石技艺强度提升46",
+        "statBonuses": {"artsIntensity":46}
+      }
+    ]
+  },
   {"#":"集成实训照明器"},
   {
     "id": "AIC_Fieldwork_Flashlight",
@@ -2734,6 +2921,42 @@
           {"category":"DMG_Dealt","value":0.242,"condition":{"element":"Nature"}}
         ]
       }
+    ]
+  },
+  {
+    "#": "==================这里开始是险关=================="
+  },
+  {"#":"险关装甲"},
+  {
+    "id": "Deep_Rampart_Armor",
+    "name": "险关装甲·源石技艺强度",
+    "slot": "armor",
+    "setId": "Deep_Rampart",
+    "statBonuses": {"agility":113,"will":75},
+    "buffs": [
+      {"id":"Deep_Rampart_Armor_b1","name":"险关装甲·被动","description":"源石技艺强度提升26","statBonuses":{"artsIntensity":26}}
+    ]
+  },
+  {"#":"险关手甲"},
+  {
+    "id": "Deep_Rampart_Gauntlets",
+    "name": "险关手甲·源石技艺强度",
+    "slot": "gloves",
+    "setId": "Deep_Rampart",
+    "statBonuses": {"agility":84,"will":55},
+    "buffs": [
+      {"id":"Deep_Rampart_Gauntlets_b1","name":"险关手甲·被动","description":"源石技艺强度提升44","statBonuses":{"artsIntensity":44}}
+    ]
+  },
+  {"#":"险关通信器"},
+  {
+    "id": "Deep_Rampart_Comms",
+    "name": "险关通信器·源石技艺强度",
+    "slot": "kit",
+    "setId": "Deep_Rampart",
+    "statBonuses": {"agility":41,"will":27},
+    "buffs": [
+      {"id":"Deep_Rampart_Comms_b1","name":"险关通信器·被动","description":"源石技艺强度提升53","statBonuses":{"artsIntensity":53}}
     ]
   }
 ]

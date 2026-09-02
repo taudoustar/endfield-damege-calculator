@@ -41,6 +41,52 @@ const state = {
 
 export { state };
 
+// ===== Buff 复合 ID =====
+
+/**
+ * 复合 ID 格式：
+ *   gb:<buffId>:<sourceSlot>  通用 Buff（兼容已有导出配置）
+ *   tb:<sourceSlot>:<buffId>  队友提供的团队 Buff
+ *
+ * tb 将来源槽位放在前面，使 buffId 即使包含冒号也能被完整保留。
+ */
+function parseBuffCellId(id) {
+  if (typeof id !== "string") {
+    return { kind: "plain", buffId: id, sourceSlot: null };
+  }
+
+  if (id.startsWith("tb:")) {
+    const rest = id.slice(3);
+    const separator = rest.indexOf(":");
+    if (separator > 0) {
+      return {
+        kind: "team",
+        sourceSlot: parseInt(rest.slice(0, separator), 10),
+        buffId: rest.slice(separator + 1),
+      };
+    }
+  }
+
+  if (id.startsWith("gb:")) {
+    const separator = id.lastIndexOf(":");
+    if (separator > 3) {
+      return {
+        kind: "generic",
+        buffId: id.slice(3, separator),
+        sourceSlot: parseInt(id.slice(separator + 1), 10),
+      };
+    }
+  }
+
+  return { kind: "plain", buffId: id, sourceSlot: null };
+}
+
+function buildBuffCellId(kind, buffId, sourceSlot) {
+  return kind === "team"
+    ? `tb:${sourceSlot}:${buffId}`
+    : `gb:${buffId}:${sourceSlot}`;
+}
+
 // ===== 辅助：获取角色 =====
 
 function getSlotChar(slotIndex) {
@@ -99,10 +145,7 @@ function getGridPlacedBuffIds(slotIndex) {
       if (!cell) continue;
       const cellObj = typeof cell === "object" ? cell : { id: cell };
       if (cellObj.id) {
-        // 去掉 gb: 前缀
-        const rawId = typeof cellObj.id === "string" && cellObj.id.startsWith("gb:")
-          ? cellObj.id.split(":")[1] : cellObj.id;
-        ids.add(rawId);
+        ids.add(parseBuffCellId(cellObj.id).buffId);
       }
     }
   }
@@ -267,7 +310,12 @@ function getAvailableBuffsForPalette(slotIndex) {
 
   // 队友 team buff
   for (const { fromCharName, fromSlotIndex, buff } of getTeammateTeamBuffs(slotIndex)) {
-    entries.push({ id: buff.id, buff, source: `teammate:${fromCharName}`, sourceSlotIndex: fromSlotIndex });
+    entries.push({
+      id: buildBuffCellId("team", buff.id, fromSlotIndex),
+      buff,
+      source: `teammate:${fromCharName}`,
+      sourceSlotIndex: fromSlotIndex,
+    });
   }
 
   // 场地 buff
@@ -283,10 +331,10 @@ function getAvailableBuffsForPalette(slotIndex) {
 // ===== 根据 ID 查找 buff =====
 
 function findBuffById(id, slotIndex) {
-  // 通用 buff 复合 ID：提取原始 buffId
-  if (typeof id === "string" && id.startsWith("gb:")) {
-    const buffId = id.split(":")[1];
-    return findBuffById(buffId, slotIndex);
+  // 复合 ID：提取原始 buffId，并优先使用记录的来源槽位解析武器潜能。
+  const parsedId = parseBuffCellId(id);
+  if (parsedId.kind !== "plain") {
+    return findBuffById(parsedId.buffId, parsedId.sourceSlot);
   }
 
   // 搜索所有角色的固有 / 潜能 buff
@@ -316,8 +364,11 @@ function findBuffById(id, slotIndex) {
     if (b.id === id) return b;
   }
 
-  // 武器 buff：搜索所有 slot 的武器，用各自的 weaponPotLevel 解析
-  for (let s = 0; s < 4; s++) {
+  // 武器 buff：优先搜索指定 slot，避免同一武器在不同潜能下取到其他槽位的数值。
+  const weaponSlotOrder = Number.isInteger(slotIndex) && slotIndex >= 0 && slotIndex < 4
+    ? [slotIndex, ...[0, 1, 2, 3].filter((s) => s !== slotIndex)]
+    : [0, 1, 2, 3];
+  for (const s of weaponSlotOrder) {
     const scanSlot = state.slots[s];
     if (!scanSlot?.weaponId) continue;
     const w = weapons.find((w) => w.id === scanSlot.weaponId);
@@ -418,16 +469,11 @@ function resolveBuffStatSource(buff, sourceStatTotals) {
   return {
     ...buff,
     effects: buff.effects.map((e) => {
-      if (e.scaleStat) {
-        return {
-          category: e.category,
-          value: (sourceStatTotals[e.scaleStat] || 0) * e.scaleRatio,
-          condition: e.condition,
-        };
-      }
-      if (e.saturationScale) {
-        const statVal = sourceStatTotals[e.saturationScale.stat] || 0;
-        return { ...e, scaleValue: statVal };
+      const sourceStat = e.scaleStat || e.saturationScale?.stat;
+      if (sourceStat) {
+        // 保留 scaleCap / scaleCurve / saturationScale，由引擎统一解析；
+        // 这里只把属性来源固定为 Buff 提供者。
+        return { ...e, scaleValue: sourceStatTotals[sourceStat] || 0 };
       }
       return e;
     }),
@@ -448,35 +494,36 @@ function collectRowBuffs(slotIndex, rowIndex) {
     // 格子新格式: { id, inputValue? }；兼容旧格式（纯字符串）
     const cellObj = typeof cell === "object" ? cell : { id: cell };
     const cellId = cellObj.id;
+    const parsedCellId = parseBuffCellId(cellId);
     if (cellObj.inputValue != null) {
-      // 提取真实 buffId（通用 buff 格式 gb:buffId:slot 或普通 id）
-      const rawBuffId = typeof cellId === "string" && cellId.startsWith("gb:")
-        ? cellId.split(":")[1]
-        : cellId;
-      rowOverrides[rawBuffId] = cellObj.inputValue;
+      rowOverrides[parsedCellId.buffId] = cellObj.inputValue;
     }
     // 多输入模式
     if (cellObj.inputValues) {
-      const rawBuffId = typeof cellId === "string" && cellId.startsWith("gb:")
-        ? cellId.split(":")[1]
-        : cellId;
       for (const [key, val] of Object.entries(cellObj.inputValues)) {
-        rowOverrides[`${rawBuffId}__${key}`] = val;
+        rowOverrides[`${parsedCellId.buffId}__${key}`] = val;
       }
     }
 
     if (cellId == null) continue;
 
-    // 通用 buff：复合 ID 格式 "gb:buffId:sourceSlot"
-    if (typeof cellId === "string" && cellId.startsWith("gb:")) {
-      const parts = cellId.split(":");
-      const buffId = parts[1];
-      const sourceSlot = parseInt(parts[2], 10);
-      const buff = findBuffById(buffId, slotIndex);
+    // 通用/队友 Buff：按记录的来源槽位解析属性缩放。
+    if (parsedCellId.kind === "generic" || parsedCellId.kind === "team") {
+      const buff = findBuffById(parsedCellId.buffId, parsedCellId.sourceSlot);
       if (buff) {
-        const sourceStatTotals = getEnhancedSlotStatTotals(sourceSlot);
+        const sourceStatTotals = getEnhancedSlotStatTotals(parsedCellId.sourceSlot);
         buffs.push(resolveBuffStatSource(buff, sourceStatTotals));
       }
+      continue;
+    }
+
+    // 兼容旧版导出配置：旧配置中的队友 Buff 只有普通 ID。
+    // ID 在当前队友 Buff 中唯一匹配时，仍按提供者属性计算。
+    const legacyTeamBuff = getTeammateTeamBuffs(slotIndex)
+      .find(({ buff }) => buff.id === parsedCellId.buffId);
+    if (legacyTeamBuff) {
+      const sourceStatTotals = getEnhancedSlotStatTotals(legacyTeamBuff.fromSlotIndex);
+      buffs.push(resolveBuffStatSource(legacyTeamBuff.buff, sourceStatTotals));
       continue;
     }
 
@@ -932,20 +979,19 @@ function updateGridBuffIds() {
         const cellObj = typeof cell === "object" ? cell : { id: cell };
         const cellId = cellObj.id;
 
-        // 处理通用 buff 格式：gb:buffId:sourceSlot
-        if (typeof cellId === "string" && cellId.startsWith("gb:")) {
-          const parts = cellId.split(":");
-          const buffId = parts[1];
-          const sourceSlot = parts[2];
+        // 处理带来源槽位的通用/团队 Buff。
+        const parsedCellId = parseBuffCellId(cellId);
+        if (parsedCellId.kind !== "plain") {
+          const { kind, buffId, sourceSlot } = parsedCellId;
           const newBuffId = globalReplaceMap.get(buffId);
           if (newBuffId) {
-            row.buffCells[c] = { ...cellObj, id: `gb:${newBuffId}:${sourceSlot}` };
+            row.buffCells[c] = { ...cellObj, id: buildBuffCellId(kind, newBuffId, sourceSlot) };
             continue;
           }
           if (!globalUnlockedIds.has(buffId) && globalReverseMap.has(buffId)) {
             const oldBuffId = globalReverseMap.get(buffId);
             if (globalUnlockedIds.has(oldBuffId)) {
-              row.buffCells[c] = { ...cellObj, id: `gb:${oldBuffId}:${sourceSlot}` };
+              row.buffCells[c] = { ...cellObj, id: buildBuffCellId(kind, oldBuffId, sourceSlot) };
             }
           }
           continue;

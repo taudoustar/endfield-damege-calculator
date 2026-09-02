@@ -385,5 +385,39 @@
         ]
       }
     ]
+  },
+  {"#":"险关"},
+  {
+    "id": "Deep_Rampart",
+    "name": "险关",
+    "requiredCount": 3,
+    "buffs": [
+      {
+        "id": "Deep_Rampart_b1",
+        "name": "险关·被动",
+        "description": "装备者法术伤害+16%。",
+        "effects": [
+          {"category":"DMG_Dealt","value":0.16,"condition":{"element":"Heat"}},
+          {"category":"DMG_Dealt","value":0.16,"condition":{"element":"Cryo"}},
+          {"category":"DMG_Dealt","value":0.16,"condition":{"element":"Electric"}},
+          {"category":"DMG_Dealt","value":0.16,"condition":{"element":"Nature"}}
+        ]
+      },
+      {
+        "id": "Deep_Rampart_b2",
+        "name": "险关·触发",
+        "description": "当装备者造成自然爆发、寒冷爆发时，源石技艺强度+16，持续20秒。该效果最多叠加3层，每层单独计算持续时间，每0.1秒最多触发一次。",
+        "optional": true,
+        "userInput": {
+          "label": "层","default": 0,"min": 0,"max": 3,"step": 1,
+          "integer": true
+        },
+        "scaledStatBonuses": {
+          "artsIntensity": {
+            "perStack": 16,"cap": 48
+          }
+        }
+      }
+    ]
   }
 ]

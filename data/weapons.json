@@ -633,6 +633,124 @@
   {
     "#": "=====================施术单元====================="
   },
+  {"#":"寒夜幽影"},
+  {
+    "id": "Umbra_of_Frigid_Eventide",
+    "name": "寒夜幽影",
+    "type": "Arts_Unit",
+    "baseAtk": 505,
+    "statBonuses": {"agility":156},
+    "potentialBuffs": [
+      {"id":"Umbra_of_Frigid_Eventide_p1","name":"敏捷提升·大\t","description":"敏捷提升","statBonuses":{"agility":156}},
+      {
+        "id": "Umbra_of_Frigid_Eventide_p2",
+        "name": "攻击提升·大",
+        "description": "攻击提升",
+        "effects": [
+          {"category":"atkPercent","value":0.39}
+        ]
+      },
+      {
+        "id": "Umbra_of_Frigid_Eventide_p3",
+        "name": "迸发·猎人本能·被动",
+        "description": "法术伤害提升",
+        "effects": [
+          {"category":"DMG_Dealt","value":[0.256, 0.288, 0.32, 0.352, 0.384, 0.448],"condition":{"element":"Heat"}},
+          {"category":"DMG_Dealt","value":[0.256, 0.288, 0.32, 0.352, 0.384, 0.448],"condition":{"element":"Cryo"}},
+          {"category":"DMG_Dealt","value":[0.256, 0.288, 0.32, 0.352, 0.384, 0.448],"condition":{"element":"Electric"}},
+          {"category":"DMG_Dealt","value":[0.256, 0.288, 0.32, 0.352, 0.384, 0.448],"condition":{"element":"Nature"}}
+        ]
+      },
+      {
+        "id": "Umbra_of_Frigid_Eventide_p4",
+        "name": "迸发·猎人本能·触发1",
+        "description": "装备者施放战技后，源石技艺强度提升，并获得4层身形如风，持续15秒。",
+        "optional": true,
+        "statBonuses": {"artsIntensity":[56,63,70,77,84,98]}
+      },
+      {
+        "id": "Umbra_of_Frigid_Eventide_p5",
+        "name": "迸发·猎人本能·触发2",
+        "description": "装备者造成法术爆发时，消耗1层身形如风，法术伤害提升，持续30秒。 该效果最多叠加4层，每层单独计算持续时间，每0.1秒最多触发一次。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "scaleRatio": [0.064, 0.072, 0.08, 0.088, 0.096, 0.112],
+            "scaleCap": [0.256, 0.288, 0.32, 0.352, 0.384, 0.448],
+            "userInput": "scaleValue",
+            "condition": {"element":"Heat"}
+          },
+          {
+            "category": "DMG_Dealt",
+            "scaleRatio": [0.064, 0.072, 0.08, 0.088, 0.096, 0.112],
+            "scaleCap": [0.256, 0.288, 0.32, 0.352, 0.384, 0.448],
+            "userInput": "scaleValue",
+            "condition": {"element":"Cryo"}
+          },
+          {
+            "category": "DMG_Dealt",
+            "scaleRatio": [0.064, 0.072, 0.08, 0.088, 0.096, 0.112],
+            "scaleCap": [0.256, 0.288, 0.32, 0.352, 0.384, 0.448],
+            "userInput": "scaleValue",
+            "condition": {"element":"Electric"}
+          },
+          {
+            "category": "DMG_Dealt",
+            "scaleRatio": [0.064, 0.072, 0.08, 0.088, 0.096, 0.112],
+            "scaleCap": [0.256, 0.288, 0.32, 0.352, 0.384, 0.448],
+            "userInput": "scaleValue",
+            "condition": {"element":"Nature"}
+          }
+        ]
+      }
+    ]
+  },
+  {"#":"苦难的尽头"},
+  {
+    "id": "Suffering's_End",
+    "name": "苦难的尽头",
+    "type": "Arts_Unit",
+    "baseAtk": 490,
+    "potentialBuffs": [
+      {
+        "id": "Suffering's_End_p1",
+        "name": "自然伤害提升·大",
+        "description": "自然伤害提升",
+        "effects": [
+          {"category":"DMG_Dealt","value":[0.189,0.233,0.278,0.322,0.367,0.433],"condition":{"element":"Nature"}}
+        ]
+      },
+      {"id":"Suffering's_End_p2","name":"敏捷提升·大","description":"敏捷提升","statBonuses":{"agility":156}},
+      {"id":"Suffering's_End_p3","name":"迸发·长夜拂晓·被动","description":"","statBonuses":{"artsIntensity":[24,27,30,33,36,42]}},
+      {
+        "id": "Suffering's_End_p4",
+        "name": "迸发·长夜拂晓·触发1",
+        "description": "装备者造成法术爆发时，自然伤害提升，持续25秒。该效果最多叠加4层。当上述效果为4层时，自然伤害额外提升。",
+        "optional": true,
+        "userInput": { "label": "层", "default": 0, "scale": 1 },
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0,
+            "scaleRatio": [0.032, 0.036, 0.04, 0.044, 0.048, 0.056],
+            "scaleCap": [0.128, 0.144, 0.16, 0.176, 0.192, 0.224],
+            "userInput": "scaleValue",
+            "condition": {"element":"Nature"}
+          },
+          {
+            "category": "DMG_Dealt",
+            "value": 0,
+            "scaleRatio": [0.096, 0.108, 0.12, 0.132, 0.144, 0.168],
+            "scaleCurve": [[0,0], [3,0], [4,1]],
+            "userInput": "scaleValue",
+            "condition": {"element":"Nature"}
+          }
+        ]
+      }
+    ]
+  },
   {"#":"四二式·肃阵"},
   {
     "id": "Type_42:_Solemn_Phalanx",
@@ -713,7 +831,7 @@
         "name": "效益·回环·被动",
         "description": "自然伤害提升",
         "effects": [
-          {"category":"DMG_Dealt","value":[0.126,0.14,0.154,0.168,0.196],"condition":{"element":"Nature"}}
+          {"category":"DMG_Dealt","value":[0.112,0.126,0.14,0.154,0.168,0.196],"condition":{"element":"Nature"}}
         ]
       },
       {
@@ -1370,7 +1488,7 @@
     "name": "曜夜的首演",
     "type": "Polearm",
     "baseAtk": 500,
-    "mainAffix":{"flat": 0 , "percent": [[0.256, 0.288, 0.32, 0.352, 0.384, 0.448]]},
+    "mainAffix":{"flat": 0 , "percent": [0.256, 0.288, 0.32, 0.352, 0.384, 0.448]},
     "potentialBuffs": [
       {"id":"Bedazzling_Night_Debut_p1","name":"意志提升·大","description":"意志提升","statBonuses":{"will":156}},
       {"id":"Bedazzling_Night_Debut_p2","name":"治疗效率提升·大","description":"治疗效率提升"},
@@ -1386,8 +1504,8 @@
           {
             "category": "atkPercent",
             "value": 0,
-            "scaleRatio": [0.063,0.07,0.077,0.084,0.098],
-            "scaleCap": [0.252,0.28,0.308,0.336,0.392],
+            "scaleRatio": [0.056,0.063,0.07,0.077,0.084,0.098],
+            "scaleCap": [0.224,0.252,0.28,0.308,0.336,0.392],
             "userInput": "scaleValue"
           }
         ]

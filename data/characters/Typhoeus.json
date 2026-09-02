@@ -1,0 +1,182 @@
+{
+  "id": "Typhoeus",
+  "name": "提弗洛斯",
+  "baseAtk": 312,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 97, "agility": 174, "intellect": 99, "will": 119 },
+  "statConfig": {
+    "primary": { "stat": "agility", "ratio": 0.005 },
+    "secondary": [{ "stat": "will", "ratio": 0.002 }]
+  },
+  "weaponType": "Arts_Unit",
+  "skills": [
+    {
+      "name": "普通攻击一段·追猎荒原",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 0.46 }]
+    },
+    {
+      "name": "普通攻击二段·追猎荒原",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 0.56 }]
+    },
+    {
+      "name": "普通攻击三段·追猎荒原",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 0.86 }]
+    },
+    {
+      "name": "普通攻击四段·追猎荒原",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 0.95 }]
+    },
+    {
+      "name": "重击·追猎荒原",
+      "type": "strike",
+      "hits": [{ "element": "Nature", "multiplier": 1.25 }]
+    },
+    {
+      "name": "风矢穿林·起跳射击",
+      "type": "skill",
+      "hits": [{ "element": "Nature", "multiplier": 0.50 }]
+    },
+    {
+      "name": "风矢穿林·空中普通攻击",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 0.65 }]
+    },
+    {
+      "name": "风矢穿林·空中重击",
+      "type": "strike",
+      "hits": [{ "element": "Nature", "multiplier": 1.00 }]
+    },
+    {
+      "name": "风矢穿林·自然爆发",
+      "type": "status",
+      "hits": [{ "element": "Nature", "multiplier": 1.3 }]
+    },
+    {
+      "name": "野棘丛生·命中伤害",
+      "type": "combo",
+      "hits": [{ "element": "Nature", "multiplier": 2.00 }]
+    },
+    {
+      "name": "野棘丛生·持续伤害",
+      "type": "combo",
+      "hits": [{ "element": "Nature", "multiplier": 1.00 }]
+    },
+    {
+      "name": "冰山呼告·强力箭爆炸",
+      "type": "ultimate",
+      "hits": [{ "element": "Nature", "multiplier": 3.00 }]
+    },
+    {
+      "name": "冰山呼告·常规箭雨",
+      "type": "ultimate",
+      "hits": [{ "element": "Nature", "multiplier": 0.75 }]
+    },
+    {
+      "name": "冰山呼告·强化箭雨",
+      "type": "ultimate",
+      "hits": [{ "element": "Nature", "multiplier": 2.00 }]
+    },
+    {
+      "name": "下落攻击·提弗洛斯",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 1.80 }]
+    },
+    {
+      "name": "处决·提弗洛斯",
+      "type": "basic",
+      "hits": [{ "element": "Nature", "multiplier": 9.00 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Typhoeus",
+      "name": "信赖·提弗洛斯",
+      "description": "敏捷+60",
+      "statBonuses": { "agility": 60 }
+    },
+    {
+      "id": "Typhoeus_Power_Shot_Burst",
+      "name": "风矢穿林·强化射击自然爆发",
+      "description": "强化射击消耗自然附着时，造成的自然爆发伤害提升至原本的1.1倍",
+      "optional": true,
+      "effects": [
+        { "category": "Typhoeus_Power_Shot", "value": 0.10, "condition": { "skillType": "status", "element": "Nature" } }
+      ]
+    },
+    {
+      "id": "Typhoeus_Barrage_Array",
+      "name": "野棘丛生·箭阵",
+      "description": "箭阵内的敌人受到的自然爆发伤害+10%",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "DMG_Taken", "value": 0.10, "condition": { "skillType": "status", "element": "Nature" } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Samifjod_Fletching",
+      "name": "潜能1·萨米制箭工艺",
+      "description": "浮空时攻击力+18%，空中普通攻击伤害提升至原本的1.2倍",
+      "skillOverrides": [
+        { "skillIndex": 6, "hitIndex": 0, "multiplier": 0.78 },
+        { "skillIndex": 7, "hitIndex": 0, "multiplier": 1.20 }
+      ],
+      "bundle": [
+        {
+          "id": "Samifjod_Fletching_Hovering",
+          "name": "萨米制箭工艺·浮空",
+          "description": "处于浮空状态时攻击力+18%",
+          "optional": true,
+          "effects": [{ "category": "atkPercent", "value": 0.18 }]
+        }
+      ]
+    },
+    {
+      "id": "Huntress_Stride",
+      "name": "潜能2·猎人步伐",
+      "description": "敏捷+20，源石技艺强度+16",
+      "statBonuses": { "agility": 20, "artsIntensity": 16 }
+    },
+    {
+      "id": "Thorny_Trap",
+      "name": "潜能3·荆棘猎笼",
+      "description": "野棘丛生冷却时间-2秒，箭阵内敌人受到的自然爆发伤害提高效果额外+6%",
+      "bundle": [
+        {
+          "id": "Typhoeus_Barrage_Array_p3",
+          "name": "野棘丛生·箭阵·潜能3",
+          "description": "箭阵内的敌人受到的自然爆发伤害+16%",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Typhoeus_Barrage_Array",
+          "effects": [
+            { "category": "DMG_Taken", "value": 0.16, "condition": { "skillType": "status", "element": "Nature" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "No_Escape",
+      "name": "潜能4·无处可逃",
+      "description": "冰山呼告所需的终结技能量-15%"
+    },
+    {
+      "id": "Fatal_Shot",
+      "name": "潜能5·应弦而倒",
+      "description": "冰山呼告获得的猎矢数量+1，终结技伤害提升至原本的1.2倍，强化射击自然爆发伤害倍率提升至原本的1.1倍",
+      "skillOverrides": [
+        { "skillIndex": 8, "hitIndex": 0, "multiplier": 1.43 },
+        { "skillIndex": 11, "hitIndex": 0, "multiplier": 3.60 },
+        { "skillIndex": 12, "hitIndex": 0, "multiplier": 0.90 },
+        { "skillIndex": 13, "hitIndex": 0, "multiplier": 2.40 }
+      ]
+    }
+  ]
+}
