@@ -23,5 +23,6 @@ export const categories = [
   { key: "Alesh_Mega_Lunker_Rumors", label: "阿列什独有" },
   { key: "Avywenna_Carrot_and_Sharp_Stick", label: "艾维文娜独有" },
   { key: "Mi_Fu_Stern_Crackdown", label: "弭弗独有" },
-  { key: "Typhoeus_Power_Shot", label: "提弗洛斯独有" }
+  { key: "Typhoeus_Power_Shot", label: "提弗洛斯独有1" },
+  { key: "Typhoeus_Prey_Checklist", label: "提弗洛斯独有2" }
 ];

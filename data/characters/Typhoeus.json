@@ -117,6 +117,15 @@
       "effects": [
         { "category": "DMG_Taken", "value": 0.10, "condition": { "skillType": "status", "element": "Nature" } }
       ]
+    },
+    {
+      "id": "Prey_Checklist",
+      "name": "猎物清点",
+      "description": "消耗猎矢强化的攻击，造成的伤害提升至原本的1.6倍。",
+      "optional": true,
+      "effects": [
+        { "category": "Typhoeus_Prey_Checklist", "value": 0.60}
+      ]
     }
   ],
   "potentialBuffs": [
