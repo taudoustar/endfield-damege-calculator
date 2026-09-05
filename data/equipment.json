@@ -2482,7 +2482,7 @@
   },
   {
     "id": "Catastrophe_Gauze_Cartridge_T1",
-    "name": "天灾防护净芯·壹型·终结技",
+    "name": "天灾防护净芯·壹型·副能力",
     "slot": "kit",
     "setId": "Catastrophe",
     "subAffixes": [ { "flat": 0 , "percent": 0.147 } ],
