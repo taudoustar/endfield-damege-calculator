@@ -102,7 +102,7 @@
     {
       "id": "Typhoeus_Power_Shot_Burst",
       "name": "风矢穿林·强化射击自然爆发",
-      "description": "强化射击消耗自然附着时，造成的自然爆发伤害提升至原本的1.1倍",
+      "description": "强化射击消耗自然附着时，造成的自然爆发伤害提升至原本的1.3倍",
       "optional": true,
       "effects": [
         { "category": "Typhoeus_Power_Shot", "value": 0.30, "condition": { "skillType": "status", "element": "Nature" } }
