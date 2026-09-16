@@ -105,7 +105,12 @@ function getSlotStatTotals(slotIndex) {
   const { totals, pendingPercent } = calculateStatTotals(char.baseStats, slot.equipment, equipment, weapon, char.statConfig, slot.weaponPotLevel);
 
   // 收集永久 buff（含潜能）的属性加成（固定值 + 词条）
-  const permanentBuffs = getSlotPermanentBuffs(slotIndex);
+  const permanentBuffs = resolveUserInputBuffs(
+    getSlotPermanentBuffs(slotIndex),
+    slotIndex,
+    {},
+    totals
+  );
   const primaryStat = char.statConfig?.primary?.stat;
   const secondaryStats = char.statConfig?.secondary || [];
   for (const buff of permanentBuffs) {
@@ -170,7 +175,13 @@ function getEnhancedSlotStatTotals(slotIndex) {
   const selectedBuffs = optionalBuffs.filter(b => activeIds.has(b.id));
   if (selectedBuffs.length === 0) return baseTotals;
 
-  return applyBuffStatBonuses(baseTotals, selectedBuffs, char.statConfig);
+  const resolvedBuffs = resolveUserInputBuffs(
+    selectedBuffs,
+    slotIndex,
+    {},
+    baseTotals
+  );
+  return applyBuffStatBonuses(baseTotals, resolvedBuffs, char.statConfig);
 }
 
 // ===== 辅助：攻击力配置 =====
@@ -400,7 +411,47 @@ function findBuffById(id, slotIndex) {
 // ===== 用户输入 buff 值解析 =====
 
 /**
- * 将含 userInput 标记的 buff 的 effects/metas 注入用户填写的数值。
+ * 将输入值规范化后再参与计算。min/max 约束原始输入，scale 在约束后应用。
+ */
+function normalizeUserInputValue(input, rawValue) {
+  const fallback = Number(input?.default ?? 0);
+  let value = Number(rawValue);
+  if (!Number.isFinite(value)) value = Number.isFinite(fallback) ? fallback : 0;
+
+  if (input?.integer) value = Math.trunc(value);
+  if (input?.min != null) value = Math.max(value, Number(input.min));
+  if (input?.max != null) value = Math.min(value, Number(input.max));
+
+  return value * (input?.scale ?? 1);
+}
+
+/**
+ * 将按输入值缩放的属性转换成现有 statBonuses 数字格式。
+ * 单输入 buff 默认使用 userInput 的值；多输入 buff 通过 input 指定 userInputs 的 key。
+ */
+function resolveScaledStatBonuses(buff, resolvedInputs, defaultInputValue = 0) {
+  if (!buff.scaledStatBonuses) return buff.statBonuses;
+
+  const statBonuses = { ...(buff.statBonuses || {}) };
+  for (const [stat, rawConfig] of Object.entries(buff.scaledStatBonuses)) {
+    const config = typeof rawConfig === "number"
+      ? { perStack: rawConfig }
+      : (rawConfig || {});
+    const inputValue = config.input != null
+      ? (resolvedInputs[config.input] ?? 0)
+      : defaultInputValue;
+
+    let bonus = (config.base ?? 0) + inputValue * (config.perStack ?? 0);
+    if (config.min != null) bonus = Math.max(bonus, config.min);
+    if (config.cap != null) bonus = Math.min(bonus, config.cap);
+    statBonuses[stat] = (statBonuses[stat] || 0) + bonus;
+  }
+
+  return statBonuses;
+}
+
+/**
+ * 将含 userInput 标记的 buff 的 effects/metas/scaledStatBonuses 注入用户填写的数值。
  * 数据格式：
  *   buff.userInput = { label: "%", default: 0, scale: 0.01 }
  *   effect/meta 中 userInput: true 的条目，value/multiplier 会被替换为 rawVal × scale
@@ -415,8 +466,11 @@ function resolveUserInputBuffs(buffs, slotIndex, rowOverrides = {}, statTotals =
       for (const input of buff.userInputs) {
         const compositeKey = `${buff.id}__${input.key}`;
         const rawVal = rowOverrides[compositeKey] ?? vals[compositeKey] ?? input.default ?? 0;
-        resolved[input.key] = rawVal * (input.scale ?? 1);
+        resolved[input.key] = normalizeUserInputValue(input, rawVal);
       }
+      const defaultInputValue = buff.userInputs.length === 1
+        ? resolved[buff.userInputs[0].key]
+        : 0;
       const evalFormula = (formula) => {
         const allVars = { ...statTotals, ...resolved };
         const keys = Object.keys(allVars);
@@ -429,6 +483,7 @@ function resolveUserInputBuffs(buffs, slotIndex, rowOverrides = {}, statTotals =
       };
       return {
         ...buff,
+        statBonuses: resolveScaledStatBonuses(buff, resolved, defaultInputValue),
         effects: buff.effects?.map(e => {
           if (!e.formula) return e;
           return { ...e, value: evalFormula(e.formula) };
@@ -441,10 +496,10 @@ function resolveUserInputBuffs(buffs, slotIndex, rowOverrides = {}, statTotals =
     }
     if (!buff.userInput) return buff;
     const rawVal = rowOverrides[buff.id] ?? vals[buff.id] ?? buff.userInput.default ?? 0;
-    const scale = buff.userInput.scale ?? 1;
-    const val = rawVal * scale;
+    const val = normalizeUserInputValue(buff.userInput, rawVal);
     return {
       ...buff,
+      statBonuses: resolveScaledStatBonuses(buff, { value: val }, val),
       // userInput: true → 替换 value/multiplier；userInput: "fieldName" → 替换指定字段
       effects: buff.effects?.map(e => {
         if (!e.userInput) return e;
