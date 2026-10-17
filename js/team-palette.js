@@ -73,7 +73,7 @@ export function renderPalette() {
       const label = skill.userInput.label || "";
       const minAttr = skill.userInput.min != null ? ` min="${skill.userInput.min}"` : "";
       const maxAttr = skill.userInput.max != null ? ` max="${skill.userInput.max}"` : "";
-      html += ` <input type="number" class="user-input-field skill-input-field" data-skill-index="${i}" value="${curVal}"${minAttr}${maxAttr} step="1" />`;
+      html += ` <input type="number" class="user-input-field skill-input-field" data-skill-index="${i}" value="${curVal}"${minAttr}${maxAttr} step="${skill.userInput.step ?? 1}" />`;
       if (label) html += `<span class="user-input-label">${label}</span>`;
     }
     html += `</div>`;
@@ -97,7 +97,7 @@ export function renderPalette() {
       const label = gs.userInput.label || "";
       const minAttr = gs.userInput.min != null ? ` min="${gs.userInput.min}"` : "";
       const maxAttr = gs.userInput.max != null ? ` max="${gs.userInput.max}"` : "";
-      html += ` <input type="number" class="user-input-field skill-input-field" data-skill-index="${gs.id}" value="${curVal}"${minAttr}${maxAttr} step="1" />`;
+      html += ` <input type="number" class="user-input-field skill-input-field" data-skill-index="${gs.id}" value="${curVal}"${minAttr}${maxAttr} step="${gs.userInput.step ?? 1}" />`;
       if (label) html += `<span class="user-input-label">${label}</span>`;
     }
     html += `<button class="palette-remove-btn" data-remove-gs="${gs.id}" title="移除">×</button>`;
@@ -375,7 +375,8 @@ export function initPaletteEvents() {
       const rawIdx = e.target.dataset.skillIndex;
       const slot = state.slots[state.activeSlotIndex];
       if (!slot.skillInputValues) slot.skillInputValues = {};
-      slot.skillInputValues[rawIdx] = parseInt(e.target.value) || 0;
+      const parseValue = e.target.step === "any" ? parseFloat : parseInt;
+      slot.skillInputValues[rawIdx] = parseValue(e.target.value) || 0;
       renderResult();
       return;
     }

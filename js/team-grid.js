@@ -148,7 +148,7 @@ export function renderGrid() {
         const label = skill.userInput.label || "";
         const minAttr = skill.userInput.min != null ? ` min="${skill.userInput.min}"` : "";
         const maxAttr = skill.userInput.max != null ? ` max="${skill.userInput.max}"` : "";
-        html += `<input type="number" class="grid-skill-input" data-row="${r}" value="${curVal}"${minAttr}${maxAttr} step="1" />`;
+        html += `<input type="number" class="grid-skill-input" data-row="${r}" value="${curVal}"${minAttr}${maxAttr} step="${skill.userInput.step ?? 1}" />`;
         if (label) html += `<span class="grid-cell-input-label">${label}</span>`;
       }
       html += "</td>";
@@ -325,7 +325,8 @@ export function initGridEvents() {
       const r = parseInt(e.target.dataset.row);
       const grid = state.grids[state.activeSlotIndex];
       if (!grid?.[r]) return;
-      const parsed = e.target.value.trim() === "" ? null : (parseInt(e.target.value) || 0);
+      const parseValue = e.target.step === "any" ? parseFloat : parseInt;
+      const parsed = e.target.value.trim() === "" ? null : (parseValue(e.target.value) || 0);
       grid[r].skillInputValue = parsed;
       // 同步回 palette 的 skillInputValues
       const slot = state.slots[state.activeSlotIndex];

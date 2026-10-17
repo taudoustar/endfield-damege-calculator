@@ -9,5 +9,6 @@ export const elements = [
   { key: "Heat", label: "灼热", color: "#ff6b4a" },
   { key: "Cryo", label: "寒冷", color: "#4ac8ff" },
   { key: "Electric", label: "电磁", color: "#d5d518" },
-  { key: "Nature", label: "自然",color:"#00FF00" }
+  { key: "Nature", label: "自然",color:"#00FF00" },
+  { key: "Fixed", label: "固定", color: "#e6c7ff" }
 ];

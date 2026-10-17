@@ -612,9 +612,18 @@
   outline: none;
 }
 
+.grid-skill-input[step="any"],
+.skill-input-field[step="any"] {
+  width: 9em;
+}
+
 /* Skill items in palette */
 .palette-item.skill-item {
   font-weight: 600;
+}
+
+.palette-item.skill-item:has(.skill-input-field[step="any"]) {
+  flex-wrap: wrap;
 }
 
 .palette-item.skill-item.basic { color: #ccc; }

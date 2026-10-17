@@ -1,5 +1,551 @@
 [
   {
+    "#": "60级及以上装备补录（Wiki v1.6，强化+3）"
+  },
+  {
+    "id": "Type_50_Yinglung_Soft_Armor",
+    "name": "50式应龙软甲·连携技",
+    "slot": "armor",
+    "setId": "Type_50_Yinglung",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_suit_atk02_body_05",
+    "statBonuses": {
+      "intellect": 113,
+      "strength": 75
+    },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Soft_Armor_b1",
+        "name": "50式应龙软甲",
+        "description": "连携技伤害提升26.9%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.269,
+            "condition": {
+              "skillType": "combo"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Type_50_Yinglung_Handwear",
+    "name": "50式应龙手套·连携技",
+    "slot": "gloves",
+    "setId": "Type_50_Yinglung",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_suit_atk02_hand_03",
+    "statBonuses": {
+      "intellect": 84,
+      "strength": 55
+    },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Handwear_b1",
+        "name": "50式应龙手套",
+        "description": "连携技伤害提升44.9%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.449,
+            "condition": {
+              "skillType": "combo"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Type_50_Yinglung_Beacon",
+    "name": "50式应龙信标·连携技",
+    "slot": "kit",
+    "setId": "Type_50_Yinglung",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_suit_atk02_edc_06",
+    "statBonuses": {
+      "intellect": 41,
+      "strength": 27
+    },
+    "buffs": [
+      {
+        "id": "Type_50_Yinglung_Beacon_b1",
+        "name": "50式应龙信标",
+        "description": "连携技伤害提升53.8%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.538,
+            "condition": {
+              "skillType": "combo"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AIC_Fieldwork_Blade_Armor",
+    "name": "集成实训刃装护甲·物理伤害",
+    "slot": "armor",
+    "setId": "AIC_Fieldwork",
+    "level": 60,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_parts_wuling00_body_06",
+    "mainAffix": {
+      "flat": 96,
+      "percent": 0
+    },
+    "subAffixes": [
+      {
+        "flat": 63,
+        "percent": 0
+      }
+    ],
+    "buffs": [
+      {
+        "id": "AIC_Fieldwork_Blade_Armor_b1",
+        "name": "集成实训刃装护甲",
+        "description": "物理伤害提升12.8%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.128,
+            "condition": {
+              "element": "Physical"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AIC_Fieldwork_Blade_Gloves",
+    "name": "集成实训刃装护手·物理伤害",
+    "slot": "gloves",
+    "setId": "AIC_Fieldwork",
+    "level": 60,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_parts_wuling00_hand_06",
+    "mainAffix": {
+      "flat": 71,
+      "percent": 0
+    },
+    "subAffixes": [
+      {
+        "flat": 48,
+        "percent": 0
+      }
+    ],
+    "buffs": [
+      {
+        "id": "AIC_Fieldwork_Blade_Gloves_b1",
+        "name": "集成实训刃装护手",
+        "description": "物理伤害提升21.3%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.213,
+            "condition": {
+              "element": "Physical"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "AIC_Fieldwork_Blade_Saw",
+    "name": "集成实训刃装短锯·物理伤害",
+    "slot": "kit",
+    "setId": "AIC_Fieldwork",
+    "level": 60,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_parts_wuling00_edc_06",
+    "mainAffix": {
+      "flat": 35,
+      "percent": 0
+    },
+    "subAffixes": [
+      {
+        "flat": 23,
+        "percent": 0
+      }
+    ],
+    "buffs": [
+      {
+        "id": "AIC_Fieldwork_Blade_Saw_b1",
+        "name": "集成实训刃装短锯",
+        "description": "物理伤害提升25.6%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.256,
+            "condition": {
+              "element": "Physical"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Pulser_Labs_Light_Armor",
+    "name": "脉冲式轻甲·寒冷电磁伤害",
+    "slot": "armor",
+    "setId": "Pulser_Labs",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_suit_pulse_cryst01_body_02",
+    "statBonuses": {
+      "will": 113,
+      "strength": 75
+    },
+    "buffs": [
+      {
+        "id": "Pulser_Labs_Light_Armor_b1",
+        "name": "脉冲式轻甲",
+        "description": "寒冷和电磁伤害提升14.9%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.149,
+            "condition": {
+              "element": "Cryo"
+            }
+          },
+          {
+            "category": "DMG_Dealt",
+            "value": 0.149,
+            "condition": {
+              "element": "Electric"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Pulser_Labs_Light_Gauntlets",
+    "name": "脉冲式轻护手·寒冷电磁伤害",
+    "slot": "gloves",
+    "setId": "Pulser_Labs",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_suit_pulse_cryst01_hand_02",
+    "statBonuses": {
+      "will": 84,
+      "strength": 55
+    },
+    "buffs": [
+      {
+        "id": "Pulser_Labs_Light_Gauntlets_b1",
+        "name": "脉冲式轻护手",
+        "description": "寒冷和电磁伤害提升24.9%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.249,
+            "condition": {
+              "element": "Cryo"
+            }
+          },
+          {
+            "category": "DMG_Dealt",
+            "value": 0.249,
+            "condition": {
+              "element": "Electric"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Pulser_Labs_Armor_Plate",
+    "name": "脉冲式护甲板·充能",
+    "slot": "kit",
+    "setId": "Pulser_Labs",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_suit_pulse_cryst01_edc_04",
+    "statBonuses": {
+      "will": 41,
+      "strength": 27
+    },
+    "buffs": [
+      {
+        "id": "Pulser_Labs_Armor_Plate_b1",
+        "name": "脉冲式护甲板",
+        "description": "终结技充能效率提升32%"
+      }
+    ]
+  },
+  {
+    "id": "Eternal_Xiranite_Modified_Armor",
+    "name": "长息改装护甲·连携技",
+    "slot": "armor",
+    "setId": "Eternal_Xiranite",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_suit_usp02_body_06",
+    "statBonuses": {
+      "intellect": 113,
+      "strength": 75
+    },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Modified_Armor_b1",
+        "name": "长息改装护甲",
+        "description": "连携技伤害提升26.9%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.269,
+            "condition": {
+              "skillType": "combo"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Eternal_Xiranite_Protective_Suit",
+    "name": "长息防护服·充能",
+    "slot": "armor",
+    "setId": "Eternal_Xiranite",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_suit_usp02_body_05",
+    "statBonuses": {
+      "intellect": 113,
+      "strength": 75
+    },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Protective_Suit_b1",
+        "name": "长息防护服",
+        "description": "终结技充能效率提升16%"
+      }
+    ]
+  },
+  {
+    "id": "Eternal_Xiranite_Conductive_Gloves",
+    "name": "长息导能护手·连携技",
+    "slot": "gloves",
+    "setId": "Eternal_Xiranite",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_suit_usp02_hand_05",
+    "statBonuses": {
+      "intellect": 84,
+      "strength": 55
+    },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Conductive_Gloves_b1",
+        "name": "长息导能护手",
+        "description": "连携技伤害提升44.9%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.449,
+            "condition": {
+              "skillType": "combo"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Eternal_Xiranite_Rangefinder",
+    "name": "长息测距仪·连携技",
+    "slot": "kit",
+    "setId": "Eternal_Xiranite",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_suit_usp02_edc_07",
+    "statBonuses": {
+      "intellect": 41,
+      "strength": 27
+    },
+    "buffs": [
+      {
+        "id": "Eternal_Xiranite_Rangefinder_b1",
+        "name": "长息测距仪",
+        "description": "连携技伤害提升53.8%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.538,
+            "condition": {
+              "skillType": "combo"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Riftbound_Steel_Armor",
+    "name": "涉渊钢甲·连携技",
+    "slot": "armor",
+    "setId": "",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_parts_wuling02_body_03",
+    "statBonuses": {
+      "agility": 149
+    },
+    "buffs": [
+      {
+        "id": "Riftbound_Steel_Armor_b1",
+        "name": "涉渊钢甲",
+        "description": "连携技伤害提升28.1%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.281,
+            "condition": {
+              "skillType": "combo"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Riftbound_Protective_Suit",
+    "name": "涉渊防护服·灼热自然伤害",
+    "slot": "armor",
+    "setId": "",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_parts_wuling02_body_04",
+    "statBonuses": {
+      "intellect": 149
+    },
+    "buffs": [
+      {
+        "id": "Riftbound_Protective_Suit_b1",
+        "name": "涉渊防护服",
+        "description": "灼热和自然伤害提升15.6%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.156,
+            "condition": {
+              "element": "Heat"
+            }
+          },
+          {
+            "category": "DMG_Dealt",
+            "value": 0.156,
+            "condition": {
+              "element": "Nature"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Riftbound_Wraps",
+    "name": "涉渊裹手·寒冷电磁伤害",
+    "slot": "gloves",
+    "setId": "",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_parts_wuling02_hand_03",
+    "statBonuses": {
+      "will": 111
+    },
+    "buffs": [
+      {
+        "id": "Riftbound_Wraps_b1",
+        "name": "涉渊裹手",
+        "description": "寒冷和电磁伤害提升26%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.26,
+            "condition": {
+              "element": "Cryo"
+            }
+          },
+          {
+            "category": "DMG_Dealt",
+            "value": 0.26,
+            "condition": {
+              "element": "Electric"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Riftbound_Gauntlets",
+    "name": "涉渊手甲·普攻",
+    "slot": "gloves",
+    "setId": "",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_parts_wuling02_hand_04",
+    "statBonuses": {
+      "strength": 111
+    },
+    "buffs": [
+      {
+        "id": "Riftbound_Gauntlets_b1",
+        "name": "涉渊手甲",
+        "description": "普通攻击伤害提升31.2%",
+        "effects": [
+          {
+            "category": "DMG_Dealt",
+            "value": 0.312,
+            "condition": {
+              "skillType": "basic"
+            }
+          },
+          {
+            "category": "DMG_Dealt",
+            "value": 0.312,
+            "condition": {
+              "skillType": "strike"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Riftbound_White_Blade",
+    "name": "涉渊白刃·充能",
+    "slot": "kit",
+    "setId": "",
+    "level": 70,
+    "enhancement": 3,
+    "source": "https://warfarin.wiki/cn/gear/item_equip_t4_parts_wuling02_edc_02",
+    "statBonuses": {
+      "agility": 55
+    },
+    "buffs": [
+      {
+        "id": "Riftbound_White_Blade_b1",
+        "name": "涉渊白刃",
+        "description": "终结技充能效率提升33.4%"
+      }
+    ]
+  },
+  {
     "#": "==================这里开始是壤流=================="
   },
   {"#": "壤流轻甲"},

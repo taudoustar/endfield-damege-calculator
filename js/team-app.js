@@ -237,7 +237,7 @@ function getSlotPermanentBuffs(slotIndex) {
     const w = weapons.find((w) => w.id === slot.weaponId);
     if (w) {
       const resolved = resolveWeaponBuffs(w, slot.weaponPotLevel);
-      buffs.push(...resolved.filter((b) => !b.optional));
+      buffs.push(...resolved.filter((b) => !b.optional && b.scope !== "teammates"));
     }
   }
 
@@ -270,7 +270,7 @@ function getSlotOptionalBuffs(slotIndex) {
     const w = weapons.find((w) => w.id === slot.weaponId);
     if (w) {
       const resolved = resolveWeaponBuffs(w, slot.weaponPotLevel);
-      buffs.push(...resolved.filter((b) => b.optional));
+      buffs.push(...resolved.filter((b) => b.optional && b.scope !== "teammates"));
     }
   }
 
@@ -296,7 +296,7 @@ function getTeammateTeamBuffs(activeSlotIndex) {
       const w = weapons.find((w) => w.id === slot.weaponId);
       if (w) {
         const resolved = resolveWeaponBuffs(w, slot.weaponPotLevel);
-        teamBuffs.push(...resolved.filter((b) => b.scope === "team"));
+        teamBuffs.push(...resolved.filter((b) => b.scope === "team" || b.scope === "teammates"));
       }
     }
     // 用所有已解锁 buff 检测替换，避免新旧版本同时出现
@@ -565,10 +565,17 @@ function collectRowBuffs(slotIndex, rowIndex) {
     // 通用/队友 Buff：按记录的来源槽位解析属性缩放。
     if (parsedCellId.kind === "generic" || parsedCellId.kind === "team") {
       const buff = findBuffById(parsedCellId.buffId, parsedCellId.sourceSlot);
-      if (buff) {
+      if (buff && (buff.scope !== "teammates" || parsedCellId.sourceSlot !== slotIndex)) {
         const sourceStatTotals = getEnhancedSlotStatTotals(parsedCellId.sourceSlot);
         buffs.push(resolveBuffStatSource(buff, sourceStatTotals));
       }
+      continue;
+    }
+
+    // 普通 ID 优先使用本槽位的可选效果，避免同名武器取到队友的精锻等级。
+    const ownBuff = getSlotOptionalBuffs(slotIndex).find((buff) => buff.id === cellId);
+    if (ownBuff) {
+      buffs.push(ownBuff);
       continue;
     }
 
@@ -583,7 +590,7 @@ function collectRowBuffs(slotIndex, rowIndex) {
     }
 
     const found = findBuffById(cellId, slotIndex);
-    if (found) buffs.push(found);
+    if (found && found.scope !== "teammates") buffs.push(found);
   }
 
   // 用所有已解锁 buff 检测替换（格子中放的旧版 buff 也能被替换）
@@ -645,11 +652,37 @@ function calculateSlotDamage(slotIndex) {
         statTotals: rowStatTotals,
       };
 
-      // 支持 multiplier 数组：按行的 skillInputValue 取对应等级的倍率
+      const skillInputValue = normalizeUserInputValue(
+        skill.userInput,
+        row.skillInputValue ?? skill.userInput?.default ?? 0
+      );
+
+      // 支持 multiplier 数组：按行的输入值取对应等级的倍率
       const rawMult = hit.multiplier;
       const multiplier = Array.isArray(rawMult)
-        ? (rawMult[row.skillInputValue ?? skill.userInput?.default ?? 0] ?? rawMult[rawMult.length - 1])
+        ? (rawMult[skillInputValue] ?? rawMult[rawMult.length - 1])
         : rawMult;
+
+      // 固定伤害以输入的目标受伤总值为基数，倍率表示记录比例。
+      // 这些伤害已结算过增益、防御和暴击，不能再次套用常规伤害乘区。
+      if (hit.damageType === "fixed") {
+        const fixedDamage = skillInputValue * multiplier;
+        hits.push({
+          element: hit.element,
+          damageType: "fixed",
+          multiplier,
+          totalAtk: 0,
+          atkBreakdown: null,
+          effectiveBase: fixedDamage,
+          finalDamage: fixedDamage,
+          artsInfo: null,
+          expectedDamage: fixedDamage,
+          crit: { critRate: 0, critDamage: 0, expectedMultiplier: 1 },
+          breakdown: {},
+        });
+        skillOnce += fixedDamage;
+        continue;
+      }
 
       const atkResult = calculateAtk(rowAtkConfig, rowBuffs, context);
       const effectiveBase = multiplier * atkResult.totalAtk;

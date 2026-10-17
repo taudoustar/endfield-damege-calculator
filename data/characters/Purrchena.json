@@ -1,0 +1,149 @@
+{
+  "id": "Purrchena",
+  "name": "噗切娜",
+  "source": "https://warfarin.wiki/cn/operators/purrchena",
+  "#": "90级、技能专精三；普攻按整段倍率录入，第三段作为重击。礼盒按实际开出的单个物品分别填写次数，手工作业使用页面列出的单个总倍率；不自动计算随机礼物期望、治疗或减伤。",
+  "baseAtk": 309,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 168, "agility": 93, "intellect": 89, "will": 113 },
+  "statConfig": {
+    "primary": { "stat": "strength", "ratio": 0.005 },
+    "secondary": [{ "stat": "will", "ratio": 0.002 }]
+  },
+  "weaponType": "Sword",
+  "skills": [
+    {
+      "name": "普通攻击一段·点心，尝尝！",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.08 }]
+    },
+    {
+      "name": "普通攻击二段·点心，尝尝！",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.16 }]
+    },
+    {
+      "name": "重击（普攻第三段）·点心，尝尝！",
+      "type": "strike",
+      "hits": [{ "element": "Physical", "multiplier": 2.30 }]
+    },
+    {
+      "name": "离我的朋友远点！·头槌撞击",
+      "type": "skill",
+      "hits": [{ "element": "Nature", "multiplier": 4.00 }]
+    },
+    {
+      "name": "点心还是“礼物”·炸弹（单个）",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 3.00 }]
+    },
+    {
+      "name": "点心还是“礼物”·手工作业（单个）",
+      "type": "combo",
+      "hits": [{ "element": "Physical", "multiplier": 1.50 }]
+    },
+    {
+      "name": "不许干坏事！·炸弹（单个）",
+      "type": "ultimate",
+      "hits": [{ "element": "Physical", "multiplier": 3.00 }]
+    },
+    {
+      "name": "不许干坏事！·手工作业（单个）",
+      "type": "ultimate",
+      "hits": [{ "element": "Physical", "multiplier": 1.50 }]
+    },
+    {
+      "name": "不许干坏事！·代言人的特殊赠礼（单个）",
+      "type": "ultimate",
+      "hits": [{ "element": "Physical", "multiplier": 6.00 }]
+    },
+    {
+      "name": "下落攻击·噗切娜",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 1.80 }]
+    },
+    {
+      "name": "处决·噗切娜",
+      "type": "basic",
+      "hits": [{ "element": "Physical", "multiplier": 9.00 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Purrchena",
+      "name": "信赖·噗切娜",
+      "description": "力量+60",
+      "statBonuses": { "strength": 60 }
+    },
+    {
+      "id": "Purrchena_Your_Sorry_Came_Late",
+      "name": "天赋·道歉也来不及了！",
+      "description": "战技首次成功格挡后额外获得10点终结技能量，下次终结技的特殊赠礼概率每层增加10%，最多3层。礼物伤害按网格填写的实际次数计算。"
+    },
+    {
+      "id": "Purrchena_Ambassadors_Duty",
+      "name": "天赋·代言人的职责",
+      "description": "在场时，满生命队友下次受伤减免50%，每名干员冷却90秒；不影响输出伤害。"
+    },
+    {
+      "id": "Purrchena_Arts_Susceptibility",
+      "name": "不许干坏事！·法术脆弱",
+      "description": "特殊赠礼命中后，每层法术脆弱2.5%，持续5秒；按当前生效的赠礼层数填写（0至3层）。",
+      "scope": "team",
+      "optional": true,
+      "userInput": { "label": "层", "default": 1, "scale": 1, "min": 0, "max": 3, "integer": true },
+      "effects": [
+        { "category": "Susceptibility", "scaleRatio": 0.025, "scaleCap": 0.075, "userInput": "scaleValue", "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Purrchena_Warm_Like_The_Sun",
+      "name": "潜能1·太阳般温暖",
+      "description": "特殊赠礼基础概率从20%提高至30%；礼物伤害仍按网格填写的实际次数计算。"
+    },
+    {
+      "id": "Purrchena_Super_Energetic",
+      "name": "潜能2·“精力十足”",
+      "description": "意志+20，防御力+20；防御力不参与输出伤害计算。",
+      "statBonuses": { "will": 20 }
+    },
+    {
+      "id": "Purrchena_Useful_Prezzies",
+      "name": "潜能3·“礼”尽其用",
+      "description": "连携技炸弹伤害倍率变为360%；手工作业范围扩大20%，点心治疗提升20%。终结技炸弹倍率不变。",
+      "skillOverrides": [
+        { "skillIndex": 4, "hitIndex": 0, "multiplier": 3.60 }
+      ]
+    },
+    {
+      "id": "Purrchena_After_The_Feast",
+      "name": "潜能4·美餐之后",
+      "description": "终结技所需能量减少15%。"
+    },
+    {
+      "id": "Purrchena_Hot_Like_A_BBQ_Fire",
+      "name": "潜能5·薪火般炽热",
+      "description": "特殊赠礼伤害倍率变为720%，每层法术脆弱提高至3%。",
+      "skillOverrides": [
+        { "skillIndex": 8, "hitIndex": 0, "multiplier": 7.20 }
+      ],
+      "bundle": [
+        {
+          "id": "Purrchena_Arts_Susceptibility_p5",
+          "name": "不许干坏事！·法术脆弱·潜能5",
+          "description": "特殊赠礼命中后，每层法术脆弱3%，持续5秒；按当前生效的赠礼层数填写（0至3层）。",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Purrchena_Arts_Susceptibility",
+          "userInput": { "label": "层", "default": 1, "scale": 1, "min": 0, "max": 3, "integer": true },
+          "effects": [
+            { "category": "Susceptibility", "scaleRatio": 0.03, "scaleCap": 0.09, "userInput": "scaleValue", "condition": { "element": ["Heat", "Cryo", "Electric", "Nature"] } }
+          ]
+        }
+      ]
+    }
+  ]
+}

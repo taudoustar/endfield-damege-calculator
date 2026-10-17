@@ -7,6 +7,8 @@
  * 每个武器提供基础攻击力和潜能等级缩放的 buff
  *
  * potentialBuffs 中 effect.value / meta.multiplier 为6元素数组 [lv0..lv5]
+ * description 也可用6元素数组展示各精锻等级说明。
+ * scope: "team" 作用于全队，"teammates" 仅作用于装备者以外的干员。
  * 使用 resolveWeaponBuffs(weapon, level) 转为标准标量 buff
  */
 
@@ -39,7 +41,7 @@ export function resolveWeaponBuffs(weapon, level) {
   return weapon.potentialBuffs.map((pb) => ({
     id: pb.id,
     name: pb.name,
-    description: pb.description,
+    description: r(pb.description),
     optional: pb.optional || false,
     scope: pb.scope,
     replaces: pb.replaces,

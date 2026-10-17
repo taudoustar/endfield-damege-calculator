@@ -1,0 +1,171 @@
+{
+  "id": "Si",
+  "name": "祀",
+  "source": "https://warfarin.wiki/cn/operators/si",
+  "#": "90级、技能专精三；普攻按整段倍率录入，第五段为重击。笔意输入记录期间目标实际受到的总伤害，不含笔意爆发本身，墨魂和本体不重复计数。连携技及入木三分均填写实际消耗的附着层数，潜能五额外一层自动计入。冷却、加速及附着由玩家在网格中安排。",
+  "baseAtk": 309,
+  "baseCritRate": 0.05,
+  "baseCritDamage": 0.5,
+  "baseStats": { "strength": 117, "agility": 100, "intellect": 179, "will": 100 },
+  "statConfig": {
+    "primary": { "stat": "intellect", "ratio": 0.005 },
+    "secondary": [{ "stat": "strength", "ratio": 0.002 }]
+  },
+  "weaponType": "Greatsword",
+  "skills": [
+    {
+      "name": "普通攻击一段·乘兴起笔",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.45 }]
+    },
+    {
+      "name": "普通攻击二段·乘兴起笔",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.72 }]
+    },
+    {
+      "name": "普通攻击三段·乘兴起笔",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.66 }]
+    },
+    {
+      "name": "普通攻击四段·乘兴起笔",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 0.54 }]
+    },
+    {
+      "name": "重击（普攻第五段）·乘兴起笔",
+      "type": "strike",
+      "hits": [{ "element": "Cryo", "multiplier": 1.44 }]
+    },
+    {
+      "name": "河山共影·命中伤害",
+      "type": "skill",
+      "hits": [{ "element": "Cryo", "multiplier": 1.00 }]
+    },
+    {
+      "name": "河山共影·笔意爆发（固定伤害）",
+      "type": "skill",
+      "userInput": { "label": "目标受伤总值", "default": 0, "min": 0, "step": "any" },
+      "hits": [{ "element": "Fixed", "damageType": "fixed", "multiplier": 0.13 }]
+    },
+    {
+      "name": "成竹在胸",
+      "type": "combo",
+      "userInput": { "label": "实际附着层", "default": 1, "min": 1, "max": 4, "integer": true },
+      "hits": [{ "element": "Cryo", "multiplier": [7.50, 8.50, 9.50, 10.50, 11.50] }]
+    },
+    {
+      "name": "谁都不许扫兴",
+      "type": "ultimate",
+      "hits": [{ "element": "Cryo", "multiplier": 5.00 }]
+    },
+    {
+      "name": "下落攻击·祀",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 1.80 }]
+    },
+    {
+      "name": "处决·祀",
+      "type": "basic",
+      "hits": [{ "element": "Cryo", "multiplier": 9.00 }]
+    }
+  ],
+  "uniqueBuffs": [
+    {
+      "id": "Trust_Si",
+      "name": "信赖·祀",
+      "description": "智识+60",
+      "statBonuses": { "intellect": 60 }
+    },
+    {
+      "id": "Si_Proxys_Patronage",
+      "name": "天赋·代理人的眷顾",
+      "description": "施放终结技后，01号位干员连携技剩余冷却减少20秒；请在网格中调整释放次数。"
+    },
+    {
+      "id": "Si_Unsoiled_Brush",
+      "name": "天赋·丹青不渝",
+      "description": "墨魂消失后，友方获得30%加速，持续5秒；请在网格中调整攻击次数。"
+    },
+    {
+      "id": "Si_Cryo_Heat_Amp",
+      "name": "谁都不许扫兴·寒冷/灼热增幅",
+      "description": "全队寒冷和灼热增幅36%，持续12秒。",
+      "scope": "team",
+      "optional": true,
+      "effects": [
+        { "category": "Arts_Amp", "value": 0.36, "condition": { "element": ["Cryo", "Heat"] } }
+      ]
+    }
+  ],
+  "potentialBuffs": [
+    {
+      "id": "Si_Spring_And_Autumn_As_Ink",
+      "name": "潜能1·春秋作墨",
+      "description": "笔意记录比例提高至20%；定身延长50%，爆发半径扩大40%。",
+      "skillOverrides": [
+        { "skillIndex": 6, "hitIndex": 0, "multiplier": 0.20 }
+      ]
+    },
+    {
+      "id": "Si_Three_Marks_Deep",
+      "name": "潜能2·入木三分",
+      "description": "施放连携技时获得攻击力加成8%+3%×实际消耗或吸收的最高附着层数，持续10秒。请与触发连携技的层数一致。",
+      "optional": true,
+      "userInput": { "label": "实际附着层", "default": 1, "scale": 1, "min": 1, "max": 4, "integer": true },
+      "effects": [
+        { "category": "atkPercent", "value": 0.08 },
+        { "category": "atkPercent", "scaleRatio": 0.03, "scaleCap": 0.12, "userInput": "scaleValue" }
+      ]
+    },
+    {
+      "id": "Si_Study_Of_Muscles_And_Bones",
+      "name": "潜能3·工于筋骨",
+      "description": "终结技伤害倍率提高至600%，寒冷和灼热增幅提高至43.2%。",
+      "skillOverrides": [
+        { "skillIndex": 8, "hitIndex": 0, "multiplier": 6.00 }
+      ],
+      "bundle": [
+        {
+          "id": "Si_Cryo_Heat_Amp_p3",
+          "name": "谁都不许扫兴·寒冷/灼热增幅·潜能3",
+          "description": "全队寒冷和灼热增幅43.2%，持续12秒。",
+          "scope": "team",
+          "optional": true,
+          "replaces": "Si_Cryo_Heat_Amp",
+          "effects": [
+            { "category": "Arts_Amp", "value": 0.432, "condition": { "element": ["Cryo", "Heat"] } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "Si_Perfectly_Composed_In_Spirit",
+      "name": "潜能4·完善精神",
+      "description": "终结技能量消耗减少15%，由80降至68。"
+    },
+    {
+      "id": "Si_Finishing_Touch",
+      "name": "潜能5·点睛之笔",
+      "description": "连携技冷却减少2秒，总伤害提升15%，视为额外消耗1层附着。技能和入木三分均输入实际层数，额外一层自动计入。",
+      "skillOverrides": [
+        { "skillIndex": 7, "hitIndex": 0, "multiplier": [9.775, 10.925, 12.075, 13.225, 14.375] }
+      ],
+      "bundle": [
+        {
+          "id": "Si_Three_Marks_Deep_p5",
+          "name": "入木三分·潜能5",
+          "description": "攻击力加成8%+3%×（实际层数+1），持续10秒；额外一层自动计入。",
+          "optional": true,
+          "replaces": "Si_Three_Marks_Deep",
+          "userInput": { "label": "实际附着层", "default": 1, "scale": 1, "min": 1, "max": 4, "integer": true },
+          "effects": [
+            { "category": "atkPercent", "value": 0.11 },
+            { "category": "atkPercent", "scaleRatio": 0.03, "scaleCap": 0.12, "userInput": "scaleValue" }
+          ]
+        }
+      ]
+    }
+  ]
+}
