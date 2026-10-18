@@ -469,9 +469,9 @@
   border: 1px solid #444;
   border-radius: 6px;
   padding: 8px 10px;
-  min-width: 200px;
-  max-width: 320px;
-  max-height: 400px;
+  width: 320px;
+  max-width: calc(100vw - 16px);
+  max-height: min(560px, calc(100vh - 16px));
   overflow-y: auto;
   z-index: 1000;
   box-shadow: 0 4px 16px rgba(0,0,0,0.5);
@@ -485,9 +485,10 @@
   border-bottom: 1px solid #333;
 }
 .team-buff-popup-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
   align-items: flex-start;
-  gap: 6px;
+  gap: 4px 6px;
   padding: 3px 0;
   font-size: 0.78rem;
   color: #ccc;
@@ -498,12 +499,31 @@
 }
 .team-buff-popup-item input[type="checkbox"] {
   margin-top: 2px;
-  flex-shrink: 0;
+  grid-row: 1 / span 2;
 }
 .popup-buff-desc {
-  color: #777;
+  grid-column: 2;
+  color: #999;
   font-size: 0.7rem;
-  margin-left: 4px;
+}
+
+.team-buff-popup-hint {
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #aab;
+  margin: 6px 0 10px;
+}
+.team-buff-popup-entry + .team-buff-popup-entry {
+  border-top: 1px solid #333;
+  margin-top: 5px;
+  padding-top: 5px;
+}
+.team-buff-popup-input {
+  display: inline-flex;
+  align-items: center;
+  margin: 3px 6px 3px 20px;
+  font-size: 0.75rem;
+  color: #ccc;
 }
 
 .palette-item {
@@ -1083,6 +1103,7 @@
 
 .generic-buff-entry {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
 }
@@ -1090,6 +1111,7 @@
 .gb-entry-name {
   color: #dde;
   font-size: 0.8rem;
+  white-space: nowrap;
 }
 
 .gb-source-tag {

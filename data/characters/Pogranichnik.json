@@ -147,7 +147,25 @@
     {
       "id": "When_the_Banner_Flutters",
       "name": "潜能3·战旗飘扬时",
-      "description": "天赋活着的旗帜效果加强：自身士气激昂最大叠加层数+2。"
+      "description": "天赋活着的旗帜效果加强：获得士气激昂所需恢复技力从80点降低至60点，自身士气激昂最大叠加层数+2。",
+      "bundle": [
+        {
+          "id": "The_Living_Banner_4",
+          "name": "天赋·士气激昂（4层·仅自身）",
+          "description": "攻击力+32%，源石技艺强度+32；潜能3解锁，仅骏卫自身生效。",
+          "optional": true,
+          "effects": [{ "category": "atkPercent", "value": 0.32 }],
+          "statBonuses": { "artsIntensity": 32 }
+        },
+        {
+          "id": "The_Living_Banner_5",
+          "name": "天赋·士气激昂（5层·仅自身）",
+          "description": "攻击力+40%，源石技艺强度+40；潜能3解锁，仅骏卫自身生效。",
+          "optional": true,
+          "effects": [{ "category": "atkPercent", "value": 0.4 }],
+          "statBonuses": { "artsIntensity": 40 }
+        }
+      ]
     },
     {
       "id": "Shield_of_Talos-II",

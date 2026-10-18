@@ -104,7 +104,7 @@
       "name": "潜能3·先进工作者",
       "description": "力量+15，物理伤害+8%",
       "statBonuses": { "strength": 15 },
-      "effects": [{ "category": "DMG_Dealt", "value": 0.18, "condition": { "element": "Physical" } }]
+      "effects": [{ "category": "DMG_Dealt", "value": 0.08, "condition": { "element": "Physical" } }]
     },
     {
       "id": "Special_Blend",

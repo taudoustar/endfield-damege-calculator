@@ -101,7 +101,7 @@
       "description": "战技凝声激发的制冷声波飞行距离+50%，并对首个命中敌人的伤害+40%。",
       "optional": true,
       "effects": [
-        { "category": "DMG_Dealt", "value": 0.5, "condition": { "skillType": "skill" } }
+        { "category": "DMG_Dealt", "value": 0.4, "condition": { "skillType": "skill" } }
       ]
     },
     {

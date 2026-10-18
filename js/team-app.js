@@ -29,10 +29,10 @@ const skillTypeLabels = { basic: "普攻", skill: "战技", combo: "连携", ult
 // ===== 状态 =====
 const state = {
   slots: [
-    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null },
-    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null },
-    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null },
-    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null },
+    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null, teamBuffInputValues: {} },
+    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null, teamBuffInputValues: {} },
+    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null, teamBuffInputValues: {} },
+    { charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0, equipment: { armor: null, gloves: null, kit1: null, kit2: null }, foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {}, teamBuffActiveOptionals: null, teamBuffInputValues: {} },
   ],
   activeSlotIndex: 0,
   grids: [[], [], [], []], // each is GridRow[]
@@ -165,7 +165,7 @@ function getEnhancedSlotStatTotals(slotIndex) {
 
   let activeIds;
   if (slot.teamBuffActiveOptionals != null) {
-    activeIds = new Set(slot.teamBuffActiveOptionals);
+    activeIds = new Set(slot.teamBuffActiveOptionals.map(id => getCurrentCharacterBuffId(slotIndex, id)));
   } else {
     activeIds = getGridPlacedBuffIds(slotIndex);
   }
@@ -178,7 +178,7 @@ function getEnhancedSlotStatTotals(slotIndex) {
   const resolvedBuffs = resolveUserInputBuffs(
     selectedBuffs,
     slotIndex,
-    {},
+    slot.teamBuffInputValues || {},
     baseTotals
   );
   return applyBuffStatBonuses(baseTotals, resolvedBuffs, char.statConfig);
@@ -337,6 +337,64 @@ function getAvailableBuffsForPalette(slotIndex) {
   }
 
   return entries;
+}
+
+// 潜能替换只在 Buff 的实际来源角色内解析，避免其他槽位的潜能影响此来源。
+function getCurrentCharacterBuffId(slotIndex, id) {
+  const char = getSlotChar(slotIndex);
+  if (!char) return id;
+  const unlocked = collectCharBuffs(char, state.slots[slotIndex].charPotLevel, () => true);
+  const unlockedIds = new Set(unlocked.map(b => b.id));
+  const upgrades = new Map();
+  const predecessors = new Map();
+  for (const buff of collectCharBuffs(char, char.potentialBuffs?.length || 0, () => true)) {
+    if (!buff.replaces) continue;
+    const replaced = Array.isArray(buff.replaces) ? buff.replaces : [buff.replaces];
+    predecessors.set(buff.id, replaced[0]);
+    if (unlockedIds.has(buff.id)) {
+      for (const oldId of replaced) upgrades.set(oldId, buff.id);
+    }
+  }
+  const visited = new Set();
+  while (!visited.has(id)) {
+    visited.add(id);
+    if (upgrades.has(id)) id = upgrades.get(id);
+    else if (!unlockedIds.has(id) && predecessors.has(id)) id = predecessors.get(id);
+    else break;
+  }
+  return id;
+}
+
+/** 目录查找只负责展示；计算和清理格子必须校验当前来源是否仍提供该 Buff。 */
+function resolveActiveGridBuff(id, slotIndex, allowLegacyTeam = false) {
+  const { kind, buffId, sourceSlot } = parseBuffCellId(id);
+  if (kind === "generic") {
+    if (!getSlotChar(sourceSlot)) return null;
+    const buff = commonBuffs.find(b => b.id === buffId);
+    return buff ? { buff, sourceSlot, id } : null;
+  }
+  if (kind === "team") {
+    if (!getSlotChar(sourceSlot)) return null;
+    const currentId = getCurrentCharacterBuffId(sourceSlot, buffId);
+    const buff = sourceSlot === slotIndex
+      ? getSlotOptionalBuffs(sourceSlot).find(b => b.id === currentId && b.scope === "team")
+      : getTeammateTeamBuffs(slotIndex).find(entry =>
+        entry.fromSlotIndex === sourceSlot && entry.buff.id === currentId)?.buff;
+    return buff ? { buff, sourceSlot, id: buildBuffCellId("team", buff.id, sourceSlot) } : null;
+  }
+  const ownId = getCurrentCharacterBuffId(slotIndex, buffId);
+  const ownBuff = getSlotOptionalBuffs(slotIndex).find(b => b.id === ownId);
+  if (ownBuff) return { buff: ownBuff, sourceSlot: null, id: ownBuff.id };
+  // 只在导入旧配置时推导来源；卸下自身装备不能自动改用队友的同名效果。
+  const teammate = allowLegacyTeam && getTeammateTeamBuffs(slotIndex).find(entry =>
+    entry.buff.id === getCurrentCharacterBuffId(entry.fromSlotIndex, buffId));
+  if (teammate) return {
+    buff: teammate.buff, sourceSlot: teammate.fromSlotIndex,
+    id: buildBuffCellId("team", teammate.buff.id, teammate.fromSlotIndex),
+  };
+  const buff = commonBuffs.find(b => b.id === buffId)
+    || externalBuffCatalog.find(b => b.id === buffId);
+  return buff ? { buff, sourceSlot: null, id: buff.id } : null;
 }
 
 // ===== 根据 ID 查找 buff =====
@@ -548,8 +606,9 @@ function collectRowBuffs(slotIndex, rowIndex) {
     if (cell == null) continue;
     // 格子新格式: { id, inputValue? }；兼容旧格式（纯字符串）
     const cellObj = typeof cell === "object" ? cell : { id: cell };
-    const cellId = cellObj.id;
-    const parsedCellId = parseBuffCellId(cellId);
+    const active = resolveActiveGridBuff(cellObj.id, slotIndex);
+    if (!active) continue;
+    const parsedCellId = parseBuffCellId(active.id);
     if (cellObj.inputValue != null) {
       rowOverrides[parsedCellId.buffId] = cellObj.inputValue;
     }
@@ -560,37 +619,9 @@ function collectRowBuffs(slotIndex, rowIndex) {
       }
     }
 
-    if (cellId == null) continue;
-
-    // 通用/队友 Buff：按记录的来源槽位解析属性缩放。
-    if (parsedCellId.kind === "generic" || parsedCellId.kind === "team") {
-      const buff = findBuffById(parsedCellId.buffId, parsedCellId.sourceSlot);
-      if (buff && (buff.scope !== "teammates" || parsedCellId.sourceSlot !== slotIndex)) {
-        const sourceStatTotals = getEnhancedSlotStatTotals(parsedCellId.sourceSlot);
-        buffs.push(resolveBuffStatSource(buff, sourceStatTotals));
-      }
-      continue;
-    }
-
-    // 普通 ID 优先使用本槽位的可选效果，避免同名武器取到队友的精锻等级。
-    const ownBuff = getSlotOptionalBuffs(slotIndex).find((buff) => buff.id === cellId);
-    if (ownBuff) {
-      buffs.push(ownBuff);
-      continue;
-    }
-
-    // 兼容旧版导出配置：旧配置中的队友 Buff 只有普通 ID。
-    // ID 在当前队友 Buff 中唯一匹配时，仍按提供者属性计算。
-    const legacyTeamBuff = getTeammateTeamBuffs(slotIndex)
-      .find(({ buff }) => buff.id === parsedCellId.buffId);
-    if (legacyTeamBuff) {
-      const sourceStatTotals = getEnhancedSlotStatTotals(legacyTeamBuff.fromSlotIndex);
-      buffs.push(resolveBuffStatSource(legacyTeamBuff.buff, sourceStatTotals));
-      continue;
-    }
-
-    const found = findBuffById(cellId, slotIndex);
-    if (found && found.scope !== "teammates") buffs.push(found);
+    buffs.push(active.sourceSlot == null
+      ? active.buff
+      : resolveBuffStatSource(active.buff, getEnhancedSlotStatTotals(active.sourceSlot)));
   }
 
   // 用所有已解锁 buff 检测替换（格子中放的旧版 buff 也能被替换）
@@ -860,6 +891,8 @@ function initSlotSearchableSelects(el, slotIndex) {
         slot.genericBuffs = [];
         slot.addedGenericSkillIds = [];
         slot.userInputValues = {};
+        slot.teamBuffActiveOptionals = null;
+        slot.teamBuffInputValues = {};
         state.grids[slotIndex] = Array.from({ length: 4 }, () => ({
           skillIndex: null, count: 1, buffCells: [null, null, null],
         }));
@@ -1021,85 +1054,68 @@ function render() {
   renderResult();
 }
 
-/**
- * 潜能变化时，自动更新格子中的旧 buff ID 为新版本。
- * 构建全局替换映射（所有 slot 的角色），然后扫描每个 slot 的 grid。
- */
-function updateGridBuffIds() {
-  // 构建全局替换映射（所有角色的已解锁 buff）
-  const globalReplaceMap = new Map();  // 旧 ID → 新 ID
-  const globalReverseMap = new Map();  // 新 ID → 旧 ID
-  const globalUnlockedIds = new Set();
-
-  for (let s = 0; s < 4; s++) {
-    const char = getSlotChar(s);
-    if (!char) continue;
+/** 更新潜能版本并移除当前编队已不能提供的 Buff，旧配置导入也经过此检查。 */
+function updateGridBuffIds(allowLegacyTeam = false) {
+  for (let s = 0; s < state.slots.length; s++) {
     const slot = state.slots[s];
-    const allUnlocked = collectCharBuffs(char, slot.charPotLevel, () => true);
-    for (const b of allUnlocked) {
-      globalUnlockedIds.add(b.id);
-      if (b.replaces) {
-        const ids = Array.isArray(b.replaces) ? b.replaces : [b.replaces];
-        for (const oldId of ids) {
-          globalReplaceMap.set(oldId, b.id);
-          globalReverseMap.set(b.id, oldId);
+    if (slot.teamBuffActiveOptionals != null) {
+      const availableIds = new Set(getSlotOptionalBuffs(s).map(b => b.id));
+      slot.teamBuffActiveOptionals = [...new Set(slot.teamBuffActiveOptionals.map(id => {
+        const currentId = getCurrentCharacterBuffId(s, id);
+        // 保留潜能升级前已填写的全局层数。
+        for (const [key, value] of Object.entries(slot.teamBuffInputValues || {})) {
+          if (currentId !== id && (key === id || key.startsWith(`${id}__`))) {
+            slot.teamBuffInputValues[currentId + key.slice(id.length)] = value;
+          }
         }
-      }
+        return currentId;
+      }).filter(id => availableIds.has(id)))];
     }
-    // 全部潜能（不限等级）用于降级回退
-    const allPotBuffs = collectCharBuffs(char, char.potentialBuffs?.length || 0, () => true);
-    for (const b of allPotBuffs) {
-      if (b.replaces) {
-        const ids = Array.isArray(b.replaces) ? b.replaces : [b.replaces];
-        for (const oldId of ids) globalReverseMap.set(b.id, oldId);
-      }
-    }
-  }
-
-  // 扫描每个 slot 的 grid
-  for (let s = 0; s < 4; s++) {
-    const grid = state.grids[s];
-    if (!grid) continue;
-    for (const row of grid) {
-      for (let c = 0; c < row.buffCells.length; c++) {
-        const cell = row.buffCells[c];
-        if (cell == null) continue;
+    for (const row of state.grids[s] || []) {
+      row.buffCells = row.buffCells.map(cell => {
+        if (cell == null) return null;
         const cellObj = typeof cell === "object" ? cell : { id: cell };
-        const cellId = cellObj.id;
-
-        // 处理带来源槽位的通用/团队 Buff。
-        const parsedCellId = parseBuffCellId(cellId);
-        if (parsedCellId.kind !== "plain") {
-          const { kind, buffId, sourceSlot } = parsedCellId;
-          const newBuffId = globalReplaceMap.get(buffId);
-          if (newBuffId) {
-            row.buffCells[c] = { ...cellObj, id: buildBuffCellId(kind, newBuffId, sourceSlot) };
-            continue;
-          }
-          if (!globalUnlockedIds.has(buffId) && globalReverseMap.has(buffId)) {
-            const oldBuffId = globalReverseMap.get(buffId);
-            if (globalUnlockedIds.has(oldBuffId)) {
-              row.buffCells[c] = { ...cellObj, id: buildBuffCellId(kind, oldBuffId, sourceSlot) };
-            }
-          }
-          continue;
-        }
-
-        // 处理普通 buff ID
-        const newId = globalReplaceMap.get(cellId);
-        if (newId) {
-          row.buffCells[c] = { ...cellObj, id: newId };
-          continue;
-        }
-        if (!globalUnlockedIds.has(cellId) && globalReverseMap.has(cellId)) {
-          const oldId = globalReverseMap.get(cellId);
-          if (globalUnlockedIds.has(oldId)) {
-            row.buffCells[c] = { ...cellObj, id: oldId };
-          }
-        }
-      }
+        const active = resolveActiveGridBuff(cellObj.id, s, allowLegacyTeam);
+        return active ? { ...cellObj, id: active.id } : null;
+      });
     }
   }
+}
+
+// 导入/导出与 DOM 渲染分离，使旧配置兼容和来源状态可以独立验证。
+export function exportTeamConfig() {
+  return {
+    version: 2, slots: state.slots, grids: state.grids,
+    activeSlotIndex: state.activeSlotIndex,
+  };
+}
+
+export function importTeamConfig(data) {
+  const defaultSlot = () => ({
+    charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0,
+    equipment: { armor: null, gloves: null, kit1: null, kit2: null },
+    foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {},
+    teamBuffActiveOptionals: null, teamBuffInputValues: {},
+  });
+  if (data.slots) {
+    for (let i = 0; i < 4; i++) {
+      state.slots[i] = Object.assign(defaultSlot(), data.slots[i] || {});
+    }
+  }
+  if (data.grids) {
+    // 兼容旧格式：buffCells 元素可能是纯字符串
+    state.grids = data.grids.map(grid =>
+      grid.map(row => ({
+        ...row,
+        buffCells: (row.buffCells || []).map(cell =>
+          cell == null || typeof cell === "object" ? cell : { id: cell }
+        ),
+      }))
+    );
+  }
+  if (data.activeSlotIndex != null) state.activeSlotIndex = data.activeSlotIndex;
+  state.paletteSelection = null;
+  updateGridBuffIds((data.version ?? 1) < 2);
 }
 
 // ===== 初始化 =====
@@ -1123,37 +1139,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 导出/导入
   initSaveLoad({
     containerId: "save-load-bar",
-    exportFn: () => ({
-      version: 1,
-      slots: state.slots,
-      grids: state.grids,
-      activeSlotIndex: state.activeSlotIndex,
-    }),
+    exportFn: exportTeamConfig,
     importFn: (data) => {
-      const defaultSlot = () => ({
-        charId: null, weaponId: null, weaponPotLevel: 0, charPotLevel: 0,
-        equipment: { armor: null, gloves: null, kit1: null, kit2: null },
-        foodId: null, genericBuffs: [], addedGenericSkillIds: [], userInputValues: {},
-        teamBuffActiveOptionals: null,
-      });
-      if (data.slots) {
-        for (let i = 0; i < 4; i++) {
-          state.slots[i] = Object.assign(defaultSlot(), data.slots[i] || {});
-        }
-      }
-      if (data.grids) {
-        // 兼容旧格式：buffCells 元素可能是纯字符串
-        state.grids = data.grids.map(grid =>
-          grid.map(row => ({
-            ...row,
-            buffCells: (row.buffCells || []).map(cell =>
-              cell == null || typeof cell === "object" ? cell : { id: cell }
-            ),
-          }))
-        );
-      }
-      if (data.activeSlotIndex != null) state.activeSlotIndex = data.activeSlotIndex;
-      state.paletteSelection = null;
+      importTeamConfig(data);
       render();
     },
   });
@@ -1180,4 +1168,5 @@ export {
   collectRowBuffs,
   calculateSlotDamage,
   findBuffById,
+  updateGridBuffIds,
 };

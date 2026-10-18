@@ -181,7 +181,7 @@
       "name": "潜能5·应弦而倒",
       "description": "冰山呼告获得的猎矢数量+1，终结技伤害提升至原本的1.2倍，强化射击自然爆发伤害倍率提升至原本的1.1倍",
       "skillOverrides": [
-        { "skillIndex": 8, "hitIndex": 0, "multiplier": 2.7918 },
+        { "skillIndex": 8, "hitIndex": 0, "multiplier": 2.55915 },
         { "skillIndex": 11, "hitIndex": 0, "multiplier": 3.60 },
         { "skillIndex": 12, "hitIndex": 0, "multiplier": 0.90 },
         { "skillIndex": 13, "hitIndex": 0, "multiplier": 2.40 }

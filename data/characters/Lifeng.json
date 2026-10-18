@@ -109,7 +109,7 @@
     {
       "id": "Turbid_Avatar_p1",
       "name": "荡浊身·物理脆弱·潜能1",
-      "description": "物理脆弱16%",
+      "description": "物理脆弱17%",
       "scope": "team",
       "optional": true,
       "replaces": "Turbid_Avatar",
@@ -120,7 +120,7 @@
     {
       "id": "Self_Refinement",
       "name": "潜能2·修身",
-      "description": "全属性+15%",
+      "description": "全能力+15",
       "statBonuses": { "strength": 15, "agility": 15, "intellect": 15, "will": 15 }
     },
     {

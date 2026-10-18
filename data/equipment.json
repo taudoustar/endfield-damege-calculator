@@ -840,7 +840,7 @@
       {
         "id": "Turbid_Cutting_Torch_b1",
         "name": "浊流切割炬",
-        "description": "普通攻击伤害提升24.9%",
+        "description": "普通攻击伤害提升35.9%",
         "effects": [
           { "category": "DMG_Dealt", "value": 0.359, "condition": { "skillType": "basic" } },
           { "category": "DMG_Dealt", "value": 0.359, "condition": { "skillType": "strike" } }
@@ -1139,7 +1139,7 @@
       {
         "id": "Type_50_Yinglung_Heavy_Armor_b1",
         "name": "50式应龙重甲",
-        "description": "物理伤害提升24.9%",
+        "description": "物理伤害提升14.9%",
         "effects": [
           { "category": "DMG_Dealt", "value": 0.149, "condition": { "element": "Physical" } }
         ]
@@ -1569,7 +1569,7 @@
       {
         "id": "MI_Security_Overalls_b1",
         "name": "M.I.警用罩衣",
-        "description": "普通攻击伤害提升24.9%",
+        "description": "普通攻击伤害提升17.9%",
         "effects": [
           { "category": "DMG_Dealt", "value": 0.179, "condition": { "skillType": "basic" } },
           { "category": "DMG_Dealt", "value": 0.179, "condition": { "skillType": "strike" } }
@@ -1683,8 +1683,8 @@
         "name": "M.I.警用手环",
         "description": "普通攻击伤害提升29.9%",
         "effects": [
-          { "category": "DMG_Dealt", "value": 0.249, "condition": { "skillType": "basic" } },
-          { "category": "DMG_Dealt", "value": 0.249, "condition": { "skillType": "strike" } }
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "basic" } },
+          { "category": "DMG_Dealt", "value": 0.299, "condition": { "skillType": "strike" } }
         ]
       }
     ]

@@ -98,6 +98,7 @@
         "name": "潮涌·被动",
         "description": "装备者所有技能伤害+20%",
         "effects": [
+          { "category": "DMG_Dealt", "value": 0.2, "condition": { "skillType": "skill" } },
           { "category": "DMG_Dealt", "value": 0.2, "condition": { "skillType": "combo" } },
           { "category": "DMG_Dealt", "value": 0.2, "condition": { "skillType": "ultimate" } }
         ]
@@ -282,7 +283,7 @@
       {
         "id": "Æthertech_b1",
         "name": "轻超域·被动",
-        "description": "攻击力+15%",
+        "description": "攻击力+8%",
         "effects": [
           { "category": "atkPercent", "value": 0.08 }
         ]

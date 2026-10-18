@@ -45,6 +45,7 @@ function buffDesc(buff) {
 /* ------------------------------------------------------------------ */
 
 export function renderPalette() {
+  document.querySelector?.(".team-buff-popup")?.remove();
   const el = document.getElementById("palette");
   if (!el) return;
 
@@ -127,8 +128,11 @@ export function renderPalette() {
     const compositeId = `gb:${gb.buffId}:${gb.statSourceSlot}`;
     const selectedClass = isSelected("buff", compositeId) ? " selected" : "";
     html += `<div class="palette-item buff-item generic-buff-entry${selectedClass}" data-type="buff" data-id="${compositeId}" title="${buff?.description || ''}">`;
-    html += `○ ${buff ? buff.name : gb.buffId}`;
+    html += `<span class="gb-entry-name">○ ${buff ? buff.name : gb.buffId}</span>`;
     html += `<span class="gb-source-tag">← ${sourceChar ? sourceChar.name : "?"}</span>`;
+    if (sourceChar) {
+      html += `<button class="team-buff-config-btn" data-source-slot="${gb.statSourceSlot}" title="配置来源角色的全局属性加成" aria-label="配置${sourceChar.name}的全局属性加成">⚙</button>`;
+    }
     if (buff?.userInput) {
       const curVal = slot.userInputValues?.[gb.buffId] ?? buff.userInput.default ?? 0;
       const label = buff.userInput.label || "";
@@ -316,15 +320,29 @@ function showTeamBuffStatPopup(sourceSlotIndex, anchorEl) {
   popup.style.top = `${rect.top}px`;
 
   const srcChar = getSlotChar(sourceSlotIndex);
-  let html = `<div class="team-buff-popup-title">${srcChar ? srcChar.name : ""} 属性加成</div>`;
+  slot.teamBuffInputValues ??= {};
+  let html = `<div class="team-buff-popup-title">${srcChar ? srcChar.name : ""} 全局来源属性</div>`;
+  html += '<p class="team-buff-popup-hint">勾选来源角色的属性加成并填写层数。所有引用此角色的队友和通用 Buff 共用本配置，不跟随网格各行的层数。</p>';
   for (const buff of optionalBuffs) {
     const checked = slot.teamBuffActiveOptionals.includes(buff.id) ? "checked" : "";
     const desc = buff.description || "";
+    html += '<div class="team-buff-popup-entry">';
     html += `<label class="team-buff-popup-item">`;
     html += `<input type="checkbox" data-buff-id="${buff.id}" ${checked} />`;
     html += `<span>${buff.name}</span>`;
     if (desc) html += `<span class="popup-buff-desc">${desc}</span>`;
     html += `</label>`;
+    const inputs = buff.userInputs || (buff.userInput ? [buff.userInput] : []);
+    for (const input of inputs) {
+      const key = input.key == null ? buff.id : `${buff.id}__${input.key}`;
+      slot.teamBuffInputValues[key] ??= slot.userInputValues?.[key] ?? input.default ?? 0;
+      const safeKey = key.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
+      const minAttr = input.min != null ? ` min="${input.min}"` : "";
+      const maxAttr = input.max != null ? ` max="${input.max}"` : "";
+      html += `<label class="team-buff-popup-input">${input.label || input.key || "数值"}`;
+      html += `<input type="number" class="user-input-field" data-source-input-key="${safeKey}" value="${slot.teamBuffInputValues[key]}"${minAttr}${maxAttr} step="${input.step ?? (input.integer ? 1 : "any")}" aria-label="${buff.name} ${input.label || input.key || "数值"}" /></label>`;
+    }
+    html += '</div>';
   }
   popup.innerHTML = html;
   document.body.appendChild(popup);
@@ -332,15 +350,15 @@ function showTeamBuffStatPopup(sourceSlotIndex, anchorEl) {
   // 确保不超出视口
   const popupRect = popup.getBoundingClientRect();
   if (popupRect.bottom > window.innerHeight) {
-    popup.style.top = `${window.innerHeight - popupRect.height - 8}px`;
+    popup.style.top = `${Math.max(8, window.innerHeight - popupRect.height - 8)}px`;
   }
   if (popupRect.right > window.innerWidth) {
-    popup.style.left = `${rect.left - popupRect.width - 4}px`;
+    popup.style.left = `${Math.max(8, rect.left - popupRect.width - 4)}px`;
   }
 
   popup.addEventListener("change", (e) => {
     const cb = e.target;
-    if (!cb.dataset.buffId) return;
+    if (cb.type !== "checkbox" || !cb.dataset.buffId) return;
     const id = cb.dataset.buffId;
     if (cb.checked) {
       if (!slot.teamBuffActiveOptionals.includes(id)) {
@@ -349,6 +367,14 @@ function showTeamBuffStatPopup(sourceSlotIndex, anchorEl) {
     } else {
       slot.teamBuffActiveOptionals = slot.teamBuffActiveOptionals.filter(x => x !== id);
     }
+    renderResult();
+  });
+
+  popup.addEventListener("input", (e) => {
+    const key = e.target.dataset.sourceInputKey;
+    if (!key) return;
+    const value = Number(e.target.value);
+    slot.teamBuffInputValues[key] = Number.isFinite(value) ? value : 0;
     renderResult();
   });
 

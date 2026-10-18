@@ -108,7 +108,7 @@
       "description": "意志+15，造成的电磁伤害+8%。",
       "statBonuses": { "will": 15 },
       "effects": [
-        { "category": "DMG_Dealt", "value": 0.09, "condition": { "element": "Electric" } }
+        { "category": "DMG_Dealt", "value": 0.08, "condition": { "element": "Electric" } }
       ]
     },
     {
